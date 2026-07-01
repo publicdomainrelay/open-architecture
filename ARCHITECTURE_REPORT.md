@@ -2,22 +2,18 @@
 
 ## State
 
-```
 commsProcessed:  691 / 691  (100%)
 concepts:        263
 stubs:           258          (98.1% stub rate)
 issues:           10
-```
 
 ## Batch History
 
-```
 | batch | concepts | elapsed | new | refines | attempts |
 |-------|----------|---------|-----|---------|----------|
 | 1     | 3        | 79.4s   | 3   | 0       | 1        |
 | 2     | 6        | 95.7s   | 6   | 0       | 1        |
 | 3     | 0        | (fail)  | 0   | 0       | 2        |
-```
 
 Batch 3 failed 2 attempts. Zero new concepts found. Stub ratReport written. Here's summary:
 
@@ -58,11 +54,9 @@ Batch 3 failed 2 attempts. Zero new concepts found. Stub ratReport written. Here
   - Common Types (14 wire types, zero runtime)
 - **Full cross-subsystem mermaid** connecting all 8 packages
 - **Assessment**: complete blueprint, no implementation. Every wire labeled, no current flowing.ply
-```
 
 ### Tree
 
-```
 whatAliceIs()
   ├── describeTheSystemAsData()   → SystemContext
   └── herRepositoryIsHerVoice()   → identity + memory + ears
@@ -77,7 +71,6 @@ puttingItTogether(buildEvent)
   ├── gatekeeper(component)              → admit through supply chain
   ├── getMyWorkRun()                     → compute contract flow
   └── thinkMoreDeeply()                  → entity analysis trinity
-```
 
 **Connection**: `puttingItTogether` is the spine. Bob pushes build →
 Alice hears it → checks trust → gatekeeper admits → opens compute
@@ -106,10 +99,8 @@ graph TD
   herEars --> theFirehoseCarriesIt
   theFirehoseCarriesIt --> walkTheReferences
 ```
-
 ### Tree
 
-```
 herRepositoryIsHerVoice()
   ├── herIdentity()          → DID "did:plc:"
   │   └── didStandardization()    (stub)
@@ -119,7 +110,6 @@ herRepositoryIsHerVoice()
   └── herEars()
       └── theFirehoseCarriesIt()
           └── walkTheReferences() → StrongRef
-```
 
 **Types**: `DID`, `StrongRef`, `RepoRecord` from alice-common.
 
@@ -155,10 +145,8 @@ graph TD
   shareAThought --> hypothesizeSystemContext
   hypothesizeSystemContext --> describeTheSystemAsData
 ```
-
 ### Tree
 
-```
 onEvent(event)
   ├── knowledgeGraph(event)           (stub)
   ├── dataflowCacheExportImport()     (stub)
@@ -173,7 +161,6 @@ onEvent(event)
 shareAThought() → SystemContext
   └── hypothesizeSystemContext()
       └── describeTheSystemAsData()
-```
 
 **Key stubs**: `isRelevant` always returns `false` — no event ever
 reaches summarize/prioritizer/thinkMoreDeeply. `knowledgeGraph`
@@ -203,10 +190,8 @@ graph TD
   entityAnalysisTrinity --> staticAnalysis
   entityAnalysisTrinity --> dynamicAnalysis
 ```
-
 ### Tree
 
-```
 describeTheSystemAsData() → SystemContext
   ├── theManifest()    → { intent:"", schema:undefined, data:undefined }
   ├── theDataFlow()    → { operations:{}, links:[] }
@@ -220,7 +205,6 @@ entityAnalysisTrinity() → EntityAnalysisTrinity
   ├── intentAnalysis()       (stub: returns undefined)
   ├── staticAnalysis()       (stub: returns undefined)
   └── dynamicAnalysis()      (stub: returns undefined)
-```
 
 **Types**: `Manifest`, `DataFlow`, `Overlay`, `SystemContext`,
 `EntityAnalysisTrinity` from alice-common.
@@ -254,10 +238,8 @@ graph TD
   webOfTrust --> vouchesAndDenouncements
   webOfTrust --> trustByVerifyContinuously
 ```
-
 ### Tree
 
-```
 doITrustWhereThisCameFrom(source: DID) → bool
   ├── enclaveAttestationIsASignalNotAFoundation()  (stub)
   ├── scittTransparencyService()                    (stub)
@@ -269,7 +251,6 @@ doITrustWhereThisCameFrom(source: DID) → bool
       └── trustByVerifyContinuously()                (stub)
 
 webOfTrust ALWAYS returns true. Every pillar is a stub.
-```
 
 **Key design**: `webOfTrust` returns `true` unconditionally. All
 six trust checks are stubs. Trust decision is a skeleton — the
@@ -304,10 +285,8 @@ graph TD
   applyThreatModelOverlay --> theOverlay
   gatekeeper --> federateClaimsDownstream
 ```
-
 ### Tree
 
-```
 gatekeeper(component: StrongRef)
   ├── scanIntoTrustAttestation(component) → StrongRef
   │   └── doITrustWhereThisCameFrom("did:plc:")
@@ -321,7 +300,6 @@ gatekeeper(component: StrongRef)
   ├── applyThreatModelOverlay()
   │   └── theOverlay()
   └── federateClaimsDownstream()                      (stub)
-```
 
 **Key stubs**: `openPolicyAgentOverlay` (OPA → JSON → DID/VC/SCITT,
 no code). `livingSbomVdr` (NIST VDR, no code). `federateClaimsDownstream`
@@ -353,10 +331,8 @@ graph TD
   getMyWorkRun --> payPerTheTerms
   getMyWorkRun --> bobPublishesCCR
 ```
-
 ### Tree
 
-```
 getMyWorkRun() → CCR
   ├── publishCCRFP() → CCRFP
   │   └── { request: { intent:"", schema:undefined, data:undefined } }
@@ -368,7 +344,6 @@ getMyWorkRun() → CCR
   ├── payPerTheTerms(accept)                            (stub)
   └── bobPublishesCCR(accept) → CCR
       └── { chain: { request, bid, accept }, evidence: undefined }
-```
 
 **Types**: `CCRFP`, `CCB`, `CCBA`, `CCR` from alice-common.
 
@@ -387,7 +362,6 @@ trust subsystem determines which bidder wins.
 
 Wire format. Every type every other package imports.
 
-```
 DID                     = string                 ("did:plc:...")
 CID                     = string                 (content addr)
 ATURI                   = string                 ("at://...")
@@ -402,7 +376,6 @@ CCB                     = { against, bidder, terms }
 CCBA                    = { accepts: StrongRef }
 CCR                     = { chain, evidence }
 EntityAnalysisTrinity   = { intent, staticAnalysis, dynamicAnalysis }
-```
 
 14 types. All are interfaces or type aliases. Zero runtime code.
 Layer 0 — imported by every abc package, imports nothing project-local.
@@ -505,7 +478,6 @@ graph TD
   GW --> PP
   PP --> DT
 ```
-
 ---
 
 ## Architecture Assessment
