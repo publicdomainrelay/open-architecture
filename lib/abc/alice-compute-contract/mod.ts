@@ -275,3 +275,15 @@ export function transportAcquisition(): void {
 export function httpConnectMultiplexing(): void {
   // Related: billOfLadingComputeContract
 }
+
+/**
+ * UNIX domain sockets serve as a zero-trust-aligned local inter-process transport, where the OS filesystem enforces access control at the connection boundary.
+ * 
+ * In a zero trust architecture, every connection must be authenticated and authorized — no implicit trust from network location. UNIX domain sockets provide this at the OS level: only processes with filesystem permissions to the socket path can connect, and the kernel enforces this without any network-layer authentication overhead. Compared to TCP loopback, UDS eliminates an entire class of local network attacks (port scanning, connection hijacking, unauthorized listeners). Performance benefits include zero-copy data transfer and lower latency than TCP. Within Alice's compute architecture, UDS is the preferred transport for co-located services (relay↔subscriber, spindle↔policy engine) — each service binds to its own socket path with restrictive permissions, creating OS-enforced trust boundaries between components on the same host.
+ * 
+ * @see comms/0647
+ * @see intel/dffml#1400
+ */
+export function unixSocketZeroTrustTransport(): void {
+  // TODO: wire to related concepts
+}

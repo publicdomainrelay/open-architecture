@@ -1509,3 +1509,28 @@ export function sigstoreInstanceRouting(): void {
 export function sigstoreEventStreamRelay(): void {
   // Related: activityPubScittInputs, federatedSseActivityPub, scittNotaryAssertionRegistry
 }
+
+/**
+ * Streaming data/agent pipelines (Redpanda Connect-style) feed into the policy engine as governed event sources.
+ * 
+ * External agent pipeline frameworks connect to the policy engine through HTTP server inputs and other adapters. The policy engine acts as the governance layer — deciding what pipelines execute, with what inputs, and on which infrastructure. This bridges the gap between general-purpose streaming data processors and the SCITT-backed policy enforcement that Alice requires for supply chain integrity. Rather than the policy engine synthesizing workflows internally (as in langgraph-to-Knative synthesis), this pattern connects existing pipeline ecosystems as first-class event sources.
+ * 
+ * @see comms/0641
+ * @see https://docs.redpanda.com/redpanda-connect/components/inputs/http_server/
+ */
+export function agentPipelinePolicyEngineBridge(): void {
+  // Related: policyEngineLangGraphKnativeSynthesis, policyEngineWorkflowDispatch
+}
+
+/**
+ * Federated transparent statements carry execution distribution intent, enabling the policy engine to distribute jobs and their stacks across the federation.
+ * 
+ * When a transparent statement is submitted to one SCITT instance and federated to others, the statement itself encodes not just the artifact provenance but the execution intent — what job to run, on what stack, with what policy constraints. Each policy engine instance in the federation independently evaluates the statement against its local policies and decides whether to bid on execution. This turns the transparency log federation into a distributed job dispatch mesh where statements are both the audit trail and the work order.
+ * 
+ * Earlier understanding (from comm 0572-0575): A standalone policy engine instance watches new transparent statements via federation and acts as the CI/CD orchestrator — the forge's workflow dispatcher.
+ * 
+ * @see comms/0642
+ */
+export function federatedStatementJobDistribution(): void {
+  // Related: policyEngineWorkflowDispatch, scittFederationDiscovery, policyEngineLangGraphKnativeSynthesis
+}

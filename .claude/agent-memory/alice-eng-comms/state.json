@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 639,
+  "lastProcessedComm": 647,
   "processedComms": [
     0,
     1,
@@ -640,7 +640,15 @@
     636,
     637,
     638,
-    639
+    639,
+    640,
+    641,
+    642,
+    643,
+    644,
+    645,
+    646,
+    647
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2120,7 +2128,7 @@
     "policyEngineWorkflowDispatch": {
       "functionName": "policyEngineWorkflowDispatch",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 591,
+      "lastUpdatedComm": 647,
       "sourceIssues": [],
       "summary": "Policy engine dispatches GitHub Actions workflows for subjects"
     },
@@ -2256,6 +2264,27 @@
       "lastUpdatedComm": 639,
       "sourceIssues": [],
       "summary": "Least privilege access control for Alice's long-term memory knowledge graph representation"
+    },
+    "agentPipelinePolicyEngineBridge": {
+      "functionName": "agentPipelinePolicyEngineBridge",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 647,
+      "sourceIssues": [],
+      "summary": "Streaming agent pipelines feed into policy engine as governed event sources"
+    },
+    "federatedStatementJobDistribution": {
+      "functionName": "federatedStatementJobDistribution",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 647,
+      "sourceIssues": [],
+      "summary": "Transparent statements carry execution intent across federation for distributed job dispatch"
+    },
+    "unixSocketZeroTrustTransport": {
+      "functionName": "unixSocketZeroTrustTransport",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 647,
+      "sourceIssues": [],
+      "summary": "UNIX domain sockets as zero-trust-aligned local IPC with OS-enforced access control"
     }
   },
   "issueCache": {
@@ -2353,6 +2382,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 230,
+  "totalStubsCreated": 233,
   "totalIssuesFetched": 10
 }
