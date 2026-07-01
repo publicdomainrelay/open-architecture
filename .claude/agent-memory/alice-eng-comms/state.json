@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 471,
+  "lastProcessedComm": 479,
   "processedComms": [
     0,
     1,
@@ -472,7 +472,15 @@
     468,
     469,
     470,
-    471
+    471,
+    472,
+    473,
+    474,
+    475,
+    476,
+    477,
+    478,
+    479
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -979,7 +987,7 @@
     "shellContextCapture": {
       "functionName": "shellContextCapture",
       "filePath": "lib/abc/alice-system-context/mod.ts",
-      "lastUpdatedComm": 111,
+      "lastUpdatedComm": 479,
       "sourceIssues": [],
       "summary": "Alice captures shell state aligned to system context for reproducible execution"
     },
@@ -1686,7 +1694,7 @@
     "sbomToScittOciPipeline": {
       "functionName": "sbomToScittOciPipeline",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 447,
+      "lastUpdatedComm": 479,
       "sourceIssues": [],
       "summary": "gh sbom → ORAS OCI registry (version+commit tags) → SCITT claim → transparency receipt."
     },
@@ -1728,7 +1736,7 @@
     "sshKeyAsScittIdentity": {
       "functionName": "sshKeyAsScittIdentity",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 455,
+      "lastUpdatedComm": 479,
       "sourceIssues": [],
       "summary": "SSH key (TPM-bound via PKCS#11) as SCITT signing identity, no OAuth/Fulcio needed"
     },
@@ -1822,6 +1830,41 @@
       "lastUpdatedComm": 471,
       "sourceIssues": [],
       "summary": "IETF RATS EAT measurements: TEE/TPM claims in verifiable attestation tokens"
+    },
+    "herstoryDocumentationSynthesis": {
+      "functionName": "herstoryDocumentationSynthesis",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 479,
+      "sourceIssues": [],
+      "summary": "Auto-generate docs from herstory shell history with timeline resolution"
+    },
+    "cloudDevEnvironmentProvisioning": {
+      "functionName": "cloudDevEnvironmentProvisioning",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 479,
+      "sourceIssues": [],
+      "summary": "One-click Alice dev environments via GitPod/Coder with auto-start tutorials"
+    },
+    "federatedGraphQLSupplyChainPolling": {
+      "functionName": "federatedGraphQLSupplyChainPolling",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 479,
+      "sourceIssues": [],
+      "summary": "Poll 2nd party repos via GitHub GraphQL to discover changes for SCITT notarization"
+    },
+    "publicKeysBranchNotaryDiscovery": {
+      "functionName": "publicKeysBranchNotaryDiscovery",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 479,
+      "sourceIssues": [],
+      "summary": "Git public-keys branch as authorized_keys discovery for SCITT notary identity"
+    },
+    "inTotoCycloneDxScittSubmission": {
+      "functionName": "inTotoCycloneDxScittSubmission",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 479,
+      "sourceIssues": [],
+      "summary": "SBOM → in-toto CycloneDX attestation → ephemeral key → SCITT → auto-PR pipeline"
     }
   },
   "issueCache": {
@@ -1919,6 +1962,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 192,
+  "totalStubsCreated": 197,
   "totalIssuesFetched": 10
 }

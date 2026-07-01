@@ -586,3 +586,27 @@ export function kcpFederatedControlPlane(): void {
 export function aiSupplyChainTransparency(): void {
   // Related: dataCentricAiTrinity, mlDependencyChainVerification
 }
+
+/**
+ * Auto-generate documentation from shell history captured in herstory: commit messages derived from historical shell commands with output, diff system context herstory state against last clean tree link in chain, timeline resolution for dirty trees across commit sets.
+ * 
+ * "First we automate writing the docs, then we automate reading." Links herstory to ipynb creation and shell command saving. Auto-generate commit messages (docs) based on historical shell commands ran (or if in VS Code debug buttons or run buttons executed) with output. Run timeline resolution if dirty tree for set of commits (multiple git add runs).
+ * 
+ * Earlier understanding (from comms prior to 0472): capture shell context for reproducibility.
+ * 
+ * @see comms/0472
+ */
+export function herstoryDocumentationSynthesis(): void {
+  // Related: shellContextCapture, streamOfConsciousnessGitops
+}
+
+/**
+ * One-click Alice development environment provisioning via cloud IDE platforms. Supports GitPod (public, zero-config via .gitpod.yml auto-start opening tutorial notebook on launch) and Coder (self-hosted, for organizations requiring on-premises development environments).
+ * 
+ * Enables contributors to start hacking on Alice immediately without local setup. The .gitpod.yml auto-start config runs Alice CONTRIBUTING setup then opens the tutorial notebook. Reduces contribution friction to near zero.
+ * 
+ * @see comms/0472
+ */
+export function cloudDevEnvironmentProvisioning(): void {
+  // TODO: wire to related concepts
+}

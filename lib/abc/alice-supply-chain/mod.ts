@@ -1243,3 +1243,40 @@ export function slsaProvenanceAttestationShape(): void {
 export function portableAiInferenceArtifact(): void {
   // Related: slsaProvenanceAttestationShape, aiSupplyChainTransparency
 }
+
+/**
+ * Poll 2nd party repositories via GitHub GraphQL API with cursor-based pagination to discover pull requests that modify specific files (e.g. SBOM, SECURITY.md), then trigger SCITT notarization of the discovered changes.
+ * 
+ * Alternative to webhook-based event ingestion. Works without requiring webhook configuration on target repos. Paginates through PRs (states: OPEN, MERGED, CLOSED) and their files independently, matching against a target file path. Enables federation of supply chain events from the CBOR API perspective — polling becomes a discovery mechanism for transparency service federation.
+ * 
+ * @see comms/0473
+ */
+export function federatedGraphQLSupplyChainPolling(): void {
+  // Related: scittNotarizingProxyInCiCd, scittBovineFederation, federatedSupplyChainValidationTopology
+}
+
+/**
+ * Use a `public-keys` git branch as the authorized_keys discovery mechanism for SCITT notary signing identity. Ephemeral ECDSA keypair generated per CI run, public key appended to the branch, pushed, and the workflow polls `raw.githubusercontent.com` until the new key propagates. The `did:web` issuer resolves to `raw.githubusercontent.com:<owner>:<repo>:public-keys:authorized_keys`.
+ * 
+ * After SCITT submission, the private key is immediately deleted. The public-keys branch serves as a transparent, auditable log of all notary keys that have been authorized to sign SCITT statements for the repository.
+ * 
+ * Earlier understanding (from prior comms): SSH keys can serve as SCITT identity. This comm adds the git branch distribution + ephemeral key generation + propagation polling pattern.
+ * 
+ * @see comms/0479
+ */
+export function publicKeysBranchNotaryDiscovery(): void {
+  // Related: sshKeyAsScittIdentity, scittNotaryAssertionRegistry, scittNotarizingProxyInCiCd
+}
+
+/**
+ * Complete GitHub Actions workflow pipeline: generate SBOM for Python package → wrap in in-toto v0.1 Statement with CycloneDX v1.4 predicate → generate ephemeral ECDSA (secp384r1) keypair → publish public key to `public-keys` branch → poll for raw.githubusercontent.com propagation → submit signed attestation to SCITT transparency service → auto-create PR for SBOM file updates.
+ * 
+ * The in-toto attestation binds the SBOM (predicate) to the release artifacts (subjects with sha256 digests). The ephemeral key is deleted immediately after SCITT submission — the public-keys branch history serves as the persistent identity record.
+ * 
+ * Earlier understanding (from prior comms): SBOM flows into SCITT via OCI pipeline. This comm adds the in-toto attestation wrapping, ephemeral key lifecycle, and public-keys branch identity pattern.
+ * 
+ * @see comms/0479
+ */
+export function inTotoCycloneDxScittSubmission(): void {
+  // Related: sbomToScittOciPipeline, inTotoCoseSupplyChainAttestation, sshKeyAsScittIdentity, publicKeysBranchNotaryDiscovery
+}
