@@ -54,3 +54,49 @@ export function aliceShellDefaultOverlay(): void {
 export function culturalOpAmpEffects(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * IPVM's managed effects model directly parallels DFFML's dataflow operations — effects are the input/output events between WASM compute steps.
+ * 
+ * IPVM (InterPlanetary Virtual Machine) wraps WASM computation with a managed effects system: impure operations (network, filesystem, I/O) are externalized as effects handled by the runtime, while WASM itself stays deterministic. This is structurally identical to Open Architecture's operation/dataflow model: effects incoming run before WASM (like input gathering), effects outgoing after (like output emission). IPVM's analysis step — reorder, derive dependency tree, overlay failure modes — maps to the Entity Analysis Trinity's static analysis + overlay pipeline. IPVM wants affinity-based scheduling ("I already have this cached, send me these effects"), which aligns with content-addressable operation caching in DFFML.
+ * 
+ * @see comms/0080
+ * @see https://github.com/ipvm-wg/spec/pull/8
+ */
+export function ipvmManagedEffectsAlignment(): void {
+  // Related: entityAnalysisTrinity
+}
+
+/**
+ * Run a dataflow not for execution but for code generation — the dataflow becomes a build specification.
+ * 
+ * When a dataflow is run with `target=build`, operation implementations flip roles: client-side operations become NOPs while server-side operations execute to synthesize deployable artifacts. The build dataflow takes operation input definitions and generates server code (e.g. a FastAPI app from operation input schemas). This is distinct from the runtime dataflow: build writes files (artifact outputs), deploy reads them. The orchestrator selects the appropriate implementation per operation based on deployment phase — build selects the synthesis implementation, deploy selects the packaging implementation, run selects the live implementation. This means a single dataflow definition produces both the client library and the server it talks to.
+ * 
+ * @see comms/0084
+ * @see comms/0086
+ */
+export function dataflowSynthesisBuildMode(): void {
+  // Related: systemContextDeployment
+}
+
+/**
+ * Each operation instance has a preferred implementation per deployment method, selected at execution time by the orchestrator.
+ * 
+ * Operations are not monolithic — the same logical operation (e.g. "receive data") has different implementations depending on deployment phase. In build mode, the implementation synthesizes server boilerplate. In deploy mode, it packages artifacts into containers. In run mode, it connects to live services. The orchestrator selects the implementation based on config-level deployment overrides (`deployment_environment` parameter), not runtime inputs. Configs carry deployment-specific sections: build configs, deploy configs, runtime configs. This separation allows a single dataflow definition to describe the entire lifecycle — from source analysis through build through deployment — by swapping implementations at each phase.
+ * 
+ * @see comms/0084
+ */
+export function deploymentSpecificOperationOverride(): void {
+  // Related: systemContextDeployment
+}
+
+/**
+ * Synthesized dataflows lose event emissions between operations; each dataflow should declare an allow list of expected events to preserve the interface contract.
+ * 
+ * When a dataflow is synthesized into a server, the internal event pathway (inputs flowing between operations via the orchestrator's event bus) is not automatically preserved in the generated code. To ensure the synthesized server exposes the same event interface as the original dataflow, the dataflow definition must include a declared allow list of expected event types. This allow list serves as a contract: the build step uses it to generate event emission points in the synthesized code, and the runtime uses it to validate that emitted events match expectations. Without this, the synthesis process silently drops the event graph, breaking downstream consumers that depend on those emissions.
+ * 
+ * @see comms/0084
+ */
+export function dataflowEventAllowList(): void {
+  // Related: dataflowCacheExportImport
+}

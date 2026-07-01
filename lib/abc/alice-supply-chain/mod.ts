@@ -357,3 +357,27 @@ export function llmAgentToolCatalog(): void {
 export function aliceWolfiChrootBuild(): void {
   // Related: linuxLoaderAttestation
 }
+
+/**
+ * SCITT transparency provides post-hoc auditability — verifiers can accept claims now and verify truthfulness later against the tamper-proof log.
+ * 
+ * SCITT's core value proposition is not real-time verification but deferred accountability. A verifier can accept a signed claim (endorsement, attestation) immediately based on trust in the signer, knowing that the claim was also published to a transparency log. If the signer later turns out to have lied, the transparency log provides cryptographically verifiable evidence of the original claim, the order in which claims were made, and the identity of the signer. This "accept now, verify later" pattern decouples operational availability from security verification — services run at full speed while the audit trail accumulates for offline or periodic review. Combined with federation (no blocking registration process), this enables self-audit and multi-party endorsement without centralized gatekeeping.
+ * 
+ * @see comms/0086
+ * @see comms/0082
+ */
+export function scittPostHocAuditability(): void {
+  // Related: appendToTransparencyLog, scittTransparencyService
+}
+
+/**
+ * Overlay parsers for `policy.yml` that define acceptable sandboxing criteria during distributed execution, enabling the prioritizer to select execution environments based on security requirements.
+ * 
+ * During distributed execution, operations may run in different sandboxing mechanisms (containers, WASM runtimes, confidential VMs). Policy overlays parse the available sandboxing options and annotate them with trust scores — how much does Alice trust each mechanism for a given operation with given inputs? The overlay consumes the list of available sandboxing mechanisms from the orchestrator, applies policy rules (e.g. "sensitive data requires SGX or better"), and produces annotated criteria that the prioritizer uses to assign operations to execution environments. This is the security-policy bridge between the Entity Analysis Trinity's static analysis (what is being run) and the distributed executor (where it runs).
+ * 
+ * @see comms/0081
+ * @see intel/dffml#1315
+ */
+export function sandboxingPolicyOverlay(): void {
+  // Related: trustFirstPolicyOverride, overlayBatchApply
+}

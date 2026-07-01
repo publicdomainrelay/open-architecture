@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 79,
+  "lastProcessedComm": 87,
   "processedComms": [
     0,
     1,
@@ -80,13 +80,22 @@
     76,
     77,
     78,
-    79
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87
   ],
   "concepts": {
     "did-standardization": {
       "comm": 1,
       "status": "new",
-      "package": "alice-communication"
+      "package": "alice-communication",
+      "lastUpdatedComm": 87
     },
     "scitt-transparency-service": {
       "comm": 1,
@@ -465,6 +474,62 @@
       "lastUpdatedComm": 79,
       "sourceIssues": [],
       "summary": "Technological change as cultural operational amplifier, modeled via Wardley mapping alignment"
+    },
+    "ipvmManagedEffectsAlignment": {
+      "functionName": "ipvmManagedEffectsAlignment",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "IPVM managed effects ↔ DFFML dataflow operations structural alignment"
+    },
+    "dataflowSynthesisBuildMode": {
+      "functionName": "dataflowSynthesisBuildMode",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "Run dataflow in build mode to synthesize server code from operation specs"
+    },
+    "deploymentSpecificOperationOverride": {
+      "functionName": "deploymentSpecificOperationOverride",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "Operations have different implementations per deployment phase (build/deploy/run)"
+    },
+    "dataflowEventAllowList": {
+      "functionName": "dataflowEventAllowList",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "Synthesized dataflows must declare expected events to preserve emission contract"
+    },
+    "activityPubStreamOfConsciousness": {
+      "functionName": "activityPubStreamOfConsciousness",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "ActivityPub/Mastodon as federated transport for Alice's thought stream"
+    },
+    "scittDidMethod": {
+      "functionName": "scittDidMethod",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "SCITT as DID method for service identity and key resolution in transparency services"
+    },
+    "scittPostHocAuditability": {
+      "functionName": "scittPostHocAuditability",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "SCITT transparency enables accept-now-verify-later via tamper-proof audit log"
+    },
+    "sandboxingPolicyOverlay": {
+      "functionName": "sandboxingPolicyOverlay",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 87,
+      "sourceIssues": [],
+      "summary": "Policy overlays annotate sandboxing mechanisms with trust scores for execution selection"
     }
   },
   "issueCache": {
@@ -556,6 +621,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 48,
+  "totalStubsCreated": 56,
   "totalIssuesFetched": 9
 }
