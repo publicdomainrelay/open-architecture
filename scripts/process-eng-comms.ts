@@ -21,8 +21,8 @@ const STATE_PATH =
   `${ORG_ROOT}open-architecture/.claude/agent-memory/alice-eng-comms/state.json`;
 const AGENT_PATH =
   `${ORG_ROOT}open-architecture/.claude/agents/alice-eng-comms.md`;
-const OPEN_ARCH = `${ORG_ROOT}open-architecture`;
-const CACHE_DIR = `${OPEN_ARCH}/.cache`;
+const OPEN_ARCH = ORG_ROOT;
+const CACHE_DIR = `${ORG_ROOT}/.cache`;
 const TOTAL_COMMS = 691;
 const BATCH_SIZE = 8;
 
