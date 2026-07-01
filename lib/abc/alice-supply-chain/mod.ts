@@ -932,3 +932,28 @@ export function binaryTransparentRelease(): void {
 export function openVexOciDistribution(): void {
   // Related: openVexActivityPubBridge, containerRegistryOnDemand, scittReferenceImplementation
 }
+
+/**
+ * Feed SCITT transparency log entries into DFFML's InputNetwork as dataflow inputs, enabling transparency-driven dataflow orchestration.
+ * 
+ * Transparency log entries (SCITT receipts, signed statements) become DFFML Input entries that flow through the dataflow graph. The InputNetwork stores all input data and output data of operations — SCITT entries enter as seed inputs, pass through validation operations, and drive downstream decisions. Chroma (vector database) and LLM leaderboard evaluation are candidate implementation backends for storing and querying SCITT entries within the InputNetwork. This bridges the transparency log world (SCITT) with the dataflow orchestration world (DFFML), making every signed supply chain claim a machine-actionable dataflow input.
+ * 
+ * @see comms/0314
+ * @see https://github.com/ietf-scitt/use-cases/pull/18
+ * @see https://github.com/scitt-community/scitt-api-emulator/pull/27
+ */
+export function scittInputNetwork(): void {
+  // Related: scittTransparencyService, appendToTransparencyLog, scanIntoTrustAttestation
+}
+
+/**
+ * A universal, ecosystem-independent identifier for software products, as proposed by FIRST.org's TLPCLEAR working group.
+ * 
+ * Unlike package URLs (purl) which identify packages within a specific ecosystem, a universal software product identity spans ecosystems — the same product recognized whether it ships as an npm package, a Debian deb, a container image, or a Windows installer. This identity underpins cross-ecosystem vulnerability management, SBOM correlation, and supply chain transparency. It complements stable repository identity (OIDC-based) by addressing the product level rather than the repository/build level.
+ * 
+ * @see comms/0319
+ * @see https://www.first.org/resources/papers/conf2023/FIRSTCON23-TLPCLEAR-Schmidt-Manion-Universal-Software-Product-Indentity.pdf
+ */
+export function universalSoftwareProductIdentity(): void {
+  // Related: stableRepositoryIdentityOidc, livingSbomVdr, supplyChainInformationNetwork
+}
