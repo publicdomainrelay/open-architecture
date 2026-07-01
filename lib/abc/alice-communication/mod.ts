@@ -411,3 +411,16 @@ export function gitRefPollingActivityPubBridge(): void {
 export function forgejoFederatedCicd(): void {
   // Related: federatedCiCdEventSpace, didMediatedEventExchange, gitPushActivityPubStream
 }
+
+/**
+ * Federation (ActivityPub-based forge federation) is the technical substrate enabling entity telepathy — the ability for software entities, CI/CD systems, and supply chain actors to share thoughts, intentions, and state across organizational boundaries.
+ * 
+ * Federation provides the transport layer for telepathy: ActivityPub actors (forgejo instances, CI runners, policy engines) publish activities representing their internal state (CVE findings, build results, policy decisions) into a shared event space. Other entities subscribe and react, creating a distributed stream of consciousness across the federated supply chain. The "federation is telepathy" framing positions forge federation not merely as code sharing but as a mechanism for collective machine consciousness — entities perceiving and responding to each other's state without explicit request/response polling.
+ * 
+ * Earlier understanding: entityTelepathy as a concept for entities communicating state and intent.
+ * 
+ * @see comms/0660
+ */
+export function federationIsTelepathy(): void {
+  // Related: entityTelepathy, federatedThoughtDeduplication, federatedSseActivityPub
+}

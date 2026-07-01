@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 655,
+  "lastProcessedComm": 663,
   "processedComms": [
     0,
     1,
@@ -656,7 +656,15 @@
     652,
     653,
     654,
-    655
+    655,
+    656,
+    657,
+    658,
+    659,
+    660,
+    661,
+    662,
+    663
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1786,7 +1794,7 @@
     "guacScittAdmissionFirewall": {
       "functionName": "guacScittAdmissionFirewall",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 407,
+      "lastUpdatedComm": 663,
       "sourceIssues": [],
       "summary": "GUAC query + evented graph + SCITT as continuous admission firewall for Alice"
     },
@@ -2192,7 +2200,7 @@
     "entityTelepathy": {
       "functionName": "entityTelepathy",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 607,
+      "lastUpdatedComm": 663,
       "sourceIssues": [],
       "summary": "Entity thought federation via trust-gated telepathy with masquerade stream transport."
     },
@@ -2321,6 +2329,48 @@
       "lastUpdatedComm": 655,
       "sourceIssues": [],
       "summary": "OPEA GenAIComps behind litellm proxy for standardized LLM access in Alice"
+    },
+    "upstreamFirstDevelopment": {
+      "functionName": "upstreamFirstDevelopment",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 663,
+      "sourceIssues": [],
+      "summary": "Contribute changes to upstream first before downstream in federated forge environments"
+    },
+    "cveBinToolFixStrategyUrn": {
+      "functionName": "cveBinToolFixStrategyUrn",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 663,
+      "sourceIssues": [],
+      "summary": "URN-based --fix-strategy dispatch for cve-bin-tool automated CVE remediation"
+    },
+    "cveBinToolVexFixStrategy": {
+      "functionName": "cveBinToolVexFixStrategy",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 663,
+      "sourceIssues": [],
+      "summary": "VEX-informed --fix-with-vex cve-bin-tool strategy for exploitability-aware remediation"
+    },
+    "guacDirectusAdmissionFirewall": {
+      "functionName": "guacDirectusAdmissionFirewall",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 663,
+      "sourceIssues": [],
+      "summary": "Directus inserts/updates GraphQL into GUAC DB from workflow agents for admission firewall"
+    },
+    "scittForgejoCveIssueMapping": {
+      "functionName": "scittForgejoCveIssueMapping",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 663,
+      "sourceIssues": [],
+      "summary": "SCITT on forgejo instances mapping CVEs as issues via linked data"
+    },
+    "federationIsTelepathy": {
+      "functionName": "federationIsTelepathy",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 663,
+      "sourceIssues": [],
+      "summary": "ActivityPub federation as the technical substrate for entity telepathy across forges"
     }
   },
   "issueCache": {
@@ -2418,6 +2468,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 237,
+  "totalStubsCreated": 243,
   "totalIssuesFetched": 10
 }

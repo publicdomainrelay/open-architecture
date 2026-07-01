@@ -1558,3 +1558,70 @@ export function scittContainerRegistryMirror(): void {
 export function c2paScittMultiLinkedStatements(): void {
   // Related: scittFederationDiscovery, scittReceiptAsVcAuth
 }
+
+/**
+ * Development methodology where changes, enhancements, and bug fixes are contributed to the original upstream project before being integrated into downstream projects or forks, within federated software forge environments.
+ * 
+ * Promotes shared improvement across all users of the upstream project, simplifies maintenance by reducing separate patches, encourages cross-forge collaboration, and avoids divergence between projects. Workflow spans five phases: (1) identify and plan the change through federated issue boards and discussion threads, (2) develop locally with consistent coding standards plus federated code reviews, (3) submit cross-forge pull requests using ActivityPub integration, (4) review with multiple reviewers and federated CI/CD pipelines, (5) merge and reconcile downstream.
+ * 
+ * Federated forges form ad-hoc organizations guided by shared strategic principles: open collaboration, transparency, and quality/security standards.
+ * 
+ * @see comms/0659
+ * @see https://forgefed.org/
+ */
+export function upstreamFirstDevelopment(): void {
+  // Related: federatedCiCdEventSpace, gitPushActivityPubStream, federatedForgeComputeDeduplication
+}
+
+/**
+ * URN-based fix strategy dispatch for automated CVE remediation via cve-bin-tool's `--fix-strategy` CLI flag.
+ * 
+ * The flag accepts a URN referencing a workflow or shorthand identifier. Initial strategies: `llm` (LLM-driven fix generation) and `workflow` / `policy-engine-exec` (policy engine dispatches a workflow to generate and apply the fix). The URN resolution pattern decouples the tool from fix implementations, allowing federated forges to register custom fix strategies as discoverable workflows.
+ * 
+ * Example: `cve-bin-tool --fix --fix-strategy llm` or `cve-bin-tool --fix --fix-strategy urn:forgejo:workflow:cve-fix@v1`.
+ * 
+ * @see comms/0660
+ */
+export function cveBinToolFixStrategyUrn(): void {
+  // Related: policyEngineWorkflowDispatch, agentPipelinePolicyEngineBridge
+}
+
+/**
+ * VEX-based fix strategy for cve-bin-tool via `--fix-with-vex` and `--fix-with-vex-strategy` CLI flags.
+ * 
+ * Extends automated CVE remediation to consult Vulnerability Exploitability eXchange (VEX) data when determining fix actions. The `--fix-with-vex` flag enables VEX consultation; `--fix-with-vex-strategy` accepts a URN selecting which VEX source or processing strategy to apply (e.g., CSAF-based VEX, OpenVEX, or a federated VEX feed).
+ * 
+ * Integrates with existing VEX infrastructure (CSAF framework, OpenVEX ActivityPub bridge) to bring exploitability context into automated fix decisions.
+ * 
+ * @see comms/0660
+ */
+export function cveBinToolVexFixStrategy(): void {
+  // Related: csafVexFramework, openVexActivityPubBridge, vulnerabilityDescriptionOntologyAnalysisLoop
+}
+
+/**
+ * GUAC dependency graph admission firewall with Directus as the GraphQL insertion and update layer, fed by workflow-identified agents or CI/CD workflows.
+ * 
+ * Directus provides a headless CMS interface for inserting and updating GraphQL mutations into the GUAC database. Workflow-identified agents (or workflow runs themselves, authenticated via OIDC to forgejo) push supply chain graph updates through Directus into GUAC. This creates a live, queryable dependency graph that serves as the data plane for admission control decisions.
+ * 
+ * Earlier understanding (from comms/0403): GUAC and SCITT combined as an admission firewall checking dependencies against transparency logs before allowing deployment or ingestion.
+ * 
+ * @see comms/0660
+ * @see comms/0403
+ */
+export function guacDirectusAdmissionFirewall(): void {
+  // Related: guacScittAdmissionFirewall, guacDependencyGraphAdmissionControl
+}
+
+/**
+ * SCITT transparency service deployed on forgejo instances (nahdig, chadig) with linked data to map CVEs as issues within the forge's issue tracker.
+ * 
+ * Each forgejo instance runs an always-on SCITT transparency log as part of its TCB (trusted compute base). A workflow executes `cve-bin-tool`, logs ad-hoc CVEs as forgejo issues, and uses SCITT receipts plus linked data (RDF/labeled property graphs) to create verifiable mappings between CVEs, the issues tracking them, and the artifacts they affect.
+ * 
+ * The SCITT statements provide cryptographic evidence linking CVE identifiers to forgejo issue URIs, enabling federated cross-forge vulnerability tracking where each forge's transparency log attests to its own CVE-to-issue mappings.
+ * 
+ * @see comms/0660
+ */
+export function scittForgejoCveIssueMapping(): void {
+  // Related: scittFederationGitRepos, cveToSourceMapping, scittNotarizingProxyInCiCd
+}
