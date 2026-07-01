@@ -370,8 +370,12 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
   let turnCount = 0;
   let lastStreamTime = Date.now();
 
-  // Retry loop: if model narrates instead of outputting JSON, retry once
-  for (let attempt = 1; attempt <= 2; attempt++) {
+  // Retry loop: model drift (narration, bad JSON) → retry once. API errors → retry up to 3 times.
+  const MAX_MODEL_RETRIES = 2;
+  const MAX_API_RETRIES = 3;
+  let apiFailures = 0;
+
+  for (let attempt = 1; attempt <= MAX_API_RETRIES; attempt++) {
     const retryPrompt = attempt === 1
       ? prompt
       : `FAILED PREVIOUS ATTEMPT — you output narration instead of JSON. DO NOT DO THAT.\n\n${prompt}`;
@@ -390,16 +394,31 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
     let lastStreamTime = Date.now();
 
     try {
-      const session = await query({
-        prompt: retryPrompt,
-        options: {
-          maxTurns: 30,
-          allowedTools: ["codegraph_explore", "codegraph_node"],
-          permissionMode: "bypassPermissions",
-          cwd: ORG_ROOT,
-          includePartialMessages: true,
-        },
-      });
+      // API-level retry: network errors, timeouts, 5xx → wait then retry
+      let session;
+      for (let apiAttempt = 1; apiAttempt <= 3; apiAttempt++) {
+        try {
+          session = await query({
+            prompt: retryPrompt,
+            options: {
+              maxTurns: 30,
+              allowedTools: ["codegraph_explore", "codegraph_node"],
+              permissionMode: "bypassPermissions",
+              cwd: ORG_ROOT,
+              includePartialMessages: true,
+            },
+          });
+          break; // success
+        } catch (apiErr) {
+          const msg = (apiErr as Error).message;
+          if (apiAttempt < 3 && (msg.includes("API") || msg.includes("network") || msg.includes("timeout") || msg.includes("5"))) {
+            emit("warn", "agent_error", { attempt, apiAttempt, reason: "api_error_retrying", error: msg.substring(0, 120) });
+            await new Promise(r => setTimeout(r, 5000 * apiAttempt)); // backoff
+            continue;
+          }
+          throw apiErr; // non-network error, throw through
+        }
+      }
 
     for await (const event of session as unknown as AsyncIterable<Record<string, unknown>>) {
       const txt = extractEventText(event);
@@ -444,23 +463,23 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
       }
     }
 
-    if (!jsonText && attempt < 2) { emit("warn","agent_error",{attempt,reason:"no_json_retry"}); continue; }
+    if (!jsonText && attempt < MAX_MODEL_RETRIES) { emit("warn","agent_error",{attempt,reason:"no_json_retry"}); continue; }
     if (!jsonText) throw new Error("No JSON after 2 tries");
 
     let output;
     try { output = JSON.parse(jsonText); } catch(pe) {
-      if (attempt < 2) { emit("warn","agent_error",{attempt,reason:"parse_retry"}); continue; }
+      if (attempt < MAX_MODEL_RETRIES) { emit("warn","agent_error",{attempt,reason:"parse_retry"}); continue; }
       throw pe;
     }
     if (!output.concepts?.length) {
-      if (attempt < 2) { emit("warn","agent_error",{attempt,reason:"no_concepts_retry"}); continue; }
+      if (attempt < MAX_MODEL_RETRIES) { emit("warn","agent_error",{attempt,reason:"no_concepts_retry"}); continue; }
       throw new Error("Missing concepts array");
     }
 
     emit("info","phase2_done",{elapsedMs:Date.now()-startTime,elapsedS:((Date.now()-startTime)/1000).toFixed(1),turns:turnCount,responseChars:allText.length,conceptsFound:output.concepts.length,newCount:output.concepts.filter((c: AgentConcept) => !c.isRefinement).length,refinementCount:output.concepts.filter((c: AgentConcept) => c.isRefinement).length,attempts:attempt});
     return output;
   } catch (innerErr: unknown) {
-    if (attempt < 2) { emit("warn", "agent_error", { attempt, reason: "stream_err_retry" }); continue; }
+    if (attempt < MAX_MODEL_RETRIES) { emit("warn", "agent_error", { attempt, reason: "stream_err_retry" }); continue; }
     const msg = innerErr instanceof Error ? innerErr.message : String(innerErr);
     emit("error", "agent_error", { elapsedMs: Date.now() - startTime, elapsedS: ((Date.now() - startTime) / 1000).toFixed(1), error: msg, charsReceived: allText.length });
     throw innerErr;
