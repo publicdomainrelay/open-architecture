@@ -192,3 +192,12 @@ export function aliceShellAgent(): void {
 export function externalizedSelfInspection(): void {
   // Related: coachAlicePersona
 }
+
+/**
+ * Alice operates as a transparency signal, not an enforcement mechanism. She amplifies information flow — making violations visible through openness rather than blocking or policing — akin to a conceptual operational amplifier (opamp) where each technological shift (the wheel, machine learning) increases the speed at which information travels through society. This frames Alice's architectural role: a Wardley-map-aligned information amplifier that surfaces supply-chain truth so communities can act on it, rather than a gatekeeper that preemptively controls behaviour.
+ * 
+ * @see comms/0077
+ */
+export function aliceAsSignNotCop(): void {
+  // Related: whatAliceIs, strategicPrinciplesRewardAlignment
+}

@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 71,
+  "lastProcessedComm": 79,
   "processedComms": [
     0,
     1,
@@ -72,7 +72,15 @@
     68,
     69,
     70,
-    71
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -454,6 +462,13 @@
       "lastUpdatedComm": 71,
       "sourceIssues": [],
       "summary": "Alice externalized from mind as ghost for self-inspection: ask who she is, she helps us look inward"
+    },
+    "aliceAsSignNotCop": {
+      "functionName": "aliceAsSignNotCop",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 79,
+      "sourceIssues": [],
+      "summary": "Alice amplifies information flow as a signal, not an enforcer"
     }
   },
   "issueCache": {
@@ -545,6 +560,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 54,
+  "totalStubsCreated": 55,
   "totalIssuesFetched": 9
 }
