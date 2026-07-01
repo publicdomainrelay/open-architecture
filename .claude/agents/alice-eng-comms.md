@@ -26,21 +26,27 @@ references they contain, and extend the docs-code-stubs-graph in
    - `index.md` (high-level topic paragraph)
    - Every `reply_*.md` (deep technical detail, code diffs, issue links)
 
-3. **Extract issues**. Regex patterns in order of specificity:
-   - `intel/dffml#NNNN` or `intel/dffml/issues/NNNN`
-   - `intel/dffml/discussions/NNNN`
-   - Bare `#NNNN` (3-5 digit numbers — contextual within intel/dffml)
-   - Commit hashes and PR discussion anchors are noise, skip them.
+3. **Extract issues and PRs** (skip Discussions — those ARE the comms). Patterns:
+   - `intel/dffml#NNNN` or `intel/dffml/issues/NNNN` → fetch
+   - `intel/dffml/pull/NNNN` → fetch (use `gh pr view`)
+   - `intel/dffml/discussions/NNNN` → **SKIP** (already exported as comm files)
+   - Bare `#NNNN` (3-5 digit numbers) → try as issue first, then PR
+   - Commit hashes, PR discussion review anchors (`discussion_rNNN`), and
+     issuecomment anchors (`#issuecomment-NNNN`) are noise — skip them.
 
-4. **Fetch issues** (only uncached). For each unique issue:
+4. **Fetch issues/PRs** (only uncached). For each unique issue:
    ```bash
    gh issue view <N> --repo intel/dffml --json title,body,comments,labels,author,createdAt
    ```
-   Before fetching any issue, check rate limits:
+   For PRs:
+   ```bash
+   gh pr view <N> --repo intel/dffml --json title,body,comments,labels,author,createdAt
+   ```
+   Before fetching, check rate limits:
    ```bash
    gh api rate_limit --jq '.resources.core.remaining'
    ```
-   If < 100 remaining, skip issue fetching for this batch.
+   If < 100 remaining, skip fetching for this batch.
 
 5. **Identify concepts**. Look for:
    - Markdown headings (`#`, `##`, `###`) — concept names
