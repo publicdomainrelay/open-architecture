@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 239,
+  "lastProcessedComm": 247,
   "processedComms": [
     0,
     1,
@@ -240,7 +240,15 @@
     236,
     237,
     238,
-    239
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1212,6 +1220,20 @@
       "lastUpdatedComm": 239,
       "sourceIssues": [],
       "summary": "CDEvents/CloudEvents protocol for cross-CI/CD-system event interoperability"
+    },
+    "reviewerJuryDutySelection": {
+      "functionName": "reviewerJuryDutySelection",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 247,
+      "sourceIssues": [],
+      "summary": "Reviewers randomly drawn from qualified trust-graph pool like jury duty"
+    },
+    "cweAbsencePropertyClassifier": {
+      "functionName": "cweAbsencePropertyClassifier",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 247,
+      "sourceIssues": [],
+      "summary": "ML classifier for CWE absence-of-property vulnerabilities feeding overlay pipeline"
     }
   },
   "issueCache": {
@@ -1309,6 +1331,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 138,
+  "totalStubsCreated": 140,
   "totalIssuesFetched": 10
 }

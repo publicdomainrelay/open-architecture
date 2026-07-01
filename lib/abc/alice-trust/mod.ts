@@ -382,3 +382,15 @@ export function recursiveTrustComposition(): void {
 export function oidcPackagePublishing(): void {
   // Related: githubActionsOidcSelfAttestation, stableRepositoryIdentityOidc
 }
+
+/**
+ * Reviewers recruited from a qualified pool via random selection, modeled on jury duty, to distribute review burden fairly and prevent collusion.
+ * 
+ * Instead of manual reviewer assignment or self-selection, Alice maintains a pool of qualified reviewers (entities with proven domain expertise and trustworthiness in the web of trust). When a review is needed, reviewers are randomly drawn from this pool, similar to how jurors are summoned. This prevents review capture, distributes burden across the community, and ensures diverse perspectives on each review. The trust graph provides the qualification filter: only entities with sufficient trust depth in the relevant domain enter the pool.
+ * 
+ * @see comms/0247
+ * @see intel/dffml#1287
+ */
+export function reviewerJuryDutySelection(): void {
+  // Related: doITrustWhereThisCameFrom, webOfTrust
+}

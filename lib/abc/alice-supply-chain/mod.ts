@@ -751,3 +751,15 @@ export function merkleTreePurlDependencyDedup(): void {
 export function owaspCreRequirementsSideOfVex(): void {
   // Related: openVexActivityPubBridge, csafVexFramework
 }
+
+/**
+ * ML classifier detects software packages missing essential properties (documentation, storage, security features), treating absence as a CWE-class vulnerability and feeding findings into the shouldiContribute overlay pipeline for automated upstream remediation.
+ * 
+ * A new CWE class covers absence-of-property weaknesses: software that lacks sufficient storage, documentation, or security features is vulnerable by omission. An ML classifier trained on data scraped via img2dataset identifies packages with and without these properties. Classified findings feed the overlay/org fork CD pipeline: Alice sews the missing property into a fork, and renovate/dependabot submit the patch upstream as a schema diff. This turns vulnerability remediation into feature contribution — instead of filing security bugs, Alice contributes the missing feature.
+ * 
+ * @see comms/0247
+ * @see https://github.com/rom1504/img2dataset
+ */
+export function cweAbsencePropertyClassifier(): void {
+  // Related: shouldiContributeOverlayPipeline
+}
