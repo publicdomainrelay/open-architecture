@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 287,
+  "lastProcessedComm": 295,
   "processedComms": [
     0,
     1,
@@ -288,7 +288,15 @@
     284,
     285,
     286,
-    287
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1040,7 +1048,7 @@
     "containerBuildManifestDispatch": {
       "functionName": "containerBuildManifestDispatch",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 183,
+      "lastUpdatedComm": 295,
       "sourceIssues": [],
       "summary": "JSON schema container build manifests dispatched via gh workflow run"
     },
@@ -1372,6 +1380,20 @@
       "lastUpdatedComm": 279,
       "sourceIssues": [],
       "summary": "Architecture for code that writes/maintains itself from universal blueprint"
+    },
+    "containerBuildManifestStructure": {
+      "functionName": "containerBuildManifestStructure",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 295,
+      "sourceIssues": [],
+      "summary": "JSON manifest with owner/repo/commit/dockerfile/image for reproducible container builds"
+    },
+    "binaryTransparentRelease": {
+      "functionName": "binaryTransparentRelease",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 295,
+      "sourceIssues": [],
+      "summary": "Binary release provenance via transparency logs and SLSA attestations"
     }
   },
   "issueCache": {
@@ -1469,6 +1491,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 154,
+  "totalStubsCreated": 156,
   "totalIssuesFetched": 10
 }

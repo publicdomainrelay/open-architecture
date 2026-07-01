@@ -895,3 +895,26 @@ export function guacDependencyGraphAdmissionControl(): void {
 export function containerNativeOsImages(): void {
   // Related: everythingAsContainerBuild, containerFromRebuildChain, livingSbomVdr
 }
+
+/**
+ * A structured JSON manifest describing how to build a container from a git repository at a specific commit. The manifest encodes owner, repository, branch, commit, dockerfile path, and destination image name, enabling reproducible container builds from source at a pinned revision.
+ * 
+ * Earlier understanding (from prior comms): containerBuildManifestDispatch coordinates dispatch of container builds from manifests. This comm adds the concrete manifest schema: an include array of objects with owner, repository, branch, commit, dockerfile, and image_name fields.
+ * 
+ * @see comms/0290
+ */
+export function containerBuildManifestStructure(): void {
+  // Related: everythingAsContainerBuild, containerRegistryOnDemand, containerFromRebuildChain
+}
+
+/**
+ * Binary artifacts carry verifiable provenance through a transparency framework at release time. Builds produce signed attestations (SLSA provenance) logged to a transparency log, so consumers can verify binary integrity and build chain before deployment. Applies to containers (docker-bench-security with SLSA workflows) and language packages (PyO3/maturin metadata embedding provenance in Python wheels).
+ * 
+ * Connects to project-oak/transparent-release, Google's framework for binary authorization via transparency logs. Distinct from SCITT (supply chain claims at insert time) — transparent release focuses on the release artifact itself carrying attestation that can be independently verified.
+ * 
+ * @see comms/0289
+ * @see https://github.com/project-oak/transparent-release
+ */
+export function binaryTransparentRelease(): void {
+  // Related: dataProvenanceTracking, containerFromRebuildChain
+}
