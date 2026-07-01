@@ -338,3 +338,47 @@ export function keriDuplicityDetection(): void {
 export function keriSignedReleaseArtifactStream(): void {
   // Related: keriControllerAsDiceRootOfTrust, securityTxtActivityPubActor, keriDuplicityDetection
 }
+
+/**
+ * Federated TEE transparency logs, hermetic builds, and KERI duplicity detection compose recursively to reboot the web of trust.
+ * 
+ * Ned confirmed the recursion property: each mechanism reinforces the others in a
+ * self-reinforcing loop. Federated TEE transparency logs provide confidential
+ * attestation of build environments; hermetic builds ensure reproducible artifacts
+ * whose provenance chains through those attested environments; KERI duplicity
+ * detection catches any attempt to fork or equivocate on the resulting trust
+ * statements. Together they form a recursive trust bootstrap — no single root of
+ * trust needed, the composition itself generates trust through mutual verification.
+ * 
+ * @see comms/0228
+ * @see keriDuplicityDetection
+ * @see confidentialLedgerForTransparencyRoots
+ * @see everythingAsContainerBuild
+ */
+export function recursiveTrustComposition(): void {
+  // Related: keriDuplicityDetection, confidentialLedgerForTransparencyRoots, everythingAsContainerBuild
+}
+
+/**
+ * Use OIDC tokens to authenticate package publishing to registries, enabling 2nd-party local registries with verifiable publisher identity.
+ * 
+ * GitHub Actions already supports OIDC-based authentication to PyPI and other
+ * package registries. This pattern extends to local/2nd-party registries: a
+ * publisher presents an OIDC token from their CI/CD identity provider, the
+ * registry validates it against the expected issuer and audience, and the
+ * package is published with cryptographic provenance binding the artifact to
+ * the publisher's identity. This closes the gap between "who built this"
+ * (sigstore/SLSA attestation) and "who published this" — both anchored to
+ * the same OIDC identity.
+ * 
+ * Earlier understanding (from comms/0151): OIDC self-issued edges connect
+ * GitHub Actions workload identity to attestation chains, forming the
+ * foundation of verifiable build provenance.
+ * 
+ * @see comms/0230
+ * @see githubActionsOidcSelfAttestation
+ * @see stableRepositoryIdentityOidc
+ */
+export function oidcPackagePublishing(): void {
+  // Related: githubActionsOidcSelfAttestation, stableRepositoryIdentityOidc
+}

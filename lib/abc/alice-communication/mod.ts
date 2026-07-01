@@ -278,3 +278,25 @@ export function activityPubOverGrpc(): void {
 export function federatedForgeComputeDeduplication(): void {
   // Related: federatedCiCdEventSpace, containerRegistryFederationAlignment, verifiableScorecardStaticAnalysis
 }
+
+/**
+ * Use the WebCrypto API for ActivityPub server-to-server authentication, distinct from password-based client-to-client bootstrap.
+ * 
+ * Server-to-server federation in ActivityPub currently relies on HTTP Signatures
+ * or shared secrets. WebCrypto — the browser-native cryptographic API — offers a
+ * path to stronger, hardware-backed server identity proofs without passwords.
+ * Servers authenticate to each other using key pairs generated and stored via
+ * WebCrypto, with identity discovery through WebFinger. This separates the
+ * server-to-server auth channel from the password-based client-to-client login
+ * flow, reducing the attack surface of federated trust.
+ * 
+ * Earlier understanding (from comms/0148): ActivityPub identity proofs bridge
+ * WebSub and OIDC self-issued edges for thought sharing across federated nodes.
+ * 
+ * @see comms/0229
+ * @see oidcSelfIssuedEdge
+ * @see websubActivityPubThoughtSharing
+ */
+export function webcryptoActivityPubServerAuth(): void {
+  // Related: oidcSelfIssuedEdge, websubActivityPubThoughtSharing
+}

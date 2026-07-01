@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 223,
+  "lastProcessedComm": 231,
   "processedComms": [
     0,
     1,
@@ -224,7 +224,15 @@
     220,
     221,
     222,
-    223
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -780,7 +788,7 @@
     "oidcSelfIssuedEdge": {
       "functionName": "oidcSelfIssuedEdge",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 127,
+      "lastUpdatedComm": 231,
       "sourceIssues": [],
       "summary": "OIDC Self-Issued v2 at CI/CD edge for workload identity without centralized IDP"
     },
@@ -913,7 +921,7 @@
     "activityPubIdentityProofBridge": {
       "functionName": "activityPubIdentityProofBridge",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 167,
+      "lastUpdatedComm": 231,
       "sourceIssues": [],
       "summary": "FEP-c390 identity proofs linking DIDs to ActivityPub actors"
     },
@@ -1161,6 +1169,27 @@
       "lastUpdatedComm": 223,
       "sourceIssues": [],
       "summary": "KERI-signed release artifacts published to ActivityPub security.txt streams"
+    },
+    "recursiveTrustComposition": {
+      "functionName": "recursiveTrustComposition",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 231,
+      "sourceIssues": [],
+      "summary": "Federated TEE + hermetic builds + KERI compose recursively to reboot web of trust"
+    },
+    "oidcPackagePublishing": {
+      "functionName": "oidcPackagePublishing",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 231,
+      "sourceIssues": [],
+      "summary": "OIDC tokens authenticate package publishing to registries for 2nd-party use"
+    },
+    "webcryptoActivityPubServerAuth": {
+      "functionName": "webcryptoActivityPubServerAuth",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 231,
+      "sourceIssues": [],
+      "summary": "WebCrypto API for ActivityPub server-to-server auth, not password-based client auth"
     }
   },
   "issueCache": {
@@ -1258,6 +1287,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 133,
+  "totalStubsCreated": 136,
   "totalIssuesFetched": 10
 }
