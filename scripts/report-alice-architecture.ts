@@ -114,10 +114,12 @@ for that subsystem. Build a complete tree in the report.
 Then write a caveman-mode architecture report. Rules:
 - NO articles, filler, pleasantries, hedging. Fragments OK.
 - Short synonyms. Technical terms exact.
-- Include: state nums, package sizes as ASCII bars, FULL call graphs as indented trees for EVERY subsystem, batch history.
-- DO NOT list a full symbol inventory (flat list of every function). Instead, show how they CONNECT.
-- Each call graph section: "### <Subsystem> Call Graph" with indented tree from codegraph_explore output.
-- Use text fences for tree diagrams. Wrap at 60 chars.
+- Include: state nums, package sizes as ASCII bars, FULL call graphs for EVERY subsystem, batch history.
+- DO NOT list a flat symbol inventory. Show CONNECTIONS.
+- For EACH subsystem, include a MERMAID diagram showing the call graph.
+  Use a mermaid code block with graph TD or flowchart. Nodes = function names. Edges = calls.
+- After each mermaid diagram, include a brief text tree for readability.
+- Use text fences. Wrap at 60 chars for text, unlimited for mermaid.
 - Every fact from the provided data. No speculation.`,
 
     "caveman-lite": `FIRST: codegraph_node navigatingThisCodebase. Then write a SHORT caveman architecture report. Under 15 lines. Only key numbers and 1-2 call paths. No fluff.`,
@@ -130,10 +132,10 @@ Then write a caveman-mode architecture report. Rules:
 
   let prompt = `${systemPrompt}\n\nData:\n${JSON.stringify(data, null, 2)}`;
   const tools = ["codegraph_explore", "codegraph_node"];
-  let maxTurns = 8;
+  let maxTurns = 20;
 
   if (focusQuery) {
-    maxTurns = 15;
+    maxTurns = 30;
     prompt = `${systemPrompt}
 
 IMPORTANT: focus on this area of the architecture: "${focusQuery}"
