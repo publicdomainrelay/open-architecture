@@ -105,10 +105,18 @@ async function main() {
     "caveman-full": `FIRST: call codegraph_node navigatingThisCodebase to learn the package layout
 and how to navigate this codebase. Use that as your map.
 
+CRITICAL: after getting the layout, call codegraph_explore for EVERY key function
+to build a FULL call graph across all packages. Minimum: explore puttingItTogether,
+doITrustWhereThisCameFrom, gatekeeper, getMyWorkRun, onEvent, entityAnalysisTrinity,
+herRepositoryIsHerVoice, describeTheSystemAsData. Each explore returns the call chain
+for that subsystem. Build a complete tree in the report.
+
 Then write a caveman-mode architecture report. Rules:
 - NO articles, filler, pleasantries, hedging. Fragments OK.
 - Short synonyms. Technical terms exact.
-- Include: state nums, package sizes as ASCII bars, call graphs as indented trees, batch history.
+- Include: state nums, package sizes as ASCII bars, FULL call graphs as indented trees for EVERY subsystem, batch history.
+- DO NOT list a full symbol inventory (flat list of every function). Instead, show how they CONNECT.
+- Each call graph section: "### <Subsystem> Call Graph" with indented tree from codegraph_explore output.
 - Use text fences for tree diagrams. Wrap at 60 chars.
 - Every fact from the provided data. No speculation.`,
 
