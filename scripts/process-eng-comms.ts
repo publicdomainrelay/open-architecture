@@ -425,11 +425,22 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
     const fenceMatch = allText.match(/```json\s*([\s\S]*?)```/);
     if (fenceMatch) jsonText = fenceMatch[1].trim();
     else { const bareMatch = allText.match(/\{[\s\S]*"concepts"[\s\S]*\}/); if (bareMatch) jsonText = bareMatch[0]; }
-    // Strip trailing text after the last closing brace
+    // Strip trailing text after the structural closing brace (brace-match)
     if (jsonText) {
-      const lastBrace = jsonText.lastIndexOf("}");
-      if (lastBrace > 0 && lastBrace < jsonText.length - 1) {
-        jsonText = jsonText.substring(0, lastBrace + 1);
+      const start = jsonText.indexOf("{");
+      if (start >= 0) {
+        let depth = 0;
+        let inString = false;
+        let escaped = false;
+        for (let i = start; i < jsonText.length; i++) {
+          const c = jsonText[i];
+          if (escaped) { escaped = false; continue; }
+          if (c === "\\") { escaped = true; continue; }
+          if (c === '"') { inString = !inString; continue; }
+          if (inString) continue;
+          if (c === "{") depth++;
+          if (c === "}") { depth--; if (depth === 0) { jsonText = jsonText.substring(0, i + 1); break; } }
+        }
       }
     }
 
