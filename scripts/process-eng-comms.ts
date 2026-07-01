@@ -356,7 +356,7 @@ async function loadAgentSystemPrompt(): Promise<string> {
 async function aiInference(input: AgentInput): Promise<AgentOutput> {
   const agentPrompt = await loadAgentSystemPrompt();
   const inputJson = JSON.stringify(input, null, 2);
-  const prompt = `${agentPrompt}\n\nInput:\n${inputJson}\n\nPut your JSON output in a \`\`\`json code fence. Brief markdown explanation OK.`;
+  const prompt = `${agentPrompt}\n\nInput:\n${inputJson}\n\nOUTPUT ONLY VALID JSON. No analysis. No markdown. No narration. If the input is sparse or empty, return {\"concepts\": []}. Do NOT explain what you are doing. Start your response with { and end with }. Use codegraph_explore or codegraph_node if you need to check existing concepts.`;
 
   emit("info", "phase2_start", {
     promptChars: prompt.length,
@@ -375,6 +375,7 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
       prompt,
       options: {
         maxTurns: 30,
+        allowedTools: ["codegraph_explore", "codegraph_node"],
         permissionMode: "bypassPermissions",
         cwd: ORG_ROOT,
         includePartialMessages: true,
