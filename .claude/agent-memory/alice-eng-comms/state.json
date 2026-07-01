@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 567,
+  "lastProcessedComm": 575,
   "processedComms": [
     0,
     1,
@@ -568,7 +568,15 @@
     564,
     565,
     566,
-    567
+    567,
+    568,
+    569,
+    570,
+    571,
+    572,
+    573,
+    574,
+    575
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2016,6 +2024,41 @@
       "lastUpdatedComm": 567,
       "sourceIssues": [],
       "summary": "SCRAPI rotates operation ID per status check, returns step details and KCP streaming log URN"
+    },
+    "clearForTakeOff": {
+      "functionName": "clearForTakeOff",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 575,
+      "sourceIssues": [],
+      "summary": "SCITT gate that validates AI tool calls before execution"
+    },
+    "transportAcquisition": {
+      "functionName": "transportAcquisition",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 575,
+      "sourceIssues": [],
+      "summary": "Trust compute resources through SCITT receipt verification"
+    },
+    "scittWorkloadIdentityOidc": {
+      "functionName": "scittWorkloadIdentityOidc",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 575,
+      "sourceIssues": [],
+      "summary": "OIDC workload identity tokens issued from SCITT receipts"
+    },
+    "scittFederationGitRepos": {
+      "functionName": "scittFederationGitRepos",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 575,
+      "sourceIssues": [],
+      "summary": "SCITT federation via git repositories as transparency heartwood"
+    },
+    "policyEngineWorkflowDispatch": {
+      "functionName": "policyEngineWorkflowDispatch",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 575,
+      "sourceIssues": [],
+      "summary": "Policy engine dispatches GitHub Actions workflows for subjects"
     }
   },
   "issueCache": {
@@ -2113,6 +2156,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 206,
+  "totalStubsCreated": 211,
   "totalIssuesFetched": 10
 }

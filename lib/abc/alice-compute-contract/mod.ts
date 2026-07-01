@@ -240,3 +240,18 @@ export function kubernetesWasmRuntime(): void {
 export function scrapiOperationStepDetails(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Process by which Alice determines which available compute resources are trustworthy before dispatching workloads, using SCITT transparency receipts as the trust basis.
+ * 
+ * Before sending a workload to a compute node, Alice verifies the node's provenance through
+ * SCITT transparent statements. The verified claims from those receipts determine what claims
+ * go into the workload identity JWT issued for that job. Transport Acquisition is the bridge
+ * between the SCITT transparency layer and the compute contract layer — it answers "do I trust
+ * this compute enough to run this workload on it?" by consulting the transparency log.
+ * 
+ * @see comms/0572
+ */
+export function transportAcquisition(): void {
+  // Related: scittReceiptAsVcAuth, vtpmAttestedComputeIdentity
+}

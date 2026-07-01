@@ -1382,3 +1382,42 @@ export function scittReceiptGraphWorkflowEngine(): void {
 export function gitHubActionsWorkflowPolicyEngine(): void {
   // Related: scittNotarizingProxyInCiCd, scittReceiptGraphWorkflowEngine, federatedCiCdEventSpace
 }
+
+/**
+ * SCITT instance federation via git repositories where workspace/storage/*.cbor serves as the git repo heartwood.
+ * 
+ * Each SCITT instance maintains a federated git repo. Transparent statements stored as CBOR
+ * files under workspace/storage/ are the heartwood. Service Parameters files are federated
+ * under instance FQDN or key identifiers. The policy engine request.yml (loaded via dirconf
+ * from workflow.yml) is committed to federated repos, enabling Infrastructure-as-Code manifest
+ * ADR-style dispatch. Phase 0 implements manifest federation namespaced by owner/TCB, where
+ * owner identity can be a handle, FQDN, or the JWK of the SCITT TS signing key that serves as
+ * the root of trust for that TCB's identity provider (the RATS relying party).
+ * 
+ * @see comms/0572
+ * @see comms/0573
+ */
+export function scittFederationGitRepos(): void {
+  // Related: scittFederationDiscovery, scittBovineFederation, scittDwnFederation
+}
+
+/**
+ * Policy engine that triggers GitHub Actions workflows when transparent statements are submitted to SCITT, serving as the CI/CD orchestrator within the forge.
+ * 
+ * Bootstrapping flow: a notary sends a statement to SCITT with upstream source URL and SHA of
+ * a repo. The policy engine maps the subject to registered workflows and dispatches them via
+ * their on triggers. If all triggered workflows pass, the statement is admitted to the
+ * transparency log. A standalone policy engine instance watches new transparent statements via
+ * federation and acts as the CI/CD orchestrator — the forge's workflow dispatcher. Workflow
+ * selection uses subject-style routing: the transparent statement URN determines which
+ * workflows fire. request.yml / workflow.yml inputs can be fed to a FastAPI (OpenAPI) endpoint
+ * generator for automated tool integration.
+ * 
+ * @see comms/0572
+ * @see comms/0573
+ * @see comms/0575
+ * @see intel/dffml#1400
+ */
+export function policyEngineWorkflowDispatch(): void {
+  // Related: scittInsertionPolicyAsComputeContract, scittNotaryAssertionRegistry, federatedCiCdEventSpace
+}

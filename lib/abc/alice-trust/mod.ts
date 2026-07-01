@@ -545,3 +545,27 @@ export function ratsEntityMeasurementAttestation(): void {
 export function enclaveAttestationTcbFederation(): void {
   // Related: slsaProvenanceAttestationShape, scittNotarizingProxyInCiCd, scittPolicyEmbeddedReceipt
 }
+
+/**
+ * OIDC phase 1 relying party that issues workload identity tokens (JWTs) in exchange for SCITT transparent statement receipts.
+ * 
+ * The OIDC subject claim is set to the URN of the transparent statement that backs the
+ * identity (e.g., the request.yml that triggered the workflow). Built on the httptest.oidc
+ * /token endpoint pattern — the relying party takes a SCITT receipt as POST body, validates it
+ * against the transparency log, and issues a scoped JWT. The policy engine signs tokens using
+ * keys from the transparency-configuration JWKS. This gives AI agents and CI/CD jobs
+ * cryptographically verifiable workload identity rooted in SCITT transparency.
+ * 
+ * Earlier understanding (from comm 0572): Phase 0 piggybacks on transparency-configuration
+ * JWKS; a dedicated build service consumes receipts on git pull and issues JWKs to the
+ * orchestrator.
+ * 
+ * @see comms/0572
+ * @see comms/0573
+ * @see comms/0574
+ * @see comms/0575
+ * @see intel/dffml#1400
+ */
+export function scittWorkloadIdentityOidc(): void {
+  // Related: scittReceiptAsVcAuth, oidcSelfIssuedEdge, githubActionsOidcSelfAttestation
+}
