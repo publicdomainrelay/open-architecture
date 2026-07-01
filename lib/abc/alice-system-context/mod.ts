@@ -357,3 +357,19 @@ export function wonderlandDistributedContextStore(): void {
 export function kellyCriterionInformationMarkets(): void {
   // Related: strategicPrinciplesRewardAlignment
 }
+
+/**
+ * Apply Qwik's resumability pattern to dataflow execution: serialized cached flow via overlay to inputs enables cache resume across restarts without re-running the full dataflow.
+ * 
+ * Qwik (https://qwik.builder.io) introduces the concept of resumability: an application serializes its state at pause points and resumes execution later without replaying from the beginning. Alice applies this to dataflows: the orchestrator's input network state is serialized (as an overlay on the input definition graph) and cached. On restart, rather than re-executing every operation from seed inputs, Alice resumes from the cached state — only operations whose inputs have changed need to re-run.
+ * 
+ * Qwik's QRL (Qwik URL) serialization mechanism provides the fine-grained resumption model: each operation in the dataflow is independently addressable and resumable. The overlay carries the cache annotations (STATIC/CACHED/NFS) that determine which operation outputs are safe to reuse without re-execution.
+ * 
+ * Earlier understanding (from open_architecture_today.md): Export orchestrator input network state to pickle/JSON. Re-import to resume. GraphQL query of cached state.
+ * 
+ * @see comms/0086
+ * @see https://qwik.builder.io/docs/concepts/resumable/
+ */
+export function qwikResumableDataflowCache(): void {
+  // Related: dataflowCacheExportImport, nfsRepoCacheDeltaScan
+}

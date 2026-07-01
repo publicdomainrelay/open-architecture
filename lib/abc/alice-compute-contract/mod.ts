@@ -144,3 +144,17 @@ export function reverseTunnelIsServiceDiscovery(): void {
 export function headlessScaleToZeroCiRunner(): void {
   // Related: getMyWorkRun, aliceOsDeployment
 }
+
+/**
+ * Use W3C Traceability Vocab's BillOfLadingCredential as a model for content-addressed compute contracts, modified to use DIDs instead of names and places.
+ * 
+ * A Bill of Lading is both a receipt for merchandise and a contract to deliver it — the same structure maps to compute contracts: a receipt for inputs and a contract to execute. The Zephyr use case (tracking git version, toolchain version, .config for reproducibility) maps to this pattern: concat and checksum JSON serializations of tracked inputs into a did:merkle content address. This replaces the BillOfLading's shipper/place fields with DIDs and content addresses.
+ * 
+ * The BillOfLading schema from the traceability vocab (https://w3c-ccg.github.io/traceability-vocab/#BillOfLadingCredential) serves as the starting template; Alice modifies it into a compute-contract-specific credential with fewer names-and-places and more DIDs.
+ * 
+ * @see comms/0080
+ * @see https://w3c-ccg.github.io/traceability-vocab/#BillOfLadingCredential
+ */
+export function billOfLadingComputeContract(): void {
+  // TODO: wire to related concepts
+}

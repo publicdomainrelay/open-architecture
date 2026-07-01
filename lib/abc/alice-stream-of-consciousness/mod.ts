@@ -183,3 +183,37 @@ export function coachAlicePersona(): void {
 export function streamOfConsciousnessGitops(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * WebSub and ActivityPub as transport protocols for Alice's stream of consciousness, enabling federated thought sharing and pub-sub distribution of SBOM/VEX streams.
+ * 
+ * WebSub (formerly pubsubhubbub, a 12-year-old W3C protocol) provides the pub-sub backbone: Alice publishes SBOM/VEX/thought updates to a hub, and subscribers receive them in real time without polling. ActivityPub (Mastodon's federation protocol) provides the social layer: Alice instances follow each other, share thoughts as ActivityPub Notes with YAML body content and attached SCITT receipts or post-quantum JWKs.
+ * 
+ * RSS feeds serve as the bridge: Mastodon serves RSS feeds for tags (e.g. mastodon.social/tags/scitt.rss), enabling automated provenance determination. RSS-to-ActivityPub bridges convert traditional feed readers into federation participants. When RSS+WebSub proves simpler than full ActivityPub for SBOM/VEX streams, the architecture defaults to RSS+WebSub with ActivityPub as the optional federation layer.
+ * 
+ * Earlier understanding (from comm 0066): Stream of consciousness enables gitops for entity configuration of notification preferences — like a robots.txt for "should you notify me."
+ * 
+ * @see comms/0081
+ * @see comms/0082
+ * @see comms/0087
+ */
+export function websubActivityPubThoughtSharing(): void {
+  // Related: shareAThought, onEvent, notify
+}
+
+/**
+ * Alice's knowledge graph shared via JSON-LD static files and queried via GraphQL-LD (Comunica) and Linked Data Fragments (TPF).
+ * 
+ * The knowledge graph is serialized as JSON-LD documents — each thought, dependency, and provenance link becomes a linked data node. Downstream consumers query across Alice instances using GraphQL-LD (via the Comunica query engine), which resolves linked data across distributed sources without a central SPARQL endpoint. Triple Pattern Fragments (TPF) provide a low-cost server interface: each Alice instance serves TPF for its slice of the knowledge graph, and clients (or other Alice instances) federate queries across them.
+ * 
+ * Static JSON-LD file dumps serve as the initial integration path — simple HTTP GET returns the current knowledge state. The full query layer (GraphQL-LD over Comunica) builds on top when federated querying becomes necessary.
+ * 
+ * Earlier understanding (from open_architecture_today.md): Her knowledge graph remembers what she knows. Each entry carries provenance through the inference chain so decisions are auditable.
+ * 
+ * @see comms/0081
+ * @see https://github.com/comunica/comunica
+ * @see https://linkeddatafragments.org/
+ */
+export function knowledgeGraphGraphQLLd(): void {
+  // Related: knowledgeGraph
+}

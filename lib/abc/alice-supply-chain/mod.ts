@@ -322,3 +322,73 @@ export function livingThreatsMd(): void {
 export function supplyChainInformationNetwork(): void {
   // Related: scittTransparencyService, appendToTransparencyLog
 }
+
+/**
+ * Apply the W3C VerifiableScorecard credential type to static analysis results in the `alice shouldi` pipeline.
+ * 
+ * The VerifiableScorecard from the W3C Traceability Vocab (https://w3c-ccg.github.io/traceability-vocab/#VerifiableScorecard) provides a standardized vocabulary for machine-readable scores. When Alice runs static analysis on a dependency or contribution, she issues a VerifiableScorecard as a Verifiable Credential. This gives downstream consumers — including other Alice instances — a cryptographically verifiable assessment of code quality, security posture, or policy compliance.
+ * 
+ * This feeds into the Entity Analysis Trinity's static analysis corner and the gatekeeper's trust attestation scan.
+ * 
+ * @see comms/0080
+ * @see https://w3c-ccg.github.io/traceability-vocab/#VerifiableScorecard
+ */
+export function verifiableScorecardStaticAnalysis(): void {
+  // Related: gatekeeper
+}
+
+/**
+ * ATP (AT Protocol) and SCITT integrated: ATP provides decentralized data repositories for SBOM/VEX/VDR records, while SCITT acts as the identity notary and trust chain format within ATP messages.
+ * 
+ * XRPC — AT Protocol's RPC mechanism — parallels IPVM with effects: both model computation as content-addressed invocations with receipts. SCITT receipts become the message format encapsulated in ATP records. Trust chains are established via context/content analysis of ATP messages (which may contain embedded JWKs for key discovery).
+ * 
+ * The combination ("APT + SCITT") means SCITT provides the notary function (attesting to claims about software artifacts) while ATP provides the data plane (storing and distributing those attestations in a decentralized repository network). SCITT could potentially become a DID method or operate as a data repository within ATP's lexicon system.
+ * 
+ * Earlier understanding (stub): SCITT notary assertion registry — related to gatekeeper.
+ * 
+ * @see comms/0082
+ * @see comms/0086
+ * @see https://atproto.com/specs/xrpc
+ * @see https://scitt.io
+ */
+export function atpScittIntegration(): void {
+  // Related: scittNotaryAssertionRegistry, gatekeeper
+}
+
+/**
+ * CSAF (Common Security Advisory Framework) as the overarching framework for VEX, with the SBOM acting as the JSON-LD @context for vulnerability data.
+ * 
+ * CSAF (OASIS standard, https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html) provides the structural framework that VEX (Vulnerability Exploitability eXchange) fits into. In Alice's architecture, the SBOM serves a role analogous to JSON-LD's @context: it defines the vocabulary and namespace that gives meaning to the VEX statements attached to it. Without the SBOM as context, a VEX statement about "component X is not affected" has no anchor.
+ * 
+ * The VDR (Vulnerability Disclosure Report) and VEX are transported via ATP records, with WebSub providing update notification when new advisories are published. The SCITT transparency log receipts provide the trust anchor for the CSAF documents.
+ * 
+ * Poly-repo dev tooling rubrics (coding standards, review requirements) become overlay inputs to the CSAF assessment pipeline — distributed checking of compliance across 2nd and 3rd party dependencies.
+ * 
+ * @see comms/0082
+ * @see https://docs.oasis-open.org/csaf/csaf/v2.0/csaf-v2.0.html
+ * @see https://github.com/CycloneDX/bom-examples/tree/master/VEX/CISA-Use-Cases
+ */
+export function csafVexFramework(): void {
+  // Related: gatekeeper, livingThreatsMd
+}
+
+/**
+ * Detailed dataflow for the "Alice, should I contribute?" security analysis pipeline, iterating through static analysis, dynamic analysis, and intent-based triage.
+ * 
+ * The pipeline walks the Entity Analysis Trinity:
+ * 1. Static Analysis: Alice scans the contribution's code and dependencies for known vulnerabilities, policy violations, and license conflicts. Results feed into the VerifiableScorecard.
+ * 2. Dynamic Analysis (Living Threat Model): Alice observes runtime behavior — what system calls does it make, what network connections does it open. The THREATS.md living threat model provides the baseline for acceptable behavior.
+ * 3. Intent Triage: Alice compares the contribution's stated intent (from its manifest) against the results of static and dynamic analysis. Misalignment between intent and behavior triggers deeper investigation or rejection.
+ * 
+ * The gateway check (gatekeeper) walks the dependency graph through all three corners before issuing a trust attestation. The result is a SCITT-signed receipt that downstream consumers can verify.
+ * 
+ * The overlay pipeline allows orgs to customize each analysis stage — different static analyzers, different threat models, different intent policies — without changing the core flow.
+ * 
+ * Earlier understanding (stub): shouldiContributeOverlayPipeline — related to gatekeeper.
+ * 
+ * @see comms/0086
+ * @see intel/dffml#1287
+ */
+export function shouldiContributeDetailedFlow(): void {
+  // Related: shouldiContributeOverlayPipeline, gatekeeper, entityAnalysisTrinity
+}
