@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 439,
+  "lastProcessedComm": 447,
   "processedComms": [
     0,
     1,
@@ -440,7 +440,15 @@
     436,
     437,
     438,
-    439
+    439,
+    440,
+    441,
+    442,
+    443,
+    444,
+    445,
+    446,
+    447
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1017,7 +1025,7 @@
     "vtpmAttestedComputeIdentity": {
       "functionName": "vtpmAttestedComputeIdentity",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 135,
+      "lastUpdatedComm": 447,
       "sourceIssues": [],
       "summary": "vTPM-backed OIDC attestation for compute VMs"
     },
@@ -1185,7 +1193,7 @@
     "scittInsertionPolicyAsComputeContract": {
       "functionName": "scittInsertionPolicyAsComputeContract",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 255,
+      "lastUpdatedComm": 447,
       "sourceIssues": [],
       "summary": "SCITT insertion policy as sandboxed policy-as-code compute contract"
     },
@@ -1262,7 +1270,7 @@
     "keriDuplicityDetection": {
       "functionName": "keriDuplicityDetection",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 199,
+      "lastUpdatedComm": 447,
       "sourceIssues": [],
       "summary": "KERI duplicity-evident key state — watcher network detects forking, not just tampering"
     },
@@ -1643,6 +1651,55 @@
       "lastUpdatedComm": 439,
       "sourceIssues": [],
       "summary": "SpacetimeDB reducer/subscription model as ActivityPub federation pub/sub transport"
+    },
+    "registrationPolicyAsReceipt": {
+      "functionName": "registrationPolicyAsReceipt",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "Registration policies get SCITT receipts; verifiers check policy in effect at insert time."
+    },
+    "sbomToScittOciPipeline": {
+      "functionName": "sbomToScittOciPipeline",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "gh sbom → ORAS OCI registry (version+commit tags) → SCITT claim → transparency receipt."
+    },
+    "scittServiceParameterDeclaration": {
+      "functionName": "scittServiceParameterDeclaration",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "SCITT services declare federation protocols and security properties via exported service parameters."
+    },
+    "rdfLabeledPropertyGraphPolicy": {
+      "functionName": "rdfLabeledPropertyGraphPolicy",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "RDFStar labeled property graphs for SCITT registration policy evaluation and isomorphism detection."
+    },
+    "notaryLatticeTrustGraph": {
+      "functionName": "notaryLatticeTrustGraph",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "Every user/service owns a notary chain forming a lattice; trust = choosing which notaries to trust."
+    },
+    "teeToTeeAttestationChain": {
+      "functionName": "teeToTeeAttestationChain",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "Without local attestation no remote attestation; TEE-to-TEE chains for decentralized trust via SCITT."
+    },
+    "keriAcdcAsScittBackend": {
+      "functionName": "keriAcdcAsScittBackend",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 447,
+      "sourceIssues": [],
+      "summary": "KERI ACDC as SCITT backend; duplicity detection cryptographically guarantees log consistency."
     }
   },
   "issueCache": {
@@ -1740,6 +1797,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 171,
+  "totalStubsCreated": 178,
   "totalIssuesFetched": 10
 }

@@ -1062,3 +1062,56 @@ export function oscalMachineReadableCompliance(): void {
 export function voluntaryTransparencyCommitment(): void {
   // Related: scittTransparencyService, doITrustWhereThisCameFrom, appendToTransparencyLog
 }
+
+/**
+ * SCITT registration policies themselves receive transparency receipts, enabling verifiers to check which policy was in effect at statement insertion time.
+ * 
+ * When a transparency service updates its registration policy, the new policy gets its own SCITT receipt. When a statement is inserted, the resulting receipt embeds the entry ID of the registration policy receipt that was evaluated against. Verifiers keep both receipts — the claim receipt and the policy receipt — so they can verify later: what policy was enforced at insert time, and was the issuer valid at that time? This solves the backwards-looking audit problem where keys may have been rotated or compromised since the original insertion.
+ * 
+ * Discussed in depth at IETF 118 SCITT WG meeting with Cedric, Steve, and Jon Geater. The group agreed: (1) knowing which registration policy was evaluated is a requirement, (2) v1 does not need to standardize what the policy ID points to, (3) v2 may standardize a recommended format for the policy content.
+ * 
+ * @see comms/0443
+ */
+export function registrationPolicyAsReceipt(): void {
+  // Related: scittInsertionPolicyAsComputeContract, scittTransparencyService, appendToTransparencyLog, gatekeeper
+}
+
+/**
+ * End-to-end pipeline from SBOM generation through OCI registry storage to SCITT transparency service registration.
+ * 
+ * The pipeline: (1) generate SPDX/CycloneDX SBOM via GitHub CLI (`gh sbom`), (2) push SBOM to an ORAS-compatible OCI registry tagged with both the release version and the git commit hash, (3) create a SCITT claim referencing the OCI image digest, (4) submit the claim to a SCITT transparency service for a receipt. The dual tagging (version + commit) enables both human-readable and content-addressed lookup. An async Python scanner searches SBOMs for dependencies in question to answer supply chain queries.
+ * 
+ * This connects SBOM generation (GitHub dependency graph), OCI distribution (ORAS/zot), and SCITT transparency — the three pillars of verifiable supply chain metadata.
+ * 
+ * @see comms/0444
+ */
+export function sbomToScittOciPipeline(): void {
+  // Related: livingSbomVdr, containerRegistryOnDemand, everythingAsContainerBuild, appendToTransparencyLog
+}
+
+/**
+ * SCITT transparency services export service parameters declaring supported federation protocols, threat model, and security properties to enable informed client selection.
+ * 
+ * Different SCITT instances have different threat models and require different levels of assurance around confidentiality, integrity, and availability (CIA) properties of federation protocols. A service parameter declaration allows a transparency service to advertise: which federation protocols it supports, what its registration policy covers, and what security guarantees it provides. Clients use these declarations to select appropriate transparency services for their supply chain risk posture.
+ * 
+ * This is analogous to a server's .well-known endpoints or TLS certificate transparency — the service publishes its capabilities so the ecosystem can make informed trust decisions without out-of-band negotiation. Discussed at IETF 118 SCITT in the context of side-channel resistance for federation channels and WIMSE composite claims concerns.
+ * 
+ * @see comms/0447
+ * @see comms/0443
+ */
+export function scittServiceParameterDeclaration(): void {
+  // Related: federatedSupplyChainValidationTopology, activityPubScittRegistryHandshake, scittTransparencyService, doITrustWhereThisCameFrom
+}
+
+/**
+ * Registration policies expressed as RDF labeled property graphs (RDFStar) enabling machine-reasoned policy evaluation and isomorphism detection across transparency services.
+ * 
+ * At IETF 118 SCITT Hackathon, Orie Steele explained RDF triples (Subject, Predicate, Object) as an expression of first-order logic with many serializations. RDFStar (labeled property graphs) puts nodes on edges, equivalent to labeled property graphs. Applied to SCITT registration policies: policies become RDF graphs, and different transparency services can compare their policy graphs for isomorphism — finding intersections of what parties agree on. A machine can compute this when policies use URI/URL-scoped terms.
+ * 
+ * Henk Birkholz identified this as a v2 registration policy direction: policy graphs evaluated via RDF/OWL forward chaining (Prolog-style reasoning). URIs scope terms uniquely (e.g., `https://oscal.org/Component` vs `https://react.org/Component`), preventing name collisions across domains.
+ * 
+ * @see comms/0441
+ */
+export function rdfLabeledPropertyGraphPolicy(): void {
+  // Related: graphQueryDrivenOverlayStore, knowledgeGraph, scittInsertionPolicyAsComputeContract, openPolicyAgentOverlay
+}

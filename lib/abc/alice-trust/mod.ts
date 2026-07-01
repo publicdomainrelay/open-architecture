@@ -448,3 +448,42 @@ export function enclavePreSeededVcPipeline(): void {
 export function oidcWorkflowRepoJackingPrevention(): void {
   // Related: stableRepositoryIdentityOidc, githubActionsOidcSelfAttestation
 }
+
+/**
+ * Every user and service maintains their own notary chain, forming a lattice — not a single tree — of transparency logs. Trust analysis involves deciding which notaries you trust within this lattice.
+ * 
+ * Phillip Hallam-Baker at IETF 118 KEYTRANS: every user and service maintains their own notary chain, making the overall transparency system a lattice. Everything links to everything because it is inherently a graph. When analyzing, the question becomes: which notaries do you trust? A notary log can be used to fix the time of any assertion — proving it was made after the date of a particular apex and before the date of a set of apexes with dependency chains.
+ * 
+ * KERI ACDC (Authenticated Chained Data Containers) enables this lattice topology through cryptographically assured duplicity detection: if any notary operator lies about consistency, everyone notices because the lattice structure makes inconsistencies visible.
+ * 
+ * @see comms/0447
+ */
+export function notaryLatticeTrustGraph(): void {
+  // Related: recursiveTrustComposition, keriDuplicityDetection, confidentialLedgerForTransparencyRoots, doITrustWhereThisCameFrom, webOfTrust
+}
+
+/**
+ * Without local attestation you cannot have remote attestation. TEE-to-TEE attestation forms the foundation for decentralized stream of consciousness verification using SCITT.
+ * 
+ * From IETF 118 RATS WG: Muhammad Usama Sardar presented formal specification of attestation in Confidential Computing. The key architectural principle — "without local attestation you cannot have remote attestation" — means that a TEE must first attest to its own local environment before remote parties can establish trust. This is what Alice's decentralized stream of consciousness needs: TEE-to-TEE attestation chains where each node locally attests its execution environment, and those attestations are recorded in SCITT transparency logs for downstream verification.
+ * 
+ * The Confidential Computing Consortium formal-spec-TEE effort provides the formal foundation. SCITT receipts carry the attestation results, enabling decentralized trust decisions without centralized attestation services.
+ * 
+ * @see comms/0445
+ */
+export function teeToTeeAttestationChain(): void {
+  // Related: vtpmAttestedComputeIdentity, scittTransparencyService, keriControllerAsDiceRootOfTrust, conformityAssessment
+}
+
+/**
+ * KERI Authenticated Chained Data Containers (ACDC) serve as an ideal SCITT transparency service backend because duplicity detection provides cryptographic guarantees against log operator misbehavior.
+ * 
+ * At IETF 118 KEYTRANS, participants noted SCITT as a solid option for backing Key Transparency. KERI ACDC is particularly well-suited because its duplicity detection mechanism ensures: if the log operator presents inconsistent views of the log to different parties (a split-view attack), the inconsistency is cryptographically detectable by anyone comparing receipts. This is the core security property needed for a decentralized transparency lattice where no single notary is universally trusted.
+ * 
+ * In a notary lattice where every user and service maintains their own chain, ACDC duplicity detection makes it impossible for operators to lie without detection — any inconsistency in the log becomes provable evidence of misbehavior.
+ * 
+ * @see comms/0447
+ */
+export function keriAcdcAsScittBackend(): void {
+  // Related: keriDuplicityDetection, scittTransparencyService, doITrustWhereThisCameFrom, recursiveTrustComposition
+}
