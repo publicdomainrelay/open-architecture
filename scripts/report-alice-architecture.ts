@@ -102,16 +102,19 @@ async function main() {
   }
 
   const prompts: Record<string, string> = {
-    "caveman-full": `Write a caveman-mode architecture report. Rules:
+    "caveman-full": `FIRST: call codegraph_node navigatingThisCodebase to learn the package layout
+and how to navigate this codebase. Use that as your map.
+
+Then write a caveman-mode architecture report. Rules:
 - NO articles, filler, pleasantries, hedging. Fragments OK.
 - Short synonyms. Technical terms exact.
 - Include: state nums, package sizes as ASCII bars, call graphs as indented trees, batch history.
 - Use text fences for tree diagrams. Wrap at 60 chars.
 - Every fact from the provided data. No speculation.`,
 
-    "caveman-lite": `Write a SHORT caveman architecture report. Under 15 lines. Only key numbers and 1-2 call paths. No fluff.`,
+    "caveman-lite": `FIRST: codegraph_node navigatingThisCodebase. Then write a SHORT caveman architecture report. Under 15 lines. Only key numbers and 1-2 call paths. No fluff.`,
 
-    "normal": `Write a clear architecture report from the provided data. Include state, package sizes, and batch history. Use headings and bullet points. No caveman style.`,
+    "normal": `FIRST: codegraph_node navigatingThisCodebase. Then write a clear architecture report from the provided data. Include state, package sizes, and batch history. Use headings and bullet points. No caveman style.`,
   };
 
   const focusQuery = Deno.args.find((a) => !a.startsWith("--") && a !== MODE) ?? "";
