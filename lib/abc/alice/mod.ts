@@ -62,3 +62,15 @@ export function aliceMentalModelParallelConsciousness(): void {
 export function aliceSignNotCop(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * The `alice` CLI entrypoint with four subcommands: `please`, `shouldi`, `threats`, and `version`.
+ * 
+ * `alice please` executes user requests (compute contracts, dataflow operations). `alice shouldi` runs the context-aware contribution analysis engine — evaluating whether a dependency or contribution aligns with strategic principles and trust policies. `alice threats` surfaces the living threat model, showing current risk posture from the Entity Analysis Trinity (Data, Analysis, Control). `alice version` reports the running Alice version. The CLI is the primary user-facing surface for Alice, designed for both interactive use and CI/CD integration (issue ops, GitHub Actions). The ASCII art banner and `alice@wonderland` prompt establish the narrative frame.
+ * 
+ * @see comms/0101
+ * @see comms/0102
+ */
+export function aliceCliPleaseShouldiThreats(): void {
+  // Related: aliceShellDefaultOverlay, dataflowDidEntrypoint, livingThreatModel
+}

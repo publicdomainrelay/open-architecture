@@ -204,3 +204,16 @@ export function speechToTextOperation(): void {
 export function reinforcementLearningDeveloperPath(): void {
   // Related: prioritizerIntentPolicy, livingThreatModel, entityAnalysisTrinity, knowledgeGraphProvenance
 }
+
+/**
+ * Neural networks intrinsically learn error-correcting codes during end-to-end algorithm synthesis, enabling self-healing computation.
+ * 
+ * When recurrent networks are trained to synthesize algorithms (e.g., maze solving), they develop implicit error correction: corrupting the network's memory mid-execution triggers automatic recovery, and changing start/end points after a solution is found produces a corrected path in one shot with no wrong turns. This self-healing property is critical for Alice's long-running system contexts — if state is corrupted (by attack, hardware fault, or context drift), the system can recover without recomputation from scratch. The error-correcting code emerges from the training objective itself, not from explicit ECC programming.
+ * 
+ * Reference: "End-to-end Algorithm Synthesis with Recurrent Networks: Logical Extrapolation Without Overthinking" (arXiv:2202.05826).
+ * 
+ * @see comms/0097
+ */
+export function algorithmSynthesisErrorCorrection(): void {
+  // Related: reinforcementLearningDeveloperPath, livingThreatModel
+}

@@ -60,3 +60,15 @@ export function sandboxingPolicyOverlay(): void {
 export function dependencyTreeWebhookDispatch(): void {
   // Related: scittTransparencyService, sandboxingPolicyOverlay
 }
+
+/**
+ * Model CVE vulnerability expiration and resource consumption over time for supply chain risk forecasting.
+ * 
+ * Uses cvedetails data to build rough prediction models mapping CVEs to codebase age and time-based decay. The "red card pull" metaphor: vulnerabilities have a natural lifecycle, and predicting when they become critical (or expire) enables proactive supply chain risk management. Applied to both software dependency graphs and physical resource supply chains (federated urban farming, can-of-salmon example). The time model feeds into Alice's shouldi contribute engine to prioritize remediation based on predicted CVE criticality windows rather than static severity scores.
+ * 
+ * @see comms/0099
+ * @see intel/dffml#1418
+ */
+export function cveLifecycleTimeModel(): void {
+  // Related: livingThreatModel, prioritizerIntentPolicy
+}

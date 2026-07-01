@@ -135,3 +135,40 @@ export function overlayDynamicBranching(): void {
 export function operationAsInstallPath(): void {
   // Related: operationCodeContentAddressing, deploymentSpecificOperationOverride
 }
+
+/**
+ * Unify Record, DataFlow, and SystemContext at the data model level for cohesive context capture with unbroken chains across both data and compute.
+ * 
+ * Currently Record, DataFlow, and SystemContext exist as separate abstractions. This concept proposes unifying them so a Record's feature data retains DataFlow Input type information, enabling graph traversal with one-link-deep resolution via DID, CID, or Open Architecture references. The unification, combined with UCANs, DIDs, IPVM, and on-chain references, produces cleaner, more consistent context capture. Record feature data should serialize only the latest system context (state of the art for a train of thought), with "state of the art" definable by any set of strategic plans. This also requires `source.update()` to support a serialization mode that preserves the train of thought rather than merging over old data.
+ * 
+ * @see comms/0100
+ * @see intel/dffml#1418
+ * @see intel/dffml#1425
+ */
+export function recordDataFlowUnification(): void {
+  // Related: dataflowSynthesisBuildMode, dataflowCacheExportImport, knowledgeGraphProvenance
+}
+
+/**
+ * System context completeness requires temporal simultaneity: past, present, and future must exist together for any to exist at all.
+ * 
+ * Referencing the White Queen's rule from Through the Looking-Glass — "jam yesterday, jam tomorrow, never jam today" — this concept breaks the rule: there MUST be jam today. When system context is completely described, each angle of the Entity Analysis Trinity folds into the others. If one angle is absent, describing the system at all causes a cascading effect that brings the others into existence. For there to be a tomorrow, there must be a today. This temporal completeness is exploited in Vol 3 Attack 2: the arbitrage between time-deltas on data becomes the attack surface. The defense is the same principle applied constructively — fully describing system context across all three Trinity angles (Data, Analysis, Control) in the present moment eliminates the temporal gaps attackers exploit.
+ * 
+ * @see comms/0102
+ */
+export function jamTodaySystemContext(): void {
+  // Related: entityAnalysisTrinity, trinityTriangulation, thoughtArbitrage
+}
+
+/**
+ * Execute Alice (Python/Dffml) in the browser via Pyodide/WASM with manifest passing for trampoline encoding.
+ * 
+ * The WebUI discussion advances Alice's browser runtime: Pyodide loads Python into WASM, and manifests (IPVM, DataFlow, or hash-validated stringified forms) are passed into the WASM context for execution. The manifest serves as both the program and the verification artifact — a hash-validated manifest ensures the WASM runtime executes the intended computation. This enables browser-based Alice instances that can validate and execute dataflows without a server, using DID/CID-based Input resolution for trampoline encoding (the upstream Input is resolved to a DID or CID, then loaded into the WASM context). The pattern follows: load Pyodide → pass manifest → validate hash → execute dataflow. First steps use pyodide.org CDN; next steps integrate with inventory/knowledge graph (#1207).
+ * 
+ * @see comms/0102
+ * @see intel/dffml#1207
+ * @see intel/dffml#1300
+ */
+export function pyodideWasmManifest(): void {
+  // Related: dataflowSynthesisBuildMode, operationCodeContentAddressing, dataflowDidEntrypoint
+}
