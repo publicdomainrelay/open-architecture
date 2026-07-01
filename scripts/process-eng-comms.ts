@@ -455,10 +455,11 @@ function buildStubFunction(concept: AgentConcept): string {
   for (const line of concept.jsdoc.split("\n")) lines.push(` * ${line}`);
   lines.push(" */");
   lines.push(`export function ${concept.name}(): void {`);
-  for (const call of concept.calls) {
-    if (call) lines.push(`  ${call}();`);
+  if (concept.calls.length > 0) {
+    lines.push(`  // Related: ${concept.calls.join(", ")}`);
+  } else {
+    lines.push("  // TODO: wire to related concepts");
   }
-  if (concept.calls.length === 0) lines.push("  // TODO: wire to related concepts");
   lines.push("}");
   return lines.join("\n") + "\n";
 }
@@ -591,13 +592,9 @@ async function applyConcepts(
     await Deno.writeTextFile(filePath, existingContent);
   }
 
-  state.lastProcessedComm = endComm;
-  state.processedComms = [];
-  for (let i = 0; i <= endComm; i++) state.processedComms.push(i);
   state.totalStubsCreated += metrics.stubsCreated;
-  state.lastBatchSize = endComm - startComm + 1;
-
-  await writeState(state);
+  // NOTE: state.lastProcessedComm written AFTER deno check passes
+  // NOTE: state NOT saved here — saved in runBatch after deno check
 
   emit("info", "phase3_done", {
     stubsCreated: metrics.stubsCreated,
@@ -713,21 +710,29 @@ async function runBatch(batchNumber: number): Promise<boolean> {
 
   // Phase 3: apply
   const metrics = await applyConcepts(output, state, start, end);
-  const updatedState = await readState();
 
   if (!(await runDenoCheck())) {
+    // Roll back: revert stubs to git HEAD, reset state
     emit("warn", "agent_state_stale", { reason: "deno_check_failed" });
+    await gitCmd(["checkout", "--", "open-architecture/lib/"], ORG_ROOT);
     return false;
   }
 
-  const pct = (((updatedState.lastProcessedComm + 1) / TOTAL_COMMS) * 100).toFixed(1);
+  // deno check passed — now persist state + commit
+  state.lastProcessedComm = end;
+  state.processedComms = [];
+  for (let i = 0; i <= end; i++) state.processedComms.push(i);
+  state.lastBatchSize = end - start + 1;
+  await writeState(state);
+
+  const pct = (((state.lastProcessedComm + 1) / TOTAL_COMMS) * 100).toFixed(1);
   await commit(
     `feat(agent): process eng comms ${paddedStart}–${paddedEnd} ${pct}% — ` +
     `${metrics.newConcepts + metrics.refinedConcepts} concepts (${metrics.newConcepts} new, ${metrics.refinedConcepts} refined), ` +
     `${metrics.stubsCreated} stubs, ${issuesFetched} issues`,
   );
 
-  return updatedState.lastProcessedComm < TOTAL_COMMS - 1;
+  return state.lastProcessedComm < TOTAL_COMMS - 1;
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────
