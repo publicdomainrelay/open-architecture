@@ -918,3 +918,17 @@ export function containerBuildManifestStructure(): void {
 export function binaryTransparentRelease(): void {
   // Related: dataProvenanceTracking, containerFromRebuildChain
 }
+
+/**
+ * Publish and distribute OpenVEX vulnerability disclosure data through OCI registries using ORAS (OCI Registry As Storage) tooling, providing an alternative discovery and delivery channel alongside ActivityPub federation.
+ * 
+ * The OpenVEX community (OpenSSF SIG Release) is building tooling to publish VEX documents to OCI registries. ORAS (oras.land) enables storing arbitrary artifact types in OCI-compatible registries — VEX statements become content-addressable, signable artifacts within existing container supply chain infrastructure. This complements ActivityPub-based VEX federation by offering a distribution path that aligns with the existing OCI registry ecosystem already deployed across container build pipelines.
+ * 
+ * @see comms/0297
+ * @see https://github.com/openvex/spec/issues/9
+ * @see https://oras.land/
+ * @see https://mailarchive.ietf.org/arch/msg/scitt/8ai-bxr959fzJvwQroINyzV2_oY/
+ */
+export function openVexOciDistribution(): void {
+  // Related: openVexActivityPubBridge, containerRegistryOnDemand, scittReferenceImplementation
+}

@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 295,
+  "lastProcessedComm": 303,
   "processedComms": [
     0,
     1,
@@ -296,7 +296,15 @@
     292,
     293,
     294,
-    295
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1394,6 +1402,13 @@
       "lastUpdatedComm": 295,
       "sourceIssues": [],
       "summary": "Binary release provenance via transparency logs and SLSA attestations"
+    },
+    "openVexOciDistribution": {
+      "functionName": "openVexOciDistribution",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 303,
+      "sourceIssues": [],
+      "summary": "OpenVEX data distribution via OCI registries using ORAS tooling"
     }
   },
   "issueCache": {
@@ -1491,6 +1506,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 156,
+  "totalStubsCreated": 157,
   "totalIssuesFetched": 10
 }
