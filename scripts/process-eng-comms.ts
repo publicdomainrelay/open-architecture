@@ -645,7 +645,9 @@ async function runDenoCheck(): Promise<boolean> {
     args: ["check", "lib/abc/alice/mod.ts"], cwd: OPEN_ARCH,
   }).output();
   if (!r.success) {
-    emit("error", "deno_check_error", { stderr: new TextDecoder().decode(r.stderr).substring(0, 500) });
+    const full = new TextDecoder().decode(r.stderr);
+    Deno.writeTextFileSync("/tmp/alice-deno-errors.log", full);
+    emit("error", "deno_check_error", { stderr: full.substring(0, 500) });
     return false;
   }
   emit("info", "deno_check", { result: "clean" });
