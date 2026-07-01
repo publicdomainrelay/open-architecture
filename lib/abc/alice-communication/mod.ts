@@ -118,3 +118,16 @@ export function walkTheReferences(): StrongRef {
 export function theFirehoseCarriesIt(): void {
   walkTheReferences();
 }
+
+/**
+ * Entrypoints for dataflows and overlays are registered as DIDs in the DID method registry, where the DID key or identifier is the hash of the system context to be executed. Negotiation occurs via cached state snapshots embedded into the static system context or carried as a dataflow seed.
+ * 
+ * The DID identifies the operation entrypoint; the system context hash ensures content-addressable integrity. When Alice loads an overlay from the network, the DID resolves to the current state of that overlay's system context, and the hash verification guarantees it matches what was expected. Visualization and editing of these credential manifests can leverage GraphQL, Cypher (JSON-LD to graph), or JSON Crack for direct manipulation of the overlay definitions before they are registered as DIDs.
+ * 
+ * @see comms/0051
+ * @see https://github.com/w3c/did-spec-registries/
+ * @see https://github.com/transmute-industries/jsonld-to-cypher
+ */
+export function entrypointsAsSystemContextDids(): void {
+  // Related: herRepositoryIsHerVoice, describeTheSystemAsData, freezeSystemContext
+}

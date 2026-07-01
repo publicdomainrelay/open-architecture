@@ -293,3 +293,17 @@ export function dataflowDescribeInfrastructure(): void {
 export function dataCentricAiTrinity(): void {
   // Related: describeTheSystemAsData
 }
+
+/**
+ * Dataflow operations materialize as record persistence: a source dataflow updates by writing a record to MongoDB via a document operation, with an overlay that rides on top for custom field mapping (e.g., camelCase feature keys). MongoDB document upsert operations become first-class dataflow nodes.
+ * 
+ * The key insight: dataflow-as-class means every operation in the flow graph can be treated as a parameterized function call with persistent side effects. The overlay pattern allows the same base dataflow to target different storage backends by swapping the persistence overlay — the dataflow graph stays constant, the storage binding varies.
+ * 
+ * Earlier understanding (from comm 0049): Everything is an operation. See what parameter sets an operation was called with before. Enable dynamic dataflow.auto_flow/by_origin on operation run of gather inputs and operations.
+ * 
+ * @see comms/0052
+ * @see comms/0049
+ */
+export function dataflowAsRecordPersistence(): void {
+  // Related: theDataFlow, freezeSystemContext
+}

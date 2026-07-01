@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 47,
+  "lastProcessedComm": 55,
   "processedComms": [
     0,
     1,
@@ -48,7 +48,15 @@
     44,
     45,
     46,
-    47
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -161,7 +169,7 @@
     "dataflowAsFunctionInvocation": {
       "functionName": "dataflowAsFunctionInvocation",
       "filePath": "lib/abc/alice-system-context/mod.ts",
-      "lastUpdatedComm": 31,
+      "lastUpdatedComm": 55,
       "sourceIssues": [],
       "summary": "Python module of typed functions as importable DataFlow via dffml.call.asyncfunc"
     },
@@ -203,7 +211,7 @@
     "aliceOsDeployment": {
       "functionName": "aliceOsDeployment",
       "filePath": "lib/abc/alice/mod.ts",
-      "lastUpdatedComm": 39,
+      "lastUpdatedComm": 55,
       "sourceIssues": [],
       "summary": "Alice as deployable OS: base image, SSI, systemd, netboot install"
     },
@@ -231,7 +239,7 @@
     "scittNotaryAssertionRegistry": {
       "functionName": "scittNotaryAssertionRegistry",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 47,
+      "lastUpdatedComm": 55,
       "sourceIssues": [],
       "summary": "SCITT stores attestation assertions from notary, not the signed artifacts"
     },
@@ -262,6 +270,62 @@
       "lastUpdatedComm": 47,
       "sourceIssues": [],
       "summary": "Continuous per-tick attestation emission from every machine entity"
+    },
+    "softwareSupplyChainHealthMetaphor": {
+      "functionName": "softwareSupplyChainHealthMetaphor",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "Biological food-chain metaphor for software supply chain health assessment"
+    },
+    "githubActionsOidcSelfAttestation": {
+      "functionName": "githubActionsOidcSelfAttestation",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "GitHub Actions OIDC token self-attestation feeding SCITT transparency"
+    },
+    "scittPostInstanceLabeling": {
+      "functionName": "scittPostInstanceLabeling",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "SCITT post-instance labeling with temporal decoupling of notary assertions"
+    },
+    "confidentialLedgerForTransparencyRoots": {
+      "functionName": "confidentialLedgerForTransparencyRoots",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "TEE-backed confidential ledger for sigstore transparency log roots of trust"
+    },
+    "dualBootOsDecentralice": {
+      "functionName": "dualBootOsDecentralice",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "Fedora Cloud + Wolfi dual-boot OS image with systemd service orchestration"
+    },
+    "dataflowAsRecordPersistence": {
+      "functionName": "dataflowAsRecordPersistence",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "Dataflow operations as MongoDB record persistence with overlay-driven field mapping"
+    },
+    "entrypointsAsSystemContextDids": {
+      "functionName": "entrypointsAsSystemContextDids",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "System context hashes as DID keys for dataflow and overlay entrypoints"
+    },
+    "headlessScaleToZeroCiRunner": {
+      "functionName": "headlessScaleToZeroCiRunner",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "Headless scale-to-zero GitHub Actions runner via systemd on Wolfi partition"
     }
   },
   "issueCache": {
@@ -353,6 +417,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 30,
+  "totalStubsCreated": 38,
   "totalIssuesFetched": 9
 }

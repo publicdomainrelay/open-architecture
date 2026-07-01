@@ -234,3 +234,60 @@ export function shouldiContributeOverlayPipeline(): void {
 export function scittToipTrustRegistry(): void {
   // Related: doITrustWhereThisCameFrom, gatekeeper
 }
+
+/**
+ * Alice helps you understand what your software is EATing — the health of its software supply chain modeled as a biological food chain. You are what you EAT: your software is its development health, and you get out what you put in lifecycle-wise.
+ * 
+ * The metaphor maps biological supply chain concepts onto software: just as an organism's health depends on what it consumes, a software project's security posture depends on its dependencies, build provenance, and CI/CD inputs. Alice integrates scorecard checks and sigstore gitsign verification to assess supply chain health continuously.
+ * 
+ * @see comms/0055
+ * @see https://github.com/ossf/scorecard/blob/main/docs/checks.md
+ * @see https://github.com/sigstore/gitsign
+ */
+export function softwareSupplyChainHealthMetaphor(): void {
+  // Related: checkBillOfMaterialsAgainstLog, scanIntoTrustAttestation
+}
+
+/**
+ * GitHub Actions OIDC tokens provide self-attested (GitHub-assisted) scan data provenance that feeds into the SCITT OpenSSF Metrics Use Case. The standard GitHub workflow + sigstore toolchain produces machine-attested provenance: the CI runner's OIDC token binds the build to a specific repository and commit, Fulcio issues a short-lived signing certificate, and the signed artifact lands in the Rekor transparency log.
+ * 
+ * Alice consumes this OIDC-attested scan data as an input to her gatekeeper pipeline. The attestation chain — GitHub OIDC → Fulcio → Rekor → SCITT — creates a verifiable provenance trail from source commit to scanned artifact without requiring developers to manage signing keys.
+ * 
+ * @see comms/0054
+ * @see https://github.com/pdxjohnny/use-cases/blob/openssf_metrics/openssf_metrics.md
+ * @see intel/dffml#1207
+ */
+export function githubActionsOidcSelfAttestation(): void {
+  // Related: scanIntoTrustAttestation, appendToTransparencyLog, scittTransparencyService
+}
+
+/**
+ * SCITT facilitates post-instance-creation labeling: a notary may add statements to the transparency infrastructure at a later point after the initial registration. Consumers who need those late-arriving labels must either query the notary directly or require up-to-date receipts from them.
+ * 
+ * This addresses the temporal decoupling problem: multiple SBOMs may exist for a single software release, inserted by multiple notaries using different scanner implementations. The SCITT registry provides the dataset; trust graphs are constructed later via graph queries that join registry data with other data. SCITT solves for persistence and auditability of the assertions, not for the graph queries themselves — the graph is projected from the registry data at query time.
+ * 
+ * Earlier understanding: SCITT notaries register assertions into the transparency registry, feeding the gatekeeper's admission decision.
+ * 
+ * @see comms/0054
+ * @see https://datatracker.ietf.org/doc/charter-ietf-scitt/
+ * @see https://vocabulary.transmute.industries/
+ */
+export function scittPostInstanceLabeling(): void {
+  // Related: scittTransparencyService, appendToTransparencyLog, gatekeeper
+}
+
+/**
+ * Confidential computing-backed ledger (Azure Confidential Ledger, Constellation confidential Kubernetes) stores the roots of trust for transparency log services (Rekor, Fulcio) in the OpenSSF use case.
+ * 
+ * The threat model: if the transparency log's own root keys are compromised, the entire supply chain verification chain collapses. By storing these roots inside a TEE-backed confidential ledger with hardware attestation, Alice gains cryptographic proof that the root material has not been tampered with — even the cloud provider cannot access it. Constellation extends this to the entire Kubernetes cluster, shielding workloads from the underlying infrastructure.
+ * 
+ * Connects to the C2PA provenance standard and FLOSS Weekly discussions on AI provenance with SSI.
+ * 
+ * @see comms/0048
+ * @see https://github.com/edgelesssys/constellation
+ * @see https://docs.edgeless.systems/constellation/architecture/attestation
+ * @see https://learn.microsoft.com/en-us/azure/confidential-ledger/overview
+ */
+export function confidentialLedgerForTransparencyRoots(): void {
+  // Related: scittTransparencyService, doITrustWhereThisCameFrom
+}

@@ -158,3 +158,18 @@ export function aliceOsDeployment(): void {
 export function strategicPrinciplesRewardAlignment(): void {
   // Related: whatAliceIs
 }
+
+/**
+ * OS DecentrAlice deploys as a dual-boot image: Fedora Cloud for the boot/EFI partition and Wolfi (Chainguard) as the primary system partition with systemd managing all services including sshd and GitHub Actions runners.
+ * 
+ * The build pipeline: take a Fedora Cloud qcow2 image, resize it with qemu-img, create a new partition for Wolfi, dump Wolfi rootfs into it, configure systemd to start sshd and the actions runner from the Wolfi partition via systemd-nspawn, and boot the dual-partition image. The Fedora kernel boots the system; Wolfi runs the services. Dracut builds the unified kernel EFI image.
+ * 
+ * Earlier understanding (from comm 0035): Alice's OS deployment path starts from a base image Dockerfile that bundles the SSI service and systemd, then installs via netboot onto VM or bare metal.
+ * 
+ * @see comms/0050
+ * @see comms/0053
+ * @see comms/0054
+ */
+export function dualBootOsDecentralice(): void {
+  // Related: whatAliceIs, secureSoftwareFactory
+}

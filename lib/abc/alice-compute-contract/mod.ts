@@ -130,3 +130,17 @@ export function reverseProxyEnforcesAccess(_workload: DID): void {
 export function reverseTunnelIsServiceDiscovery(): void {
   // Arbitrary compute becomes a real HTTPS endpoint via the relay.
 }
+
+/**
+ * A self-hosted GitHub Actions runner that boots from the Wolfi partition via systemd, enabling headless scale-to-zero CI. The runner starts on VM boot, registers with GitHub, executes queued workflow jobs, and the VM can be deprovisioned when idle.
+ * 
+ * Integrated into the OS DecentrAlice boot chain: Fedora kernel boots → systemd on Wolfi partition starts sshd and the actions runner → the runner picks up jobs from the repository → Alice runs `alice shouldi contribute` data flows over the scan results → results feed into SCITT OpenSSF Metrics via the OIDC self-attestation path. Packer builds the VM image with the runner pre-installed and user_data cloud-init to register on first boot.
+ * 
+ * @see comms/0054
+ * @see comms/0053
+ * @see https://github.com/actions/runner
+ * @see https://www.packer.io/plugins/builders/qemu
+ */
+export function headlessScaleToZeroCiRunner(): void {
+  // Related: getMyWorkRun, aliceOsDeployment
+}
