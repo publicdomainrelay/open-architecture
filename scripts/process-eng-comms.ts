@@ -473,7 +473,9 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
     }
     if (!output.concepts?.length) {
       if (attempt < MAX_MODEL_RETRIES) { emit("warn","agent_error",{attempt,reason:"no_concepts_retry"}); continue; }
-      throw new Error("Missing concepts array");
+      // Sparse comms, no concepts → empty output, not an error
+      emit("info","phase2_done",{elapsedMs:Date.now()-startTime,conceptsFound:0,attempts:attempt,note:"empty_batch"});
+      return {concepts:[]};
     }
 
     emit("info","phase2_done",{elapsedMs:Date.now()-startTime,elapsedS:((Date.now()-startTime)/1000).toFixed(1),turns:turnCount,responseChars:allText.length,conceptsFound:output.concepts.length,newCount:output.concepts.filter((c: AgentConcept) => !c.isRefinement).length,refinementCount:output.concepts.filter((c: AgentConcept) => c.isRefinement).length,attempts:attempt});
