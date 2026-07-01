@@ -164,3 +164,27 @@ export function applyThreatModelOverlay(): void {
 export function federateClaimsDownstream(): void {
   // Provenance intact, decision travels to every downstream forge.
 }
+
+/**
+ * Alice's secure CI/CD pipeline: roll container images and publish build events to her stream of consciousness.
+ * 
+ * Implements the CNCF Secure Software Factory reference architecture (FRSCA — Factory for Repeatable Secure Creation of Artifacts). Uses Jenkinsfile Runner on Kubernetes with pipeline-as-yaml for declarative pipeline definition. Every build step — from source checkout through signing to container push — produces signed receipts that feed Alice's knowledge graph and transparency log. Policy enforcement at each gate (source → build → test → sign → release) via overlay admission controllers. Integrates with Tekton and Kyverno for policy-based pipeline protection. The factory's output (container images, attestations, SBOMs) becomes input to the gatekeeper's SBOM-against-transparency-log verification.
+ * 
+ * @see comms/0027
+ * @see https://github.com/cncf/tag-security/blob/main/supply-chain-security/secure-software-factory/secure-software-factory.md
+ * @see https://buildsec.github.io/frsca/
+ */
+export function secureSoftwareFactory(): void {
+  // Related: gatekeeper, scanIntoTrustAttestation, appendToTransparencyLog, openPolicyAgentOverlay
+}
+
+/**
+ * Default-trust policy pattern: extend benefit of the doubt unless risk analysis yields unacceptable results to the gatekeeper.
+ * 
+ * "Be nice, knock and the door shall be opened, karma, pay it forward." Trust is the default posture — Alice assumes goodwill until evidence of risk triggers escalation. When an artifact arrives from an unknown source, she admits it provisionally, logs the admission transparently, and watches. If subsequent risk analysis (threat model overlay against OSCAL/S2C2F data) crosses the unacceptable threshold, the gatekeeper revokes trust and gathers exception receipts. This inverts the zero-trust model: verification is post-hoc and transparent rather than pre-flight and blocking. Transparency logs make the pattern safe — every provisional admission is auditable, and bad actors cannot hide. Enables faster collaboration loops because most verification work is deferred.
+ * 
+ * @see comms/0031
+ */
+export function policyBenefitOfDoubt(): void {
+  // Related: gatekeeper, openPolicyAgentOverlay, gatherExceptionReceipts, appendToTransparencyLog
+}

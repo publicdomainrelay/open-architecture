@@ -151,3 +151,14 @@ export function summarize(_event: unknown): unknown {
 export function notify(_changes: unknown): void {
   // notify-send.
 }
+
+/**
+ * Optimize iterative VCS scanning by caching cloned repos on NFS volumes and executing pull instead of full clone to resolve deltas.
+ * 
+ * Configure NFS, mount as volume via preapply. Input network definitions annotated as STATIC, CACHED, or NFS become overlays on the input definition graph. When Alice re-scans a repo, subflows reuse input context output operations to grab inputs whose definitions are descendants of these cache annotations. Large repos benefit from delta-only updates; small repos skip caching (examine past runs to estimate size, clone every time to avoid resource overhead of caching). The STATIC/CACHED/NFS annotation system eventually generalizes to Kubernetes volumes and other overlay types.
+ * 
+ * @see comms/0024
+ */
+export function nfsRepoCacheDeltaScan(): void {
+  // Related: dataflowCacheExportImport, subflowTypecast, subflowWithLockTaken
+}

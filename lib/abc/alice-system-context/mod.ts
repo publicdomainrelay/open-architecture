@@ -212,3 +212,38 @@ export function operationTrustBoundary(): void {
   // ictx/nctx context reuse declared in the Operation data structure.
   // Allowlist defines which contexts an operation may consume directly.
 }
+
+/**
+ * Transform an executable DataFlow into a non-executable conceptual DataFlow — the upleveled, abstract representation of the underlying flow.
+ * 
+ * Takes a DataFlow and produces another DataFlow that is not executable but conceptual. This is Alice's meta-cognition: she reasons about her own reasoning by creating abstract views of her operational flows. Operations insert themselves within the dataflow into the input network via return values. Optional chains of thought (links between data) emerge from downstream operations that consume the output of `running_context_dataflow_operations`. The output is of type `Operation`, and `expand` is used on the `@op` decorator to unpack it. Start with a static mapping from each operation to its conceptual description, then layer in dynamic chains of thought.
+ * 
+ * @see comms/0031
+ */
+export function dataflowConceptualUpleveling(): void {
+  // Related: freezeSystemContext, theDataFlow, hypothesizeSystemContext
+}
+
+/**
+ * Overlays function as generic binary admission controllers at every policy checkpoint in the supply chain, returning 0 (reject) or 1 (accept).
+ * 
+ * Each checkpoint in the release flow — incoming vulnerability, new package arrival, artifact signing, release cut — runs the overlay policy against the current SCITT provenance state. The overlay asks: given what we know about this artifact's provenance (who built it, from what sources, with what dependencies), should this action proceed? If a new vulnerability appears, the overlay policy determines whether it affects the architecture and triggers automatic re-rolls with updated dependencies. This is the mechanism by which `applyThreatModelOverlay` and `openPolicyAgentOverlay` make gate decisions: they compose the current threat model (SSDF, S2C2F, OSCAL) as an overlay and evaluate it against the artifact's SCITT claims. The overlay IS the policy, and the policy IS the overlay — no separate policy engine.
+ * 
+ * Earlier understanding (from `theOverlay`): an overlay says *in what context* — your policy, your deployment, your living threat model, patched on top.
+ * 
+ * @see comms/0027
+ */
+export function overlayAsAdmissionController(): void {
+  // Related: theOverlay, applyThreatModelOverlay, openPolicyAgentOverlay, gatekeeper
+}
+
+/**
+ * Treat a Python file containing only function definitions as a complete DataFlow, importable as a module.
+ * 
+ * Each function in the file becomes an operation. Import syntax: `import funcname from dffml.call.asyncfunc.dataflow.path`. A kwargs-style call wraps the return of the async run — invoking a top-level function executes the whole dataflow and returns typed outputs. This collapses the distinction between a Python module and a dataflow definition: any `.py` file with typed functions IS a dataflow. Configloaders extend this by adding filenames to the input network and allowing pass-through of configuration. Complements `DataFlow as Class` — this is `DataFlow as Function Invocation`.
+ * 
+ * @see comms/0031
+ */
+export function dataflowAsFunctionInvocation(): void {
+  // Related: theDataFlow, freezeSystemContext
+}
