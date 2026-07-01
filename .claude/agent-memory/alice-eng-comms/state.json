@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 143,
+  "lastProcessedComm": 151,
   "processedComms": [
     0,
     1,
@@ -144,7 +144,15 @@
     140,
     141,
     142,
-    143
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151
   ],
   "concepts": {
     "did-standardization": {
@@ -562,7 +570,7 @@
     "activityPubStreamOfConsciousness": {
       "functionName": "activityPubStreamOfConsciousness",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 143,
+      "lastUpdatedComm": 151,
       "sourceIssues": [],
       "summary": "ActivityPub/Mastodon as federated transport for Alice's thought stream"
     },
@@ -653,7 +661,7 @@
     "scittDwnFederation": {
       "functionName": "scittDwnFederation",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 143,
+      "lastUpdatedComm": 151,
       "sourceIssues": [],
       "summary": "SCITT federation via Decentralized Web Nodes (DWN) and Web5 identity layer"
     },
@@ -810,6 +818,27 @@
       "lastUpdatedComm": 143,
       "sourceIssues": [],
       "summary": "Run N models in parallel consciousness threads, select best result by deadline"
+    },
+    "ephemeralCredentialsSupplyChain": {
+      "functionName": "ephemeralCredentialsSupplyChain",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 151,
+      "sourceIssues": [],
+      "summary": "Short-lived signing keys prevent catastrophic key-leak recovery failures"
+    },
+    "activityPubScittProvenanceInput": {
+      "functionName": "activityPubScittProvenanceInput",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 151,
+      "sourceIssues": [],
+      "summary": "ActivityPub posts as SCITT-provenanced inputs to Alice's knowledge graph"
+    },
+    "dwnKeriEvolutionPath": {
+      "functionName": "dwnKeriEvolutionPath",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 151,
+      "sourceIssues": [],
+      "summary": "Progressive evolution path ActivityPub → SCITT/VDR → DWN → KERI"
     }
   },
   "issueCache": {
@@ -901,6 +930,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 82,
+  "totalStubsCreated": 85,
   "totalIssuesFetched": 9
 }

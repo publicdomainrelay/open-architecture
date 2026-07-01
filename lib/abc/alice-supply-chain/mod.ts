@@ -143,3 +143,15 @@ export function dependencyChainCompromiseDetection(): void {
 export function securityInsightsSpecThreshold(): void {
   // Related: scittTransparencyService, knowledgeGraphProvenance, transparencyLogScitt
 }
+
+/**
+ * Signing keys must be short-lived in software supply chains — the CircleCI/DataDog incident proved that a single leaked long-lived key causes catastrophic recovery failure.
+ * 
+ * The CircleCI incident (January 2023) demonstrated the blast radius of a leaked signing key: every artifact signed with that key became suspect, every integration that trusted the key had to rotate, and recovery required re-signing the entire artifact corpus. Ephemeral credentials eliminate this class of failure: keys that auto-expire after minutes or hours leave no long-lived secret to steal. For Alice, this means every attestation, SBOM signature, and SCITT receipt should use short-lived keys with cryptographic proof of key rotation logged to the transparency service. The signing key is disposable; the transparency log is permanent.
+ * 
+ * @see comms/0147
+ * @see https://docs.datadoghq.com/agent/faq/circleci-incident-impact-on-datadog-agent/
+ */
+export function ephemeralCredentialsSupplyChain(): void {
+  // Related: machineContinuousAttestation, scittTransparencyService
+}
