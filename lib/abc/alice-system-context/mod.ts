@@ -407,3 +407,29 @@ export function recordDataflowUnification(): void {
 export function shellContextCapture(): void {
   // Related: freezeSystemContext, theOverlay, describeTheSystemAsData
 }
+
+/**
+ * Petri nets as a formal mathematical model for dataflow execution, where operations are transitions, data tokens move through places, and concurrency emerges from the token game.
+ * 
+ * Petri nets provide a well-established formalism for modeling distributed concurrent systems: places hold tokens (data in flight), transitions consume and produce tokens (operations execute), and the marking of the net represents system state at a point in time. Applied to Alice's dataflow model, each operation becomes a transition, each data dependency becomes a place, and parallel token movement models concurrent execution paths. The formalism brings precise semantics to dataflow composition: reachability analysis answers whether a result can be produced, liveness checks whether every operation can eventually fire, and boundedness verifies that no buffer overflows. Petri nets also naturally model the overlay application process — applying an overlay adds or removes places and transitions, transforming the net while preserving its structural properties.
+ * 
+ * @see comms/0119
+ * @see https://en.wikipedia.org/wiki/Petri_net
+ */
+export function dataflowPetriNetModel(): void {
+  // Related: dataflowAsFunctionInvocation, dataflowsParallelExploration, dataflowConceptualUpleveling
+}
+
+/**
+ * Overlays applied incrementally during analysis, each pass revealing more structure — analogous to how face recognition builds understanding layer by layer rather than in one shot.
+ * 
+ * Rather than applying all overlays at once before analysis begins, incremental overlay application interleaves overlay evaluation with partial analysis results. Each pass applies one overlay, runs the dataflow to the point where new structure becomes visible, then selects the next overlay based on what was revealed. This mirrors the face blindness research finding that facial recognition proceeds through incremental feature overlay rather than holistic pattern matching. For Alice, this means the gatekeeper can apply a threat model overlay, observe which trust boundaries emerge, then selectively apply a VEX overlay only to components touching those boundaries — avoiding the cost of full-blown analysis on irrelevant subtrees.
+ * 
+ * Earlier understanding (from comms/0078): Overlays serve as dynamic context-aware branches that adapt to the dataflow state at runtime.
+ * 
+ * @see comms/0119
+ * @see https://www.podgist.com/stuff-you-should-know/how-face-blindness-works/index.html
+ */
+export function incrementalOverlayApplication(): void {
+  // Related: overlaysAsDynamicContextAwareBranches, dataflowConceptualUpleveling
+}
