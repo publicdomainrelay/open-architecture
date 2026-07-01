@@ -1,6 +1,6 @@
 {
-  "lastProcessedComm": 15,
-  "processedComms": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+  "lastProcessedComm": 23,
+  "processedComms": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
   "concepts": {
     "did-standardization": {
       "comm": 1,
@@ -101,6 +101,31 @@
       "comm": 9,
       "status": "refinement",
       "package": "alice"
+    },
+    "dataflow-visualizer": {
+      "comm": 16,
+      "status": "new",
+      "package": "alice-system-context"
+    },
+    "scitt-reference-implementation": {
+      "comm": 21,
+      "status": "new",
+      "package": "alice-supply-chain"
+    },
+    "prioritizer-markov-chains": {
+      "comm": 19,
+      "status": "refinement",
+      "package": "alice-stream-of-consciousness"
+    },
+    "knowledge-graph-taggable": {
+      "comm": 20,
+      "status": "refinement",
+      "package": "alice-stream-of-consciousness"
+    },
+    "software-1-dot-0-2-dot-0-hybrid": {
+      "comm": 22,
+      "status": "refinement",
+      "package": "alice"
     }
   },
   "issueCache": {
@@ -108,22 +133,46 @@
       "title": "service: sw: src: change: notify: Service to facilitate poly repo pull model dev tooling",
       "labels": ["John", "enhancement", "usecase/innersource"],
       "author": "johnandersen777",
-      "relevantComms": [1]
+      "relevantComms": [1],
+      "cacheFile": ".cache/intel-dffml-issue-1315.json"
     },
     "intel/dffml/1408": {
       "title": "alice: please: contribute: recommended community standards: github: GraphQL: was submitted too quickly",
       "labels": ["bug", "Alice"],
       "author": "johnandersen777",
-      "relevantComms": [8]
+      "relevantComms": [8],
+      "cacheFile": ".cache/intel-dffml-issue-1408.json"
     },
     "intel/dffml/1401": {
       "title": "2nd Party",
       "labels": ["John", "Alice"],
       "author": "johnandersen777",
-      "relevantComms": [9]
+      "relevantComms": [9],
+      "cacheFile": ".cache/intel-dffml-pr-1401.json"
+    },
+    "intel/dffml/1319": {
+      "title": "source: datasets: Add common time-series datasets",
+      "labels": ["enhancement"],
+      "author": "programmer290399",
+      "relevantComms": [16],
+      "cacheFile": ".cache/intel-dffml-issue-1319.json"
+    },
+    "intel/dffml/1392": {
+      "title": "gsoc: docs: intuitive: Deploy JupyterLite",
+      "labels": [],
+      "author": "Clairefollett",
+      "relevantComms": [19],
+      "cacheFile": ".cache/intel-dffml-issue-1392.json"
+    },
+    "intel/dffml/1412": {
+      "title": "gitpod: Currently you need to have at least the main package already installed in development mode.",
+      "labels": ["bug"],
+      "author": "johnandersen777",
+      "relevantComms": [16],
+      "cacheFile": ".cache/intel-dffml-issue-1412.json"
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 11,
-  "totalIssuesFetched": 3
+  "totalStubsCreated": 13,
+  "totalIssuesFetched": 6
 }

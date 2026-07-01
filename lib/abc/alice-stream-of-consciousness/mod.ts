@@ -52,6 +52,12 @@ export function thinkMoreDeeply(): void {
  * it. This provenance chain is recorded as SCITT claims so that a downstream
  * consumer can audit not just what the prioritizer decided but why.
  *
+ * The prioritizer uses markov chains regenerated from the most recently
+ * applicable context to recompute and reprioritize: as new events arrive,
+ * the probability distribution over possible next actions is updated from
+ * the current context, so higher priority is associated with transitions
+ * that have been reinforced by recent observations.
+ *
  * @see open_architecture_today.md "Her prioritizer scores the possibilities"
  * @see entityAnalysisTrinity
  * @see dataProvenanceTracking
@@ -67,11 +73,20 @@ export function prioritizer(changes: unknown): "notify" | "think" | "act" {
  * the training data, model environment, and configuration that produced it --
  * so the prioritizer's decisions are auditable against the spirit of the law.
  *
+ * The knowledge graph is a giant version of Wikipedia: all information is
+ * taggable, not all information will be tagged, and every entry is connected
+ * by links that form a directed graph of relationships. Walking those links
+ * is how a single thought grows into a train of thought, and how the
+ * prioritizer discovers the most recently applicable context for its markov
+ * chain transitions.
+ *
  * @see open_architecture_today.md "her knowledge graph remembers"
  * @see dataProvenanceTracking
+ * @see prioritizer
  */
 export function knowledgeGraph(_changes: unknown): void {
   // What she knows. Each entry carries provenance through the inference chain.
+  // All information is taggable. Links form a Wikipedia-like directed graph.
 }
 
 /**

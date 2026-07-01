@@ -164,3 +164,31 @@ export function applyThreatModelOverlay(): void {
 export function federateClaimsDownstream(): void {
   // Provenance intact, decision travels to every downstream forge.
 }
+
+/**
+ * SCITT reference implementation: building code alongside the specification
+ * to validate that the architecture works for real payloads. The reference
+ * implementation covers:
+ *
+ * - Example payload formats: SBOMs as nodes in the claim graph, CVEs linked
+ *   to the artifacts they affect, and VEX statements expressing remediation
+ *   status.
+ * - Use case graphs: Alice's SCITT use cases (e.g.
+ *   ietf-scitt/use-cases#7, #8, #4, #11, #14) render as concrete claim chains
+ *   from producer through transparency service to consumer.
+ * - Multi-language examples: starting with a file-based (fork/exec) example,
+ *   then an HTTP-based example, to provide a clear path from basic to
+ *   production implementation.
+ *
+ * Because Verifiable Credentials are RDF by default, SCITT claims naturally
+ * form a queryable graph. Search engines index the RDF/JSON-LD serialization,
+ * so Alice can discover SCITT claims the same way she discovers web pages.
+ *
+ * @see scittTransparencyService
+ * @see appendToTransparencyLog
+ * @see open_architecture_today.md "Keeping the Supply Chain Honest"
+ */
+export function scittReferenceImplementation(): void {
+  // Building code alongside spec. Example payloads: SBOM, CVE, VEX as nodes.
+  // File-based -> HTTP-based progression. RDF/JSON-LD for graph querying.
+}

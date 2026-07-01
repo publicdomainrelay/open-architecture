@@ -39,6 +39,14 @@ import { describeTheSystemAsData } from "@publicdomainrelay/alice-system-context
  * a tutorial on how that functionality can be extended and customized by
  * anyone.
  *
+ * Alice is a hybrid of software 1.0 and software 2.0. She is built from
+ * deterministic Python functions (software 1.0) that call out to machine
+ * learning models (software 2.0) where needed, all coordinated through the
+ * Open Architecture dataflow format and kept honest by living threat models
+ * that apply context-aware policy to both paradigms. The Entity Analysis
+ * Trinity lifecycle feedback loop manifests realities over time by cycling
+ * through Intent, Static Analysis, and Dynamic Analysis.
+ *
  * @see open_architecture_today.md "What Alice Is"
  */
 export function whatAliceIs(): void {

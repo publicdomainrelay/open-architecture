@@ -212,3 +212,24 @@ export function operationTrustBoundary(): void {
   // ictx/nctx context reuse declared in the Operation data structure.
   // Allowlist defines which contexts an operation may consume directly.
 }
+
+/**
+ * Alice can visualize and edit dataflows interactively, for example by
+ * integrating with a tool like JSON Crack to render the dataflow graph as
+ * editable nodes and connections. The visualizer renders each operation as a
+ * node, each input/output definition as a port, and each link as an edge,
+ * derived from the dataflow's operation map and definition registry.
+ *
+ * This is the foundation for an Intuitive and Accessible Documentation
+ * Editing experience: contributing engineers see the dataflow as a diagram
+ * where they can edit seed data inline, inspect operation inputs and outputs,
+ * and trace the path from an event to the operation that handles it.
+ *
+ * @see open_architecture_today.md "What Alice Is"
+ * @see subflowTypecast
+ * @see theDataFlow
+ */
+export function dataflowVisualizer(): void {
+  // JSON Crack or similar: operations as nodes, definitions as ports,
+  // links as edges. Editable seed data inline.
+}
