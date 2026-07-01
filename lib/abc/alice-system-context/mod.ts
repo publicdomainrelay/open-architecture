@@ -329,3 +329,31 @@ export function dataflowsParallelExploration(): void {
 export function automlHyperparametersAsDataflow(): void {
   // Related: describeTheSystemAsData, theDataFlow, freezeSystemContext
 }
+
+/**
+ * An image or screenshot encodes a complete manifest, operation, and metadata — the "screenshot as universal API." Everything effectively a manifest instance: YAML for dataflow, screenshots as operations. An image carries software provenance, configuration, and execution instructions in a single visual carrier, encouraging short functions and making distribution trivial via image CDNs. Container registry service endpoints can build container images or manifest instances from screenshots.
+ * 
+ * @see comms/0065
+ */
+export function screenshotAsManifest(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * Wonderland is the nickname for the collective mass of thoughts in existence — a distributed system context store implemented via web3 primitives and manifests. All data in Alice lives on-chain: executed system contexts are persisted, linked bidirectionally to their original external inputs (via UCAN or similar delegation). The default input network saves contexts to file first (JSON), then to chain via DID in the background. Identity enters as input to top-level context, with parent input objects encoding definitions (e.g., GitHub username → SPDX ID). User overlay directories (like systemd unit dirs) allow per-user modification of default flows, enabling Alice-as-shell: when working within a CWD for a given top-level system context, run these commands.
+ * 
+ * @see comms/0066
+ * @see intel/dffml#1377
+ */
+export function wonderlandDistributedContextStore(): void {
+  // Related: disparateRootJoining
+}
+
+/**
+ * Kelly's criterion applied to information channels within Alice's prioritizer: the maximum exponential growth rate of capital equals the rate of information transmission. When input symbols to a communication channel represent chance event outcomes with fair odds, a gambler (agent) uses received symbols to grow capital exponentially at exactly the information rate. This maps directly to Alice's decision-making under uncertainty — the prioritizer acts as the gambler, allocating attention and compute resources (capital) across system contexts (bets) proportional to the information advantage each context provides. The strategic plan's reward function becomes the odds table; Alice's information intake rate determines her maximum growth rate toward strategic principle alignment.
+ * 
+ * @see comms/0070
+ */
+export function kellyCriterionInformationMarkets(): void {
+  // Related: strategicPrinciplesRewardAlignment
+}

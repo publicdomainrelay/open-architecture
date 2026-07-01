@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 63,
+  "lastProcessedComm": 71,
   "processedComms": [
     0,
     1,
@@ -64,7 +64,15 @@
     60,
     61,
     62,
-    63
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -96,7 +104,7 @@
       "comm": 6,
       "status": "refinement",
       "package": "alice-supply-chain",
-      "lastUpdatedComm": 47
+      "lastUpdatedComm": 71
     },
     "oss-scanning-openssf-metrics": {
       "comm": 0,
@@ -383,6 +391,69 @@
       "lastUpdatedComm": 63,
       "sourceIssues": [],
       "summary": "DID entry points refined with GitHub Actions workflow trigger paths at operation granularity"
+    },
+    "screenshotAsManifest": {
+      "functionName": "screenshotAsManifest",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Images encode manifests/operations as universal API carrier for software provenance"
+    },
+    "wonderlandDistributedContextStore": {
+      "functionName": "wonderlandDistributedContextStore",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Distributed system context store via web3+manifests, all Alice data on-chain"
+    },
+    "kellyCriterionInformationMarkets": {
+      "functionName": "kellyCriterionInformationMarkets",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Kelly criterion applied to agent decision-making: information rate equals maximum growth rate toward strategic goals"
+    },
+    "livingThreatsMd": {
+      "functionName": "livingThreatsMd",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Living THREATS.md generated from ThreatDragon models via overlay auditing dataflow"
+    },
+    "supplyChainInformationNetwork": {
+      "functionName": "supplyChainInformationNetwork",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "SCITT as decentralized supply chain information network with petnames-based replication across trust boundaries"
+    },
+    "streamOfConsciousnessGitops": {
+      "functionName": "streamOfConsciousnessGitops",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Gitops config for entity notification preferences, like robots.txt for stream of consciousness"
+    },
+    "entityAlignmentTrustGraph": {
+      "functionName": "entityAlignmentTrustGraph",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Trust graph traversal to measure entity alignment against strategic principles via future-state prediction"
+    },
+    "aliceShellAgent": {
+      "functionName": "aliceShellAgent",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Teaching Alice shell commands as strategic plan execution: consoletest to graph neural Markov chains"
+    },
+    "externalizedSelfInspection": {
+      "functionName": "externalizedSelfInspection",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Alice externalized from mind as ghost for self-inspection: ask who she is, she helps us look inward"
     }
   },
   "issueCache": {
@@ -474,6 +545,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 45,
+  "totalStubsCreated": 54,
   "totalIssuesFetched": 9
 }

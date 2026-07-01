@@ -174,3 +174,12 @@ export function nfsRepoCacheDeltaScan(): void {
 export function coachAlicePersona(): void {
   // Related: onEvent, thinkMoreDeeply, softwareSupplyChainHealthMetaphor
 }
+
+/**
+ * Stream of consciousness enables gitops for entity (agent, human) configuration of background listening and notification preferences. Like a robots.txt for "should you notify me," each entity declares its notification policy as config checked into version control. This mirrors the plugin/overlay registration pattern: entities opt into notification streams rather than receiving everything by default. The stream of consciousness becomes a pull-based model where entities subscribe to relevant event categories defined in their gitops config.
+ * 
+ * @see comms/0066
+ */
+export function streamOfConsciousnessGitops(): void {
+  // TODO: wire to related concepts
+}

@@ -302,3 +302,23 @@ export function confidentialLedgerForTransparencyRoots(): void {
 export function containerRegistryOnDemand(): void {
   // Related: scittTransparencyService, livingSbomVdr, scanIntoTrustAttestation, appendToTransparencyLog
 }
+
+/**
+ * The `alice threats` CLI generates a living THREATS.md document from ThreatDragon threat models by running an auditor overlay dataflow. The overlay applies threat model evaluation as a dataflow: load the ThreatDragon JSON model, convert to open architecture representation, generate mermaid diagrams, produce markdown sections, and write the output. This is distinct from the living SBOM VDR — THREATS.md captures threat modeling (STRIDE, trust boundaries, attack surfaces) rather than vulnerability disclosure. Two-tier evaluation generates both GOOD_THREATS.md and BAD_THREATS.md for comparative auditing.
+ * 
+ * If you don't make a threat model, your attacker will make it for you.
+ * 
+ * @see comms/0066
+ */
+export function livingThreatsMd(): void {
+  // Related: livingThreatModel, applyThreatModelOverlay
+}
+
+/**
+ * The supply chain is a network of information traveling across an ecosystem, where decentralization is natural. Each entity that runs a SCITT instance chooses who they trust. SCITT becomes the fabric for transparent replication across network boundaries: the petnames spec documents how to do clean replication across instances, and each endpoint (e.g., a container registry like roy.azurecr.io with signing aligned) publishes provenance information to customers about released artifacts. The graph detail defines trust depth — trust is not binary, but within a given context the trust value may become infinitely close to 1. Earlier framing (from comm 0015): SCITT as content-agnostic transparency service holding SBOMs, attestations, system contexts, and policies.
+ * 
+ * @see comms/0068
+ */
+export function supplyChainInformationNetwork(): void {
+  // Related: scittTransparencyService, appendToTransparencyLog
+}

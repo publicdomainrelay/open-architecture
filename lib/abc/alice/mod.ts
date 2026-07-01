@@ -173,3 +173,22 @@ export function strategicPrinciplesRewardAlignment(): void {
 export function dualBootOsDecentralice(): void {
   // Related: whatAliceIs, secureSoftwareFactory
 }
+
+/**
+ * Teaching Alice to use the shell: consoletest commands map to graph neural network Markov chains within her system context. Strategic plans execute as shell commands, enabling Alice to interact with any CLI tool as part of a dataflow execution. This extends the "Architecting Alice: A Shell for A Ghost" tutorial path — the shell becomes the universal interface through which Alice provisions, inspects, and modifies the infrastructure she manages. DID resolvers and proxies (e.g., for EdenFS) run as shell-level operations, making Alice's identity layer accessible from any process she orchestrates.
+ * 
+ * @see comms/0068
+ */
+export function aliceShellAgent(): void {
+  // Related: whatAliceIs, theInfiniteLoop
+}
+
+/**
+ * Alice as Ghost in the brain: we externalize her from our mind, ask her identity ("who are you?"), and she helps us look inward now that she is outside. This is the multi-context parallel conscious state mental model, mapped to the dataflow description. We give her a stack of software pancakes labeled "EAT me" — she ingests software manifests and grows to our size, becoming capable of introspection at the scale of our own system context. This is the sequence for mental model documentation: externalize, interrogate, introspect, document. The externalized Alice becomes a mirror for understanding our own system context, enabling us to see our own architecture through her eyes.
+ * 
+ * @see comms/0069
+ * @see intel/dffml#1279
+ */
+export function externalizedSelfInspection(): void {
+  // Related: coachAlicePersona
+}

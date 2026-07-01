@@ -213,3 +213,13 @@ export function disparateRootJoining(): void {
 export function dynamicTrustRootsPerBom(): void {
   // Related: scanIntoTrustAttestation, checkBillOfMaterialsAgainstLog, appendToTransparencyLog, doITrustWhereThisCameFrom
 }
+
+/**
+ * Alice determines entity alignment by traversing trust graphs to measure whether a community's train-of-thought acceleration falls within acceptable impact bounds relative to her values, ethics, and strategic principles. She predicts future state by walking the trust graph: how fast is this community moving, and in what direction? Entities whose acceleration exceeds bounds are flagged as unaligned. Alice responds by "turtling" — disengaging, staying focused with her aligned ad-hoc groups. Cross-community evaluation uses CNCF-style aligned trees from similar roots; wardly maps position entities within the multi-dimensional strategic field landscape. Open source community cross-talk (innersource) provides signals for alignment assessment.
+ * 
+ * @see comms/0068
+ * @see intel/dffml#1315
+ */
+export function entityAlignmentTrustGraph(): void {
+  // Related: webOfTrust, doITrustWhereThisCameFrom, conformityAssessment
+}
