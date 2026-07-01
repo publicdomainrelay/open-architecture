@@ -114,17 +114,33 @@ async function main() {
     "normal": `Write a clear architecture report from the provided data. Include state, package sizes, and batch history. Use headings and bullet points. No caveman style.`,
   };
 
+  const focusQuery = Deno.args.find((a) => !a.startsWith("--") && a !== MODE) ?? "";
   const systemPrompt = prompts[MODE] ?? prompts["caveman-full"];
-  const prompt = `${systemPrompt}\n\nData:\n${JSON.stringify(data, null, 2)}`;
 
-  console.error(`mode: ${MODE} | state: ${data.state.commsProcessed}/${data.state.totalComms} (${data.state.pct.toFixed(1)}%)`);
+  let prompt = `${systemPrompt}\n\nData:\n${JSON.stringify(data, null, 2)}`;
+  let maxTurns = 3;
+  let tools: string[] = [];
+
+  if (focusQuery) {
+    tools = ["codegraph_explore", "codegraph_node"];
+    maxTurns = 12;
+    prompt = `${systemPrompt}
+
+IMPORTANT: focus on this area of the architecture: "${focusQuery}"
+Use codegraph_explore and codegraph_node to explore the relevant stubs,
+their call graphs, and their JSDoc. Include the call paths you find.
+
+Data:\n${JSON.stringify(data, null, 2)}`;
+  }
+
+  console.error(`mode: ${MODE} | focus: "${focusQuery || "(none)"}" | state: ${data.state.commsProcessed}/${data.state.totalComms} (${data.state.pct.toFixed(1)}%)`);
   console.error("calling agent for report...\n");
 
   const session = await query({
     prompt,
     options: {
-      maxTurns: 3,
-      allowedTools: [],
+      maxTurns,
+      allowedTools: tools,
       permissionMode: "bypassPermissions",
       cwd: ORG_ROOT,
       includePartialMessages: true,
