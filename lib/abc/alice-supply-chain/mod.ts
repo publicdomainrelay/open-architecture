@@ -883,3 +883,15 @@ export function federatedSupplyChainValidationTopology(): void {
 export function guacDependencyGraphAdmissionControl(): void {
   // Related: checkBillOfMaterialsAgainstLog, gatekeeper, livingSbomVdr, federateClaimsDownstream
 }
+
+/**
+ * Treat the entire operating system image as an OCI container artifact — built, signed, distributed, and attested through the same supply chain as application containers.
+ * 
+ * The Universal Blue model: the OS image itself is a container build produced by a Containerfile, stored in an OCI registry, and consumed by bootable container runtimes. This unifies OS delivery with the existing container supply chain — SBOMs, signatures, VEX statements, and transparency log entries apply to the OS layer exactly as they do to application images. Every layer from kernel to userspace is provenance-tracked.
+ * 
+ * @see comms/0266
+ * @see https://github.com/ublue-os/main
+ */
+export function containerNativeOsImages(): void {
+  // Related: everythingAsContainerBuild, containerFromRebuildChain, livingSbomVdr
+}

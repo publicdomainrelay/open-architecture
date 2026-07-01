@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 279,
+  "lastProcessedComm": 271,
   "processedComms": [
     0,
     1,
@@ -272,15 +272,7 @@
     268,
     269,
     270,
-    271,
-    272,
-    273,
-    274,
-    275,
-    276,
-    277,
-    278,
-    279
+    271
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -549,7 +541,7 @@
     "headlessScaleToZeroCiRunner": {
       "functionName": "headlessScaleToZeroCiRunner",
       "filePath": "lib/abc/alice-compute-contract/mod.ts",
-      "lastUpdatedComm": 263,
+      "lastUpdatedComm": 55,
       "sourceIssues": [],
       "summary": "Headless scale-to-zero GitHub Actions runner via systemd on Wolfi partition"
     },
@@ -815,7 +807,7 @@
     "incrementalOverlayApplication": {
       "functionName": "incrementalOverlayApplication",
       "filePath": "lib/abc/alice-system-context/mod.ts",
-      "lastUpdatedComm": 119,
+      "lastUpdatedComm": 271,
       "sourceIssues": [],
       "summary": "Overlays applied incrementally during analysis, each pass revealing more structure"
     },
@@ -934,7 +926,7 @@
     "everythingAsContainerBuild": {
       "functionName": "everythingAsContainerBuild",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 183,
+      "lastUpdatedComm": 271,
       "sourceIssues": [],
       "summary": "All artifacts (VEX, SBOM, CSAF) produced as container images with scratch output layers"
     },
@@ -1123,7 +1115,7 @@
     "federatedCiCdEventSpace": {
       "functionName": "federatedCiCdEventSpace",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 239,
+      "lastUpdatedComm": 263,
       "sourceIssues": [],
       "summary": "ForgeFed ActivityPub CI/CD federation: forge events + runner telemetry + OpenTelemetry → unified event space"
     },
@@ -1295,33 +1287,68 @@
       "sourceIssues": [],
       "summary": "ActivityPub to MQTT to WebSocket to WebRTC protocol bridge chain"
     },
-    "federatedPrtDependencyValidation": {
-      "functionName": "federatedPrtDependencyValidation",
-      "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 263,
-      "sourceIssues": [],
-      "summary": "Federated PRT dependency validation via GUAC neo4j, transparency service, and ActivityPub"
-    },
-    "operationAuthorityCose2Signing": {
-      "functionName": "operationAuthorityCose2Signing",
-      "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 263,
-      "sourceIssues": [],
-      "summary": "Sign DFFML/CycloneDX operation DAG with COSE2 via in-toto supply chain tooling"
-    },
     "cisaSelfAttestationForm": {
       "functionName": "cisaSelfAttestationForm",
-      "filePath": "lib/abc/alice-trust/mod.ts",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
       "lastUpdatedComm": 263,
       "sourceIssues": [],
-      "summary": "CISA M-22-18 self-attestation form as first-party conformity assessment"
+      "summary": "CISA secure software self-attestation form for Federal agency software compliance"
     },
-    "activityPubCiResultCommunication": {
-      "functionName": "activityPubCiResultCommunication",
-      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+    "inTotoCoseSupplyChainAttestation": {
+      "functionName": "inTotoCoseSupplyChainAttestation",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
       "lastUpdatedComm": 263,
       "sourceIssues": [],
-      "summary": "Local act runner testing + ActivityPub CI result communication via wait-for-message-action"
+      "summary": "in-toto supply chain step attestation signed with COSE2, feeding SCITT transparency log"
+    },
+    "federatedSupplyChainValidationTopology": {
+      "functionName": "federatedSupplyChainValidationTopology",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 263,
+      "sourceIssues": [],
+      "summary": "Home/faraway federated supply chain validation across PRT, GUAC, SCITT, and ActivityPub"
+    },
+    "guacDependencyGraphAdmissionControl": {
+      "functionName": "guacDependencyGraphAdmissionControl",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 263,
+      "sourceIssues": [],
+      "summary": "GUAC neo4j dependency graph as TCB admission controller for dependency changes"
+    },
+    "localCiRunnerAct": {
+      "functionName": "localCiRunnerAct",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 263,
+      "sourceIssues": [],
+      "summary": "Local GitHub Actions runner for offline pre-submit CI workflow validation"
+    },
+    "xmppActivityPubBridge": {
+      "functionName": "xmppActivityPubBridge",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 271,
+      "sourceIssues": [],
+      "summary": "XMPP transport for ActivityPub federation alongside gRPC/SSE/MQ bridges"
+    },
+    "microVmCloningUserfaultfd": {
+      "functionName": "microVmCloningUserfaultfd",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 271,
+      "sourceIssues": [],
+      "summary": "Fast microVM cloning via userfaultfd post-copy for compute contract provisioning"
+    },
+    "containerNativeOsImages": {
+      "functionName": "containerNativeOsImages",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 271,
+      "sourceIssues": [],
+      "summary": "OS images as OCI container artifacts with full supply chain provenance"
+    },
+    "jinjaOverlayPluginExtensibility": {
+      "functionName": "jinjaOverlayPluginExtensibility",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 271,
+      "sourceIssues": [],
+      "summary": "Jinja custom tests/filters/extensions as overlay template plugin system"
     }
   },
   "issueCache": {
@@ -1419,6 +1446,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 148,
+  "totalStubsCreated": 153,
   "totalIssuesFetched": 10
 }

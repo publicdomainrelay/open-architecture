@@ -544,3 +544,17 @@ export function deploymentTypeOperationOverride(): void {
 export function localCiRunnerAct(): void {
   // Related: headlessScaleToZeroCiRunner, webhookDependencyValidationDispatch
 }
+
+/**
+ * Make overlay templates extensible through Jinja's plugin system — custom tests, custom filters, and custom extensions — so that policy overlays can carry their own domain-specific template logic.
+ * 
+ * Jinja custom tests (e.g., `is vulnerability_critical`) and custom filters (e.g., `| cvss_to_severity`) allow overlay authors to embed supply-chain-specific reasoning directly in template expressions. Custom extensions enable new template tags and AST transformations. This turns overlay templates from static parameter substitution into a programmable policy language where the template engine is itself extensible per overlay source.
+ * 
+ * @see comms/0271
+ * @see https://jinja.palletsprojects.com/en/3.0.x/api/#custom-tests
+ * @see https://jinja.palletsprojects.com/en/3.0.x/extensions/#example-extensions
+ * @see https://jinja.palletsprojects.com/en/3.0.x/api/#custom-filters
+ */
+export function jinjaOverlayPluginExtensibility(): void {
+  // Related: incrementalOverlayApplication, overlaysAsDynamicContextAwareBranches, overlayAsAdmissionController
+}

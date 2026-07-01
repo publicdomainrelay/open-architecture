@@ -329,3 +329,15 @@ export function cdeventsCiCdInterop(): void {
 export function activityPubMessageQueueBridge(): void {
   // Related: activityPubOverGrpc, webRtcRunnerTokenChannel, federatedSseActivityPub, federatedCiCdEventSpace
 }
+
+/**
+ * Extend ActivityPub federation to XMPP transport, enabling bidirectional message flow between XMPP chat networks and the federated supply chain event space.
+ * 
+ * Builds on the multi-transport ActivityPub pattern where the same ActivityStreams semantic model is carried over different protocols (gRPC, SSE, message queues). XMPP brings presence, pubsub, and multi-user chat primitives that map naturally to federated event distribution — forge events, vulnerability disclosures, and transparency log notifications can reach XMPP clients and vice versa. References the XMPP-AP bridge work by Goffi.
+ * 
+ * @see comms/0264
+ * @see https://mastodon.social/@Goffi/110348831017599581
+ */
+export function xmppActivityPubBridge(): void {
+  // Related: activityPubOverGrpc, activityPubMessageQueueBridge, federatedSseActivityPub
+}

@@ -199,3 +199,15 @@ export function ipvmHermeticDeploymentBridge(): void {
 export function activityPubCiResultCommunication(): void {
   // Related: headlessScaleToZeroCiRunner, federatedCiCdEventSpace, activityPubMessageQueueBridge, getMyWorkRun
 }
+
+/**
+ * Efficient microVM cloning for compute contract provisioning using Linux userfaultfd for post-copy memory migration, enabling near-instant guest VM spawn from a template.
+ * 
+ * Rather than booting each guest from scratch, a golden microVM snapshot is cloned via userfaultfd — the kernel's user-space page fault handler. Memory pages are lazily copied on first access, so the clone returns immediately while the backing store populates on demand. This dramatically reduces time-to-SSH for compute contract guests, making spot-provisioning viable at scale.
+ * 
+ * @see comms/0265
+ * @see https://codesandbox.io/blog/cloning-microvms-using-userfaultfd
+ */
+export function microVmCloningUserfaultfd(): void {
+  // Related: containerRegistryOnDemand
+}
