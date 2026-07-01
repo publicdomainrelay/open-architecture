@@ -807,3 +807,31 @@ export function oidcReusableWorkflowTrust(): void {
 export function scittNotarizingProxyInCiCd(): void {
   // Related: scittNotaryAssertionRegistry, federatedCiCdEventSpace, scittTransparencyService, appendToTransparencyLog
 }
+
+/**
+ * Federated cross-repo dependency validation through Pull Request Target (PRT) flows connected by GUAC knowledge graph and ActivityPub transparency service federation.
+ * 
+ * When a dependency manifest change triggers a PRT flow, the PRT queries the local GUAC (neo4j) knowledge graph for TCB protection ring admission control. If the dependency data is not yet in the graph, the system runs a dependency evaluation flow (shouldi) that collects metrics and feeds them to the local transparency service. The transparency service emits results via ActivityPub back into GUAC, closing the local loop.
+ * 
+ * For downstream validation, a home instance's PRT creates a pull request in a faraway instance's manifest when a dependency change passes admission control. The faraway instance runs its own PRT → GUAC → evaluation → transparency service loop, then federates evaluated claims back to the home transparency service via ActivityPub. This creates a reactive, federated supply chain where dependency changes propagate validation across organizational boundaries, with each instance maintaining its own GUAC-backed knowledge graph and transparency log.
+ * 
+ * @see comms/0263
+ */
+export function federatedPrtDependencyValidation(): void {
+  // Related: webhookDependencyValidationDispatch, shouldiContributeDetailedFlow, scittTransparencyService, federatedCiCdEventSpace, activityPubMessageQueueBridge, doITrustWhereThisCameFrom
+}
+
+/**
+ * Cryptographically sign the DFFML Operation Authority (OA) DAG — later the CycloneDX DAG — using COSE2 (CBOR Object Signing and Encryption) via in-toto supply chain tooling.
+ * 
+ * The Operation Authority graph represents the network of operations, dependencies, and trust decisions that Alice's dataflow engine executes. Signing this graph with COSE2 via in-toto produces verifiable supply chain links: each step (VCS checkout, QA, packaging) gets an in-toto link file signed with a cryptographic key, creating a tamper-evident chain from source to artifact. The signed DAG can be composed from individual link files into a complete provenance record.
+ * 
+ * COSE2 provides a compact binary signing format suitable for constrained environments while maintaining cryptographic strength. Combined with CycloneDX for SBOM representation, this creates a verifiable, standards-based chain connecting operations to their artifacts.
+ * 
+ * @see comms/0258
+ * @see https://github.com/in-toto/demo/pull/49
+ * @see https://github.com/in-toto/layout-web-tool
+ */
+export function operationAuthorityCose2Signing(): void {
+  // Related: scanIntoTrustAttestation, appendToTransparencyLog, scittTransparencyService
+}

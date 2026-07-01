@@ -181,3 +181,21 @@ export function billOfLadingComputeContract(): void {
 export function ipvmHermeticDeploymentBridge(): void {
   // Related: dataflowDescribeInfrastructure, runDataflowSerializable, inTotoVcKeriBridge
 }
+
+/**
+ * Local headless CI testing via act runners with ActivityPub-based federated result communication.
+ * 
+ * The headless CI runner can be tested locally without a full VM deployment: `gh act` (nektos/gh-act) runs GitHub Actions workflows locally using Docker, while `github-act-runner` (ChristopherHX/github-act-runner) and Gitea's `act_runner` provide headless runner implementations for different forges. This enables offline validation of workflow changes before deploying to production runners.
+ * 
+ * Results from both local and production CI runs are communicated via ActivityPub using `wait-for-message-action`: a downstream project waits for an upstream CI result message published as an ActivityPub activity before proceeding with its own validation. This bridges the CI event space to the federated social graph, turning CI pipeline results into discoverable, federated events.
+ * 
+ * Earlier understanding (from comms/0054, comms/0053): A self-hosted GitHub Actions runner that boots from the Wolfi partition via systemd, enabling headless scale-to-zero CI. The runner starts on VM boot, registers with GitHub, executes queued workflow jobs, and the VM can be deprovisioned when idle.
+ * 
+ * @see comms/0259
+ * @see https://github.com/ChristopherHX/github-act-runner
+ * @see https://github.com/nektos/gh-act
+ * @see https://gitea.com/gitea/act_runner
+ */
+export function activityPubCiResultCommunication(): void {
+  // Related: headlessScaleToZeroCiRunner, federatedCiCdEventSpace, activityPubMessageQueueBridge, getMyWorkRun
+}

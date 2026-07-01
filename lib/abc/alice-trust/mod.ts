@@ -394,3 +394,19 @@ export function oidcPackagePublishing(): void {
 export function reviewerJuryDutySelection(): void {
   // Related: doITrustWhereThisCameFrom, webOfTrust
 }
+
+/**
+ * CISA secure software self-attestation form (M-22-18) as a first-party conformity assessment mechanism. Software producers must attest to meeting minimum secure software development requirements before their software can be used by US Federal agencies.
+ * 
+ * Covers three categories of software: (1) software developed after September 14, 2022; (2) existing software modified by major version changes after that date; and (3) software receiving continuous changes (SaaS, continuous delivery). The form identifies specific secure development practices the producer must follow and attest to.
+ * 
+ * In Alice's architecture, this becomes a concrete instance of first-party conformity assessment that feeds into the trust evaluation pipeline. The self-attestation is weighted by web of trust history alongside second-party and third-party attestations per ISO/IEC 17000.
+ * 
+ * Earlier understanding (from comms/0178): Conformity assessment is how Alice reasons about whether a claim is genuine — ISO/IEC 17000 first, second, third party attestation, weighted by web of trust history.
+ * 
+ * @see comms/0257
+ * @see https://www.cisa.gov/news-events/alerts/2023/04/28/cisa-requests-comment-secure-software-self-attestation-form
+ */
+export function cisaSelfAttestationForm(): void {
+  // Related: conformityAssessment, doITrustWhereThisCameFrom, webOfTrust
+}
