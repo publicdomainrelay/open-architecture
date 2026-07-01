@@ -224,3 +224,19 @@ export function microVmCloningUserfaultfd(): void {
 export function kubernetesWasmRuntime(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * SCRAPI returns a new operation ID on each status check response, carrying step-level detail for long-running compute contract execution.
+ * 
+ * Rather than returning a static operation handle, SCRAPI rotates the operation
+ * ID on each poll, embedding step details (current phase, progress, logs) in the
+ * response. The response includes a KCP streaming log URN so callers can tail
+ * execution output. This enables KCP/Kubernetes OIDC token issuance leveraging
+ * RBAC — the streaming log URN is an authorized view into the execution, and
+ * the OIDC token binds access to the caller's RBAC scope.
+ * 
+ * @see comms/0561
+ */
+export function scrapiOperationStepDetails(): void {
+  // TODO: wire to related concepts
+}

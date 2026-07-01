@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 559,
+  "lastProcessedComm": 567,
   "processedComms": [
     0,
     1,
@@ -560,7 +560,15 @@
     556,
     557,
     558,
-    559
+    559,
+    560,
+    561,
+    562,
+    563,
+    564,
+    565,
+    566,
+    567
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1987,6 +1995,27 @@
       "lastUpdatedComm": 559,
       "sourceIssues": [],
       "summary": "SCITT receipts as labeled property graph nodes forming a durable workflow engine"
+    },
+    "enclaveAttestationTcbFederation": {
+      "functionName": "enclaveAttestationTcbFederation",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 567,
+      "sourceIssues": [],
+      "summary": "SLSA 4 enclave attestation matching initial TCB federating set bootstraps recursive receipt trust"
+    },
+    "gitHubActionsWorkflowPolicyEngine": {
+      "functionName": "gitHubActionsWorkflowPolicyEngine",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 567,
+      "sourceIssues": [],
+      "summary": "GitHub Actions workflow as SLSA L4 policy engine in ~1000 lines via scitt-api-emulator"
+    },
+    "scrapiOperationStepDetails": {
+      "functionName": "scrapiOperationStepDetails",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 567,
+      "sourceIssues": [],
+      "summary": "SCRAPI rotates operation ID per status check, returns step details and KCP streaming log URN"
     }
   },
   "issueCache": {
@@ -2084,6 +2113,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 203,
+  "totalStubsCreated": 206,
   "totalIssuesFetched": 10
 }

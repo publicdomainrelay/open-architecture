@@ -526,3 +526,22 @@ export function scittDuplicityRemanufacturing(): void {
 export function ratsEntityMeasurementAttestation(): void {
   // Related: vtpmAttestedComputeIdentity, teeToTeeAttestationChain
 }
+
+/**
+ * Enclave attestation at SLSA 4 binds a policy engine and its policy to an initial TCB federating set measurement, bootstrapping trust for federated statements.
+ * 
+ * When an enclave produces an attestation for the policy engine binary plus policy
+ * content, and that measurement matches the initial TCB measurement in the
+ * federating set, downstream verifiers can trust statements produced by that
+ * policy engine without re-evaluating the attestation chain. This is why SCITT
+ * receipts are "recursive": the initial TCB measurement bootstraps trust in
+ * subsequent measurements, and Transparency Services log receipts for those
+ * measurements. The CBOR API needs an optional field for the attestation URN —
+ * either a full statement reference or a pointer to the attestation containing
+ * the TCB measurement.
+ * 
+ * @see comms/0561
+ */
+export function enclaveAttestationTcbFederation(): void {
+  // Related: slsaProvenanceAttestationShape, scittNotarizingProxyInCiCd, scittPolicyEmbeddedReceipt
+}
