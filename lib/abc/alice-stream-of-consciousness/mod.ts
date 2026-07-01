@@ -270,3 +270,26 @@ export function geneticMemorySparseDistributedMemory(): void {
 export function gitPushActivityPubStream(): void {
   // Related: websubActivityPubThoughtSharing, containerFromRebuildChain, webhookDependencyValidationDispatch
 }
+
+/**
+ * Alice's knowledge graph emerges from adept context-switching across distributed sources, not from a pre-built static ontology.
+ * 
+ * Humans context-switch so adeptly we give ourselves the illusion of having a single unified ontology. Alice applies the same principle: a large-scale data system sufficiently skilled at context-switching across DIDs, records, system contexts, and provenance chains creates the illusion of being a unified knowledge graph — without ever materializing one. The knowledge graph is performed rather than stored. Each context switch traces provenance edges through the inference chain, and the aggregate of those traversals IS the graph. This reframes knowledgeGraph from a stored data structure to an emergent property of the stream of consciousness.
+ * 
+ * @see comms/0168
+ * @see https://notes.knowledgefutures.org/pub/belji1gd/release/2
+ */
+export function contextSwitchingKnowledgeGraph(): void {
+  // Related: knowledgeGraph, onEvent
+}
+
+/**
+ * Metric tracking how frequently Alice surfaces novel connections or insights — the epiphany rate within her stream of consciousness.
+ * 
+ * Each epiphany is a new edge in the knowledge graph: a connection between two system contexts, operation outputs, or provenance chains that Alice had not previously recognized. The rate of epiphany measures Alice's learning velocity — faster epiphany rate means faster convergence toward comprehensive understanding of her managed supply chain. Feeds into happinessAccelerationMetric as a leading indicator: more epiphanies per unit time predicts accelerated improvement in throughput, shorter feedback loops, and faster mean time to resolution. Connected to the collective consciousness model where distributed Alice instances share epiphanies across peer-to-peer channels, multiplying the effective rate.
+ * 
+ * @see comms/0171
+ */
+export function rateOfEpiphany(): void {
+  // Related: happinessAccelerationMetric, knowledgeGraph, collectiveConsciousnessAcceleration
+}

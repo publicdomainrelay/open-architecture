@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 167,
+  "lastProcessedComm": 175,
   "processedComms": [
     0,
     1,
@@ -168,7 +168,15 @@
     164,
     165,
     166,
-    167
+    167,
+    168,
+    169,
+    170,
+    171,
+    172,
+    173,
+    174,
+    175
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -895,6 +903,20 @@
       "lastUpdatedComm": 167,
       "sourceIssues": [],
       "summary": "Validate Input.origin across nested CI execution contexts"
+    },
+    "contextSwitchingKnowledgeGraph": {
+      "functionName": "contextSwitchingKnowledgeGraph",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 175,
+      "sourceIssues": [],
+      "summary": "Knowledge graph as emergent context-switching, not stored static ontology"
+    },
+    "rateOfEpiphany": {
+      "functionName": "rateOfEpiphany",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 175,
+      "sourceIssues": [],
+      "summary": "Frequency of new insight connections Alice discovers per unit time"
     }
   },
   "issueCache": {
@@ -986,6 +1008,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 103,
+  "totalStubsCreated": 105,
   "totalIssuesFetched": 9
 }
