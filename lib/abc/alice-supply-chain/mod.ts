@@ -763,3 +763,47 @@ export function owaspCreRequirementsSideOfVex(): void {
 export function cweAbsencePropertyClassifier(): void {
   // Related: shouldiContributeOverlayPipeline
 }
+
+/**
+ * Policy distributed as content-addressable JSON artifacts stored in OCI registries, referenced via did:web URIs with content digests, and secured through SCITT attestations.
+ * 
+ * Insertion policy for a SCITT transparency service becomes a content-addressable blob in an OCI registry: `did:web:registry.example.com:policy-as-code:blocklist%40sha256%3Aaaaaaaaa`. The policy is fetched via OCI distribution (with SCITT enhancements per scitt.io/distributing-with-oci-scitt), laid down as `insertPolicy.json`, and evaluated by a policy-as-code engine that watches the SCITT workspace directory for `.cose` receipt files. On each new receipt the engine runs the content-addressable policy JSON against the receipt, producing allow/deny decisions with `reason.json` output. This uplevels the existing SCITT API emulator's inline Python policy into a schema-governed, content-addressable, distributable policy artifact that any conformant policy engine can consume.
+ * 
+ * Earlier understanding (from comms/0177): SCITT insertion policy expressed as a compute contract — the policy is a contract evaluated at insert time.
+ * 
+ * @see comms/0252
+ * @see https://scitt.io/distributing-with-oci-scitt.html
+ * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/62
+ */
+export function policyAsContentAddressedArtifact(): void {
+  // Related: scittInsertionPolicyAsComputeContract, gatekeeper, scittTransparencyService, appendToTransparencyLog
+}
+
+/**
+ * Use GitHub Actions OIDC subject claims from reusable workflows as a trust anchor for automated dependency approval, replacing manual review with verifiable workflow identity.
+ * 
+ * GitHub OIDC tokens carry claims including `job_workflow_ref` (identifying the specific reusable workflow that invoked a job), `repository_id`, and `repository_owner_id`. By pinning these claims — e.g. requiring that a dependency-bump PR originates from DFFML's own trusted reusable workflow identified by `job_workflow_ref` — Alice can auto-approve and merge dependency update PRs without human review. The `gh oidc-sub` extension configures the claim set for a repo. This extends the OIDC self-attestation pattern from build-time identity to runtime trust decisions: the workflow's identity is the credential that authorizes merging into main.
+ * 
+ * Earlier understanding (from comms prior): GitHub Actions OIDC tokens self-attest a workflow run's identity.
+ * 
+ * @see comms/0252
+ * @see https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/using-openid-connect-with-reusable-workflows
+ * @see https://github.com/tspascoal/gh-oidc-sub
+ */
+export function oidcReusableWorkflowTrust(): void {
+  // Related: githubActionsOidcSelfAttestation, scanIntoTrustAttestation, appendToTransparencyLog
+}
+
+/**
+ * Embed a SCITT notary and transparency service proxy directly within CI/CD reusable workflows so every push-to-main emits a SCITT receipt as a federated event.
+ * 
+ * The DFFML reusable workflow combines notary and transparency service roles into a single CI artifact: on push to main, the workflow emits a SCITT receipt for the updated content and publishes it as a federated event via the existing event space. Renovate and Dependabot are later patched to consume these federated SCITT receipt events, closing the loop from dependency update PR to attested merge confirmation. This transforms CI/CD from a passive execution environment into an active notarizing proxy — every main-branch mutation carries a verifiable SCITT receipt witnessed by the CI identity.
+ * 
+ * Earlier understanding (from comms prior): SCITT notary provides assertion registration; transparency logs record claims.
+ * 
+ * @see comms/0252
+ * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/62
+ */
+export function scittNotarizingProxyInCiCd(): void {
+  // Related: scittNotaryAssertionRegistry, federatedCiCdEventSpace, scittTransparencyService, appendToTransparencyLog
+}

@@ -315,3 +315,17 @@ export function webcryptoActivityPubServerAuth(): void {
 export function cdeventsCiCdInterop(): void {
   // Related: federatedCiCdEventSpace, activityPubOverGrpc, federatedSseActivityPub
 }
+
+/**
+ * Bridge ActivityPub federation events through MQTT message queues to WebSocket for real-time browser delivery and WebRTC for peer-to-peer communication.
+ * 
+ * The protocol chain — ActivityPub → MQTT → WebSocket → WebRTC — enables real-time fediverse communication by connecting asynchronous federation (ActivityPub inbox/outbox) to synchronous messaging. MQTT (e.g. ActiveMQ, Eclipse Paho, Cloudflare Pub/Sub) decouples federation event producers from consumers, acting as a message bus. WebSocket bridges MQTT topics to browser clients with persistent connections. WebRTC extends the chain to direct peer-to-peer channels for low-latency use cases like remote terminal sessions or live collaboration. This complements the existing gRPC transport (`activityPubOverGrpc`) and WebRTC runner token channel (`webRtcRunnerTokenChannel`) with a message-queue-centric topology suitable for high fan-out event distribution.
+ * 
+ * @see comms/0250
+ * @see https://activemq.apache.org/
+ * @see https://developers.cloudflare.com/pub-sub/examples/connect-python/
+ * @see https://docs.celeryq.dev/en/stable/reference/celery.app.amqp.html
+ */
+export function activityPubMessageQueueBridge(): void {
+  // Related: activityPubOverGrpc, webRtcRunnerTokenChannel, federatedSseActivityPub, federatedCiCdEventSpace
+}

@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 247,
+  "lastProcessedComm": 255,
   "processedComms": [
     0,
     1,
@@ -248,7 +248,15 @@
     244,
     245,
     246,
-    247
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -433,7 +441,7 @@
     "scittNotaryAssertionRegistry": {
       "functionName": "scittNotaryAssertionRegistry",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 183,
+      "lastUpdatedComm": 255,
       "sourceIssues": [],
       "summary": "SCITT stores attestation assertions from notary, not the signed artifacts"
     },
@@ -475,7 +483,7 @@
     "githubActionsOidcSelfAttestation": {
       "functionName": "githubActionsOidcSelfAttestation",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 55,
+      "lastUpdatedComm": 255,
       "sourceIssues": [],
       "summary": "GitHub Actions OIDC token self-attestation feeding SCITT transparency"
     },
@@ -993,7 +1001,7 @@
     "scittInsertionPolicyAsComputeContract": {
       "functionName": "scittInsertionPolicyAsComputeContract",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 183,
+      "lastUpdatedComm": 255,
       "sourceIssues": [],
       "summary": "SCITT insertion policy as sandboxed policy-as-code compute contract"
     },
@@ -1234,6 +1242,34 @@
       "lastUpdatedComm": 247,
       "sourceIssues": [],
       "summary": "ML classifier for CWE absence-of-property vulnerabilities feeding overlay pipeline"
+    },
+    "policyAsContentAddressedArtifact": {
+      "functionName": "policyAsContentAddressedArtifact",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 255,
+      "sourceIssues": [],
+      "summary": "Policy as content-addressable OCI artifact referenced by did:web digest URI"
+    },
+    "oidcReusableWorkflowTrust": {
+      "functionName": "oidcReusableWorkflowTrust",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 255,
+      "sourceIssues": [],
+      "summary": "OIDC reusable workflow identity as trust basis for automated PR approval"
+    },
+    "scittNotarizingProxyInCiCd": {
+      "functionName": "scittNotarizingProxyInCiCd",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 255,
+      "sourceIssues": [],
+      "summary": "SCITT notary embedded in CI/CD reusable workflow emits receipts on push"
+    },
+    "activityPubMessageQueueBridge": {
+      "functionName": "activityPubMessageQueueBridge",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 255,
+      "sourceIssues": [],
+      "summary": "ActivityPub to MQTT to WebSocket to WebRTC protocol bridge chain"
     }
   },
   "issueCache": {
@@ -1331,6 +1367,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 140,
+  "totalStubsCreated": 144,
   "totalIssuesFetched": 10
 }
