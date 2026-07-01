@@ -1,9 +1,82 @@
 {
-  "lastProcessedComm": -1,
-  "processedComms": [],
-  "concepts": {},
-  "issueCache": {},
-  "lastBatchSize": 0,
-  "totalStubsCreated": 0,
-  "totalIssuesFetched": 0
+  "lastProcessedComm": 7,
+  "processedComms": [0, 1, 2, 3, 4, 5, 6, 7],
+  "concepts": {
+    "did-standardization": {
+      "comm": 1,
+      "status": "new",
+      "package": "alice-communication"
+    },
+    "scitt-transparency-service": {
+      "comm": 1,
+      "status": "new",
+      "package": "alice-trust"
+    },
+    "data-provenance-tracking": {
+      "comm": 2,
+      "status": "new",
+      "package": "alice-trust"
+    },
+    "living-threat-model": {
+      "comm": 2,
+      "status": "new",
+      "package": "alice-trust"
+    },
+    "open-policy-agent-overlay": {
+      "comm": 2,
+      "status": "new",
+      "package": "alice-supply-chain"
+    },
+    "entity-analysis-trinity": {
+      "comm": 2,
+      "status": "refinement",
+      "package": "alice-system-context"
+    },
+    "subflow-lock-taken": {
+      "comm": 6,
+      "status": "new",
+      "package": "alice-system-context"
+    },
+    "operation-trust-boundary": {
+      "comm": 2,
+      "status": "new",
+      "package": "alice-system-context"
+    },
+    "prioritizer-intent-policy": {
+      "comm": 2,
+      "status": "refinement",
+      "package": "alice-stream-of-consciousness"
+    },
+    "knowledge-graph-provenance": {
+      "comm": 2,
+      "status": "refinement",
+      "package": "alice-stream-of-consciousness"
+    },
+    "transparency-log-scitt": {
+      "comm": 6,
+      "status": "refinement",
+      "package": "alice-supply-chain"
+    },
+    "oss-scanning-openssf-metrics": {
+      "comm": 0,
+      "status": "new",
+      "package": "alice-supply-chain"
+    },
+    "alice-intelligence-wg": {
+      "comm": 5,
+      "status": "new",
+      "package": "alice"
+    }
+  },
+  "issueCache": {
+    "intel/dffml/1315": {
+      "title": "service: sw: src: change: notify: Service to facilitate poly repo pull model dev tooling",
+      "labels": ["John", "enhancement", "usecase/innersource"],
+      "author": "johnandersen777",
+      "relevantComms": [1]
+    }
+  },
+  "lastBatchSize": 8,
+  "totalStubsCreated": 7,
+  "totalIssuesFetched": 1
 }

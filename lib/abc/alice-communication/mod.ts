@@ -31,12 +31,35 @@ export function herRepositoryIsHerVoice(): void {
 /**
  * Her identity is a DID (`did:plc:...`). It is who she is no matter where she
  * is running, and it is what she signs with so you always know a thought is
- * really hers.
+ * really hers. When the W3C approved DIDs as a Recommendation in July 2022 they
+ * became a settled foundation for this architecture: a single framework to
+ * unify identity across cloud, edge, and client systems, preserving the
+ * integrity of information as it moves through the supply chain.
  *
  * @see open_architecture_today.md "Her identity is a DID"
+ * @see arch/0000-did-standardization.md
  */
 export function herIdentity(): DID {
+  didStandardization();
   return "did:plc:";
+}
+
+/**
+ * The W3C approved Decentralized Identifiers as a Recommendation in July 2022.
+ * This milestone settles the identity layer of the open architecture: DID
+ * provides a framework to unify and consolidate multiple evolving identity
+ * systems, which is useful for validating the authenticity of information and
+ * preserving its integrity as it is moved and processed among cloud, edge, and
+ * client systems. SCITT (Supply Chain Integrity, Transparency, and Trust) has
+ * already highlighted DID as a useful approach for exchanging information
+ * through the supply chain, and the Web of Things (WoT) WG plans to support
+ * DID for identifying and discovering IoT devices and metadata.
+ *
+ * @see arch/0000-did-standardization.md
+ * @see scittTransparencyService
+ */
+export function didStandardization(): void {
+  // DID 1.0 reached W3C Recommendation status July 2022.
 }
 
 /**

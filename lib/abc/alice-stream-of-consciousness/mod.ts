@@ -42,9 +42,19 @@ export function thinkMoreDeeply(): void {
 
 /**
  * Her prioritizer scores the possibilities; her knowledge graph remembers; she
- * decides whether to notify you, to act, or to keep thinking.
+ * decides whether to notify you, to act, or to keep thinking. Decisions follow
+ * the spirit of the law -- intent-based policy derived from the Trinity of
+ * Static Analysis, Dynamic Analysis, and Human Intent -- rather than rote
+ * rule matching.
+ *
+ * Every inference the prioritizer produces carries provenance that traces back
+ * through the training data, model environment, and configuration that shaped
+ * it. This provenance chain is recorded as SCITT claims so that a downstream
+ * consumer can audit not just what the prioritizer decided but why.
  *
  * @see open_architecture_today.md "Her prioritizer scores the possibilities"
+ * @see entityAnalysisTrinity
+ * @see dataProvenanceTracking
  */
 export function prioritizer(changes: unknown): "notify" | "think" | "act" {
   knowledgeGraph(changes);
@@ -52,12 +62,16 @@ export function prioritizer(changes: unknown): "notify" | "think" | "act" {
 }
 
 /**
- * Her knowledge graph remembers what she knows.
+ * Her knowledge graph remembers what she knows. Every entry in the knowledge
+ * graph carries provenance that traces back through the inference chain --
+ * the training data, model environment, and configuration that produced it --
+ * so the prioritizer's decisions are auditable against the spirit of the law.
  *
  * @see open_architecture_today.md "her knowledge graph remembers"
+ * @see dataProvenanceTracking
  */
 export function knowledgeGraph(_changes: unknown): void {
-  // What she knows.
+  // What she knows. Each entry carries provenance through the inference chain.
 }
 
 /**

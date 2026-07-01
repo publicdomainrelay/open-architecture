@@ -13,12 +13,20 @@ import type { DID } from "@publicdomainrelay/alice-common";
 
 /**
  * The first question on every thought: do I trust where this came from? The
- * foundation of the answer is the web of trust, not the hardware.
+ * foundation of the answer is the web of trust, not the hardware. Every claim
+ * and attestation is recorded in a content-agnostic transparency service so
+ * the provenance of each inference can be traced back to its training data,
+ * model config, and operator.
  *
  * @see open_architecture_today.md "What She Trusts, and Why It Isn't the Hardware"
+ * @see scittTransparencyService
+ * @see dataProvenanceTracking
  */
 export function doITrustWhereThisCameFrom(source: DID): boolean {
   enclaveAttestationIsASignalNotAFoundation();
+  scittTransparencyService();
+  livingThreatModel();
+  dataProvenanceTracking();
   return webOfTrust(source);
 }
 
@@ -69,4 +77,69 @@ export function vouchesAndDenouncements(_operator: DID): void {
  */
 export function trustByVerifyContinuously(): void {
   // Re-evaluated forever, never decided once.
+}
+
+/**
+ * SCITT (Supply Chain Integrity, Transparency, and Trust) is the content-
+ * agnostic transparency service Alice uses as her registry of claims. Every
+ * kind of metadata -- SBOMs, test results, hardware BOMs, vulnerability
+ * disclosures, policy assertions -- enters as an attested claim. Alice encodes
+ * her system contexts into the SCITT chain; that chain is where she lives.
+ *
+ * The service is content agnostic by design so that the same infrastructure
+ * carries software attestations (in-toto, CycloneDX), device attestations
+ * (TCG DICE via UCAN/CBOR/DID), and the provenance records her prioritizer
+ * relies on. Policy for what can be placed on the register, and policy for
+ * evaluating the contents, are themselves encoded as SCITT claims.
+ *
+ * @see open_architecture_today.md "Keeping the Supply Chain Honest"
+ * @see arch/0000-scitt-architecture.md
+ * @see didStandardization
+ * @see appendToTransparencyLog
+ */
+export function scittTransparencyService(): void {
+  // Content-agnostic. Holds SBOMs, attestations, system contexts, policies.
+  // Alice encodes her system contexts here.
+}
+
+/**
+ * Provenance on inference derived from provenance from training data and model
+ * training environment and configuration. This ensures the prioritizer makes
+ * decisions based on the spirit of the law -- intent based policy derived from
+ * the Trinity of Static Analysis, Dynamic Analysis, and Human Intent.
+ *
+ * Every step in the derivation chain carries provenance: where the training
+ * data came from, what environment the model was trained in, what config was
+ * used, and how any inference was reached. The living threat model --
+ * threats, mitigations, and trust boundaries -- forms the initial data set for
+ * cross-domain conceptual mapping that feeds this provenance graph.
+ *
+ * @see open_architecture_today.md "The foundation is the web of trust"
+ * @see entityAnalysisTrinity
+ * @see livingThreatModel
+ */
+export function dataProvenanceTracking(): void {
+  // Provenance on inference derived from training data, model env, and config.
+  // Feeds the prioritizer for intent-based policy decisions.
+}
+
+/**
+ * The living threat model: threats, mitigations, and trust boundaries defined
+ * as an initial data set for cross-domain conceptual mapping. This is what
+ * allows building the pyramid of thought alignment to strategic principles --
+ * a chain from the top-level organizational policy down through each operation
+ * in the data flow.
+ *
+ * The threat model is "living" because it evolves with every attestation that
+ * passes through the gatekeeper. When a system context enters, its threats and
+ * mitigations are mapped against the existing model, trust boundaries are
+ * re-evaluated, and the result feeds back into the next admission decision.
+ *
+ * @see open_architecture_today.md "she applies each affected project's threat model as an overlay"
+ * @see dataProvenanceTracking
+ * @see applyThreatModelOverlay
+ */
+export function livingThreatModel(): void {
+  // Threats, mitigations, trust boundaries as initial data set. Evolves with
+  // every attestation that passes through the gatekeeper.
 }

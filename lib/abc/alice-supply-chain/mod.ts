@@ -12,7 +12,7 @@
  */
 
 import type { StrongRef } from "@publicdomainrelay/alice-common";
-import { doITrustWhereThisCameFrom } from "@publicdomainrelay/alice-trust-abc";
+import { doITrustWhereThisCameFrom, scittTransparencyService } from "@publicdomainrelay/alice-trust-abc";
 import { theOverlay } from "@publicdomainrelay/alice-system-context-abc";
 
 /**
@@ -29,6 +29,7 @@ export function gatekeeper(component: StrongRef): void {
   if (!checkBillOfMaterialsAgainstLog(component)) {
     gatherExceptionReceipts(component);
   }
+  openPolicyAgentOverlay();
   applyThreatModelOverlay();
   federateClaimsDownstream();
 }
@@ -50,10 +51,38 @@ export function scanIntoTrustAttestation(component: StrongRef): StrongRef {
  * and indexed. The index of what is trusted feeds back into watching for the
  * next release, and the loop closes.
  *
+ * The transparency service is SCITT (Supply Chain Integrity, Transparency, and
+ * Trust), which is content agnostic: it holds SBOMs, test results, hardware
+ * BOMs, vulnerability disclosures, policy assertions, and Alice's own system
+ * contexts as attested claims.
+ *
  * @see open_architecture_today.md "appended to a transparency service, an append only log"
+ * @see scittTransparencyService
  */
 export function appendToTransparencyLog(_attestation: StrongRef): void {
   // Append only. Indexed. Feeds the next round.
+  scittTransparencyService();
+}
+
+/**
+ * Open Policy Agent policies, serialized to JSON, translated into the DID/VC/
+ * SCITT claim format, and applied as overlays to flows. Policy serves two
+ * roles in this architecture: (1) admission policy -- what types of data the
+ * transparency register may accept, and (2) evaluation policy -- how a
+ * consumer judges the registered claims for fitness of use.
+ *
+ * The overlaid flows define the trusted parties within that context as
+ * applicable to the active organizational policies. Each policy is itself a
+ * SCITT claim, so the policy engine's rules inherit the same provenance and
+ * transparency as every other thought on the chain.
+ *
+ * @see open_architecture_today.md "she applies each affected project's threat model as an overlay"
+ * @see scittTransparencyService
+ * @see policyEnginePicksABidder
+ */
+export function openPolicyAgentOverlay(): void {
+  // OPA -> JSON -> DID/VC/SCITT. Admission policy + evaluation policy.
+  // Applied as overlays to flows within their applicable context.
 }
 
 /**
