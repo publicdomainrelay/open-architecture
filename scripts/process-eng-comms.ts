@@ -7,49 +7,35 @@
  *   deno run --allow-read --allow-write --allow-run --allow-sys --allow-env \
  *     scripts/process-eng-comms.ts [--dry-run] [--max-batches N] [--verbose]
  *
+ * All log output is structured JSON, one object per line. Pipe through `jq`
+ * for human-readable display:
+ *
+ *   deno run ... scripts/process-eng-comms.ts 2>&1 | jq -r \
+ *     'select(.level != "debug") | "[\(.ts[11:19]) \(.level)] \(.event) \(.data // {})"'
+ *
+ * Watch a running session (run in a second terminal):
+ *
+ *   tail -f /tmp/process-eng-comms.log | jq -r \
+ *     'select(.level != "debug") | "[\(.ts[11:19]) \(.level)] \(.event): \(.data // {})"'
+ *
+ * Log to file + stdout:
+ *
+ *   deno run ... scripts/process-eng-comms.ts 2>&1 | tee /tmp/process-eng-comms.log
+ *
  * ## Architecture
  *
- * This script + the alice-eng-comms agent form a two-level system:
- *
- *   ┌──────────────────────────────────────────┐
- *   │  process-eng-comms.ts (orchestrator)     │
- *   │  - reads state.json                      │
- *   │  - computes batch range                  │
- *   │  - loads agent system prompt from .md    │
- *   │  - calls query() via Claude Agent SDK    │
- *   │  - commits after each batch              │
- *   │  - loops until comm 0690 done            │
- *   └──────────────┬───────────────────────────┘
- *                  │ SDK query(prompt, options)
- *                  ▼
- *   ┌──────────────────────────────────────────┐
- *   │  alice-eng-comms agent (Claude subprocess)│
- *   │  - reads comm markdown files             │
- *   │  - extracts issue/PR refs via grep       │
- *   │  - fetches issues via gh CLI             │
- *   │  - identifies concepts from headings     │
- *   │  - writes stubs to open-architecture/    │
- *   │  - updates state.json                    │
- *   │  - runs deno check                       │
- *   └──────────────┬───────────────────────────┘
- *                  │ stdout/stderr
- *                  ▼
- *   ┌──────────────────────────────────────────┐
- *   │  orchestrator captures + logs output     │
- *   │  commits changes to git                  │
- *   │  advances to next batch                  │
- *   └──────────────────────────────────────────┘
- *
- * ## Environment passthrough
- *
- * The SDK spawns Claude Code as a subprocess using its bundled executable
- * (claude-agent-sdk-darwin-arm64/.../claude). When `options.env` is omitted,
- * the subprocess inherits `process.env` — so ANTHROPIC_API_KEY,
- * ANTHROPIC_BASE_URL, and any other env vars pass through unchanged.
- * No extra config needed; the agent uses the same auth as the parent.
+ *   process-eng-comms.ts (orchestrator)
+ *     │  reads state.json, loads agent prompt
+ *     │  calls query() via @anthropic-ai/claude-agent-sdk
+ *     ▼
+ *   alice-eng-comms agent (Claude subprocess)
+ *     │  reads comms, fetches issues via gh, writes stubs
+ *     │  inherits process.env → API key + base URL passthrough
+ *     ▼
+ *   open-architecture/ (docs-as-code DAG) + state.json
  */
 
-import { query, HOOK_EVENTS } from "npm:@anthropic-ai/claude-agent-sdk";
+import { query } from "npm:@anthropic-ai/claude-agent-sdk";
 
 const ORG_ROOT = new URL("..", import.meta.url).pathname;
 const STATE_PATH =
@@ -76,16 +62,39 @@ interface AgentState {
   lastBatchSize?: number;
 }
 
-/** Timestamp for log lines. */
-const ts = () => new Date().toISOString().replace("T", " ").substring(0, 19);
+// ── Structured JSON logging ────────────────────────────────────────────────
 
-function log(...args: unknown[]) {
-  console.log(`[${ts()}]`, ...args);
+type LogLevel = "info" | "warn" | "error" | "debug";
+type LogEvent =
+  | "startup"
+  | "banner"
+  | "batch_start"
+  | "batch_dry_run"
+  | "agent_invoke"
+  | "agent_done"
+  | "agent_error"
+  | "agent_state_stale"
+  | "state_diff"
+  | "commit"
+  | "commit_error"
+  | "progress"
+  | "done";
+
+interface LogLine {
+  ts: string;
+  level: LogLevel;
+  event: LogEvent;
+  data?: Record<string, unknown>;
 }
 
-function banner(msg: string) {
-  const line = "━".repeat(60);
-  console.log(`\n${line}\n  ${msg}\n${line}`);
+function emit(level: LogLevel, event: LogEvent, data?: Record<string, unknown>) {
+  const line: LogLine = { ts: new Date().toISOString(), level, event };
+  if (data) line.data = data;
+  console.log(JSON.stringify(line));
+}
+
+function banner(title: string) {
+  emit("info", "banner", { title });
 }
 
 async function readState(): Promise<AgentState> {
@@ -93,41 +102,40 @@ async function readState(): Promise<AgentState> {
   return JSON.parse(raw);
 }
 
-/** Read the agent definition file, extract system prompt after --- separator. */
 async function loadAgentSystemPrompt(): Promise<string> {
   const raw = await Deno.readTextFile(AGENT_PATH);
   const parts = raw.split("---");
   return parts.slice(1).join("---").trim();
 }
 
-async function commit(message: string): Promise<void> {
-  const cwd = ORG_ROOT;
-  const add = new Deno.Command("git", {
-    args: ["add", "open-architecture/"],
-    cwd,
-  });
-  await add.output();
-
-  const cmt = new Deno.Command("git", { args: ["commit", "-m", message], cwd });
-  const r = await cmt.output();
-  if (!r.success) {
-    throw new Error(`git commit failed: ${new TextDecoder().decode(r.stderr)}`);
-  }
-  log(`  ✓ committed: ${message.substring(0, 80)}`);
+async function git(args: string[], cwd: string): Promise<{ success: boolean; stdout: string; stderr: string }> {
+  const cmd = new Deno.Command("git", { args, cwd });
+  const r = await cmd.output();
+  return {
+    success: r.success,
+    stdout: new TextDecoder().decode(r.stdout),
+    stderr: new TextDecoder().decode(r.stderr),
+  };
 }
 
-/**
- * Run one batch. Returns true if more batches remain.
- *
- * Subprocess inherits process.env → ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL,
- * etc. all pass through to the Claude Code executable bundled in the SDK.
- */
+async function commit(message: string): Promise<void> {
+  await git(["add", "open-architecture/"], ORG_ROOT);
+  const r = await git(["commit", "-m", message], ORG_ROOT);
+  if (!r.success) {
+    emit("error", "commit_error", { message: message.substring(0, 80), stderr: r.stderr.trim() });
+    throw new Error(`git commit failed: ${r.stderr}`);
+  }
+  emit("info", "commit", { message: message.substring(0, 80), hash: r.stdout.trim().split("\n")[0] });
+}
+
+// ── Batch runner ────────────────────────────────────────────────────────────
+
 async function runBatch(batchNumber: number): Promise<boolean> {
   const before = await readState();
   const nextComm = before.lastProcessedComm + 1;
 
   if (nextComm >= TOTAL_COMMS) {
-    log(`✓ All ${TOTAL_COMMS} comms processed.`);
+    emit("info", "done", { reason: "all_comms_processed", total: TOTAL_COMMS });
     return false;
   }
 
@@ -138,18 +146,23 @@ async function runBatch(batchNumber: number): Promise<boolean> {
   const paddedEnd = String(end).padStart(4, "0");
   const remaining = TOTAL_COMMS - start;
 
-  banner(
-    `Batch #${batchNumber}: comms ${paddedStart}–${paddedEnd} (${count} comms, ${remaining} left)`,
-  );
-  log(`  state: lastProcessedComm=${before.lastProcessedComm}`);
-  log(`  concepts tracked: ${Object.keys(before.concepts ?? {}).length}`);
-  log(`  stubs created so far: ${before.totalStubsCreated ?? 0}`);
-  log(`  issues fetched so far: ${before.totalIssuesFetched ?? 0}`);
+  banner(`Batch #${batchNumber}: comms ${paddedStart}–${paddedEnd} (${count} comms, ${remaining} left)`);
+
+  emit("info", "batch_start", {
+    batch: batchNumber,
+    start: paddedStart,
+    end: paddedEnd,
+    count,
+    remaining,
+    lastProcessedComm: before.lastProcessedComm,
+    conceptsTracked: Object.keys(before.concepts ?? {}).length,
+    stubsCreated: before.totalStubsCreated ?? 0,
+    issuesFetched: before.totalIssuesFetched ?? 0,
+  });
 
   if (DRY_RUN) {
     const prompt = await loadAgentSystemPrompt();
-    log(`  [dry-run] system prompt: ${prompt.length} chars`);
-    log(`  [dry-run] would process ${paddedStart}–${paddedEnd}`);
+    emit("info", "batch_dry_run", { promptChars: prompt.length, start: paddedStart, end: paddedEnd });
     return false;
   }
 
@@ -165,12 +178,20 @@ async function runBatch(batchNumber: number): Promise<boolean> {
   ].join("\n");
 
   if (VERBOSE) {
-    log(`  prompt: ${prompt.length} chars total`);
-    log(`  prompt preview: ${prompt.substring(0, 200)}...`);
+    emit("debug", "agent_invoke", {
+      promptChars: prompt.length,
+      promptPreview: prompt.substring(0, 300),
+      hasApiKey: !!Deno.env.get("ANTHROPIC_API_KEY"),
+      baseUrl: Deno.env.get("ANTHROPIC_BASE_URL") ?? "(default)",
+    });
+  } else {
+    emit("info", "agent_invoke", {
+      promptChars: prompt.length,
+      hasApiKey: !!Deno.env.get("ANTHROPIC_API_KEY"),
+      baseUrl: Deno.env.get("ANTHROPIC_BASE_URL") ?? "(default)",
+    });
   }
 
-  log("  → invoking agent (Claude SDK subprocess)...");
-  log("    env passthrough: ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, etc.");
   const startTime = Date.now();
 
   try {
@@ -190,81 +211,103 @@ async function runBatch(batchNumber: number): Promise<boolean> {
         permissionMode: "bypassPermissions",
         cwd: ORG_ROOT,
         includePartialMessages: true,
-        // env NOT set — subprocess inherits process.env
       },
     });
 
-    // The SDK returns different shapes depending on options. Try async iterable first.
+    // Stream partial messages in verbose mode
     if (
+      VERBOSE &&
       asyncIterableOrResult &&
       typeof asyncIterableOrResult === "object" &&
       Symbol.asyncIterator in asyncIterableOrResult
     ) {
-      log("  streaming output:");
-      for await (const msg of asyncIterableOrResult as AsyncIterable<unknown>) {
-        if (VERBOSE) {
-          const m = msg as Record<string, unknown>;
-          if (m.type === "assistant" || m.type === "result") {
-            const text = String((m as { message?: { content?: unknown } }).message?.content ?? m.content ?? "")
-              .substring(0, 200);
-            log(`    [${m.type}] ${text}`);
-          } else if (m.type === "tool_use") {
-            log(`    [tool] ${(m as { name?: string }).name} ${JSON.stringify((m as { input?: unknown }).input).substring(0, 120)}`);
-          }
+      for await (const msg of asyncIterableOrResult as AsyncIterable<Record<string, unknown>>) {
+        const type = msg.type as string | undefined;
+        if (type === "assistant" || type === "result") {
+          const content = String(
+            (msg as { message?: { content?: unknown } }).message?.content ??
+              msg.content ?? "",
+          );
+          emit("debug", "agent_invoke", { streamEvent: type, textPreview: content.substring(0, 300) });
+        } else if (type === "tool_use") {
+          emit("debug", "agent_invoke", {
+            streamEvent: "tool_use",
+            tool: (msg as { name?: string }).name,
+            inputPreview: JSON.stringify((msg as { input?: unknown }).input).substring(0, 200),
+          });
         }
       }
     }
 
-    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-    log(`  ✓ agent finished in ${elapsed}s`);
+    const elapsedMs = Date.now() - startTime;
+    emit("info", "agent_done", { elapsedMs, elapsedS: (elapsedMs / 1000).toFixed(1) });
 
     // Verify state advanced
     const after = await readState();
     if (after.lastProcessedComm <= before.lastProcessedComm) {
-      log(
-        `  ⚠ state did not advance (was ${before.lastProcessedComm}, still ${after.lastProcessedComm})`,
-      );
+      emit("warn", "agent_state_stale", {
+        before: before.lastProcessedComm,
+        after: after.lastProcessedComm,
+      });
       return false;
     }
 
     const progressed = after.lastProcessedComm - before.lastProcessedComm;
-    const newStubs =
+    const newConcepts =
       Object.keys(after.concepts ?? {}).length -
       Object.keys(before.concepts ?? {}).length;
     const newIssues =
       (after.totalIssuesFetched ?? 0) - (before.totalIssuesFetched ?? 0);
+    const newStubs =
+      (after.totalStubsCreated ?? 0) - (before.totalStubsCreated ?? 0);
     const totalProgress = after.lastProcessedComm + 1;
     const pct = ((totalProgress / TOTAL_COMMS) * 100).toFixed(1);
 
-    log(`  progress: ${totalProgress}/${TOTAL_COMMS} (${pct}%) — +${progressed} this batch`);
-    log(`  new concepts: ${newStubs}, issues fetched: ${newIssues}`);
-    log(`  total stubs: ${after.totalStubsCreated ?? 0}, total concepts: ${Object.keys(after.concepts ?? {}).length}`);
+    emit("info", "state_diff", {
+      progressed,
+      newConcepts,
+      newStubs,
+      newIssues,
+      totalProgress,
+      totalComms: TOTAL_COMMS,
+      pct: Number(pct),
+      totalStubs: after.totalStubsCreated ?? 0,
+      totalConcepts: Object.keys(after.concepts ?? {}).length,
+      totalIssues: after.totalIssuesFetched ?? 0,
+    });
 
     await commit(
       `feat(agent): process eng comms ${paddedStart}–${paddedEnd} ` +
-        `${pct}% — ${newStubs} concepts, ${newIssues} issues`,
+        `${pct}% — ${newConcepts} concepts, ${newStubs} stubs, ${newIssues} issues`,
     );
 
     return after.lastProcessedComm < TOTAL_COMMS - 1;
   } catch (err) {
-    const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
-    log(`  ✗ ERROR after ${elapsed}s: ${(err as Error).message}`);
-    if (VERBOSE) console.error(err);
+    const elapsedMs = Date.now() - startTime;
+    emit("error", "agent_error", {
+      elapsedMs,
+      elapsedS: (elapsedMs / 1000).toFixed(1),
+      error: (err as Error).message,
+    });
+    if (VERBOSE) console.error(JSON.stringify({ ts: new Date().toISOString(), level: "error", event: "agent_error_stack", data: { stack: (err as Error).stack } }));
     return false;
   }
 }
 
+// ── Main ────────────────────────────────────────────────────────────────────
+
 async function main() {
-  banner("Alice Eng-Comms Processor");
-  log(`open-architecture: ${OPEN_ARCH}`);
-  log(`state: ${STATE_PATH}`);
-  log(`agent definition: ${AGENT_PATH}`);
-  log(`total comms: ${TOTAL_COMMS}`);
-  log(`env passthrough: ANTHROPIC_API_KEY=${Deno.env.get("ANTHROPIC_API_KEY") ? "✓ set" : "✗ missing"}`);
-  log(` ANTHROPIC_BASE_URL=${Deno.env.get("ANTHROPIC_BASE_URL") ?? "(default)"}`);
-  if (DRY_RUN) log("[dry-run mode — no agent invoked, no commits]");
-  if (VERBOSE) log("[verbose mode]");
-  log(`max batches: ${MAX_BATCHES === Infinity ? "unlimited" : MAX_BATCHES}`);
+  emit("info", "startup", {
+    openArch: OPEN_ARCH,
+    statePath: STATE_PATH,
+    agentPath: AGENT_PATH,
+    totalComms: TOTAL_COMMS,
+    hasApiKey: !!Deno.env.get("ANTHROPIC_API_KEY"),
+    baseUrl: Deno.env.get("ANTHROPIC_BASE_URL") ?? "(default)",
+    dryRun: DRY_RUN,
+    verbose: VERBOSE,
+    maxBatches: MAX_BATCHES === Infinity ? "unlimited" : MAX_BATCHES,
+  });
 
   let batches = 0;
   let keepGoing = true;
@@ -276,12 +319,20 @@ async function main() {
 
   const final = await readState();
   const pct = (((final.lastProcessedComm + 1) / TOTAL_COMMS) * 100).toFixed(1);
+
   banner(
     `Done. ${batches} batches, ${final.lastProcessedComm + 1}/${TOTAL_COMMS} (${pct}%) comms processed.`,
   );
-  log(`total stubs: ${final.totalStubsCreated ?? 0}`);
-  log(`total issues: ${final.totalIssuesFetched ?? 0}`);
-  log(`concepts: ${Object.keys(final.concepts ?? {}).length}`);
+
+  emit("info", "done", {
+    batches,
+    commsProcessed: final.lastProcessedComm + 1,
+    totalComms: TOTAL_COMMS,
+    pct: Number(pct),
+    totalStubs: final.totalStubsCreated ?? 0,
+    totalIssues: final.totalIssuesFetched ?? 0,
+    totalConcepts: Object.keys(final.concepts ?? {}).length,
+  });
 }
 
 main();
