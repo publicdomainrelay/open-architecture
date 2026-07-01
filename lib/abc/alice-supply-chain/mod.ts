@@ -405,3 +405,14 @@ export function shouldiContributeDetailedFlow(): void {
 export function webhookDependencyValidationDispatch(): void {
   // Related: shouldiContributeDetailedFlow
 }
+
+/**
+ * SCITT transparency services federated through Decentralized Web Nodes (DWN) for discovery, relay, and cross-node query.
+ * 
+ * Individual SCITT instances hold SBOMs, attestations, and system contexts. DWN federation enables these instances to discover each other, relay signed claims, and query across organizational boundaries without a central registry. DWN relay provides the message routing layer; DWN protocols define how SCITT receipts, attestations, and transparency log entries are shared. Integrates with SSI Service for DID management (did:key, did:web, did:ion), Verifiable Credential issuance/verification, and Credential Manifest for applying for VCs. This is the transport layer for the SCITT yin-yang integration pattern where DFFML acts as both notary (issuing receipts) and consumer (verifying downstream).
+ * 
+ * @see comms/0101
+ */
+export function scittDwnFederation(): void {
+  // Related: scittTransparencyService, appendToTransparencyLog, doITrustWhereThisCameFrom
+}

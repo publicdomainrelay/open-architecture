@@ -384,3 +384,15 @@ export function qwikResumableDataflowCache(): void {
 export function overlaysAsDynamicContextAwareBranches(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Unified model where Records, DataFlows, and System Contexts share a common identity and persistence layer via DIDs, CIDs, UCANs, and IPVM.
+ * 
+ * Prior understanding treated DataFlow-as-record as a one-way encoding. This extends it to full unification: Records carry dataflow Input type data for graph traversal (resolve one link deep via DID/CID when data is offline), System Contexts are themselves content-addressed records, and UCAN delegations + IPVM execution provide the compute layer. The unification enables cohesive context capture with unbroken chains spanning both data provenance and compute execution history — every operation's inputs, outputs, and system context snapshot are linked by content address.
+ * 
+ * @see comms/0100
+ * @see intel/dffml#1418
+ */
+export function recordDataflowUnification(): void {
+  // Related: dataflowAsRecordPersistence, freezeSystemContext, theDataFlow
+}

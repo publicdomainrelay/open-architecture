@@ -223,3 +223,26 @@ export function dynamicTrustRootsPerBom(): void {
 export function entityAlignmentTrustGraph(): void {
   // Related: webOfTrust, doITrustWhereThisCameFrom, conformityAssessment
 }
+
+/**
+ * Source update mode that serializes train of thought by creating new record instances rather than merging over old data, preserving provenance chains across evaluations.
+ * 
+ * When `source.update()` overwrites data by merging, information about what changed and why is lost. The chains-of-context mode instead appends new record data instances each time `record.evaluated()` runs, creating an immutable provenance chain. This is critical when record keys change (e.g., `GitHubRepoID` → `record.feature("repo_url")`) — new instances preserve the lineage rather than mutating in place. Combined with DID/CID resolution for graph traversal, this enables unbroken provenance from raw data through every inference step to final policy decisions.
+ * 
+ * @see comms/0100
+ * @see intel/dffml#1418
+ */
+export function chainsOfContext(): void {
+  // Related: dataProvenanceTracking, knowledgeGraphProvenance
+}
+
+/**
+ * Adversarial attack that injects data into a target's trust chains by exploiting the deltas between system context frames — graffiti on the train of thought.
+ * 
+ * The attacker introspects the target's trust evaluation paths (from feature data at the bottom of the iceberg up through hyperparameters and strategic plans) to predict how the target's oracles will evaluate trust. They then inject mislabeled data (e.g., mislabeled VEX statements, compromised SBOM entries) into supply chain vectors they can influence. Because each system context frame is a delta from the previous, the attacker exploits the arbitrage between frames — the gap between what the target's oracles evaluate and what reality is. Mitigation requires locality-aware caching with acceptable documentation loss to maintain acceleration within the train of thought, and speaker-syncing of models and strategic plans across EDEN nodes (Alice instances).
+ * 
+ * @see comms/0102
+ */
+export function trainOfThoughtGraffiti(): void {
+  // Related: operationTrustBoundary, subflowLockTaken, livingThreatsMd
+}
