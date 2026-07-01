@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 535,
+  "lastProcessedComm": 543,
   "processedComms": [
     0,
     1,
@@ -536,7 +536,15 @@
     532,
     533,
     534,
-    535
+    535,
+    536,
+    537,
+    538,
+    539,
+    540,
+    541,
+    542,
+    543
   ],
   "concepts": {
     "data-provenance-tracking": {
