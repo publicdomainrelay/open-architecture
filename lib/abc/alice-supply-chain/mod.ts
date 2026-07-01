@@ -201,3 +201,36 @@ export function policyBenefitOfDoubt(): void {
 export function pluginPartyCatalog(): void {
   // Related: gatekeeper
 }
+
+/**
+ * SCITT registry stores attestation assertions from notaries, not the signed artifacts themselves.
+ * 
+ * The notary (gatekeeper) holds insert permissions into the SCITT transparency ledger. What goes on chain is an assertion — a claim about an artifact — not the artifact itself (e.g., not the signed SBOM, but the notary's attestation that it verified the SBOM). Consumers submit content-addressed objects to query registries and determine trust by inspecting notary claims. This design separates artifact storage from trust evidence, enabling independent verification without requiring artifact hosting by the registry.
+ * 
+ * @see comms/0041
+ */
+export function scittNotaryAssertionRegistry(): void {
+  // Related: gatekeeper
+}
+
+/**
+ * GitHub Actions workflow taking overlays as pip-installable inputs to determine contribution viability with provenance.
+ * 
+ * The `.github/workflows/alice_shouldi_contribute.yml` workflow accepts a list of overlays — anything passable to `pip install` as an argument (beyond requirements.txt limitations) — and executes them via SLSA-compliant reusable workflows. This enables arbitrary metric collection with any overlay, with cryptographic provenance for both runtime execution and the resulting data and models downstream. Living Threat Models drive continuous re-evaluation: each overlay run is a fresh threat model assessment against current dependency state.
+ * 
+ * @see comms/0044
+ */
+export function shouldiContributeOverlayPipeline(): void {
+  // Related: gatekeeper
+}
+
+/**
+ * SCITT positioned as the trust registry within the Trust over IP (ToIP) Layer 4 ecosystem governance framework.
+ * 
+ * The ToIP stack has two parallel halves — technical and governance — operating at four layers: Utility (DLT/Blockchain), Agent/Wallet, Credential Exchange (Issuer/Verifier/Holder), and Ecosystem (Application). A trust registry at Layer 4 enables a governing authority for an ecosystem governance framework (EGF) to specify what governed parties are authorized to perform what actions. SCITT (and rekor) fill this role: the transparency ledger becomes the authoritative registry of which issuers are authorized to issue which types of verifiable credentials and attestations within a governed ecosystem.
+ * 
+ * @see comms/0046
+ */
+export function scittToipTrustRegistry(): void {
+  // Related: doITrustWhereThisCameFrom, gatekeeper
+}

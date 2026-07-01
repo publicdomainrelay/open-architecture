@@ -179,3 +179,14 @@ export function conformityAssessment(): void {
   // ISO/IEC 17000: first, second, third party attestation.
   // Weighted by web of trust history.
 }
+
+/**
+ * Every machine entity continuously emits attestation from every tick to tock.
+ * 
+ * A machine's soul is its ongoing, continuous stream of attestation — provenance, SBOM, nutrition label, DNA — proving what it is running and that it remains compliant with strategic principles. Any machine entity not providing this continuous attestation is flagged as non-compliant and potentially malicious to human operators. The attestation stream covers the full lifecycle: from every tick (current state) to tock (next state), the machine publishes transparency information about its software composition, execution context, and policy compliance. This is the operationalization of trust as a continuous signal, not a point-in-time check.
+ * 
+ * @see comms/0045
+ */
+export function machineContinuousSoul(): void {
+  // Related: doITrustWhereThisCameFrom
+}

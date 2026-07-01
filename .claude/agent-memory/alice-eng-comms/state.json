@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 39,
+  "lastProcessedComm": 47,
   "processedComms": [
     0,
     1,
@@ -40,7 +40,15 @@
     36,
     37,
     38,
-    39
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -71,12 +79,14 @@
     "transparency-log-scitt": {
       "comm": 6,
       "status": "refinement",
-      "package": "alice-supply-chain"
+      "package": "alice-supply-chain",
+      "lastUpdatedComm": 47
     },
     "oss-scanning-openssf-metrics": {
       "comm": 0,
       "status": "new",
-      "package": "alice-supply-chain"
+      "package": "alice-supply-chain",
+      "lastUpdatedComm": 47
     },
     "alice-intelligence-wg": {
       "comm": 5,
@@ -101,7 +111,8 @@
     "trinity-triangulation": {
       "comm": 13,
       "status": "refinement",
-      "package": "alice-system-context"
+      "package": "alice-system-context",
+      "lastUpdatedComm": 47
     },
     "entity-2nd-party": {
       "comm": 9,
@@ -202,6 +213,55 @@
       "lastUpdatedComm": 39,
       "sourceIssues": [],
       "summary": "2nd/3rd party plugin catalog: org-local and external tools for LLM agents"
+    },
+    "dataflowDescribeInfrastructure": {
+      "functionName": "dataflowDescribeInfrastructure",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "Terraform, Dockerfiles, CI workflows as dataflows for supply chain synthesis"
+    },
+    "dataCentricAiTrinity": {
+      "functionName": "dataCentricAiTrinity",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "Trinity maps to Data-Centric AI: Intent/Train → Dynamic/Improve → Static/Error"
+    },
+    "scittNotaryAssertionRegistry": {
+      "functionName": "scittNotaryAssertionRegistry",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "SCITT stores attestation assertions from notary, not the signed artifacts"
+    },
+    "shouldiContributeOverlayPipeline": {
+      "functionName": "shouldiContributeOverlayPipeline",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "Overlay-driven shouldi_contribute workflow with provenance via SLSA/GitHub Actions"
+    },
+    "scittToipTrustRegistry": {
+      "functionName": "scittToipTrustRegistry",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "SCITT as ToIP Layer 4 trust registry for ecosystem governance"
+    },
+    "strategicPrinciplesRewardAlignment": {
+      "functionName": "strategicPrinciplesRewardAlignment",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "Strategic principles as RL reward function for optimal development path finding"
+    },
+    "machineContinuousSoul": {
+      "functionName": "machineContinuousSoul",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 47,
+      "sourceIssues": [],
+      "summary": "Continuous per-tick attestation emission from every machine entity"
     }
   },
   "issueCache": {
@@ -293,6 +353,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 23,
+  "totalStubsCreated": 30,
   "totalIssuesFetched": 9
 }

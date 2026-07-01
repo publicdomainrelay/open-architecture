@@ -271,3 +271,25 @@ export function orchestratorResourceLimits(): void {
 export function runDataflowSerializable(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Infrastructure-as-code artifacts described as dataflows for supply chain security synthesis.
+ * 
+ * Terraform templates, Dockerfiles, and GitHub Actions workflows can all be expressed as dataflow graphs. This unification enables Alice to synthesize CI/CD pipelines for downstream validation of 2nd-party plugins across ad-hoc organizations, where compute access may be restricted to maintainers within those groups. The dataflow representation captures the full provisioning lifecycle — infrastructure definition, container image builds, and workflow execution — as composable operations with provenance.
+ * 
+ * @see comms/0040
+ */
+export function dataflowDescribeInfrastructure(): void {
+  // Related: describeTheSystemAsData
+}
+
+/**
+ * Entity Analysis Trinity mapped to the Data-Centric AI ML development loop.
+ * 
+ * Data-Centric AI is the discipline of systematically engineering the data used to build an AI system — code is solved, data is the hard part. The trinity maps directly: Intent/Train Model establishes correlations between threat model intent and collected data/errors (telemetry, static analysis, policy, failures). Dynamic Analysis/Improve Data tweaks code to produce different data — this is the application of overlays over time. Static/Error Analysis examines existing errors, initiating async debugging when needed. Alice's overlay system is the implementation of Data-Centric AI for software supply chain assurance.
+ * 
+ * @see comms/0042
+ */
+export function dataCentricAiTrinity(): void {
+  // Related: describeTheSystemAsData
+}

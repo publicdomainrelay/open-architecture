@@ -147,3 +147,14 @@ export function navigatingThisCodebase(): void {
 export function aliceOsDeployment(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Strategic principles serve as the reward function for reinforcement-learning-driven development path optimization.
+ * 
+ * Coach Alice combines CodeGen, Offline RL (Dopamine), and Living Threat Model synthesis where reward is driven by Analysis. Strategic principles — Alice's immutable ethical and operational constraints — define the reward signal. For a beginner developer, this finds the golden path: the critical learning velocity point that maximizes rate of progression toward mastery, filtered through the developer's unique abstraction root and aligned with the strategic principles of their ad-hoc organization. Machines always fail safe to protect and serve humans as part of these strategic principles.
+ * 
+ * @see comms/0045
+ */
+export function strategicPrinciplesRewardAlignment(): void {
+  // Related: whatAliceIs
+}
