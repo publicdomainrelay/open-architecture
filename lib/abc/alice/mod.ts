@@ -47,3 +47,53 @@ export function aliceCliPleaseShouldiThreats(): void {
 export function happinessMetric(): void {
   // Related: prioritizerIntentPolicy, aliceSignNotCop
 }
+
+/**
+ * Navigating this codebase — a self-documenting entry point for codegraph
+ * exploration. Use `codegraph_node navigatingThisCodebase` to read this
+ * description, then follow the call graph to any concept.
+ *
+ * ## Package layout (ABC layering)
+ *
+ * All packages live under `lib/` in the open-architecture workspace:
+ *
+ *   lib/common/alice-common          types only: DID, CID, Manifest, etc.
+ *   lib/abc/alice                    spine: whatAliceIs, puttingItTogether
+ *   lib/abc/alice-trust              web of trust, SCITT, provenance
+ *   lib/abc/alice-supply-chain       gatekeeper, transparency log, SBOM
+ *   lib/abc/alice-system-context     manifest, dataflow, overlay, trinity
+ *   lib/abc/alice-compute-contract   CCRFP → CCB → CCBA → CCR lifecycle
+ *   lib/abc/alice-communication      DID, PDS, firehose, records
+ *   lib/abc/alice-stream-of-consciousness  prioritizer, onEvent, knowledge graph
+ *
+ * Dependencies flow one way: common ← abc packages (never reverse).
+ * Each package = one mod.ts. No sub-modules. One export surface.
+ *
+ * ## How to explore
+ *
+ * Start with `codegraph_node puttingItTogether` — that function calls into
+ * every subsystem. From there, follow the call chain:
+ *
+ *   codegraph_explore "doITrustWhereThisCameFrom"       trust subsystem
+ *   codegraph_explore "gatekeeper"                      supply chain
+ *   codegraph_explore "getMyWorkRun"                    compute contracts
+ *   codegraph_explore "onEvent prioritizer"             stream of consciousness
+ *   codegraph_explore "entityAnalysisTrinity"           analysis framework
+ *
+ * Every stub function's JSDoc contains the prose from the source
+ * engineering discussion log or architecture document. The function body
+ * calls related concepts and lists them in `// Related: ...` comments.
+ * Walk the references and you walk the whole reasoning.
+ *
+ * ## How this was built
+ *
+ * The `process-eng-comms.ts` script reads 691 engineering discussion logs,
+ * feeds them to an AI agent, and the agent writes stub functions here.
+ * The `alice-eng-comms` agent is defined in `.claude/agents/`.
+ *
+ * @see open_architecture_today.md
+ * @see process-eng-comms.ts
+ */
+export function navigatingThisCodebase(): void {
+  // Related: collectiveConsciousnessAcceleration, aliceCliPleaseShouldiThreats, happinessMetric
+}
