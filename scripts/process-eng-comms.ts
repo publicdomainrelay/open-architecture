@@ -413,13 +413,15 @@ function extractEventText(event: Record<string, unknown>): string {
   const msg = event.message as { content?: unknown } | undefined;
   if (msg?.content) {
     if (Array.isArray(msg.content)) {
-      return (msg.content as Array<{ text?: string; type?: string }>)
-        .filter((b) => b.type === "text")
-        .map((b) => b.text ?? "")
+      return (msg.content as Array<{ text?: string; thinking?: string; type?: string }>)
+        .map((b) => b.text ?? b.thinking ?? "")
         .join("");
     }
     return String(msg.content);
   }
+  // result event: final text in .result
+  const res = event.result as string | undefined;
+  if (typeof res === "string" && res.length > 0) return res;
   return "";
 }
 
