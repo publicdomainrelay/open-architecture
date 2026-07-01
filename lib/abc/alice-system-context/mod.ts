@@ -446,3 +446,28 @@ export function incrementalOverlayApplication(): void {
 export function entityAnalysisTrinityAxes(): void {
   // Related: entityAnalysisTrinity, intentAnalysis, staticAnalysis, dynamicAnalysis
 }
+
+/**
+ * SARIF analysis results interpreted as a manifest type that encodes intent, enabling authorization decisions based on static analysis output.
+ * 
+ * A SARIF result is a type of manifest — where the manifest's written form (THREATS.md, PLANS.md: strategic plans and principles for execution of development activities over lifecycle) tells us the intent. SARIF results can be interpreted as "you are logged in" or determine what access an entity has. SARIF also serves as a forecast data blob and as part of the VDR (Vulnerability Disclosure Report) message body, ideally with a VC for a SCITT receipt.
+ * 
+ * @see comms/0141
+ * @see comms/0143
+ * @see https://docs.oasis-open.org/sarif/sarif/v2.0/csprd01/sarif-v2.0-csprd01.html
+ */
+export function sarifAsManifestIntent(): void {
+  // Related: theManifest, entityAnalysisTrinity, screenshotAsManifest
+}
+
+/**
+ * Auto-generate DFFML dataflows from Python package dependency trees, transforming the pip dependency graph into an executable chain of container build and test flows.
+ * 
+ * Starting from pipdeptree output serialized as a dataflow cache dump to JSON, each plugin dependency becomes a dataflow operation. Container build flows produce plugin images (basis for granular diamond/pyramid pattern validation). Test flows take build flow outputs as inputs: `run_plugin_tests(plugin_image_container)` overridable via dynamic context-aware overlay. Eventually extract container builds from ensure binary serialized flows with overlays applied. Graph synthesis maps distro install methods (apt-get, yum) as operations, enabling overlays at arbitrary granularity for reverse fuzzing.
+ * 
+ * @see comms/0137
+ * @see comms/0140
+ */
+export function dependencyTreeToDataflow(): void {
+  // Related: theDataFlow, theOverlay, runDataflowSerializable, dataflowDescribeInfrastructure
+}

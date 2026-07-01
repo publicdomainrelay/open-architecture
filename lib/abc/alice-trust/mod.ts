@@ -269,3 +269,16 @@ export function oidcSelfIssuedEdge(): void {
 export function vtpmAttestedComputeIdentity(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * SCITT transparency log receipts wrapped as Verifiable Credentials for decentralized authentication and authorization across federated SCITT instances.
+ * 
+ * Parties create scoped SCITT chains/logs/instances via federation. Verifiable Credentials issued for receipts from these instances serve as bearer tokens: "you are logged in" or "you have access to XYZ". This enables peer-to-peer decentralized auth rooted in self-sovereign key infrastructure, with SCITT receipt-as-VC (endor) for IPVM CID. KERI key event receipt infrastructure provides the underlying identity model. A SARIF result produced by an entity's analysis can also be interpreted as a login credential — the manifest encodes the intent.
+ * 
+ * @see comms/0143
+ * @see https://github.com/OR13/endor
+ * @see https://github.com/decentralized-identity/keri/blob/master/kids/kid0009.md
+ */
+export function scittReceiptAsVcAuth(): void {
+  // Related: scittDwnFederation, doITrustWhereThisCameFrom
+}

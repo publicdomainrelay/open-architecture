@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 135,
+  "lastProcessedComm": 143,
   "processedComms": [
     0,
     1,
@@ -136,7 +136,15 @@
     132,
     133,
     134,
-    135
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -723,6 +731,34 @@
       "lastUpdatedComm": 135,
       "sourceIssues": [],
       "summary": "ML framework dependency chain integrity verification"
+    },
+    "scittReceiptAsVcAuth": {
+      "functionName": "scittReceiptAsVcAuth",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "SCITT receipt as VC for decentralized auth across federated SCITT instances"
+    },
+    "sarifAsManifestIntent": {
+      "functionName": "sarifAsManifestIntent",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "SARIF results as manifest type encoding intent for authorization decisions"
+    },
+    "dependencyTreeToDataflow": {
+      "functionName": "dependencyTreeToDataflow",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "Auto-generate dataflows from dependency trees for build/test flow synthesis"
+    },
+    "operationsDependencyPackage": {
+      "functionName": "operationsDependencyPackage",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "Dependency extraction and environment portability package for cross-dev reproducibility"
     }
   },
   "issueCache": {
@@ -814,6 +850,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 83,
+  "totalStubsCreated": 87,
   "totalIssuesFetched": 9
 }
