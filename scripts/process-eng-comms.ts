@@ -559,16 +559,12 @@ async function applyConcepts(
       const refinement = concept.isRefinement && concept.refinesConcept;
 
       if (refinement) {
-        const existingFn = findFunctionInSource(existingContent, concept.refinesConcept!);
-        if (existingFn) {
-          existingContent = existingContent.replace(existingFn, stubSource);
-          metrics.stubsUpdated++;
-          metrics.refinedConcepts++;
-        } else {
-          existingContent += "\n" + stubSource;
-          metrics.stubsCreated++;
-          metrics.newConcepts++;
-        }
+        // Always append — never replace cross-package call targets.
+        // The old function keeps its name and callers; the refined
+        // version documents the evolution as a new stub alongside.
+        existingContent += "\n" + stubSource;
+        metrics.stubsCreated++;
+        metrics.refinedConcepts++;
       } else {
         existingContent += "\n" + stubSource;
         metrics.stubsCreated++;
