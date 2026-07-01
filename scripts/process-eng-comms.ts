@@ -191,11 +191,11 @@ function compressCommText(text: string): string {
   let inCodeBlock = false;
   let headingLines = 0;
 
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
+  for (const line of lines) {
     // Track code blocks
     if (line.trim().startsWith("```")) {
       inCodeBlock = !inCodeBlock;
+      if (!inCodeBlock) continue; // skip closing fence, keep content
       continue;
     }
     if (inCodeBlock) continue;
@@ -207,13 +207,11 @@ function compressCommText(text: string): string {
       continue;
     }
 
-    // Keep first N non-empty lines after a heading
-    if (headingLines > 0 && headingLines <= 5 && line.trim().length > 0) {
-      // Skip CI/CD noise, timestamps, emoji-only lines
+    // Keep first N non-empty lines after a heading (ENG logs start with dates)
+    if (headingLines > 0 && headingLines <= 10 && line.trim().length > 0) {
+      // Skip CI/CD noise, emoji-only, bare URLs
       if (
-        /^\d{4}-\d{2}-\d{2}/.test(line.trim()) ||
-        /^\[.*\]\(.*\)$/.test(line.trim()) && line.trim().length < 30 ||
-        /^(TODO|FIXME|NOTE):/i.test(line.trim())
+        /^\[.*\]\(.*\)$/.test(line.trim()) && line.trim().length < 30
       ) continue;
       out.push(line);
       headingLines++;
@@ -221,11 +219,11 @@ function compressCommText(text: string): string {
     }
 
     if (line.trim().length === 0 && headingLines > 0) {
-      headingLines = 0; // blank line after heading section → done
+      headingLines = 0;
     }
   }
 
-  return out.join("\n").substring(0, 2000); // cap at 2000 chars
+  return out.join("\n").substring(0, 5000);
 }
 
 async function readComm(dirNum: number): Promise<PreparedComm | null> {
