@@ -12,3 +12,16 @@ export function thoughtArbitrageAttack(): void {
   // Related: thoughtArbitrage, livingThreatModel, trustGraphTraversalAlignment, knowledgeGraphProvenance
 }
 
+
+/**
+ * Kernel-level network policy enforcement for compute guests using eBPF through bpfilter, replacing iptables with BPF programs.
+ * 
+ * The bpfilter project in the Linux kernel uses eBPF to handle iptables configuration blob parsing and code generation at the kernel level. Instead of the legacy iptables netfilter path, network policy rules are compiled into BPF programs that run in the kernel's eBPF VM. For Alice's compute contract guests, this provides a more efficient, verifiable, and programmable network filtering layer — policy overlays can compile to eBPF bytecode rather than shelling out to iptables. The v3 patchset (Quentin Deslandes, Dec 2022) revived bpfilter development after a hiatus since v2 (Aug 2021), signaling upstream momentum for this approach.
+ * 
+ * @see comms/0131
+ * @see https://lore.kernel.org/lkml/20221224000402.476079-1-qde@naccy.de/
+ * @see https://lwn.net/Articles/755919/
+ */
+export function ebpfNetworkPolicy(): void {
+  // Related: sandboxingPolicyOverlay
+}

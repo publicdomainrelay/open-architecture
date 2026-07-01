@@ -1,146 +1,17 @@
 /**
- * How Alice communicates: her repository is her voice. The docs-as-code
- * translation of that section of `open_architecture_today.md`.
- *
- * Alice lives on the network the same way we do. She has an identity, a place
- * to keep her thoughts, and a way to hear everyone else's. Today that is all
- * one substrate.
- *
- * @see open_architecture_today.md "How Alice Communicates: Her Repository Is Her Voice"
- * @module
- */
-
-import type {
-  DID,
-  RepoRecord,
-  StrongRef,
-} from "@publicdomainrelay/alice-common";
-
-/**
- * Alice lives on the network the same way we do: she has an identity, a place
- * to keep her thoughts, and a way to hear everyone else's.
- *
- * @see open_architecture_today.md "How Alice Communicates: Her Repository Is Her Voice"
- */
-export function herRepositoryIsHerVoice(): void {
-  herIdentity();
-  herMemory();
-  herEars();
-}
-
-/**
- * Her identity is a DID (`did:plc:...`). It is who she is no matter where she
- * is running, and it is what she signs with so you always know a thought is
- * really hers. When the W3C approved DIDs as a Recommendation in July 2022 they
- * became a settled foundation for this architecture: a single framework to
- * unify identity across cloud, edge, and client systems, preserving the
- * integrity of information as it moves through the supply chain.
- *
- * @see open_architecture_today.md "Her identity is a DID"
- * @see arch/0000-did-standardization.md
- */
-export function herIdentity(): DID {
-  didStandardization();
-  return "did:plc:";
-}
-
-/**
- * The W3C approved Decentralized Identifiers as a Recommendation in July 2022.
- * This milestone settles the identity layer of the open architecture: DID
- * provides a framework to unify and consolidate multiple evolving identity
- * systems, which is useful for validating the authenticity of information and
- * preserving its integrity as it is moved and processed among cloud, edge, and
- * client systems. SCITT (Supply Chain Integrity, Transparency, and Trust) has
- * already highlighted DID as a useful approach for exchanging information
- * through the supply chain, and the Web of Things (WoT) WG plans to support
- * DID for identifying and discovering IoT devices and metadata.
- *
- * @see arch/0000-did-standardization.md
- * @see scittTransparencyService
- */
-export function didStandardization(): void {
-  // DID 1.0 reached W3C Recommendation status July 2022.
-}
-
-/**
- * Her memory is her repository on a PDS. Every thought she wants to share, she
- * writes as a record. Each record is content addressed by its CID and signed by
- * her repo key, so a thought cannot be quietly changed after the fact.
- *
- * @see open_architecture_today.md "Her memory is her repository on a PDS"
- */
-export function herMemory(): void {
-  writeARecord();
-}
-
-/**
- * Her ears are the firehose. She follows the people and the collections she
- * cares about, and new records stream to her the moment they are committed.
- * When she finds something relevant she thinks about it; when she does not, she
- * lets it pass.
- *
- * @see open_architecture_today.md "Her ears are the firehose"
- */
-export function herEars(): void {
-  theFirehoseCarriesIt();
-}
-
-/**
- * Everything she wants to say is just a record. To say something new, she
- * writes a receipt for it. Because she is listening to everyone else's records
- * too, she ties her running system context to whatever is happening out in the
- * world, and the loop keeps turning.
- *
- * @see open_architecture_today.md "Everything she wants to say is just a record"
- */
-export function writeARecord(): RepoRecord {
-  return { uri: "at://", cid: "", author: herIdentity(), value: undefined };
-}
-
-/**
- * Records point at each other with strong references, aka a URI plus the CID it
- * must match. That is how a single thought grows into a train of thought: a
- * receipt points at a bid, a bid points at a request, a build points at the
- * source it came from. Walk the references and you walk her whole reasoning.
- *
- * @see open_architecture_today.md "Records point at each other with strong references"
- */
-export function walkTheReferences(): StrongRef {
-  return { uri: "at://", cid: "" };
-}
-
-/**
- * The firehose carries it: someone writes a record to their PDS, Alice is
- * subscribed, and she ingests it into her knowledge graph.
- *
- * @see open_architecture_today.md the loop diagram
- */
-export function theFirehoseCarriesIt(): void {
-  walkTheReferences();
-}
-
-/**
- * DFFML Manifest structure aligns with the W3C Credential Manifest specification, enabling interoperability between Alice's compute contract manifests and decentralized identity credential issuance protocols.
+ * Integrate TBD's Web5 wallet browser as Alice's DID management and credential interface, providing a concrete browser-based UI for Web5/DWN interactions.
  * 
- * The W3C Credential Manifest describes what inputs a Subject must provide to an Issuer for credential issuance. DFFML's Manifest (defined in ADR 0008) serves the same structural role: intent + schema + data. The Credential Manifest's `SpecVersion` property maps directly to DFFML's `$schema` property — both declare what version of the manifest format applies. This alignment means Alice's compute contract manifests can be treated as credential manifests and vice versa, bridging the distributed compute and decentralized identity domains under one document format.
+ * TBD's web5-wallet-browser is a browser-based wallet implementation for the Web5 ecosystem: it manages DIDs (did:key, did:web, did:ion), holds verifiable credentials, and interacts with Decentralized Web Nodes (DWNs). For Alice, this wallet serves as her identity management UI — she uses it to sign records, present credentials, and authorize compute contract operations. The wallet's browser-native implementation means it can run alongside Alice's web-based interfaces without native app distribution. This grounds the KERI-Web5 interoperability analysis in a concrete, working implementation rather than a specification-level comparison.
  * 
- * @see comms/0039
- * @see intel/dffml#1207
+ * Earlier understanding (from comms/0062): keriWeb5Interoperability analyzes KERI's key management ergonomics (key pre-rotation, witnessed key events, duplicity detection) alongside Web5's DWN, DID resolution, and verifiable credential flows.
+ * 
+ * @see comms/0134
+ * @see https://github.com/TBD54566975/web5-wallet-browser
  */
-export function credentialManifestAlignment(): void {
-  // TODO: wire to related concepts
+export function web5WalletBrowserIntegration(): void {
+  // Related: keriWeb5Interoperability, didStandardization
 }
 
-/**
- * Analysis of KERI (Key Event Receipt Infrastructure) interoperability ergonomics with the web5 ecosystem and broader decentralized identity landscape.
- * 
- * KERI provides a DID method based on self-certifying key event logs without relying on a distributed ledger. This concept examines how KERI's key management model (key pre-rotation, witnessed key events, duplicity detection) composes with web5's DWN (Decentralized Web Node), DID resolution, and verifiable credential flows. The analysis covers ergonomic fit: whether KERI's event-sourced identity model feels natural alongside web5's record-based data model.
- * 
- * @see comms/0062
- */
-export function keriWeb5Interoperability(): void {
-  // Related: didStandardization
-}
 
 /**
  * ActivityPub (Mastodon) as the transport layer for Alice's stream of consciousness — federated thought sharing over existing decentralized social infrastructure.

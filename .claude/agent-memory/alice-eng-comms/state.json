@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 127,
+  "lastProcessedComm": 135,
   "processedComms": [
     0,
     1,
@@ -128,7 +128,15 @@
     124,
     125,
     126,
-    127
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135
   ],
   "concepts": {
     "did-standardization": {
@@ -392,7 +400,7 @@
     "machineContinuousAttestation": {
       "functionName": "machineContinuousAttestation",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 47,
+      "lastUpdatedComm": 135,
       "sourceIssues": [],
       "summary": "Continuous runtime attestation stream required for machine trust; silence is compromise"
     },
@@ -441,7 +449,7 @@
     "keriWeb5Interoperability": {
       "functionName": "keriWeb5Interoperability",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 63,
+      "lastUpdatedComm": 135,
       "sourceIssues": [],
       "summary": "KERI key event infrastructure interoperability with web5 ecosystem"
     },
@@ -724,6 +732,34 @@
       "lastUpdatedComm": 127,
       "sourceIssues": [],
       "summary": "/acc/ happiness metric as system-level optimization target"
+    },
+    "ebpfNetworkPolicy": {
+      "functionName": "ebpfNetworkPolicy",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 135,
+      "sourceIssues": [],
+      "summary": "eBPF/bpfilter kernel network filtering for compute guest policy enforcement"
+    },
+    "vtpmAndroidAttestation": {
+      "functionName": "vtpmAndroidAttestation",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 135,
+      "sourceIssues": [],
+      "summary": "vTPM-based attestation for Android VMs via Open DICE through devcloud"
+    },
+    "dependencyChainCompromiseDetection": {
+      "functionName": "dependencyChainCompromiseDetection",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 135,
+      "sourceIssues": [],
+      "summary": "Detect post-publication dependency chain compromise via CID mismatch with transparency log"
+    },
+    "web5WalletBrowserIntegration": {
+      "functionName": "web5WalletBrowserIntegration",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 135,
+      "sourceIssues": [],
+      "summary": "TBD Web5 wallet browser as Alice's concrete DID management and credential UI"
     }
   },
   "issueCache": {
@@ -815,6 +851,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 76,
+  "totalStubsCreated": 78,
   "totalIssuesFetched": 9
 }

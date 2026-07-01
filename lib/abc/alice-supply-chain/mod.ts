@@ -119,3 +119,15 @@ export function cveSourceUrlFuzzyMl(): void {
 export function cosignScittIntegration(): void {
   // Related: scittTransparencyService, scittPostHocAuditability
 }
+
+/**
+ * Detect dependency chain compromises where a published package is replaced with a malicious version post-publication, as demonstrated by the PyTorch holiday 2022 incident.
+ * 
+ * In December 2022, PyTorch disclosed a malicious dependency chain compromise: a package in their dependency tree was replaced with a malicious version that exfiltrated system information. This attack vector — where an upstream dependency is compromised after legitimate publication — differs from typo-squatting or dependency confusion. For Alice, this means the SBOM and transparency log must track not just what was declared at build time but whether any dependency's content has changed since its initial publication. Content-addressed integrity checks (CID matching) combined with SCITT receipts for every dependency in the tree provide the detection mechanism: a CID mismatch against the transparency log entry signals a post-publication compromise.
+ * 
+ * @see comms/0134
+ * @see https://www.bleepingcomputer.com/news/security/pytorch-discloses-malicious-dependency-chain-compromise-over-holidays/
+ */
+export function dependencyChainCompromiseDetection(): void {
+  // Related: transparencyLogScitt, sbomAsPolicyProvenance
+}
