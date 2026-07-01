@@ -464,3 +464,15 @@ export function opeaLlmProxyAbstraction(): void {
 export function compilerErrorFeedbackLoop(): void {
   // Related: agiEventDrivenDevLoop, structuredAgentResponse
 }
+
+/**
+ * Quantifiable 8-dimension grading rubric for evaluating open source contributor alignment, feeding into Alice's trust evaluation and prioritizer systems.
+ * 
+ * Measures contributor alignment across eight dimensions: Goals in Proposal (clear value to community), Completeness of Proposal (sufficient implementation detail), Time Commitment (estimated hours/week to complete), Engagement with Community (trending toward mentor/maintainer), Mentor Vote (personal belief in project), Self Direction (resourcefulness, issue selection independent of mentor guidance), Debugging (critical thinking in fail-fix-repeat loop), and Contributions (effort-weighted prior work). Mentors score each proposal; scores are averaged across mentors, then proposals are ranked highest to lowest. This rubric is combined with CONTRIBUTING.md and THREATS.md to determine the trusted contributor computing base for "clear for take off."
+ * 
+ * @see comms/0684
+ * @see intel/dffml#1660
+ */
+export function alignmentRubric(): void {
+  // Related: strategicPrinciplesRewardAlignment, prioritizerIntentPolicy, clearForTakeOff
+}

@@ -608,3 +608,26 @@ export function federatedThoughtDeduplication(): void {
 export function trainOfThoughtCheckpointRestore(): void {
   // Related: trainOfThoughtGraffiti, trainOfThoughtHardening, scittNotaryAssertionRegistry
 }
+
+/**
+ * Trust boundary defined by a "Soul of the Software" strategic principle alignment report — a federated ORAS context-addressed manifest of manifests that determines the "clear for take off" for any workload or contribution.
+ * 
+ * Each maintainer's trust boundary is defined by their software's soul: the combination of CONTRIBUTING.md (this strategic principles document) and THREATS.md (the living threat model). These documents together form an input prompt to LLMs that evaluate whether an entity's train of thought aligns with the project's strategic principles. The output is a federated ORAS manifest of manifests — a content-addressed artifact proving alignment evaluation was performed and passed. Misalignment triggers blocking of new data events and retraining of AI models. Overlays define additional consequences and get added to all data event BOMs for continuous retroactive trust evaluation.
+ * 
+ * @see comms/0684
+ * @see intel/dffml#1660
+ */
+export function soulBasedAuth(): void {
+  // Related: clearForTakeOff, entityAlignmentTrustGraph, strategicPrinciplesRewardAlignment
+}
+
+/**
+ * Upon detection of a faulty root of trust, trigger continuous retroactive re-evaluation of all tainted trains of thought, reconstructing via GUAC to identify deviations and risk tolerance violations.
+ * 
+ * Roots of trust may begin producing data ungrounded from any shared reality in error through no fault of their own. When detected, the system must reconstruct affected trains of thought via GUAC and similar dependency graph analysis to identify where deviations occurred and whether recorded or hypothetical risk tolerance boundaries were violated. The "dionysian discovery method": shift left to high entropy (insanity) to re-check theories within previously unknown contexts, driven by new data events that arrived from higher trust boundaries. This triggers re-training and CI/CD/MLOps pipeline execution. Federated data must be indexed by the entities that affected it so cache can be purged when a root is invalidated. The prioritizer's value chain analysis distinguishes good inputs (from trusted TCBs) from bad inputs (from compromised TCBs).
+ * 
+ * @see comms/0685
+ */
+export function trainOfThoughtRootReevaluation(): void {
+  // Related: trainOfThoughtCheckpointRestore, keriDuplicityDetection, guacDependencyGraphAdmissionControl, prioritizerMarkovChains
+}

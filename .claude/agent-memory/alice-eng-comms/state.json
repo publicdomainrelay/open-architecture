@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 679,
+  "lastProcessedComm": 687,
   "processedComms": [
     0,
     1,
@@ -680,7 +680,15 @@
     676,
     677,
     678,
-    679
+    679,
+    680,
+    681,
+    682,
+    683,
+    684,
+    685,
+    686,
+    687
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2450,6 +2458,48 @@
       "lastUpdatedComm": 679,
       "sourceIssues": [],
       "summary": "CBOR/COSE/COAP ActivityPub federation with minimal payload for decentralized k8s"
+    },
+    "soulBasedAuth": {
+      "functionName": "soulBasedAuth",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 687,
+      "sourceIssues": [],
+      "summary": "Trust boundary via 'Soul of Software' alignment manifest — ORAS manifest of manifests for clear-for-take-off"
+    },
+    "trainOfThoughtRootReevaluation": {
+      "functionName": "trainOfThoughtRootReevaluation",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 687,
+      "sourceIssues": [],
+      "summary": "Retroactive trust invalidation: reconstruct tainted trains of thought when root of trust fails"
+    },
+    "federatedTransparencyReceipt": {
+      "functionName": "federatedTransparencyReceipt",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 687,
+      "sourceIssues": [],
+      "summary": "SCITT receipts as RBAC: former statement URN chains into next policy statement receipt URN"
+    },
+    "triggerFederation": {
+      "functionName": "triggerFederation",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 687,
+      "sourceIssues": [],
+      "summary": "VCS forge interaction triggers cross-entity AI notification via async comms workflows"
+    },
+    "thoughtCommunicationProtocol": {
+      "functionName": "thoughtCommunicationProtocol",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 687,
+      "sourceIssues": [],
+      "summary": "Agent-to-agent protocol where describing architecture = describing thought; entities as moving communication targets"
+    },
+    "alignmentRubric": {
+      "functionName": "alignmentRubric",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 687,
+      "sourceIssues": [],
+      "summary": "8-dimension contributor grading rubric feeding Alice's trust evaluation and prioritizer"
     }
   },
   "issueCache": {
@@ -2547,6 +2597,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 252,
+  "totalStubsCreated": 258,
   "totalIssuesFetched": 10
 }

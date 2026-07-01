@@ -437,3 +437,27 @@ export function federationIsTelepathy(): void {
 export function coseActivityPubTransport(): void {
   // Related: activityPubOverGrpc, federatedSseActivityPub
 }
+
+/**
+ * VCS forge interaction triggers federated AI notification across entities via async comms workflows, turning git operations into cross-entity event sources.
+ * 
+ * When a developer interacts with a forge (push, issue, PR), the alice_async_comms.yml workflow fires and notifies federated entities' AI agents optimally. Each entity's VCS comes with a default trust policy; additional overlays are context-dependent. The N+1 federation new data event is always determined by a KERI duplicity-detection-protected channel. This pattern turns version control into an event-driven communication fabric where git operations become the trigger for cross-entity AI notification and re-evaluation.
+ * 
+ * @see comms/0684
+ * @see intel/dffml#1660
+ */
+export function triggerFederation(): void {
+  // Related: federatedCiCdEventSpace, gitRefPollingActivityPubBridge, keriDuplicityDetection
+}
+
+/**
+ * Protocol for agent-to-agent communication where describing any architecture equals describing any thought, and entities are moving targets for optimal communication rates.
+ * 
+ * Built on the premise that if the system can describe any architecture or problem space, it can describe any thought. To communicate thought most completely, an agent must know how to best communicate with the target entity — and that entity is a moving target whose optimal learning rate and past determine what will resonate best for forming conceptual linkages. Past includes both memory and hardwired responses encoded as signal/probability. Data and compute are the same in this architecture: all is signal feeding the probability distribution of conceptual linkage formation. This is the thought communication protocol that underlies all inter-agent interaction in Alice's federated network.
+ * 
+ * @see comms/0684
+ * @see intel/dffml#1660
+ */
+export function thoughtCommunicationProtocol(): void {
+  // Related: chainsOfContext, trainOfThoughtGraffiti, federatedThoughtDeduplication
+}
