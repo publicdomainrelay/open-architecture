@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 463,
+  "lastProcessedComm": 471,
   "processedComms": [
     0,
     1,
@@ -464,7 +464,15 @@
     460,
     461,
     462,
-    463
+    463,
+    464,
+    465,
+    466,
+    467,
+    468,
+    469,
+    470,
+    471
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1786,6 +1794,34 @@
       "lastUpdatedComm": 455,
       "sourceIssues": [],
       "summary": "Duplicity detection must allow for device remanufacturing — FPGAs/VMs change identity legitimately"
+    },
+    "registryTrustGraduation": {
+      "functionName": "registryTrustGraduation",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 471,
+      "sourceIssues": [],
+      "summary": "Trust ladder: registry-upload trust → entity-signature-verified attestations"
+    },
+    "slsaProvenanceAttestationShape": {
+      "functionName": "slsaProvenanceAttestationShape",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 471,
+      "sourceIssues": [],
+      "summary": "SLSA v1.0 in-toto attestation wire format: buildDefinition + runDetails"
+    },
+    "portableAiInferenceArtifact": {
+      "functionName": "portableAiInferenceArtifact",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 471,
+      "sourceIssues": [],
+      "summary": "Single-file portable AI binary as supply-chain-attestable artifact"
+    },
+    "ratsEntityMeasurementAttestation": {
+      "functionName": "ratsEntityMeasurementAttestation",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 471,
+      "sourceIssues": [],
+      "summary": "IETF RATS EAT measurements: TEE/TPM claims in verifiable attestation tokens"
     }
   },
   "issueCache": {
@@ -1883,6 +1919,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 188,
+  "totalStubsCreated": 192,
   "totalIssuesFetched": 10
 }

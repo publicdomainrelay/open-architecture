@@ -513,3 +513,16 @@ export function keriDuplicityScittTrade(): void {
 export function scittDuplicityRemanufacturing(): void {
   // Related: keriDuplicityDetection
 }
+
+/**
+ * IETF RATS Entity Attestation Token (EAT) measurements claims for verifiable entity property attestation.
+ * 
+ * The RATS working group's EAT draft defines a measurements claim structure that carries TEE/TPM/confidential-compute measurements within attestation tokens. Combined with Intel ACON TDX guest setup (confidential computing enclave provisioning) and Mozilla Ocho's llamafile (portable self-contained AI inference binaries), the pattern emerges: a compute entity boots in a TEE, its measurements are captured in an EAT, and that attestation token becomes the trust anchor for downstream verification. Alice can use EAT measurements to verify that a compute node, AI inference runtime, or build environment matches its claimed identity before accepting its attestations.
+ * 
+ * @see comms/0469
+ * @see https://datatracker.ietf.org/doc/html/draft-ietf-rats-eat#name-measurements-measurements-c
+ * @see https://github.com/intel/ACON/blob/f8a6758958ff017eef87b1a3cdd11c6283adb413/doc/TDGuest.md
+ */
+export function ratsEntityMeasurementAttestation(): void {
+  // Related: vtpmAttestedComputeIdentity, teeToTeeAttestationChain
+}

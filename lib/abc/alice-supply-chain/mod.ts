@@ -1205,3 +1205,41 @@ export function scittRootRotation(): void {
 export function metaschemaScittTooling(): void {
   // Related: scittToipTrustRegistry
 }
+
+/**
+ * Trust model for attestations that graduates from registry-presence-based to entity-signature-verified.
+ * 
+ * OpenVEX SIG discussion (2023-11-27) articulates a trust maturity ladder for container image attestations: currently, anyone who can push to a registry is trusted for their attestation (registry-upload == trust). The next rung verifies that the attestation signature originates from the same entity that signed the artifact — entity provenance, not just registry access. This graduation path applies to VEX statements, SBOMs, and any attestation attached to OCI artifacts. It parallels the SLSA track from "source exists" to "hermetic, isolated, parameterless" — trust increases as the attestation's origin moves closer to the artifact's author.
+ * 
+ * @see comms/0464
+ * @see https://github.com/openvex/spec/issues/43
+ * @see https://github.com/opencontainers/distribution-spec/issues/459
+ */
+export function registryTrustGraduation(): void {
+  // Related: openVexActivityPubBridge, scittEntryIdContentAddressing
+}
+
+/**
+ * The SLSA provenance v1.0 in-toto attestation structure Alice should produce and verify for build artifacts.
+ * 
+ * Documents the precise wire format from slsa.dev/spec/v1.0/provenance: an in-toto Statement (subject + predicateType + predicate) where the predicate carries buildDefinition (buildType, externalParameters, internalParameters, resolvedDependencies as ResourceDescriptors) and runDetails (builder identity, invocation metadata with timestamps, byproducts). Each ResourceDescriptor carries uri, digest (sha256/sha512/gitCommit), name, downloadLocation, mediaType, content (base64), and annotations. A concrete example from the sigstore npm package release shows how GitHub Actions buildType feeds the workflow ref, repository, event_name, and repository_id into externalParameters and internalParameters. Alice must both emit these attestations from her build pipelines and consume them during policy evaluation.
+ * 
+ * @see comms/0468
+ * @see https://slsa.dev/spec/v1.0/provenance
+ * @see https://search.sigstore.dev/?logIndex=33351527
+ */
+export function slsaProvenanceAttestationShape(): void {
+  // Related: scittEntryIdContentAddressing, inTotoCoseSupplyChainAttestation
+}
+
+/**
+ * Self-contained portable AI inference binary that can be attested, signed, and distributed through supply chain integrity mechanisms.
+ * 
+ * Mozilla Ocho's llamafile demonstrates the pattern: a single-file LLM runtime that bundles the model weights, inference engine, and runtime into one portable binary. For Alice's supply chain, this means AI models become content-addressable artifacts — each llamafile has a digest, can be signed with cosign/in-toto, registered in SCITT transparency logs, and policy-checked at deployment. The portable binary pattern eliminates the "model weights downloaded separately" trust gap: the entire inference stack is one auditable unit. Extends the container-as-artifact pattern to AI workloads.
+ * 
+ * @see comms/0469
+ * @see https://github.com/Mozilla-Ocho/llamafile
+ */
+export function portableAiInferenceArtifact(): void {
+  // Related: slsaProvenanceAttestationShape, aiSupplyChainTransparency
+}
