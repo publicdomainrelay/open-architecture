@@ -583,3 +583,15 @@ export function scittWorkloadIdentityOidc(): void {
 export function workloadIdentityFromGraphOfThoughts(): void {
   // Related: scittWorkloadIdentityOidc, machineContinuousSoul, chainsOfContext, oidcSelfIssuedEdge
 }
+
+/**
+ * Before starting work on a problem, Alice queries content-address manifests of known attempted trains of thought across the federation to detect low-ROI paths and avoid redundant work. When a dead-end thought path is discovered, the system proposes pinging the git blame authors of the original attempt for context on why the approach was abandoned.
+ * 
+ * The first strategy is federated sync/query via content-address manifests for known generated engineering logs of attempted trains of thought, using the transparency service as the inventory index. If that yields no results, the system combines history prompt reset flush with shell-lex-based context modification tracking to determine whether a new attempt is warranted or if prior failures should be surfaced. This prevents the federation from collectively wasting compute on approaches already proven unproductive.
+ * 
+ * @see comms/0631
+ * @see intel/dffml#1207
+ */
+export function federatedThoughtDeduplication(): void {
+  // Related: trainOfThoughtGraffiti, knowledgeGraphInventory, chainsOfContext
+}

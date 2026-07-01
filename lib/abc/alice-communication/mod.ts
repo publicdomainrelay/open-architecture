@@ -385,3 +385,16 @@ export function spacetimeDbActivityPubFederation(): void {
 export function entityTelepathy(): void {
   // Related: entityAlignmentTrustGraph, streamOfConsciousnessGitops, federatedSseActivityPub
 }
+
+/**
+ * Extends the git-to-ActivityPub bridge with a polling discovery model: ls-remote (in Python via aiohttp) monitors git refs and publishes detected changes to ActivityPub via manifest in Rekor/SCITT for pub-sub PR rebuild chain notifications.
+ * 
+ * Unlike the webhook-driven push model where repos must be configured to fire events, ls-remote polling discovers changes in arbitrary repositories without requiring webhook setup. The discovered ref changes are attested through Rekor/SCITT transparency services and published as ActivityPub messages, enabling federated CI/CD rebuild chains to consume git state changes from repos they don't own. Container build manifests reference these SCITT-registered git state snapshots for provenance.
+ * 
+ * Earlier understanding (from comms/0160,0166,0167): Every git push becomes an ActivityPub post via a dedicated vcs.push webhook endpoint, turning commits and CI events into Notes on the stream of consciousness.
+ * 
+ * @see comms/0631
+ */
+export function gitRefPollingActivityPubBridge(): void {
+  // Related: gitPushActivityPubStream, containerFromRebuildChain, scittNotaryAssertionRegistry
+}

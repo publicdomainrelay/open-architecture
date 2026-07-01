@@ -391,3 +391,40 @@ export function clearForTakeOff(): void {
 export function batchLlmCompletion(): void {
   // Related: prioritizerMarkovChains, knowledgeGraphProvenance
 }
+
+/**
+ * Alice uses a 4-key JSON envelope protocol where every AI agent response conforms to a deterministic structure: @context (JSON schema for codegen/dynamic class definition), payload (the requested data), metadata, and execution. This enables self-describing, machine-consumable AI output that downstream systems can parse without ambiguity.
+ * 
+ * The @context key provides a JSON schema that consumers use to codegen or dynamically define classes and interfaces — types Python module, dataclasses, pydantic, protobufs, or ORM generators. An alternative encoding uses COSE/CBOR with CDL (Concise Data Language) markdown or mermaid for schema definition of pycose calls and their serializable arguments. The protocol enforces strict JSON-only responses: failure to return valid JSON is treated as catastrophic failure.
+ * 
+ * @see comms/0630
+ * @see intel/dffml#1450
+ * @see intel/dffml#1454
+ */
+export function structuredAgentResponse(): void {
+  // Related: onEvent, shareAThought
+}
+
+/**
+ * Convert CI/CD asciinema terminal recordings to structured engineering documentation via LLM processing. Screen recordings of dev and debug activities are fed through an LLM that extracts the technical substance and outputs markdown or rST engineering logs.
+ * 
+ * The pipeline captures the full context of development work — commands executed, output observed, decisions made — and transforms ephemeral terminal sessions into persistent, searchable documentation. Outputs are stored in the docs directory, indexed, and symlinked by author for discoverability. This feeds Alice's inventory (#1207) so she knows what engineering knowledge she has access to across the federation.
+ * 
+ * @see comms/0631
+ * @see intel/dffml#1207
+ */
+export function asciinemaToEngineeringLog(): void {
+  // Related: streamOfConsciousnessGitops, knowledgeGraphInventory
+}
+
+/**
+ * A directory where PR lifecycle events (rebase, merge) trigger execution of dev or debug activities, and the resulting PR adds engineering logs in markdown or rST format to the docs directory. Tmux windows capture activities in parallel based on PID and timing, enabling simultaneous recording of multiple development streams.
+ * 
+ * Bullet engineering log descriptions are converted to user request schemas which become policy engine workflows describing the logs and asciinema attempt sequences. The captured output is committed back to the triggering PR's branch, indexed and symlinked by author in the docs directory. This creates a self-documenting development loop where every significant code change produces its own engineering narrative.
+ * 
+ * @see comms/0631
+ * @see intel/dffml#1207
+ */
+export function prTriggeredEngineeringLog(): void {
+  // Related: streamOfConsciousnessGitops, policyEngineWorkflowDispatch, asciinemaToEngineeringLog
+}
