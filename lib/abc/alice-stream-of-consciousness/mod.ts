@@ -428,3 +428,14 @@ export function asciinemaToEngineeringLog(): void {
 export function prTriggeredEngineeringLog(): void {
   // Related: streamOfConsciousnessGitops, policyEngineWorkflowDispatch, asciinemaToEngineeringLog
 }
+
+/**
+ * Apply the principle of least privilege to Alice's Long-Term Memory (LTM) representation.
+ * 
+ * Each node and edge in Alice's knowledge graph carries an access context derived from the trust relationships that produced it. The LTM representation should enforce that entities can only access information they have been granted privilege to see — the knowledge graph is not a flat shared space but a capability-gated structure where visibility follows the chains of trust established through provenance.
+ * 
+ * @see comms/0639
+ */
+export function leastPrivilegeLtmRepresentation(): void {
+  // Related: knowledgeGraph, knowledgeGraphProvenance
+}
