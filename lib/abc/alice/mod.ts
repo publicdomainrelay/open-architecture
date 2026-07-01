@@ -277,3 +277,16 @@ export function freeWillBoundaryStrategicAgent(): void {
 export function modularAiSynthesizer(): void {
   // Related: streamOfConsciousnessGitops, trainOfThoughtGraffiti, chainsOfContext, geneticMemorySparseDistributedMemory
 }
+
+/**
+ * Alice is an architecture for code that will write and maintain itself based on a standard description of architecture — a universal blueprint — the open architecture. Alice is both an AI software architect and the AI software's architecture itself.
+ * 
+ * The universal blueprint is encoded via describeTheSystemAsData (the manifest + dataflow + overlay). The architecture self-maintains by operating on its own description: code reads the blueprint, writes itself, and iterates. This collapses the architect/architecture distinction — the entity performing maintenance and the architecture being maintained are the same system.
+ * 
+ * Earlier understanding (from comms/0077): Alice signs but does not police — she attests to provenance rather than enforcing policy.
+ * 
+ * @see comms/0272
+ */
+export function selfWritingArchitecture(): void {
+  // Related: whatAliceIs, describeTheSystemAsData
+}
