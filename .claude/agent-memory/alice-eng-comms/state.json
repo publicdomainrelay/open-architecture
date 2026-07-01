@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 191,
+  "lastProcessedComm": 199,
   "processedComms": [
     0,
     1,
@@ -192,7 +192,15 @@
     188,
     189,
     190,
-    191
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -538,7 +546,7 @@
     "livingThreatsMd": {
       "functionName": "livingThreatsMd",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 71,
+      "lastUpdatedComm": 199,
       "sourceIssues": [],
       "summary": "Living THREATS.md generated from ThreatDragon models via overlay auditing dataflow"
     },
@@ -832,7 +840,7 @@
     "deploymentDrivenExploitability": {
       "functionName": "deploymentDrivenExploitability",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 159,
+      "lastUpdatedComm": 199,
       "sourceIssues": [],
       "summary": "Deployment context determines vulnerability exploitability for pragmatic triage"
     },
@@ -1010,6 +1018,41 @@
       "lastUpdatedComm": 191,
       "sourceIssues": [],
       "summary": "Security hardening of train of thought for tamper-evident audit trail"
+    },
+    "keriDuplicityDetection": {
+      "functionName": "keriDuplicityDetection",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 199,
+      "sourceIssues": [],
+      "summary": "KERI duplicity-evident key state — watcher network detects forking, not just tampering"
+    },
+    "deploymentContextOverlay": {
+      "functionName": "deploymentContextOverlay",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 199,
+      "sourceIssues": [],
+      "summary": "Deployment context is the only way to determine exploitability — threat model overlays on OBOM"
+    },
+    "livingThreatModelContinuousDelivery": {
+      "functionName": "livingThreatModelContinuousDelivery",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 199,
+      "sourceIssues": [],
+      "summary": "Continuous delivery of living threat models through forge federation ActivityPub transport"
+    },
+    "federatedCiCdEventSpace": {
+      "functionName": "federatedCiCdEventSpace",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 199,
+      "sourceIssues": [],
+      "summary": "ForgeFed ActivityPub CI/CD federation: forge events + runner telemetry + OpenTelemetry → unified event space"
+    },
+    "containerRegistryFederationAlignment": {
+      "functionName": "containerRegistryFederationAlignment",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 199,
+      "sourceIssues": [],
+      "summary": "Align OCI distribution spec notifications with transparency service federation under ActivityPub"
     }
   },
   "issueCache": {
@@ -1101,6 +1144,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 116,
+  "totalStubsCreated": 121,
   "totalIssuesFetched": 9
 }

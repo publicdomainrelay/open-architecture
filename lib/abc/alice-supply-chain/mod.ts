@@ -652,3 +652,34 @@ export function toolCatalogPartyClassification(): void {
 export function cellularSixthSense(): void {
   // Related: softwareSupplyChainHealthMetaphor, trainOfThoughtHardening
 }
+
+/**
+ * There is no way to determine whether a vulnerability matters without the deployment context. Threat model overlays applied on OBOM (Operational Bill of Materials) provide the only valid discriminator for exploitability decisions.
+ * 
+ * While SBOM generation tools (CVE Bin Tool, CycloneDX, SPDX) identify what is present, deployment analysis determines what is exploitable. CycloneDX may evolve OBOM for architecture links with threat model overlays, enabling context-aware vulnerability triage where the deployment topology becomes the key input. A vulnerability that is critical in one deployment may be irrelevant in another where the affected component runs sandboxed or is not reachable. The classification "vuln is bug type fundamentally" ties vulnerability assessment to the threat model's trust boundaries — no deployment context means no meaningful exploitability decision.
+ * 
+ * Downstream propagation should use overlays: if a deployment runs the vulnerable component in a sandboxed context that makes it non-critical, propagate "not affected" upstream rather than "affected." This reverses the default CVE-propagation assumption that all findings are relevant to all consumers.
+ * 
+ * Earlier understanding (from comm 0158): Vulnerability exploitability is determined by deployment context. OPA policies encoded as JSON/YAML define deployment-specific exploitability decisions.
+ * 
+ * @see comms/0194
+ * @see intel/dffml#596
+ */
+export function deploymentContextOverlay(): void {
+  // Related: livingThreatModel, applyThreatModelOverlay, livingSbomVdr
+}
+
+/**
+ * Living threat models are continuously delivered through forge federation via ActivityPub as part of Alice's Stream of Consciousness, turning threat model updates into federated events that propagate across trust boundaries.
+ * 
+ * The transport mechanism is ActivityPub through Forgejo's federation layer: each entity publishes threat model changes as ActivityPub Notes, and downstream entities receive them via their inbox and apply them as overlays. The ActivityPub security.txt methodology structures this as daily threads from an ActivityPub group — entities reply to the group's daily log, linking issues and auto-backreferencing to discussion threads using downstream watchers. This is the same review system notification pattern used for SARIF CD eventing.
+ * 
+ * Converged CD events (CloudEvents + CDEvents spec) offer an alternative binding that can be translated into the federated event space. The goal is a pull-based model where entities subscribe to relevant threat model events defined in their gitops config, rather than receiving everything by default. Earlier understanding (from comm 0066): alice threats CLI generates living THREATS.md from ThreatDragon models via auditor overlay dataflow.
+ * 
+ * @see comms/0199
+ * @see intel/dffml#1315
+ * @see comms/0194
+ */
+export function livingThreatModelContinuousDelivery(): void {
+  // Related: livingThreatsMd, streamOfConsciousnessGitops, securityTxtActivityPubActor, websubActivityPubThoughtSharing, livingThreatModel
+}

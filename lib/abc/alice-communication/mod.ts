@@ -194,3 +194,38 @@ export function webRtcRunnerTokenChannel(): void {
 export function activityPubIdentityProofBridge(): void {
   // Related: websubActivityPubThoughtSharing, oidcSelfIssuedEdge
 }
+
+/**
+ * A federated CI/CD event space where forge events (push, PR, CI status, runner telemetry) are ActivityPub messages using the ForgeFed protocol, with OpenTelemetry transformed into the same federated event space so everything can talk directly to everything.
+ * 
+ * Forgejo's ActivityPub-based forge federation (ForgeFed protocol, using go-ap library with HTTP signatures) provides the foundation. Woodpecker CI serves as the federated CI engine running pipelines inside containers. The missing piece is aligning CI/CD runner telemetry with the ForgeFed context.jsonld vocabulary — incrementally learning to transform OpenTelemetry events (data flow events as telemetry events) into ActivityPub events. This enables "online cloning" where federated repos allow remote overlay application and incremental vendoring with SHA384 patch tracking.
+ * 
+ * Virtual branches facilitate trunk-based development across multiple in-progress upstream branches (forgejo-federation + forgejo-ci + forgejo-development), with Alice orchestrating the alignment. CloudEvents (CNCF CDEvents spec) provide an alternative event format that can be bridged into the ActivityPub event space. The Guac project's federated event integration and Grafeas's decentralized artifact metadata API represent aligned efforts.
+ * 
+ * @see comms/0197
+ * @see comms/0198
+ * @see comms/0199
+ * @see intel/dffml#19133
+ * @see https://forgefed.org/
+ * @see https://codeberg.org/forgejo-contrib/discussions/issues/12
+ */
+export function federatedCiCdEventSpace(): void {
+  // Related: securityTxtActivityPubActor, gitPushActivityPubStream, websubActivityPubThoughtSharing
+}
+
+/**
+ * Align container registry distribution spec notification protocols with transparency service federation protocols so event stream consumers use a single protocol (ActivityPub/ActivityStreams) for both container image events and supply chain attestation events.
+ * 
+ * The OCI distribution spec currently lacks inbox-style eventing endpoints for push notifications. By extending container registries (e.g., Zot, Keppel) with ActivityPub federation alongside existing OCI upload/download semantics, every SBOM upload, container image push, manifest publication, and SCITT statement insertion becomes an event in a unified federated space. This enables downstream listeners to consume both container lifecycle events and transparency service events through the same subscription mechanism, bridging the gap between artifact distribution and trust attestation.
+ * 
+ * KERI provides the duplicity-evident transport for the federation layer, while SCITT and SigStore secure the content. The container registry becomes the "off-chain" data store for event payloads, with the chain being the network of KERI keys between communicating entities. Consumers like Alice's gatekeeper ingest the unified event stream, apply threat model overlays, and decide whether to propagate artifacts into their internal environment.
+ * 
+ * @see comms/0192
+ * @see comms/0194
+ * @see https://github.com/opencontainers/distribution-spec/blob/main/spec.md#endpoints
+ * @see https://github.com/project-zot/zot
+ * @see https://github.com/ietf-scitt/use-cases/issues/14
+ */
+export function containerRegistryFederationAlignment(): void {
+  // Related: containerRegistryOnDemand, scittTransparencyService, everythingAsContainerBuild, activityPubScittRegistryHandshake
+}

@@ -310,3 +310,17 @@ export function keriControllerAsDiceRootOfTrust(): void {
 export function trainOfThoughtHardening(): void {
   // Related: trainOfThoughtGraffiti, operationTrustBoundary
 }
+
+/**
+ * KERI (Key Event Receipt Infrastructure) provides duplicity-evident trust basis, not merely tamper-evident — the critical property that separates it from transparency services which are just audit trails without duplicity detection.
+ * 
+ * KERI's key event log makes key state duplicity-evident: you cannot create a fork without declaring it as a fork. The watcher network enables verifiers to detect duplicitous behavior — Bob and Sue check each other's view of Alice's key state to discover if she has signed conflicting rotation events. One honest watcher is sufficient; dishonest watchers can only delete evidence, they cannot manufacture proof of duplicity. This solves the distributed locking problem needed to operationalize trust across address spaces in supply chain security. Each KERI key event log serves as the chain between entities for train-of-thought comms, with event data stored "off chain" in container registries secured by SCITT/SigStore.
+ * 
+ * The integration with ActivityPub means federated messages travel over KERI transports with ACDC (Authentic Chained Data Container) for duplicity-evident record transmission. TEE-attested KERI keys confirm entities run software that does not intend to be duplicitous, enabling CI/CD pipelines to deliver across project trust boundaries with cryptographic assurance. DID methods without duplicity detection create non-context-local events that could alter key state validity — KERI is the highest protection ring currently available for supply chain identity.
+ * 
+ * @see comms/0192
+ * @see https://github.com/decentralized-identity/keri/blob/master/kids/kid0001Comment.md
+ */
+export function keriDuplicityDetection(): void {
+  // Related: webOfTrust, doITrustWhereThisCameFrom, enclaveAttestationIsASignalNotAFoundation, trustByVerifyContinuously
+}
