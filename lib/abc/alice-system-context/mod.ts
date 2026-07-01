@@ -471,3 +471,14 @@ export function sarifAsManifestIntent(): void {
 export function dependencyTreeToDataflow(): void {
   // Related: theDataFlow, theOverlay, runDataflowSerializable, dataflowDescribeInfrastructure
 }
+
+/**
+ * Manifest schema versions auto-bump based on dataflow operation input dependency tree changes. The target data model is generated from manifest schema via datamodel-code-gen.
+ * 
+ * When an OperationImplementation output is of the target manifest data model type, changes to its input dependency tree trigger schema regeneration and version bumping. Major version bump when the input tree (structural dependencies) changes; minor bump when code or dependency tree changes (implementation). Pre-commit hooks or CI jobs validate schema consistency against the current dataflow topology. This ensures schema versions track the actual dataflow shape, enabling downstream consumers to detect incompatible changes.
+ * 
+ * @see comms/0157
+ */
+export function dataflowDrivenSchemaVersioning(): void {
+  // Related: operationsDependencyPackage
+}

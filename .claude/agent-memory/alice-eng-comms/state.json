@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 151,
+  "lastProcessedComm": 159,
   "processedComms": [
     0,
     1,
@@ -152,7 +152,15 @@
     148,
     149,
     150,
-    151
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -771,9 +779,58 @@
     "activityPubScittInputs": {
       "functionName": "activityPubScittInputs",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 151,
+      "lastUpdatedComm": 159,
       "sourceIssues": [],
       "summary": "ActivityPub posts as SCITT attestation inputs — fediverse feeds transparency log"
+    },
+    "containerFromRebuildChain": {
+      "functionName": "containerFromRebuildChain",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Docker FROM rebuild chains dispatch downstream builds via registry webhooks"
+    },
+    "activityPubScittRegistryHandshake": {
+      "functionName": "activityPubScittRegistryHandshake",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "ActivityPub + SCITT + OCI registry form three-way handshake for verifiable event propagation"
+    },
+    "deploymentDrivenExploitability": {
+      "functionName": "deploymentDrivenExploitability",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Deployment context determines vulnerability exploitability for pragmatic triage"
+    },
+    "stableRepositoryIdentityOidc": {
+      "functionName": "stableRepositoryIdentityOidc",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Stable numeric GitHub IDs in Sigstore X.509 extensions prevent account takeover attacks"
+    },
+    "everythingAsContainerBuild": {
+      "functionName": "everythingAsContainerBuild",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "All artifacts (VEX, SBOM, CSAF) produced as container images with scratch output layers"
+    },
+    "dataflowDrivenSchemaVersioning": {
+      "functionName": "dataflowDrivenSchemaVersioning",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Auto-bump manifest schema versions when dataflow input dependency trees change"
+    },
+    "sigstoreScittDidVcBridge": {
+      "functionName": "sigstoreScittDidVcBridge",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Bridge Sigstore/Rekor transparency logs to DID/VC space for decentralized verification"
     }
   },
   "issueCache": {
@@ -865,6 +922,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 88,
+  "totalStubsCreated": 95,
   "totalIssuesFetched": 9
 }

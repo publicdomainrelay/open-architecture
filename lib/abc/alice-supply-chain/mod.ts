@@ -476,3 +476,64 @@ export function operationsDependencyPackage(): void {
 export function activityPubScittInputs(): void {
   // Related: scittReferenceImplementation, websubActivityPubThoughtSharing
 }
+
+/**
+ * Docker FROM lines define a rebuild dependency graph across container images. When a base image changes, downstream images are automatically rebuilt via registry webhook-triggered repository_dispatch events.
+ * 
+ * Multi-stage Docker builds strip secrets (ARG) from published layers. The FROM chain is inspected to build a pipdeptree-style dependency graph: each image's base images are traced to determine which downstream builds to dispatch when a base image updates. Harbor webhooks and OIDC auth provide the notification infrastructure; GitHub Actions repository_dispatch events carry the rebuild trigger. This forms the substrate for automated supply chain rebuild propagation, where a CVE fix in a base image cascades through the entire dependency tree.
+ * 
+ * @see comms/0152
+ * @see comms/0153
+ * @see comms/0158
+ */
+export function containerFromRebuildChain(): void {
+  // Related: containerRegistryOnDemand, operationsDependencyPackage
+}
+
+/**
+ * ActivityPub, SCITT, and OCI registries form a three-way handshake for the Thought Communication Protocol — analogous to TCP SYN/SYN-ACK/ACK but for supply chain events.
+ * 
+ * ActivityPub Follow replaces WebSub as the registry notification bus for downstream triggers. ActivityPub posts carry content addresses (SHA digests) of artifacts served via ORAS.land-style registries. SCITT provides notarized receipts for these messages, closing the loop of vulnerability analysis and remediation. A content address is placed in both the ActivityPub message and SCITT log, with the registry serving the actual content. This enables federated, verifiable event propagation across the supply chain — registry events trigger ActivityPub notifications, which are receipted by SCITT for non-repudiable audit.
+ * 
+ * Earlier understanding (from comms/0148): ActivityPub posts serve as SCITT attestation inputs, making federated social interactions feed the transparency log.
+ * 
+ * @see comms/0159
+ */
+export function activityPubScittRegistryHandshake(): void {
+  // Related: activityPubScittInputs, containerRegistryOnDemand, scittReferenceImplementation, websubActivityPubThoughtSharing
+}
+
+/**
+ * Vulnerability exploitability is determined by deployment context, not merely by CVE presence. Threat modeling the specific deployment topology surfaces which vulnerabilities are actually reachable in that deployment, enabling pragmatic triage.
+ * 
+ * While SBOM generation (CVE Bin Tool, CycloneDX, SPDX) identifies what is present, deployment analysis determines what is exploitable. OPA policies encoded as JSON/YAML define deployment-specific exploitability decisions. This bridges static SBOM data with dynamic CSAF/VEX production, prioritizing vulnerabilities based on actual reachability rather than CVSS scores alone. The deployment context becomes the key discriminator for vulnerability response.
+ * 
+ * @see comms/0158
+ */
+export function deploymentDrivenExploitability(): void {
+  // Related: threatModelAsAdmissionGate
+}
+
+/**
+ * GitHub OIDC claims embedded in Sigstore certificates should include stable numeric repository_id and repository_owner_id as X.509v3 extensions.
+ * 
+ * GitHub provides stable numeric identifiers for repositories and their owning users/orgs. These persist across account renames and can detect identity churn: if an attacker takes over a deleted GitHub account name (slug) and attempts to release malicious updates with otherwise valid-looking claims, the numeric IDs will differ from the original, making old attestations detectable as invalid. This extends the existing job_workflow_ref SAN (OID 1.3.6.1.4.1.57264.1.5) with new extensions for repository_id (1.3.6.1.4.1.57264.1.8) and repository_owner_id (1.3.6.1.4.1.57264.1.9).
+ * 
+ * @see comms/0155
+ * @see intel/dffml#1247
+ */
+export function stableRepositoryIdentityOidc(): void {
+  // Related: githubActionsOidcSelfAttestation
+}
+
+/**
+ * All software artifacts — VEX, SBOM, CSAF, melange builds — are produced as container images. This enables uniform distribution, caching, FROM-based rebuild chain propagation, and scratch-layer result extraction.
+ * 
+ * Multi-stage Docker builds serve as the universal build system: build dependencies become FROM lines, secrets are stripped via ARG removal in intermediate stages, and output lands in a final scratch layer as pure data (JSON/YAML). Container registry push triggers downstream validation via webhook. The scratch output layer is the serialized dataflow result — downstream consumers pull just the result layer via `reg layer`. This unifies build infrastructure: the same Docker build caching and distribution mechanism serves both traditional software artifacts and supply chain metadata.
+ * 
+ * @see comms/0152
+ * @see comms/0157
+ */
+export function everythingAsContainerBuild(): void {
+  // Related: containerRegistryOnDemand, operationsDependencyPackage
+}

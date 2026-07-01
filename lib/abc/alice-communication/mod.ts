@@ -144,3 +144,14 @@ export function entrypointsAsSystemContextDids(): void {
 export function didEntrypointWorkflowTrigger(): void {
   // Related: entrypointsAsSystemContextDids, theFirehoseCarriesIt
 }
+
+/**
+ * Sigstore/Rekor transparency log infrastructure bridges to the DID/VC (Self-Sovereign Identity) space, enabling notarized attestations to become Verifiable Credentials.
+ * 
+ * Rekor Merkle trees graft onto DID Merkle DAGs via did:merkle. Fulcio acts as CA bridge between OIDC identities and DIDs, with OpenIDVC combining auth to Fulcio with decentralized identity. This enables offline/decentralized trust verification via flat files rather than running servers — critical for ad-hoc grafting when nodes go on/offline and for dev/test/prod roll environments. Sigstore's ephemeral key signing + transparency log notarization maps naturally to VC issuance + DID-anchored verification. 2nd party plugin trust chains can be grafted lickety-split from existing transparency logs.
+ * 
+ * @see comms/0156
+ */
+export function sigstoreScittDidVcBridge(): void {
+  // Related: scittReferenceImplementation, oidcSelfIssuedEdge
+}
