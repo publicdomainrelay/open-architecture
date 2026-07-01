@@ -282,3 +282,18 @@ export function vtpmAttestedComputeIdentity(): void {
 export function scittReceiptAsVcAuth(): void {
   // Related: scittDwnFederation, doITrustWhereThisCameFrom
 }
+
+/**
+ * KERI (Key Event Receipt Infrastructure) controller sits atop DICE (Device Identifier Composition Engine) layering architecture as the root of trust layer, bridging decentralized identity with hardware-rooted attestation.
+ * 
+ * DICE Layering Architecture (TCG r19) provides a compound device identifier that chains through firmware, bootloader, and OS layers — each layer cryptographically derives its identity from the previous. Placing a KERI controller at the top of this chain anchors the decentralized identity system (DIDs, key rotation, pre-rotation) in hardware-attested provenance. This enables CI/CD pipelines to produce attested compute identities where the build environment's identity is rooted in silicon rather than a configuration file.
+ * 
+ * The integration unifies two attestation chains: DICE provides the hardware-to-OS chain of trust, KERI provides the identity-to-reputation chain of trust. Together they enable offline verification of CI/CD outputs — a container image carries both its build provenance (DICE) and its signer's reputation history (KERI) without requiring connectivity to a centralized service.
+ * 
+ * @see comms/0177
+ * @see comms/0181
+ * @see https://trustedcomputinggroup.org/wp-content/uploads/DICE-Layering-Architecture-r19_pub.pdf
+ */
+export function keriControllerAsDiceRootOfTrust(): void {
+  // Related: doITrustWhereThisCameFrom, vtpmAttestedComputeIdentity, scittTransparencyService, webOfTrust
+}

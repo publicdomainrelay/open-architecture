@@ -566,3 +566,64 @@ export function openVexActivityPubBridge(): void {
 export function aliceIssueOps(): void {
   // Related: shouldiContributeDetailedFlow, shouldiContributeOverlayPipeline, aliceShellAgent
 }
+
+/**
+ * SCITT insertion policy expressed as a policy-as-code compute contract that statically defines or fulfills fetching/generating whatever data is needed to validate a statement for insertion or federation, executing within a sandboxed environment.
+ * 
+ * Each statement submitted to a SCITT registry may have a set of criteria which must be validated by an authorized party (the gatekeeper) before it can be added. The insertion policy IS the compute contract: it encodes what checks run, what data they need, and what constitutes a passing evaluation. These policies can be overlayed with instance-local additional policy-as-code, allowing each deployment to add its own constraints without modifying upstream policies. This turns the registry from a passive log into an active admission controller.
+ * 
+ * Credential Manifest input evaluation (https://identity.foundation/credential-manifest/#input-evaluation) may serve as the mechanism for expressing insertion policy criteria.
+ * 
+ * @see comms/0177
+ * @see intel/dffml#1207
+ */
+export function scittInsertionPolicyAsComputeContract(): void {
+  // Related: gatekeeper, scittTransparencyService, appendToTransparencyLog, openPolicyAgentOverlay
+}
+
+/**
+ * Declarative container build manifests in image.container.build JSON format dispatched through GitHub Actions to trigger reproducible, content-addressable builds from versioned specifications.
+ * 
+ * The manifest carries a $schema pointer to its versioned JSON Schema, a $format_name of image.container.build, and an include array of build targets — each specifying branch, commit SHA, build_args, dockerfile path, image_name, owner, and repository. A single Python pipeline reads the manifest, extracts the include array as JSON, and feeds it through gh workflow run dispatch_build_images_containers.yml --json, turning a declarative build declaration into a CI/CD execution.
+ * 
+ * This enables Alice to rebuild container images at specific commits across any repo in the ecosystem — the manifest is the build recipe, content-addressed and replayable. Combined with container rebuild chains (FROM line dependency graphs), a base image update triggers manifest dispatch for every downstream image.
+ * 
+ * @see comms/0181
+ * @see comms/0178
+ */
+export function containerBuildManifestDispatch(): void {
+  // Related: everythingAsContainerBuild, containerRegistryOnDemand, containerFromRebuildChain, operationsDependencyPackage
+}
+
+/**
+ * SCITT federation hybridizes with DWN (Decentralized Web Node) for decentralized registry bootstrapping and JSONLD event streams, where audit and policy are expressed as DID-referenced Verifiable Credentials.
+ * 
+ * Bootstrapping: Alice auto-PRs repos with security.txt contact URLs that translate to did:web endpoints. Each endpoint deploys a DWN SCITT instance — bootstrapping N decentralized SCITT instances from the ecosystem's own security disclosures. Start with model transformers; use endor-style repos for basic SCITT setup. DWN's push/pull websocket support (dwn-sdk-js v0.0.21+) provides real-time notification of new claims without polling.
+ * 
+ * Event stream: SCITT federation via ActivityPub produces an all-JSONLD event stream. Every audit decision and policy evaluation becomes a DID/VC-wrapped receipt — a claim whose insertion policy is itself a policy-as-code compute contract, whose acceptance becomes a Verifiable Credential referencing the issuer's DID. New trust chains can be grafted off any point in the stream, enabling ad-hoc dev/test chains of trust that never depend on centralized transparency log infrastructure.
+ * 
+ * Decentralized primitives scope privilege to the threat model rather than forcing trust in any single authority — whoever controls what software is trusted decides what is real.
+ * 
+ * @see comms/0181
+ * @see comms/0182
+ * @see https://identity.foundation/keri/did_methods/
+ * @see https://github.com/TBD54566975/dwn-sdk-js
+ */
+export function scittDwnBootstrapAndJsonLd(): void {
+  // Related: scittDwnFederation, scittTransparencyService, appendToTransparencyLog, doITrustWhereThisCameFrom, federateClaimsDownstream, herIdentity, scittReceiptAsVcAuth
+}
+
+/**
+ * Propagate trust policies and dependency recommendations based on observable lifecycle evidence rather than static rules — a dependency earns recommendation when it demonstrates a track record of improving ecosystem health across real-world usage.
+ * 
+ * Alice evaluates whether to propagate a trust policy (insertion policy, dependency recommendation — same thing, recursive) by examining the lifecycle of its usage: does adoption of this dependency correlate with fewer vulnerabilities over time? Does it hold up under small, medium, and large stress? Has the fork-and-try workflow produced successful builds? If the evidence supports it, Alice propagates the recommendation upstream through the supply chain information network.
+ * 
+ * The principle follows atomic habits applied to supply chain security: make it easy to do the right thing. Not low friction — no friction. When something has a proven functional and security track record, it should be the default. When something fails, Alice de-recommends it and verifies the alternative works functionally before suggesting it.
+ * 
+ * This loops back to `alice shouldi contribute`: the trust decision for a dependency is itself a policy evaluation that runs through the gatekeeper, producing an attestation that feeds the next round of evaluation.
+ * 
+ * @see comms/0181
+ */
+export function trustPolicyPropagationByLifecycle(): void {
+  // Related: gatekeeper, doITrustWhereThisCameFrom, federateClaimsDownstream, policyBenefitOfDoubt, scanIntoTrustAttestation
+}

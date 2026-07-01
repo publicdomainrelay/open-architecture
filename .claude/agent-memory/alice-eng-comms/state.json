@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 175,
+  "lastProcessedComm": 183,
   "processedComms": [
     0,
     1,
@@ -176,7 +176,15 @@
     172,
     173,
     174,
-    175
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -361,7 +369,7 @@
     "scittNotaryAssertionRegistry": {
       "functionName": "scittNotaryAssertionRegistry",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 87,
+      "lastUpdatedComm": 183,
       "sourceIssues": [],
       "summary": "SCITT stores attestation assertions from notary, not the signed artifacts"
     },
@@ -662,7 +670,7 @@
     "scittDwnFederation": {
       "functionName": "scittDwnFederation",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 103,
+      "lastUpdatedComm": 183,
       "sourceIssues": [],
       "summary": "SCITT instances federate via DWN relay for cross-node discovery and signed claim routing"
     },
@@ -830,7 +838,7 @@
     "everythingAsContainerBuild": {
       "functionName": "everythingAsContainerBuild",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 159,
+      "lastUpdatedComm": 183,
       "sourceIssues": [],
       "summary": "All artifacts (VEX, SBOM, CSAF) produced as container images with scratch output layers"
     },
@@ -917,6 +925,41 @@
       "lastUpdatedComm": 175,
       "sourceIssues": [],
       "summary": "Frequency of new insight connections Alice discovers per unit time"
+    },
+    "scittInsertionPolicyAsComputeContract": {
+      "functionName": "scittInsertionPolicyAsComputeContract",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 183,
+      "sourceIssues": [],
+      "summary": "SCITT insertion policy as sandboxed policy-as-code compute contract"
+    },
+    "containerBuildManifestDispatch": {
+      "functionName": "containerBuildManifestDispatch",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 183,
+      "sourceIssues": [],
+      "summary": "JSON schema container build manifests dispatched via gh workflow run"
+    },
+    "scittDwnBootstrapAndJsonLd": {
+      "functionName": "scittDwnBootstrapAndJsonLd",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 183,
+      "sourceIssues": [],
+      "summary": "SCITT+DWN hybrid bootstrap via security.txt auto-PR, JSONLD event stream, DID/VC audit"
+    },
+    "trustPolicyPropagationByLifecycle": {
+      "functionName": "trustPolicyPropagationByLifecycle",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 183,
+      "sourceIssues": [],
+      "summary": "Propagate trust policy based on dependency lifecycle evidence, recursive"
+    },
+    "keriControllerAsDiceRootOfTrust": {
+      "functionName": "keriControllerAsDiceRootOfTrust",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 183,
+      "sourceIssues": [],
+      "summary": "KERI identity controller as DICE layering root of trust for attested compute"
     }
   },
   "issueCache": {
@@ -1008,6 +1051,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 105,
+  "totalStubsCreated": 110,
   "totalIssuesFetched": 9
 }
