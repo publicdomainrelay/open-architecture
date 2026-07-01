@@ -136,3 +136,14 @@ export function puttingItTogether(buildEvent: { source: string }): void {
 export function navigatingThisCodebase(): void {
   // Related: whatAliceIs, puttingItTogether
 }
+
+/**
+ * Alice deployed as a full operating system: base image, SSI service, systemd integration, and bare-metal/VM installation.
+ * 
+ * Alice's OS deployment path starts from a base image Dockerfile that bundles the SSI (Self-Sovereign Identity) service and systemd as the init system. Installation onto a VM or bare metal follows a netboot flow: boot into live install media, partition the target disk, mount partitions from the live environment's root shell, and lay down the Alice OS. This makes Alice a self-contained operating system rather than just a service running on top of another OS, enabling her to manage the full stack from hardware up through her own orchestration layer.
+ * 
+ * @see comms/0035
+ */
+export function aliceOsDeployment(): void {
+  // TODO: wire to related concepts
+}

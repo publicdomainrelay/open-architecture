@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 31,
+  "lastProcessedComm": 39,
   "processedComms": [
     0,
     1,
@@ -32,7 +32,15 @@
     28,
     29,
     30,
-    31
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -166,6 +174,34 @@
       "lastUpdatedComm": 31,
       "sourceIssues": [],
       "summary": "NFS-mounted repo cache with delta-pull optimization for iterative VCS scanning"
+    },
+    "orchestratorResourceLimits": {
+      "functionName": "orchestratorResourceLimits",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "Orchestrator resource limits: memory, disk, thread capping for operations"
+    },
+    "runDataflowSerializable": {
+      "functionName": "runDataflowSerializable",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "Serializable dataflow run: three manifests (inputs, operations, orchestration)"
+    },
+    "aliceOsDeployment": {
+      "functionName": "aliceOsDeployment",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "Alice as deployable OS: base image, SSI, systemd, netboot install"
+    },
+    "pluginPartyCatalog": {
+      "functionName": "pluginPartyCatalog",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "2nd/3rd party plugin catalog: org-local and external tools for LLM agents"
     }
   },
   "issueCache": {
@@ -257,6 +293,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 19,
+  "totalStubsCreated": 23,
   "totalIssuesFetched": 9
 }

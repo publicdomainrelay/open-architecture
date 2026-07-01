@@ -247,3 +247,27 @@ export function overlayAsAdmissionController(): void {
 export function dataflowAsFunctionInvocation(): void {
   // Related: theDataFlow, freezeSystemContext
 }
+
+/**
+ * System local resource management for the orchestrator: memory, disk space, and thread capping.
+ * 
+ * The orchestrator should own a resource manager that caps running threads, manages memory allocation, and monitors disk usage across operations and networks. The ThreadPoolExecutor should be a property of this resource manager, and threads should be submitted via a dedicated method that enforces the cap. This allows the orchestrator to prevent resource exhaustion when multiple subflows and operations run concurrently within a system context. Dynamic reprioritization by the prioritizer may cancel or suspend operations to free resources for higher-priority work.
+ * 
+ * @see comms/0034
+ * @see intel/dffml#245
+ */
+export function orchestratorResourceLimits(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * A serializable dataflow run configuration composed of three manifests: inputs, operations, and orchestration, with per-operation acceptance criteria.
+ * 
+ * The three manifests separate concerns: what data enters (inputs manifest), what transformations apply (operations manifest), and how execution is orchestrated (orchestration manifest). Combined they form a RunDataFlow — the serialized, transportable, and reproducible version of a run_dataflow call, analogous to how RunSingleConfig serializes a single operation run. Acceptance criteria can be defined on each operation's output or on the full set, allowing partial failure tolerance. This enables dataflow runs to be saved, replayed, audited, and federated across Alice instances.
+ * 
+ * @see comms/0039
+ * @see intel/dffml#1061
+ */
+export function runDataflowSerializable(): void {
+  // TODO: wire to related concepts
+}

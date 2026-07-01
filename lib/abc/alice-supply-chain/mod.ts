@@ -188,3 +188,16 @@ export function secureSoftwareFactory(): void {
 export function policyBenefitOfDoubt(): void {
   // Related: gatekeeper, openPolicyAgentOverlay, gatherExceptionReceipts, appendToTransparencyLog
 }
+
+/**
+ * Categorization of plugins and tools into 2nd party (org-local) and 3rd party (external/open source) catalogs, exposed as a discoverable tool catalog for LLM agents.
+ * 
+ * 2nd party plugins are org-local OpenAPI endpoints that Alice can call within the organization's trust boundary. 3rd party plugins are external open-source tools or external OpenAPI endpoints. Both are registered in a tool catalog accessible via a /tools/list endpoint, which LLM agents query at runtime to discover available capabilities. This pattern mirrors the SCITT emulator's policy engine tool catalog and enables Alice to dynamically compose workflows across internal and external tools. Each plugin's install method is itself an operation name, and deployment types can override which operation implementations are preferred for a given environment.
+ * 
+ * @see comms/0039
+ * @see intel/dffml#1061
+ * @see intel/dffml#1207
+ */
+export function pluginPartyCatalog(): void {
+  // Related: gatekeeper
+}
