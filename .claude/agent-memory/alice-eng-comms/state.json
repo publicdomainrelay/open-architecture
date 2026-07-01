@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 343,
+  "lastProcessedComm": 351,
   "processedComms": [
     0,
     1,
@@ -344,7 +344,15 @@
     340,
     341,
     342,
-    343
+    343,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350,
+    351
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1449,6 +1457,13 @@
       "lastUpdatedComm": 303,
       "sourceIssues": [],
       "summary": "OpenVEX data distribution via OCI registries using ORAS tooling"
+    },
+    "didMediatedEventExchange": {
+      "functionName": "didMediatedEventExchange",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 351,
+      "sourceIssues": [],
+      "summary": "DID-mediated event exchange: producers sign+publish to resolver, consumers subscribe by criteria"
     }
   },
   "issueCache": {
@@ -1546,6 +1561,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 157,
+  "totalStubsCreated": 158,
   "totalIssuesFetched": 10
 }

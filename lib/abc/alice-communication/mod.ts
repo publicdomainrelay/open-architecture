@@ -341,3 +341,14 @@ export function activityPubMessageQueueBridge(): void {
 export function xmppActivityPubBridge(): void {
   // Related: activityPubOverGrpc, activityPubMessageQueueBridge, federatedSseActivityPub
 }
+
+/**
+ * Two-party event exchange mediated by DID infrastructure: producers sign events with DID keypairs and publish via DID resolver, consumers subscribe with criteria filters, and an EventBus routes published events to matching subscribers.
+ * 
+ * Bob (producer) detects changes, creates a signed event with his DID keypair, and publishes to the DID resolver via `self.did.resolve().publish(event)`. Alice (consumer) initializes her DID, sets up event subscriptions with criteria (e.g. "git"), and receives routed events through the EventBus. Her on_event lifecycle processes each event: knowledge graph ingestion → relevance check → summarization → prioritization → decision (notify or think). Both entities hold DIDs as their identity roots, making the DID resolver the event routing infrastructure between them.
+ * 
+ * @see comms/0347
+ */
+export function didMediatedEventExchange(): void {
+  // Related: onEvent, knowledgeGraph, prioritizer, isRelevant, summarize, notify, thinkMoreDeeply
+}
