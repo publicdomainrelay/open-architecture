@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 479,
+  "lastProcessedComm": 487,
   "processedComms": [
     0,
     1,
@@ -480,7 +480,15 @@
     476,
     477,
     478,
-    479
+    479,
+    480,
+    481,
+    482,
+    483,
+    484,
+    485,
+    486,
+    487
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1865,6 +1873,27 @@
       "lastUpdatedComm": 479,
       "sourceIssues": [],
       "summary": "SBOM → in-toto CycloneDX attestation → ephemeral key → SCITT → auto-PR pipeline"
+    },
+    "cycloneDxEvidenceReferences": {
+      "functionName": "cycloneDxEvidenceReferences",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 487,
+      "sourceIssues": [],
+      "summary": "CycloneDX 1.6 evidence references array linking claims to supporting proof"
+    },
+    "openVexScittCiSubmission": {
+      "functionName": "openVexScittCiSubmission",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 487,
+      "sourceIssues": [],
+      "summary": "OpenVEX generation → SCITT submission CI pipeline with did:web issuer"
+    },
+    "vulnerabilityDescriptionOntologyAnalysisLoop": {
+      "functionName": "vulnerabilityDescriptionOntologyAnalysisLoop",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 487,
+      "sourceIssues": [],
+      "summary": "VDO-structured vuln descriptions as input to decentralized Data Analysis Control loop"
     }
   },
   "issueCache": {
@@ -1962,6 +1991,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 197,
+  "totalStubsCreated": 200,
   "totalIssuesFetched": 10
 }

@@ -1280,3 +1280,42 @@ export function publicKeysBranchNotaryDiscovery(): void {
 export function inTotoCycloneDxScittSubmission(): void {
   // Related: sbomToScittOciPipeline, inTotoCoseSupplyChainAttestation, sshKeyAsScittIdentity, publicKeysBranchNotaryDiscovery
 }
+
+/**
+ * CycloneDX 1.6 schema adds an evidence references array linking each supply-chain claim to the evidence that supports it.
+ * 
+ * The CycloneDX BOM schema at bom-1.6.schema.json#L276-L281 introduces "The array of references to evidence that supports this claim." This pattern makes every SBOM assertion auditable by pointing to the specific data (test results, scan output, attestation) that backs it. When combined with SCITT registration, the evidence references become transparency-log-backed, creating a verifiable chain from claim to evidence to notarized receipt. This is the foundational data model for Alice's claim-evidence-receipt pipeline: CycloneDX carries the structured evidence reference, SBOMit specifies the attestation format, and SCITT registers the result.
+ * 
+ * @see comms/0481
+ * @see https://github.com/CycloneDX/specification/blob/e8ae437941d01c006c0a5f0450e183238e899d8b/schema/bom-1.6.schema.json#L276-L281
+ * @see https://github.com/SBOMit/specification
+ */
+export function cycloneDxEvidenceReferences(): void {
+  // Related: sbomToScittOciPipeline, inTotoCycloneDxScittSubmission
+}
+
+/**
+ * GitHub Actions pipeline that generates OpenVEX vulnerability statements and submits them to a SCITT transparency log.
+ * 
+ * The pipeline chains two community actions: `openvex/generate-vex` runs vexctl to produce an OpenVEX document for a package (identified by `pkg:github/${{ github.repository }}@${{ github.sha }}`), then `scitt-community/scitt-api-emulator` submits that VEX payload to a SCITT instance. The issuer is a did:web DID resolved from a public-keys branch (`did:web:raw.githubusercontent.com:intel:dffml:public-keys:authorized_keys`), establishing cryptographic identity for the CI job. The subject uses the pkg:github purl scheme. This pattern makes every CI run a notary: each build produces a SCITT-registered VEX statement, creating an immutable, transparent record of vulnerability status at build time. Combined with VDO (Vulnerability Description Ontology), the VEX statements become structured input to Alice's decentralized Data Analysis Control loop.
+ * 
+ * @see comms/0482
+ * @see comms/0480
+ * @see https://github.com/openvex/generate-vex/pull/1
+ * @see https://github.com/scitt-community/scitt-api-emulator
+ */
+export function openVexScittCiSubmission(): void {
+  // Related: scittNotarizingProxyInCiCd, publicKeysBranchNotaryDiscovery, sbomToScittOciPipeline
+}
+
+/**
+ * Vulnerability Description Ontology (VDO) provides standardized, machine-readable vulnerability descriptions that feed Alice's decentralized Data Analysis Control loop.
+ * 
+ * VDO defines a structured vocabulary for describing vulnerabilities — affected products, impact, severity, remediation — in a format suitable for automated reasoning. When VEX statements are issued using VDO, they become computable inputs to Alice's analysis engine rather than human-oriented prose. The vision: CI pipelines produce SCITT-registered VEX statements with VDO-structured vulnerability data; Alice ingests these via the transparency log, correlates them across the supply chain graph, and drives automated remediation decisions (update, patch, gate) through the Data Analysis Control loop. This closes the loop from vulnerability discovery → structured description → transparency registration → analysis → action.
+ * 
+ * @see comms/0482
+ * @see comms/0480
+ */
+export function vulnerabilityDescriptionOntologyAnalysisLoop(): void {
+  // Related: openVexScittCiSubmission, livingSbomVdr, csafVexFramework
+}
