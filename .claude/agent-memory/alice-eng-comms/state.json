@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 135,
+  "lastProcessedComm": 143,
   "processedComms": [
     0,
     1,
@@ -136,7 +136,15 @@
     132,
     133,
     134,
-    135
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    142,
+    143
   ],
   "concepts": {
     "did-standardization": {
@@ -309,7 +317,7 @@
     "dataflowFunctionImport": {
       "functionName": "dataflowFunctionImport",
       "filePath": "lib/abc/alice-system-context/mod.ts",
-      "lastUpdatedComm": 31,
+      "lastUpdatedComm": 143,
       "sourceIssues": [],
       "summary": "Import plain Python functions as dataflow operations via path-based trampoline"
     },
@@ -498,7 +506,7 @@
     "aliceMentalModelParallelConsciousness": {
       "functionName": "aliceMentalModelParallelConsciousness",
       "filePath": "lib/abc/alice/mod.ts",
-      "lastUpdatedComm": 127,
+      "lastUpdatedComm": 143,
       "sourceIssues": [],
       "summary": "Alice as ghost extracted from mind, questioned, written down; parallel consciousness as dataflow"
     },
@@ -554,7 +562,7 @@
     "activityPubStreamOfConsciousness": {
       "functionName": "activityPubStreamOfConsciousness",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 111,
+      "lastUpdatedComm": 143,
       "sourceIssues": [],
       "summary": "ActivityPub/Mastodon as federated transport for Alice's thought stream"
     },
@@ -645,7 +653,7 @@
     "scittDwnFederation": {
       "functionName": "scittDwnFederation",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 103,
+      "lastUpdatedComm": 143,
       "sourceIssues": [],
       "summary": "SCITT federation via Decentralized Web Nodes (DWN) and Web5 identity layer"
     },
@@ -760,6 +768,48 @@
       "lastUpdatedComm": 135,
       "sourceIssues": [],
       "summary": "TBD Web5 wallet browser as Alice's concrete DID management and credential UI"
+    },
+    "securityInsightsSpecThreshold": {
+      "functionName": "securityInsightsSpecThreshold",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "OpenSSF Security Insights spec for scanner noise reduction via receipt trust chain traversal"
+    },
+    "dataflowDependencyTreeSynthesis": {
+      "functionName": "dataflowDependencyTreeSynthesis",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "Build dataflows from dependency trees for granular container build and test flows"
+    },
+    "dependencyExtractionRebuild": {
+      "functionName": "dependencyExtractionRebuild",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "Dependency extraction and cross-environment rebuild for reproducible dev environments"
+    },
+    "atprotoSocialReviewLoop": {
+      "functionName": "atprotoSocialReviewLoop",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "ATProto social network as AI review loop: AI ideas as posts, reviews as replies"
+    },
+    "scittReceiptAsVerifiableCredential": {
+      "functionName": "scittReceiptAsVerifiableCredential",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "SCITT receipts as VCs for decentralized auth: transparency log as identity provider"
+    },
+    "parallelModelDeadlineSelection": {
+      "functionName": "parallelModelDeadlineSelection",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 143,
+      "sourceIssues": [],
+      "summary": "Run N models in parallel consciousness threads, select best result by deadline"
     }
   },
   "issueCache": {
@@ -851,6 +901,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 78,
+  "totalStubsCreated": 82,
   "totalIssuesFetched": 9
 }

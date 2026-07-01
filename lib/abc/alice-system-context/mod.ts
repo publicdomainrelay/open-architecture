@@ -200,3 +200,28 @@ export function overlayFeedbackTemplate(): void {
 export function incrementalOverlayApplication(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Synthesize dataflows from dependency trees: pipdeptree output serialized to dataflow cache dump, container build flows generated per plugin for granular diamond/pyramid pattern validation.
+ * 
+ * Dependency trees (via pipdeptree or equivalent) are converted into dataflow graphs where each dependency becomes an operation input. Container build flows are generated for each plugin, and test flows consume build flows as inputs (overridable via dynamic context-aware overlays for audit use cases). The synthesized dataflows are executed via Kubernetes job runners and synthesized to GitHub Actions workflows via templates, triggered by URL request webhooks. This enables granular validation of the diamond dependency pattern (single known-good path for each dep) and pyramid pattern (incremental trust building from base to tip).
+ * 
+ * @see comms/0137
+ * @see intel/dffml#1247
+ * @see intel/dffml#596
+ */
+export function dataflowDependencyTreeSynthesis(): void {
+  // Related: dataflowCacheExportImport, dataflowFunctionImport, overlayDynamicBranching
+}
+
+/**
+ * The dffml-operations-dep package: extract dependency information and rebuild across development environments, acting as a serializer/deserializer for the complete "works on my machine → CI → cloud → your machine" chain.
+ * 
+ * This package sits between pipdeptree output and dataflow execution: it extracts dependency info from Python environments (or any package ecosystem), serializes the environment state as a dataflow cache, and enables delta-based environment reconstruction. Like a VM livepatch where Alice analyzes the system context snapshot, this enables going from "it works on my machine" to "it works on your machine" by capturing and reproducing the full dependency graph. Coincidentally, this also enables learning deployment methods — the reverse fuzzer uses this data to understand which API combinations are successful, building a candidate pool for reuse. Executed locally or via Kubernetes job runner with webhook triggers.
+ * 
+ * @see comms/0140
+ * @see intel/dffml#596
+ */
+export function dependencyExtractionRebuild(): void {
+  // Related: dataflowCacheExportImport, dataflowFunctionImport, nfsCacheOverlay
+}

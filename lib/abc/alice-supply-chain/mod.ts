@@ -131,3 +131,15 @@ export function cosignScittIntegration(): void {
 export function dependencyChainCompromiseDetection(): void {
   // Related: transparencyLogScitt, sbomAsPolicyProvenance
 }
+
+/**
+ * Integrate the OpenSSF Security Insights spec (security-insights.yml) for scanner noise reduction through declarative false-positive threshold declarations backed by receipt knowledge graph trust chain traversal.
+ * 
+ * The OpenSSF security-insights.yml spec provides a machine-readable format for declaring security scanner findings, triage status, and false-positive thresholds. Alice consumes these declarations and verifies them by traversing the provenance trust chains (SCITT receipts → notary → root of trust) in her knowledge graph. If a finding is declared a false positive with a threshold, Alice only suppresses it when the declaration's provenance chain passes trust verification — acceptance is receipt-based, not trust-on-first-use. This merges with existing triage formats and check regex/rules for applicability when context-aware filtering is not available.
+ * 
+ * @see comms/0136
+ * @see https://github.com/ossf/security-insights-spec
+ */
+export function securityInsightsSpecThreshold(): void {
+  // Related: scittTransparencyService, knowledgeGraphProvenance, transparencyLogScitt
+}
