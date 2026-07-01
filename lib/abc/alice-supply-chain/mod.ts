@@ -683,3 +683,45 @@ export function deploymentContextOverlay(): void {
 export function livingThreatModelContinuousDelivery(): void {
   // Related: livingThreatsMd, streamOfConsciousnessGitops, securityTxtActivityPubActor, websubActivityPubThoughtSharing, livingThreatModel
 }
+
+/**
+ * Map CVEs to source code URLs via link traversal and automated triage.
+ * 
+ * When an SBOM lists a dependency, finding the corresponding source repository
+ * is non-trivial—especially for Maven, Gradle, and npm packages where the VCS
+ * URL is not always in the package metadata. This concept describes a process
+ * of automated link traversal and triage to establish the CVE→source mapping,
+ * enabling downstream vulnerability analysis within the correct deployment
+ * context.
+ * 
+ * Earlier DFFML implementation (cvemap) demonstrated feasibility but bitrotted.
+ * The approach generalizes to GitHub trending daily analysis, where the same
+ * mapping technique identifies new projects for Alice to ingest and analyze.
+ * 
+ * @see comms/0208
+ * @see comms/0215
+ */
+export function cveToSourceMapping(): void {
+  // Related: livingSbomVdr, csafVexFramework
+}
+
+/**
+ * Apply the same security and compliance policy across ideation (CI/CD PR
+ * validation) and production (live deployment), eliminating policy escapes.
+ * 
+ * When policy is defined once and evaluated uniformly, there is no gap between
+ * "what was approved in CI" and "what runs in production." The principle: if
+ * there was a valid CI/CD build with passing checks, deploy it—the policy
+ * already said yes. This feeds the behavioral analysis portion of the Entity
+ * Analysis Trinity: actual runtime behavior is compared against the intent
+ * declared in the threat model, and policy drift is detected as misalignment.
+ * 
+ * JSON-LD as the common query layer enables uniform policy evaluation across
+ * both environments. IPVM's content-addressed execution makes the deployment
+ * artifact the same bytes that passed CI/CD, closing the provenance gap.
+ * 
+ * @see comms/0214
+ */
+export function policyUniformityIdeationToProduction(): void {
+  // Related: overlayAsAdmissionController, trinityTriangulation, ipvmHermeticDeploymentBridge
+}

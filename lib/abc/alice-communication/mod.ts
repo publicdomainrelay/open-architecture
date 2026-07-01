@@ -229,3 +229,24 @@ export function federatedCiCdEventSpace(): void {
 export function containerRegistryFederationAlignment(): void {
   // Related: containerRegistryOnDemand, scittTransparencyService, everythingAsContainerBuild, activityPubScittRegistryHandshake
 }
+
+/**
+ * Replace websocket transport for the federated CI/CD event space with
+ * Server-Sent Events (SSE) aligned to a Fediverse Enhancement Proposal.
+ * 
+ * SSE is simpler than WebSocket for unidirectional event streams: standard
+ * HTTP, auto-reconnect, no upgrade handshake, works through proxies. The
+ * Fediverse Enhancement Proposal provides a standardized SSE profile for
+ * ActivityPub inbox delivery, making event consumption interoperable across
+ * implementations.
+ * 
+ * For Alice's abstract compute architecture event loop, SSE carries the same
+ * incoming events (new vulns, release notifications, CI/CD status changes)
+ * that currently flow through websocket routes, but with better alignment
+ * to the broader Fediverse ecosystem.
+ * 
+ * @see comms/0215
+ */
+export function federatedSseActivityPub(): void {
+  // Related: activityPubScittInputs, activityPubScittRegistryHandshake
+}

@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 207,
+  "lastProcessedComm": 215,
   "processedComms": [
     0,
     1,
@@ -208,7 +208,15 @@
     204,
     205,
     206,
-    207
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -414,7 +422,7 @@
     "strategicPrinciplesRewardAlignment": {
       "functionName": "strategicPrinciplesRewardAlignment",
       "filePath": "lib/abc/alice/mod.ts",
-      "lastUpdatedComm": 47,
+      "lastUpdatedComm": 215,
       "sourceIssues": [],
       "summary": "Strategic principles as RL reward function for optimal development path finding"
     },
@@ -1061,6 +1069,48 @@
       "lastUpdatedComm": 199,
       "sourceIssues": [],
       "summary": "Align OCI distribution spec notifications with transparency service federation under ActivityPub"
+    },
+    "cveToSourceMapping": {
+      "functionName": "cveToSourceMapping",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 215,
+      "sourceIssues": [],
+      "summary": "Map CVEs to source URLs via link traversal and automated triage"
+    },
+    "policyUniformityIdeationToProduction": {
+      "functionName": "policyUniformityIdeationToProduction",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 215,
+      "sourceIssues": [],
+      "summary": "Same security policy across CI/CD and production, eliminating policy escapes"
+    },
+    "redisEventProcessingPipeline": {
+      "functionName": "redisEventProcessingPipeline",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 215,
+      "sourceIssues": [],
+      "summary": "Redis + Celery pipeline feeding Alice from websocat event stream"
+    },
+    "hypothesisExecutionLoop": {
+      "functionName": "hypothesisExecutionLoop",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 215,
+      "sourceIssues": [],
+      "summary": "ActivityPub → hypothesis → evaluate against principles → execute → learn"
+    },
+    "ipvmHermeticDeploymentBridge": {
+      "functionName": "ipvmHermeticDeploymentBridge",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 215,
+      "sourceIssues": [],
+      "summary": "IPVM as hermetic deployment target bridging CI/CD validation to production"
+    },
+    "federatedSseActivityPub": {
+      "functionName": "federatedSseActivityPub",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 215,
+      "sourceIssues": [],
+      "summary": "Replace websocket with SSE aligned to Fediverse Enhancement Proposal for event transport"
     }
   },
   "issueCache": {
@@ -1149,9 +1199,15 @@
       "title": "docs: arch: Inventory",
       "commentCount": 3,
       "cacheFile": "/Users/johnandersen777/src/publicdomainrelay/open-architecture/.cache/intel-dffml-issue-1207.json"
+    },
+    "intel/dffml#1392": {
+      "fetchedAt": "2026-06-29T23:20:59.451Z",
+      "title": "gsoc: docs: intuitive: Deploy JupyterLite ",
+      "commentCount": 32,
+      "cacheFile": "/Users/johnandersen777/src/publicdomainrelay/open-architecture/.cache/intel-dffml-issue-1392.json"
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 121,
-  "totalIssuesFetched": 9
+  "totalStubsCreated": 127,
+  "totalIssuesFetched": 10
 }
