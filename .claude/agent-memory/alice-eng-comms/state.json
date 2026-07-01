@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 551,
+  "lastProcessedComm": 559,
   "processedComms": [
     0,
     1,
@@ -552,7 +552,15 @@
     548,
     549,
     550,
-    551
+    551,
+    552,
+    553,
+    554,
+    555,
+    556,
+    557,
+    558,
+    559
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1965,6 +1973,20 @@
       "lastUpdatedComm": 503,
       "sourceIssues": [],
       "summary": "Extract GitHub discussion threads via GraphQL API for knowledge graph ingestion"
+    },
+    "scittFederationDiscovery": {
+      "functionName": "scittFederationDiscovery",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 559,
+      "sourceIssues": [],
+      "summary": "SCRAPI well-known URIs for SCITT federation mechanism discovery"
+    },
+    "scittReceiptGraphWorkflowEngine": {
+      "functionName": "scittReceiptGraphWorkflowEngine",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 559,
+      "sourceIssues": [],
+      "summary": "SCITT receipts as labeled property graph nodes forming a durable workflow engine"
     }
   },
   "issueCache": {
@@ -2062,6 +2084,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 201,
+  "totalStubsCreated": 203,
   "totalIssuesFetched": 10
 }

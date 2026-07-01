@@ -1319,3 +1319,48 @@ export function openVexScittCiSubmission(): void {
 export function vulnerabilityDescriptionOntologyAnalysisLoop(): void {
   // Related: openVexScittCiSubmission, livingSbomVdr, csafVexFramework
 }
+
+/**
+ * Discover SCITT federation mechanisms via SCRAPI well-known URIs.
+ * 
+ * A SCITT transparency service advertises how to federate with it through
+ * `transparency.service/.well-known/transparency-configuration#federation`.
+ * This mirrors the DID `serviceAddress` discovery pattern — a client resolving
+ * a SCITT service can discover available federation protocols (ActivityPub,
+ * DWN, Bovine, etc.) by dereferencing the well-known endpoint. SCRAPI is the
+ * correct layer: it is an HTTP API for exchanging CBOR API elements, so
+ * federation discovery belongs there rather than in the data-format-level
+ * CBOR spec. This separates the federation mechanism advertisement from the
+ * federation protocol itself (covered by scittBovineFederation and
+ * scittDwnFederation). The well-known endpoint also advertises JWKS keys via
+ * `#jwks.keys` for verifying signed SCRAPI responses.
+ * 
+ * @see comms/0559
+ * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/145
+ * @see https://ietf-wg-scitt.github.io/draft-ietf-scitt-scrapi/draft-ietf-scitt-scrapi.html#name-transparency-configuration
+ */
+export function scittFederationDiscovery(): void {
+  // Related: scittBovineFederation, scittDwnFederation, scittServiceParameterDeclaration
+}
+
+/**
+ * Build a labeled property graph from SCITT receipts where each receipt embodies a workflow for durable execution.
+ * 
+ * SCITT receipts form nodes in a property graph where edges represent
+ * dataflow between attested artifacts. Each receipt IS a workflow — its
+ * payload carries either the content address of an ORAS artifact or direct
+ * workflow input values. The manifest of input transparent statements becomes
+ * `context.workflow_inputs()`, feeding into a Hatchet-style durable execution
+ * engine. The transparency service's `registration_policy` is itself a
+ * receipt, making policy self-describing and auditable within the same graph.
+ * This enables resume-able execution: the graph captures provenance of every
+ * step, so a workflow can be paused, inspected, and resumed from any receipt
+ * node. Combines SCITT supply-chain transparency with workflow orchestration
+ * so policy evaluation and artifact provenance share one verifiable graph.
+ * 
+ * @see comms/0559
+ * @see https://docs.hatchet.run/home/features/durable-execution
+ */
+export function scittReceiptGraphWorkflowEngine(): void {
+  // Related: scittInsertionPolicyAsComputeContract, scittPolicyEmbeddedReceipt, scittEntryIdContentAddressing
+}
