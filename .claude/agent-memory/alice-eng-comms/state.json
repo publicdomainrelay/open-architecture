@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 423,
+  "lastProcessedComm": 431,
   "processedComms": [
     0,
     1,
@@ -424,7 +424,15 @@
     420,
     421,
     422,
-    423
+    423,
+    424,
+    425,
+    426,
+    427,
+    428,
+    429,
+    430,
+    431
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1613,6 +1621,13 @@
       "lastUpdatedComm": 423,
       "sourceIssues": [],
       "summary": "AI/ML supply chain provenance via SCITT transparency and OpenVEX dataset vulns"
+    },
+    "voluntaryTransparencyCommitment": {
+      "functionName": "voluntaryTransparencyCommitment",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 431,
+      "sourceIssues": [],
+      "summary": "Supply chain actors voluntarily commit to transparency by signing statements into SCITT services via commercial products"
     }
   },
   "issueCache": {
@@ -1710,6 +1725,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 169,
+  "totalStubsCreated": 170,
   "totalIssuesFetched": 10
 }

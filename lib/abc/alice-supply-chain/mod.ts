@@ -1050,3 +1050,15 @@ export function scittEntryIdContentAddressing(): void {
 export function oscalMachineReadableCompliance(): void {
   // Related: csafVexFramework
 }
+
+/**
+ * Supply chain transparency is a voluntary commitment, not a mandate. Actors choose to sign statements about their part of the supply chain because they believe transparency is essential for securing critical infrastructure.
+ * 
+ * These signed statements enter transparency services through commercial products that implement SCITT APIs internally while exposing different (possibly better) APIs to their users. The commercial product acts as a bridge: proprietary API on one side, SCITT transparency service on the other. This means adoption is market-driven — transparency is opt-in, and the ecosystem grows as more actors see value in proving their supply chain integrity.
+ * 
+ * @see comms/0427
+ * @see https://mailarchive.ietf.org/arch/msg/scitt/mV3K6O5O9s36PRcRiNr59qpf-uc/
+ */
+export function voluntaryTransparencyCommitment(): void {
+  // Related: scittTransparencyService, doITrustWhereThisCameFrom, appendToTransparencyLog
+}
