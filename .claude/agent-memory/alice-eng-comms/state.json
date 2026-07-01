@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 615,
+  "lastProcessedComm": 623,
   "processedComms": [
     0,
     1,
@@ -616,7 +616,15 @@
     612,
     613,
     614,
-    615
+    615,
+    616,
+    617,
+    618,
+    619,
+    620,
+    621,
+    622,
+    623
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2183,6 +2191,13 @@
       "lastUpdatedComm": 607,
       "sourceIssues": [],
       "summary": "Ndjson batch API for 50%-cost LLM completions with 24h async turnaround."
+    },
+    "crdtRepositoryStorage": {
+      "functionName": "crdtRepositoryStorage",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 623,
+      "sourceIssues": [],
+      "summary": "CRDT-backed decentralized repo storage for offline-first collaborative editing"
     }
   },
   "issueCache": {
@@ -2280,6 +2295,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 223,
+  "totalStubsCreated": 224,
   "totalIssuesFetched": 10
 }

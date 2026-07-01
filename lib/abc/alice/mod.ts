@@ -304,3 +304,16 @@ export function selfWritingArchitecture(): void {
 export function openArchitectureForAgi(): void {
   // Related: scittReferenceImplementation, scittFederationDiscovery, policyEngineWorkflowDispatch, scittWorkloadIdentityOidc, dataCentricAiTrinity, s2c2fScittConformance
 }
+
+/**
+ * Decentralized repository storage using Conflict-free Replicated Data Types (CRDTs) for offline-first collaborative editing with automatic conflict resolution.
+ * 
+ * Repositories backed by CRDTs such as yjs or OctoBase enable multiple parties to concurrently edit source code, manifests, and supply chain metadata without a central coordination point. Conflicts are resolved deterministically by the CRDT data structure rather than by merge workflows. This aligns with Alice's decentralized architecture — trust data (SBOMs, attestations, policies) can be collaboratively authored and replicated across nodes without requiring a single source of truth.
+ * 
+ * References: yjs (https://github.com/yjs/yjs), OctoBase (https://github.com/toeverything/OctoBase).
+ * 
+ * @see comms/0619
+ */
+export function crdtRepositoryStorage(): void {
+  // TODO: wire to related concepts
+}
