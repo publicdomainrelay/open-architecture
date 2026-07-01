@@ -1,6 +1,6 @@
 {
-  "lastProcessedComm": 7,
-  "processedComms": [0, 1, 2, 3, 4, 5, 6, 7],
+  "lastProcessedComm": 15,
+  "processedComms": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
   "concepts": {
     "did-standardization": {
       "comm": 1,
@@ -19,7 +19,7 @@
     },
     "living-threat-model": {
       "comm": 2,
-      "status": "new",
+      "status": "refinement",
       "package": "alice-trust"
     },
     "open-policy-agent-overlay": {
@@ -66,6 +66,41 @@
       "comm": 5,
       "status": "new",
       "package": "alice"
+    },
+    "subflow-typecast": {
+      "comm": 8,
+      "status": "new",
+      "package": "alice-system-context"
+    },
+    "living-sbom-vdr": {
+      "comm": 12,
+      "status": "new",
+      "package": "alice-supply-chain"
+    },
+    "conformity-assessment": {
+      "comm": 12,
+      "status": "new",
+      "package": "alice-trust"
+    },
+    "trinity-triangulation": {
+      "comm": 13,
+      "status": "refinement",
+      "package": "alice-system-context"
+    },
+    "dataflow-cache-export-import": {
+      "comm": 13,
+      "status": "new",
+      "package": "alice-stream-of-consciousness"
+    },
+    "what-alice-is-entity-and-architecture": {
+      "comm": 9,
+      "status": "refinement",
+      "package": "alice"
+    },
+    "entity-2nd-party": {
+      "comm": 9,
+      "status": "refinement",
+      "package": "alice"
     }
   },
   "issueCache": {
@@ -74,9 +109,21 @@
       "labels": ["John", "enhancement", "usecase/innersource"],
       "author": "johnandersen777",
       "relevantComms": [1]
+    },
+    "intel/dffml/1408": {
+      "title": "alice: please: contribute: recommended community standards: github: GraphQL: was submitted too quickly",
+      "labels": ["bug", "Alice"],
+      "author": "johnandersen777",
+      "relevantComms": [8]
+    },
+    "intel/dffml/1401": {
+      "title": "2nd Party",
+      "labels": ["John", "Alice"],
+      "author": "johnandersen777",
+      "relevantComms": [9]
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 7,
-  "totalIssuesFetched": 1
+  "totalStubsCreated": 11,
+  "totalIssuesFetched": 3
 }

@@ -99,7 +99,33 @@ export function openPolicyAgentOverlay(): void {
  * @see open_architecture_today.md "every component in the bill of materials is checked against the log"
  */
 export function checkBillOfMaterialsAgainstLog(_component: StrongRef): boolean {
+  livingSbomVdr();
   return true;
+}
+
+/**
+ * The living SBOM Vulnerability Disclosure Report (VDR) is a NIST-recommended
+ * practice: a software vendor publishes a VDR alongside each SBOM showing that
+ * every component has been checked against the NIST NVD for known
+ * vulnerabilities. The VDR is a living document -- the vendor updates it
+ * whenever new vulnerabilities are discovered, so consumers can always answer
+ * "What is the vulnerability status of this product, as of now?"
+ *
+ * SPDX 2.3 includes provisions (K.1.9) for associating an SBOM document with
+ * its online NIST VDR attestation. This linking gives the SBOM a pulse: the
+ * living VDR breathes life into the living threat model by continuously
+ * updating the vulnerability status of each component. The DFFML community
+ * intends to use living SBOM VDR capabilities to facilitate the breathing of
+ * life into living threat models, facilitating vulnerabilities on
+ * architecture.
+ *
+ * @see open_architecture_today.md "every component in the bill of materials is checked against the log"
+ * @see livingThreatModel
+ * @see appendToTransparencyLog
+ */
+export function livingSbomVdr(): void {
+  // NIST VDR: a living document linked from SPDX 2.3 SBOM.
+  // Continuously updated vulnerability status for each component.
 }
 
 /**

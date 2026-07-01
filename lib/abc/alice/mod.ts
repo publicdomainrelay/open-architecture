@@ -33,6 +33,12 @@ import { describeTheSystemAsData } from "@publicdomainrelay/alice-system-context
  * She is both the AI software architect and the architecture itself, the
  * universal blueprint we call the open architecture.
  *
+ * She is the entity and the architecture, the 2nd Party: extending her is as
+ * simple as writing a single Python function and registering it as an overlay.
+ * Every time we teach Alice something new about software development, we write
+ * a tutorial on how that functionality can be extended and customized by
+ * anyone.
+ *
  * @see open_architecture_today.md "What Alice Is"
  */
 export function whatAliceIs(): void {

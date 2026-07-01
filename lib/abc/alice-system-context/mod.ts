@@ -109,6 +109,19 @@ export function hypothesizeSystemContext(): SystemContext {
  * model training was done from research studies with these ethical
  * certifications."
  *
+ * The trinity is the process of triangulation: by measuring and forming
+ * understanding across the three corners we are able to locate the strategic
+ * plans and principles involved in the execution of software as well as its
+ * development lifecycle. The trinity represents the soul of the software.
+ * Intent is measured by conformance to and completeness of the threat model
+ * and therefore also the associated Open Architecture description.
+ *
+ * Alice is at the center of the Trinity: `alice please contribute` lives in
+ * the Static Analysis corner (understanding what the code says), the Open
+ * Architecture and SCITT live in the Intent corner (what we aim to do), and
+ * the dynamic analysis corner (how the code behaves when executed) is where
+ * we observe the runtime mapping back to intent.
+ *
  * @see open_architecture_today.md "Entity Analysis Trinity"
  * @see dataProvenanceTracking
  * @see prioritizer
@@ -152,6 +165,31 @@ export function dynamicAnalysis(): unknown {
  */
 export function subflowWithLockTaken(): void {
   // Parent flow locks, subflows operate without acquiring own lock.
+}
+
+/**
+ * Subflow typecast: the type-safe pattern for executing one system context as
+ * a sub-operation of another. The parent flow calls `dffml.run()` (or the
+ * `subflow_typecast` helper) with the child's dataflow and inputs, and the
+ * child runs within the parent's lock scope.
+ *
+ * This evolved from the earlier `run_custom` pattern where the parent
+ * manually created a child org and copied inputs. The typecast helper
+ * automates: (1) creating a child orchestrator context from the parent's
+ * current operation implementation context, (2) copying inputs from the
+ * parent into the child while preserving their origins, and (3) running the
+ * child dataflow and returning its outputs typed to the expected definition.
+ *
+ * Lock annotations on definitions (`LockReadWrite[T]`) signal to the
+ * orchestrator that operations on that definition must be serialized,
+ * preventing concurrent subflows from corrupting shared state.
+ *
+ * @see subflowWithLockTaken
+ * @see open_architecture_today.md "What Alice Is"
+ */
+export function subflowTypecast(): void {
+  // dffml.run() / dffml.subflow_typecast helper.
+  // Automates child context creation, input copying, type-safe output return.
 }
 
 /**

@@ -25,6 +25,7 @@ import type { DID } from "@publicdomainrelay/alice-common";
 export function doITrustWhereThisCameFrom(source: DID): boolean {
   enclaveAttestationIsASignalNotAFoundation();
   scittTransparencyService();
+  conformityAssessment();
   livingThreatModel();
   dataProvenanceTracking();
   return webOfTrust(source);
@@ -135,11 +136,46 @@ export function dataProvenanceTracking(): void {
  * mitigations are mapped against the existing model, trust boundaries are
  * re-evaluated, and the result feeds back into the next admission decision.
  *
+ * Living SBOM VDR (Vulnerability Disclosure Reports) breathe life into the
+ * living threat model: each SPDX 2.3 SBOM links to an always-updated NIST VDR
+ * that tracks every component's vulnerability status as new CVEs are reported.
+ * The threat model consumes those VDR updates and re-evaluates the trust
+ * boundaries of every system context that depends on an affected component.
+ *
  * @see open_architecture_today.md "she applies each affected project's threat model as an overlay"
  * @see dataProvenanceTracking
  * @see applyThreatModelOverlay
+ * @see livingSbomVdr
  */
 export function livingThreatModel(): void {
   // Threats, mitigations, trust boundaries as initial data set. Evolves with
   // every attestation that passes through the gatekeeper.
+}
+
+/**
+ * Conformity assessment is how Alice reasons about whether a claim is
+ * trustworthy based on who made it, following the ISO/IEC 17000 framework:
+ *
+ * - **First-party attestation (self-attestation):** the entity itself declares
+ *   conformity with a set of requirements.
+ * - **Second-party attestation:** the consumer of a service or product attests
+ *   to the producer's conformity (e.g. Alice attesting that Bob built what he
+ *   said he built).
+ * - **Third-party attestation (certification):** an independent auditor attests
+ *   to the producer's conformity, decoupling trust from the direct
+ *   producer-consumer relationship.
+ *
+ * The SCITT transparency service carries attestations at all three levels, and
+ * the web of trust weights each according to the attester's history of vouches
+ * and denouncements. The NIST SP 2000-01 ABC's of Conformity Assessment
+ * provides the policy framework for deciding what level is appropriate for a
+ * given system context.
+ *
+ * @see scittTransparencyService
+ * @see webOfTrust
+ * @see open_architecture_today.md "What She Trusts, and Why It Isn't the Hardware"
+ */
+export function conformityAssessment(): void {
+  // ISO/IEC 17000: first, second, third party attestation.
+  // Weighted by web of trust history.
 }

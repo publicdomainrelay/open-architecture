@@ -95,10 +95,31 @@ export function knowledgeGraph(_changes: unknown): void {
  */
 export function onEvent(event: unknown): void {
   knowledgeGraph(event);
+  dataflowCacheExportImport();
   if (!isRelevant(event)) return;
   const changes = summarize(event);
   if (prioritizer(changes) === "notify") notify(changes);
   else thinkMoreDeeply();
+}
+
+/**
+ * Alice can export the end state of her orchestrator's input network to a
+ * serialized form (pickle, JSON), then re-import it to resume processing
+ * from where she left off. This allows her to maintain state across restarts
+ * and to transfer a partially-processed stream of thoughts between instances.
+ *
+ * The cached state can be queried via GraphQL (e.g. using the strawberry
+ * library) to introspect what the orchestrator knows without re-running the
+ * full dataflow. Merging static data with the cached start state before a
+ * query enables Alice to answer questions about "what happened last time"
+ * without keeping every event in working memory.
+ *
+ * @see open_architecture_today.md "Her knowledge graph remembers"
+ * @see knowledgeGraph
+ */
+export function dataflowCacheExportImport(): void {
+  // Export orchestrator input network state to pickle/JSON.
+  // Re-import to resume. GraphQL query of cached state.
 }
 
 /**
