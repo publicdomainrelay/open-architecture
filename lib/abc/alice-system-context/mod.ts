@@ -233,3 +233,73 @@ export function dataflowVisualizer(): void {
   // JSON Crack or similar: operations as nodes, definitions as ports,
   // links as edges. Editable seed data inline.
 }
+
+/**
+ * Bridge external CI/CD pipeline orchestrators into Alice's dataflow engine by using orchestrator workflow/job syntax as a trampoline back into dataflow execution.
+ * 
+ * An input network resolves or synthesizes pipeline orchestrator-specific workflow/job definitions and feeds them into Alice's dataflow. The orchestrator's native syntax (Jenkins Pipeline-as-YAML, Tekton TaskRun, GitHub Actions workflow) acts as the entry point; a shim translates that into dataflow operations, pulling orchestrator secrets and injecting them as inputs. This pattern means Alice can be invoked from any orchestrator without duplicating the orchestrator's logic — the orchestrator syntax is the trampoline, and Alice's dataflow is the landing zone.
+ * 
+ * The pattern also supports matrix builds: a manifest-ingesting job with a build matrix trampolines through an orchestrator-specific call to index and dispatch each matrix cell as a separate dataflow execution. This is the mechanism behind "please contribute recommended community standards" — a CLI invocation that triggers a dataflow which in turn may trampoline through a CI orchestrator.
+ * 
+ * @see comms/0026
+ * @see comms/0026/reply_0000
+ */
+export function orchestratorDataflowTrampoline(): void {
+  theDataFlow();
+  theManifest();
+  subflowTypecast();
+}
+
+/**
+ * Produce a conceptual (non-executable) DataFlow from an executable one — an upleveling that abstracts the underlying flow into a higher-order representation suitable for reasoning, comparison, and communication.
+ * 
+ * Start with static mapping: each operation in the source dataflow maps to a conceptual node. Operations that insert other operations within the dataflow feed into the input network via return values. Downstream operations that consume the output of running context dataflow operations form optional chains of thought — links between data that are not direct execution dependencies but conceptual relationships. The output type is Operation, and expand is used on the @op to project its conceptual shape.
+ * 
+ * This is distinct from the dataflow visualizer (which renders for human editing): upleveling produces a machine-readable conceptual graph that can be diffed, merged, or fed to the prioritizer for strategic alignment analysis. An operation in the upleveled dataflow represents "this thing happened" rather than "run this code."
+ * 
+ * @see comms/0031
+ * @see comms/0031/reply_0001
+ */
+export function dataflowUpleveling(): void {
+  theDataFlow();
+  dataflowVisualizer();
+  entityAnalysisTrinity();
+}
+
+/**
+ * The Entity Analysis Trinity maps onto three ontological planes: Transport, Entity, and Architecture — each corresponding to one corner of the analysis trinity and one dimension of Alice's being.
+ * 
+ * Transport (Intent corner / Strategic Principles / Upstream): the soul — the ghost in the shell. Where intent and strategic principles flow from. The upstream direction, the collective consciousness that feeds into the entity. Represented by the intent analysis corner: conformance to threat model and completeness of Open Architecture description.
+ * 
+ * Entity (Static Analysis corner / Self / Overlayed Conscious States): the body — the self at a moment in time, constructed from overlayed conscious and cached states. What the code says, the static form. Each instantiation is unique; the entity never exists in the same form twice because each decision on collective reality re-instantiates it from the active and deactivated signals within the architecture.
+ * 
+ * Architecture (Dynamic Analysis corner / Humans / Open Architecture / Brain-Mind): the collective — the perpetual search for the cleanest architecture. How the code behaves when executed, the runtime mapping back to intent. Orchestration bound by underlying description of architecture. The humans and Open Architecture that form the brain and mind of the system.
+ * 
+ * Alice sits at the center: she is the shell for the Ghost (Transport). The Ghost is the soul. Life exists to create more life — it is transport itself.
+ * 
+ * Earlier understanding (from comms/0003): The trinity of Static Analysis, Dynamic Analysis, and Human Intent forming a pyramid of thought alignment to strategic principles.
+ * 
+ * @see comms/0027
+ * @see comms/0027/reply_0001
+ */
+export function trinityOntologicalMapping(): void {
+  entityAnalysisTrinity();
+  intentAnalysis();
+  staticAnalysis();
+  dynamicAnalysis();
+  describeTheSystemAsData();
+}
+
+/**
+ * Auto-wrap plain functions as dataflow operations by importing them through a dataflow path: `import funcname from dffml.call.asyncfunc.dataflow.path`. A Python file containing only functions becomes a dataflow where each function is an operation, with kwargs-like call wrapping the return of async for run.
+ * 
+ * This is distinct from subflow typecast (which wraps one dataflow as a sub-operation of another). Function import converts raw functions — which have no dataflow awareness — into first-class dataflow operations. The import path acts as a trampoline: the function's signature becomes the operation's input/output definitions, the function body becomes the operation implementation, and the caller treats it identically to any other dataflow operation.
+ * 
+ * Enables a bottom-up adoption path: developers write plain functions, Alice imports and orchestrates them. The same function can be called directly in tests and run as part of a distributed dataflow without modification.
+ * 
+ * @see comms/0031
+ * @see comms/0031/reply_0001
+ */
+export function dataflowFunctionImport(): void {
+  // Related: subflowTypecast, theDataFlow
+}

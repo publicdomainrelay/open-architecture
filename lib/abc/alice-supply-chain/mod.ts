@@ -192,3 +192,69 @@ export function scittReferenceImplementation(): void {
   // Building code alongside spec. Example payloads: SBOM, CVE, VEX as nodes.
   // File-based -> HTTP-based progression. RDF/JSON-LD for graph querying.
 }
+
+/**
+ * Pre-exec attestation shim that runs within the linux loader (ld-linux.so) to attest to a secret service and inject secrets into the environment before exec'ing the real binary's __start entry point.
+ * 
+ * The loader intercepts process start, performs attestation against a secret service to prove the process identity and integrity, receives secrets (keys, tokens, credentials) as a response, sets them as environment variables, and only then transfers control to the actual binary. This pattern ensures that secrets are never written to disk or embedded in container images — they are injected at the last possible moment, bound to a specific attested execution context.
+ * 
+ * The mechanism is a concrete realization of the operation trust boundary concept: an ELF binary does not reuse its parent's input network context (it lacks access to the parent's memory region), so the loader acts as the bridge that securely transfers attested context across the process boundary.
+ * 
+ * @see comms/0024
+ * @see comms/0024/reply_0000
+ */
+export function linuxLoaderAttestation(): void {
+  // Related: operationTrustBoundary, scanIntoTrustAttestation
+}
+
+/**
+ * The SBOM Everywhere maturity ladder: a five-level progression for SBOM generation ecosystem maturity, from manual CLI tools to fully automated deployment aggregation.
+ * 
+ * Level 1 — Clients and SDKs: OS and build-system-agnostic CLIs that process source and build artifacts, output compliant SBOMs, run manually or scripted in CI/CD.
+ * 
+ * Level 2 — Package manager plugins: native plugins for Maven, npm, PyPI requiring a single configuration line change per build.
+ * 
+ * Level 3 — Native package manager integration: SBOM generation built into package managers by default, as seamless as build log entries.
+ * 
+ * Level 4 — Containerization integration: SBOM generation built into the container build process, aggregating component SBOMs plus container-layer artifacts.
+ * 
+ * Level 5 — Application/solution deployment: the coordination manager aggregates constituent SBOMs across containers, machine images, and event-driven services to reflect all deployed artifacts.
+ * 
+ * This maturity model complements the living SBOM VDR (which tracks vulnerability status): the VDR assumes an SBOM exists; the maturity ladder describes how that SBOM gets produced at each level of the ecosystem.
+ * 
+ * @see comms/0025
+ * @see https://github.com/ossf/sbom-everywhere/issues/12
+ */
+export function sbomEverywhereMaturity(): void {
+  // Related: livingSbomVdr, checkBillOfMaterialsAgainstLog
+}
+
+/**
+ * Auto-incrementing semantic version derived from the cryptographic hash of an operation's code (__code__), enabling content-addressed operation versioning.
+ * 
+ * Instead of manually declaring a version string, the version is computed by hashing the operation's bytecode. When the code changes, the version automatically increments. This guarantees that the version is tamper-evident: a consumer can re-hash the code and verify that the declared version matches the actual implementation.
+ * 
+ * The pattern integrates with the SCITT transparency service: each operation version is a claim, and the hash ties the version to the exact code that produced it. This closes the gap between "version 1.2.3" (a human label) and "the bytes that actually ran" (cryptographic ground truth).
+ * 
+ * When combined with data provenance tracking, the provenance chain records not just which operation ran but exactly which version (by code hash) produced each output.
+ * 
+ * @see comms/0031
+ * @see comms/0031/reply_0000
+ */
+export function operationCodeContentAddressing(): void {
+  // Related: scittTransparencyService, dataProvenanceTracking
+}
+
+/**
+ * A trust-first security posture where the gatekeeper defaults to admitting new inputs ("be nice, knock and the door shall be opened, karma, pay it forward") and only denies when risk analysis yields unacceptable results. This is the umbrella/gatekeeper pattern with a default-allow philosophy rather than default-deny.
+ * 
+ * The posture reflects the open-source ethos: contributions are welcomed by default, trust is extended proactively, and the burden of proof falls on the risk analysis to justify a block. The gatekeeper continuously re-evaluates: an input admitted today may be blocked tomorrow if new vulnerability data changes the risk assessment, and vice versa.
+ * 
+ * This contrasts with a pure OPA allow/deny model where policy rules are binary and static. Here, policy is living — it bends through documented exception receipts rather than breaking quietly — and the trust-first posture means the gatekeeper asks "why not?" instead of "why?"
+ * 
+ * @see comms/0031
+ * @see comms/0031/reply_0000
+ */
+export function trustFirstPolicyOverride(): void {
+  // Related: gatekeeper, openPolicyAgentOverlay, gatherExceptionReceipts
+}

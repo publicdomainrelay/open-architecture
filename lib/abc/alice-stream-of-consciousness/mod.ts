@@ -166,3 +166,19 @@ export function summarize(_event: unknown): unknown {
 export function notify(_changes: unknown): void {
   // notify-send.
 }
+
+/**
+ * NFS-mounted volume cache overlay for iterative repository scanning: configure NFS, mount as a volume via preapply, restore cloned repos from cached state, execute pull instead of clone to resolve only the delta, then save back to cache.
+ * 
+ * This extends the general dataflow cache export/import pattern with a specific network filesystem transport. Subflows reuse ictx (input context) output operations whose input definitions are descendants of STATIC, CACHED, and NFS overlay categories. The orchestrator can query the cached state to decide: large repos get the NFS delta-update path, small repos get a fresh clone every time (resource trade-off estimated from past run metrics).
+ * 
+ * The NFS overlay integrates with Kubernetes volume mounts via preapply hooks, so the same cache layer works whether the orchestrator runs locally or as a Kubernetes job.
+ * 
+ * Earlier understanding (from prior comms): Export orchestrator input network state to pickle/JSON, re-import to resume, GraphQL query of cached state for introspection.
+ * 
+ * @see comms/0024
+ * @see comms/0024/reply_0000
+ */
+export function nfsCacheOverlay(): void {
+  // Related: dataflowCacheExportImport
+}
