@@ -370,17 +370,36 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
   let turnCount = 0;
   let lastStreamTime = Date.now();
 
-  try {
-    const session = await query({
-      prompt,
-      options: {
-        maxTurns: 30,
-        allowedTools: ["codegraph_explore", "codegraph_node"],
-        permissionMode: "bypassPermissions",
-        cwd: ORG_ROOT,
-        includePartialMessages: true,
-      },
+  // Retry loop: if model narrates instead of outputting JSON, retry once
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    const retryPrompt = attempt === 1
+      ? prompt
+      : `FAILED PREVIOUS ATTEMPT — you output narration instead of JSON. DO NOT DO THAT.\n\n${prompt}`;
+
+    emit("info", "phase2_start", {
+      promptChars: retryPrompt.length,
+      comms: input.comms.length,
+      issues: input.issues.length,
+      existingConcepts: input.existingConceptNames.length,
+      attempt,
     });
+
+    const attemptStart = Date.now();
+    let allText = "";
+    let turnCount = 0;
+    let lastStreamTime = Date.now();
+
+    try {
+      const session = await query({
+        prompt: retryPrompt,
+        options: {
+          maxTurns: 30,
+          allowedTools: ["codegraph_explore", "codegraph_node"],
+          permissionMode: "bypassPermissions",
+          cwd: ORG_ROOT,
+          includePartialMessages: true,
+        },
+      });
 
     for await (const event of session as unknown as AsyncIterable<Record<string, unknown>>) {
       const txt = extractEventText(event);
@@ -401,56 +420,36 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
       }
     }
 
-    const elapsedMs = Date.now() - startTime;
-
-    // Extract JSON from response — try ```json fence first, then bare JSON
+    // Extract JSON — try fence then bare, retry on failure
     let jsonText = "";
     const fenceMatch = allText.match(/```json\s*([\s\S]*?)```/);
-    if (fenceMatch) {
-      jsonText = fenceMatch[1].trim();
-    } else {
-      const bareMatch = allText.match(/\{[\s\S]*"concepts"[\s\S]*\}/);
-      if (bareMatch) jsonText = bareMatch[0];
+    if (fenceMatch) jsonText = fenceMatch[1].trim();
+    else { const bareMatch = allText.match(/\{[\s\S]*"concepts"[\s\S]*\}/); if (bareMatch) jsonText = bareMatch[0]; }
+
+    if (!jsonText && attempt < 2) { emit("warn","agent_error",{attempt,reason:"no_json_retry"}); continue; }
+    if (!jsonText) throw new Error("No JSON after 2 tries");
+
+    let output;
+    try { output = JSON.parse(jsonText); } catch(pe) {
+      if (attempt < 2) { emit("warn","agent_error",{attempt,reason:"parse_retry"}); continue; }
+      throw pe;
+    }
+    if (!output.concepts?.length) {
+      if (attempt < 2) { emit("warn","agent_error",{attempt,reason:"no_concepts_retry"}); continue; }
+      throw new Error("Missing concepts array");
     }
 
-    if (!jsonText) {
-      throw new Error(
-        `No JSON found. Chars: ${allText.length}. Preview: ${allText.substring(0, 300)}`,
-      );
-    }
-
-    const output: AgentOutput = JSON.parse(jsonText);
-
-    // Validate
-    if (!output.concepts || !Array.isArray(output.concepts)) {
-      throw new Error("Output missing concepts array");
-    }
-
-    emit("info", "phase2_done", {
-      elapsedMs,
-      elapsedS: (elapsedMs / 1000).toFixed(1),
-      turns: turnCount,
-      responseChars: allText.length,
-      conceptsFound: output.concepts.length,
-      newCount: output.concepts.filter((c) => !c.isRefinement).length,
-      refinementCount: output.concepts.filter((c) => c.isRefinement).length,
-    });
-
+    emit("info","phase2_done",{elapsedMs:Date.now()-startTime,elapsedS:((Date.now()-startTime)/1000).toFixed(1),turns:turnCount,responseChars:allText.length,conceptsFound:output.concepts.length,newCount:output.concepts.filter((c: AgentConcept) => !c.isRefinement).length,refinementCount:output.concepts.filter((c: AgentConcept) => c.isRefinement).length,attempts:attempt});
     return output;
-  } catch (err) {
-    emit("error", "agent_error", {
-      elapsedMs: Date.now() - startTime,
-      elapsedS: ((Date.now() - startTime) / 1000).toFixed(1),
-      error: (err as Error).message,
-      charsReceived: allText.length,
-      textPreview: allText.substring(0, 300),
-    });
-    throw err;
+  } catch (innerErr: unknown) {
+    if (attempt < 2) { emit("warn", "agent_error", { attempt, reason: "stream_err_retry" }); continue; }
+    const msg = innerErr instanceof Error ? innerErr.message : String(innerErr);
+    emit("error", "agent_error", { elapsedMs: Date.now() - startTime, elapsedS: ((Date.now() - startTime) / 1000).toFixed(1), error: msg, charsReceived: allText.length });
+    throw innerErr;
   }
+  } // for loop
+  throw new Error("unreachable");
 }
-
-// ── Phase 3: Deterministic stub writer ─────────────────────────────────────
-
 function buildStubFunction(concept: AgentConcept): string {
   const lines = ["/**"];
   for (const line of concept.jsdoc.split("\n")) lines.push(` * ${line}`);
