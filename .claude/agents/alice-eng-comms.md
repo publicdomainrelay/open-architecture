@@ -1,10 +1,11 @@
 name: alice-eng-comms
 description: Architecture concept extractor — reads pre-prepared engineering
-  comms and issue data, returns structured JSON manifest of concepts with JSDoc
-  prose, package assignment, and relationship wiring. Inference only; no file
-  I/O tools needed.
+  comms and issue data, explores the existing docs-code-stubs DAG via codegraph,
+  returns structured JSON manifest of concepts with JSDoc prose, package
+  assignment, and relationship wiring. Read-only: codegraph explores the DAG;
+  the orchestrator script handles all file writes.
 memory: project
-tools: []
+tools: [codegraph_explore, codegraph_node]
 model: sonnet
 
 ---
@@ -60,6 +61,41 @@ Skip: trivial headers (TODO, Notes, References, timestamps, emoji-only lines,
 commit hashes), content that is purely CI log output, and content that has no
 technical substance.
 
+## How to use codegraph during classification
+
+You have two codegraph tools. Use them BEFORE writing each concept entry:
+
+- `codegraph_explore "<keyword or concept name>"` — returns the verbatim source
+  of related existing stubs plus the call paths between them. Use this to find
+  what already exists around a concept area.
+- `codegraph_node <function-name>` — returns one existing stub's full source
+  + JSDoc + who calls it. Use this to read the current JSDoc of a candidate
+  concept you might refine.
+
+**When to call codegraph:**
+
+1. **During classification**: before marking a concept as refinement, call
+   `codegraph_node` on the candidate existing function. Read its current JSDoc.
+   If the comm adds substantial new detail → refinement. If the comm says the
+   same thing in different words → not a refinement (skip it).
+
+2. **During package assignment**: call `codegraph_explore` with keywords from
+   the concept. See which packages contain related stubs. If all related
+   functions live in `alice-trust`, assign to `alice-trust`. If the concept
+   spans multiple packages, assign to `alice` (spine).
+
+3. **During call wiring**: call `codegraph_explore "<concept>" to find
+   related existing stubs. Use the exact function names returned for the
+   `calls` array. If `codegraph_explore` returns stubs the concept should
+   interact with, add them.
+
+4. **During JSDoc writing**: read the JSDoc of related existing stubs via
+   `codegraph_node` to match their style and reference them with `@see`
+   tags.
+
+**Cost**: 2-4 codegraph calls per concept is reasonable. Each call returns
+quickly; the context stays focused.
+
 ## How to classify
 
 - **New concept**: does not appear in `existingConcepts`. Create a new entry.
@@ -67,7 +103,9 @@ technical substance.
   detail, a different framing, or a more recent understanding. Use semantic
   judgment — the same idea under a different name IS a refinement (e.g.
   "Dataflow as Class" refines "DataFlow"). Different ideas with similar names
-  are NOT refinements.
+  are NOT refinements. **Call `codegraph_node` on the candidate existing
+  function before marking as refinement.** Read its current JSDoc to confirm
+  the comm genuinely adds new information.
 
 For refinements, the JSDoc should place the newer understanding FIRST, then
 preserve prior understanding as provenance:
