@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 599,
+  "lastProcessedComm": 607,
   "processedComms": [
     0,
     1,
@@ -600,7 +600,15 @@
     596,
     597,
     598,
-    599
+    599,
+    600,
+    601,
+    602,
+    603,
+    604,
+    605,
+    606,
+    607
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2132,6 +2140,41 @@
       "lastUpdatedComm": 599,
       "sourceIssues": [],
       "summary": "LLM proxy validates AI tool calls through transparency service with receipts"
+    },
+    "entityTelepathy": {
+      "functionName": "entityTelepathy",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 607,
+      "sourceIssues": [],
+      "summary": "Entity thought federation via trust-gated telepathy with masquerade stream transport."
+    },
+    "sigstoreInstanceRouting": {
+      "functionName": "sigstoreInstanceRouting",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 607,
+      "sourceIssues": [],
+      "summary": "Sigstore instance selection (public Rekor vs private timestamp) per repo visibility."
+    },
+    "sigstoreEventStreamRelay": {
+      "functionName": "sigstoreEventStreamRelay",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 607,
+      "sourceIssues": [],
+      "summary": "Relay Sigstore attestation event stream to federated subscribers for real-time monitoring."
+    },
+    "httpConnectMultiplexing": {
+      "functionName": "httpConnectMultiplexing",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 607,
+      "sourceIssues": [],
+      "summary": "HTTP CONNECT tunnel reused for multiple destination domains, avoiding repeated handshakes."
+    },
+    "batchLlmCompletion": {
+      "functionName": "batchLlmCompletion",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 607,
+      "sourceIssues": [],
+      "summary": "Ndjson batch API for 50%-cost LLM completions with 24h async turnaround."
     }
   },
   "issueCache": {
@@ -2229,6 +2272,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 218,
+  "totalStubsCreated": 223,
   "totalIssuesFetched": 10
 }

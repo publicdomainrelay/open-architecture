@@ -370,3 +370,24 @@ export function discussionThreadAutoDumping(): void {
 export function clearForTakeOff(): void {
   // Related: scittNotarizingProxyInCiCd, freeWillBoundaryStrategicAgent
 }
+
+/**
+ * Use ndjson batch API for cost-reduced asynchronous LLM completions.
+ * 
+ * OpenAI's batch API accepts ndjson (JSONL) files with multiple completion
+ * requests and returns results within 24 hours at 50% cost reduction. Each
+ * line is a self-contained request with a custom_id, HTTP method, URL, and
+ * body containing model and messages.
+ * 
+ * For Alice's stream of consciousness, this enables bulk entity reasoning at
+ * lower cost: the prioritizer can batch many evaluation requests together
+ * and process results asynchronously, trading latency for 50% cost savings.
+ * The ndjson format also enables resumable processing — partial results can
+ * be consumed as they become available.
+ * 
+ * @see comms/0606
+ * @see https://platform.openai.com/docs/api-reference/batch/create
+ */
+export function batchLlmCompletion(): void {
+  // Related: prioritizerMarkovChains, knowledgeGraphProvenance
+}

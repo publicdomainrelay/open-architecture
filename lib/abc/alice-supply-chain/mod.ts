@@ -1472,3 +1472,40 @@ export function oscalThreatModelWorkflowSelection(): void {
 export function llmProxyTransparencyService(): void {
   // Related: toolCatalogPartyClassification, pluginPartyCatalog
 }
+
+/**
+ * Route attestation signing to the correct Sigstore instance based on repository visibility.
+ * 
+ * Public repositories use the Sigstore public-good instance and persist attestation
+ * signatures to the public Rekor transparency log. Private or internal repositories
+ * use a GitHub-internal Sigstore instance with a signed timestamp issued by
+ * GitHub's timestamp authority in place of public transparency logging.
+ * 
+ * This routing decision is critical for supply chain security: public attestations
+ * require public verifiability via Rekor, while private attestations may need to
+ * stay within organizational boundaries while still carrying cryptographic proof
+ * of signing time via the timestamp authority.
+ * 
+ * @see comms/0604
+ */
+export function sigstoreInstanceRouting(): void {
+  // Related: scittWorkloadIdentityOidc, inTotoCoseSupplyChainAttestation, oidcSelfIssuedEdge
+}
+
+/**
+ * Relay Sigstore's attestation event stream to federated subscribers for real-time transparency log monitoring.
+ * 
+ * Sigstore exposes an event stream of attestation log entries. By relaying this
+ * stream across trust domains, entities can observe new attestations as they are
+ * logged, enabling real-time supply chain verification rather than polling.
+ * 
+ * The relay pattern decouples Sigstore's event stream from subscriber topology:
+ * subscribers connect to relays in their trust domain rather than directly to
+ * Sigstore, enabling federation, filtering, and replay across network boundaries.
+ * 
+ * @see comms/0605
+ * @see https://docs.sigstore.dev/logging/event_stream/
+ */
+export function sigstoreEventStreamRelay(): void {
+  // Related: activityPubScittInputs, federatedSseActivityPub, scittNotaryAssertionRegistry
+}

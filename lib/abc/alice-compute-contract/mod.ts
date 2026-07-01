@@ -255,3 +255,23 @@ export function scrapiOperationStepDetails(): void {
 export function transportAcquisition(): void {
   // Related: scittReceiptAsVcAuth, vtpmAttestedComputeIdentity
 }
+
+/**
+ * Reuse a single HTTP CONNECT tunnel for connections to multiple destination domains.
+ * 
+ * A single HTTP CONNECT handshake establishes the tunnel; subsequent connections
+ * to alternate domains reuse the same tunnel rather than issuing new CONNECT
+ * requests. This avoids repeated TLS handshake and CONNECT negotiation overhead
+ * when a client needs to reach multiple backend services through a relay.
+ * 
+ * In the compute contract context, this enables a requester's SSH ProxyCommand to
+ * reach the guest VM while simultaneously allowing the guest to reach multiple
+ * services (OIDC issuer, package registry, transparency log) through one
+ * tunnel — the relay becomes a true multiplexed proxy rather than a point-to-point
+ * forwarder.
+ * 
+ * @see comms/0605
+ */
+export function httpConnectMultiplexing(): void {
+  // Related: billOfLadingComputeContract
+}

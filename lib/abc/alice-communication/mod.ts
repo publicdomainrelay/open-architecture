@@ -365,3 +365,23 @@ export function didMediatedEventExchange(): void {
 export function spacetimeDbActivityPubFederation(): void {
   // Related: scittBovineFederation, activityPubScittRegistryHandshake, federatedSseActivityPub
 }
+
+/**
+ * Direct entity-to-entity thought and state sharing (telepathy) gated by trust protection rings.
+ * 
+ * Entities federate their stream of consciousness across trust boundaries using
+ * protection rings — the level of trust in another entity determines what thoughts
+ * are shared. Higher-trust entities receive richer thought streams; lower-trust
+ * entities receive filtered or delayed access.
+ * 
+ * Transport can leverage masquerade streams: steganographic channels that carry
+ * perfect-forward-secrecy encrypted data disguised as innocuous content (images,
+ * video frames) for covert entity communication over broadcast or peer-to-peer
+ * paths. The stream encoding hides the fact that communication is even happening.
+ * 
+ * @see comms/0603
+ * @see comms/0606
+ */
+export function entityTelepathy(): void {
+  // Related: entityAlignmentTrustGraph, streamOfConsciousnessGitops, federatedSseActivityPub
+}
