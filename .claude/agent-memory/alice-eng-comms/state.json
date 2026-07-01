@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 415,
+  "lastProcessedComm": 423,
   "processedComms": [
     0,
     1,
@@ -416,7 +416,15 @@
     412,
     413,
     414,
-    415
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    421,
+    422,
+    423
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -594,7 +602,7 @@
     "dataCentricAiTrinity": {
       "functionName": "dataCentricAiTrinity",
       "filePath": "lib/abc/alice-system-context/mod.ts",
-      "lastUpdatedComm": 47,
+      "lastUpdatedComm": 423,
       "sourceIssues": [],
       "summary": "Trinity maps to Data-Centric AI: Intent/Train → Dynamic/Improve → Static/Error"
     },
@@ -1577,6 +1585,34 @@
       "lastUpdatedComm": 407,
       "sourceIssues": [],
       "summary": "Run WASM modules directly in Kubernetes via k8s-wasm, bypassing container overhead"
+    },
+    "scittBovineFederation": {
+      "functionName": "scittBovineFederation",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 423,
+      "sourceIssues": [],
+      "summary": "SCITT receipt federation via Bovine ActivityPub with mechanical_bull automation"
+    },
+    "scittEntryIdContentAddressing": {
+      "functionName": "scittEntryIdContentAddressing",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 423,
+      "sourceIssues": [],
+      "summary": "Entry IDs as claim-content hashes to prevent federation ping-pong loops"
+    },
+    "oscalMachineReadableCompliance": {
+      "functionName": "oscalMachineReadableCompliance",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 423,
+      "sourceIssues": [],
+      "summary": "NIST OSCAL for machine-readable security compliance artifacts and self-describing software"
+    },
+    "aiSupplyChainTransparency": {
+      "functionName": "aiSupplyChainTransparency",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 423,
+      "sourceIssues": [],
+      "summary": "AI/ML supply chain provenance via SCITT transparency and OpenVEX dataset vulns"
     }
   },
   "issueCache": {
@@ -1674,6 +1710,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 165,
+  "totalStubsCreated": 169,
   "totalIssuesFetched": 10
 }

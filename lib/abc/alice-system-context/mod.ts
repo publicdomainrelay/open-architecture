@@ -571,3 +571,18 @@ export function jinjaOverlayPluginExtensibility(): void {
 export function kcpFederatedControlPlane(): void {
   // Related: federatedCiCdEventSpace, guacDependencyGraphAdmissionControl, scittTransparencyService
 }
+
+/**
+ * AI/ML supply chain security requires the same transparency infrastructure as traditional software supply chains: provenance tracking of datasets, model weights, training pipelines, and hardware/software dependencies through SCITT.
+ * 
+ * The AI supply chain spans data collection and processing, model training, hardware infrastructure, and software dependencies. Each component carries provenance that must be independently verifiable. SCITT provides the transparency layer — registering claims about dataset provenance, model training runs, and dependency graphs. OpenVEX can declare vulnerabilities in training data (e.g., poisoned datasets, biased samples) the same way it declares CVEs in software dependencies. When new data vulnerabilities are discovered, they trigger re-deployment/build/train/test cycles through the same event-driven pipeline as software vulns.
+ * 
+ * Earlier understanding (from dataCentricAiTrinity): Data-centric AI trinity analysis of systems through data, operations, and deployment dimensions. This adds the SCITT transparency and provenance layer as the mechanism for making AI/ML supply chain claims verifiable and federatable across organizations.
+ * 
+ * @see comms/0422
+ * @see https://github.com/ossf/ai-ml-security
+ * @see https://docs.google.com/document/d/1J8M1F5ev9tXzMpA3dAFXqXYs2t-T10xt0_ObXnqNN04/edit
+ */
+export function aiSupplyChainTransparency(): void {
+  // Related: dataCentricAiTrinity, mlDependencyChainVerification
+}

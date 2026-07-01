@@ -1008,3 +1008,45 @@ export function denoCompileGitHubAction(): void {
 export function cisaCsafVulnerabilityMandate(): void {
   // Related: csafVexFramework, scittTransparencyService
 }
+
+/**
+ * SCITT receipt federation via Bovine ActivityPub server with mechanical_bull automation handlers, enabling decentralized transparency log interop across independent SCITT instances.
+ * 
+ * A SCITT emulator federation plugin (federation_activitypub_bovine) listens on a UNIX socket for newly created receipt entries. When a receipt is registered, the plugin receives the CBOR-encoded claim + receipt bundle, wraps it in an ActivityPub Create activity with a Note object carrying the base64-encoded CBOR payload as content, and publishes to the ActivityPub outbox. mechanical_bull runs as the client-side automation handler, connecting to the bovine server, iterating the outbox, and sending messages to followers. This is the first working end-to-end implementation of SCITT-to-SCITT federation over ActivityPub, demonstrating that any two SCITT instances can exchange receipts without a centralized relay.
+ * 
+ * Actors register via bovine_tool.register and authenticate via did:key (Moo-Auth-1), with mechanical_bull.add_user automating follow-request acceptance. The federation handler pattern: SCITT emulator writes receipt to workspace → federation plugin notified via UNIX socket → ActivityPub Create+Note activity constructed → outbox collection helper delivers to followers.
+ * 
+ * @see comms/0421
+ * @see https://github.com/scitt-community/scitt-api-emulator/pull/37
+ */
+export function scittBovineFederation(): void {
+  // Related: activityPubScittRegistryHandshake, activityPubScittInputs
+}
+
+/**
+ * Use cryptographic hash of the SCITT claim as the entry ID to prevent ping-pong re-insertion when federating claims across multiple transparency log instances.
+ * 
+ * When two SCITT instances federate the same claim between each other, a naive sequentially-assigned entry ID causes the claim to be inserted again on the receiving instance, which then federates it back — creating an infinite ping-pong loop. By deriving the entry ID from the claim content hash, every instance computes the same ID for the same claim. The receiving instance can check if an entry with that ID already exists and skip re-insertion. This makes SCITT federation idempotent.
+ * 
+ * Proposed on the SCITT architecture mailing list during IETF 118 milestone discussions. Complements the ActivityPub federation pattern by ensuring messages carrying duplicate claims are harmless no-ops.
+ * 
+ * @see comms/0423
+ * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79
+ */
+export function scittEntryIdContentAddressing(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * NIST OSCAL (Open Security Controls Assessment Language) provides standardized JSON/XML machine-readable formats for security compliance automation: control catalogs, profiles, system security plans (SSPs), and component definitions.
+ * 
+ * OSCAL enables Alice to consume, generate, and verify security compliance artifacts programmatically. Key models: (1) Component Definition — software, containers, or VMs ship with bundled control implementation documentation describing which NIST 800-53 controls they satisfy, enabling downstream consumers to auto-populate their SSPs. (2) Profile — a selection of controls from one or more catalogs mapped across multiple regulatory frameworks (FISMA, HIPAA, PCI DSS), letting a single profile satisfy multiple compliance regimes. (3) SSP — machine-readable system security plan replacing Word/Excel documentation with queryable, diffable, automatable security posture data.
+ * 
+ * For Alice, OSCAL component definitions are the machine-readable self-description that a container or VM image ships alongside its SBOM — the "this is what security controls I implement" counterpart to the "this is what I contain" SBOM. Admission controllers can validate that arriving software satisfies required controls before deployment.
+ * 
+ * @see comms/0423
+ * @see https://pages.nist.gov/OSCAL/
+ */
+export function oscalMachineReadableCompliance(): void {
+  // Related: csafVexFramework
+}
