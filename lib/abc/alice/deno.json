@@ -1,0 +1,15 @@
+{
+  "name": "@publicdomainrelay/alice-abc",
+  "version": "0.0.0",
+  "license": "Unlicense",
+  "exports": "./mod.ts",
+  "imports": {
+    "@publicdomainrelay/alice-common": "jsr:@publicdomainrelay/alice-common@^0",
+    "@publicdomainrelay/alice-communication-abc": "jsr:@publicdomainrelay/alice-communication-abc@^0",
+    "@publicdomainrelay/alice-trust-abc": "jsr:@publicdomainrelay/alice-trust-abc@^0",
+    "@publicdomainrelay/alice-compute-contract-abc": "jsr:@publicdomainrelay/alice-compute-contract-abc@^0",
+    "@publicdomainrelay/alice-supply-chain-abc": "jsr:@publicdomainrelay/alice-supply-chain-abc@^0",
+    "@publicdomainrelay/alice-stream-of-consciousness-abc": "jsr:@publicdomainrelay/alice-stream-of-consciousness-abc@^0",
+    "@publicdomainrelay/alice-system-context-abc": "jsr:@publicdomainrelay/alice-system-context-abc@^0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@publicdomainrelay/alice-communication-abc",
+  "version": "0.0.0",
+  "license": "Unlicense",
+  "exports": "./mod.ts",
+  "imports": {
+    "@publicdomainrelay/alice-common": "jsr:@publicdomainrelay/alice-common@^0"
+  }
+}

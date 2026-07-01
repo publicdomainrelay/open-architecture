@@ -1,0 +1,12 @@
+{
+  "workspace": [
+    "./lib/common/alice-common",
+    "./lib/abc/alice-system-context",
+    "./lib/abc/alice-communication",
+    "./lib/abc/alice-trust",
+    "./lib/abc/alice-compute-contract",
+    "./lib/abc/alice-supply-chain",
+    "./lib/abc/alice-stream-of-consciousness",
+    "./lib/abc/alice"
+  ]
+}

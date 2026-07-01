@@ -1,0 +1,10 @@
+{
+  "name": "@publicdomainrelay/alice-compute-contract-abc",
+  "version": "0.0.0",
+  "license": "Unlicense",
+  "exports": "./mod.ts",
+  "imports": {
+    "@publicdomainrelay/alice-common": "jsr:@publicdomainrelay/alice-common@^0",
+    "@publicdomainrelay/alice-trust-abc": "jsr:@publicdomainrelay/alice-trust-abc@^0"
+  }
+}
