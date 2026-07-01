@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 399,
+  "lastProcessedComm": 407,
   "processedComms": [
     0,
     1,
@@ -400,7 +400,15 @@
     396,
     397,
     398,
-    399
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    405,
+    406,
+    407
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1512,6 +1520,55 @@
       "lastUpdatedComm": 351,
       "sourceIssues": [],
       "summary": "DID-mediated event exchange: producers sign+publish to resolver, consumers subscribe by criteria"
+    },
+    "kcpFederatedControlPlane": {
+      "functionName": "kcpFederatedControlPlane",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "KCP as Alice federated API layer: SCITT events → kubectl apply via GUAC firewall"
+    },
+    "browserWasmForge": {
+      "functionName": "browserWasmForge",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "Forge runs entirely in browser via WASM + WebML compilation of KCP/GUAC/forgego"
+    },
+    "guacScittAdmissionFirewall": {
+      "functionName": "guacScittAdmissionFirewall",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "GUAC query + evented graph + SCITT as continuous admission firewall for Alice"
+    },
+    "denoCompileGitHubAction": {
+      "functionName": "denoCompileGitHubAction",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "Cross-compile Deno to native binaries distributed as composite GitHub Actions"
+    },
+    "cisaCsafVulnerabilityMandate": {
+      "functionName": "cisaCsafVulnerabilityMandate",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "CISA mandates CSAF 2.0 profile 4 for machine-readable vulnerability advisories"
+    },
+    "oidcWorkflowRepoJackingPrevention": {
+      "functionName": "oidcWorkflowRepoJackingPrevention",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "Prevent RepoJacking via immutable repository ID OIDC claims for reusable workflows"
+    },
+    "kubernetesWasmRuntime": {
+      "functionName": "kubernetesWasmRuntime",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 407,
+      "sourceIssues": [],
+      "summary": "Run WASM modules directly in Kubernetes via k8s-wasm, bypassing container overhead"
     }
   },
   "issueCache": {
@@ -1609,6 +1666,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 158,
+  "totalStubsCreated": 165,
   "totalIssuesFetched": 10
 }

@@ -211,3 +211,16 @@ export function activityPubCiResultCommunication(): void {
 export function microVmCloningUserfaultfd(): void {
   // Related: containerRegistryOnDemand
 }
+
+/**
+ * Run WASM modules directly in Kubernetes via k8s-wasm, bypassing container image overhead for lightweight portable workloads.
+ * 
+ * Forge components (KCP, GUAC, forgego) compiled to WASM can execute in-cluster without container images, registries, or OS-level virtualization. Combined with image-ca-injector for certificate injection, this enables a minimal-trust compute environment where only cryptographically verified WASM modules execute.
+ * 
+ * @see comms/0405
+ * @see https://github.com/dvob/k8s-wasm
+ * @see https://github.com/dvob/image-ca-injector
+ */
+export function kubernetesWasmRuntime(): void {
+  // TODO: wire to related concepts
+}

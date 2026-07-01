@@ -558,3 +558,16 @@ export function localCiRunnerAct(): void {
 export function jinjaOverlayPluginExtensibility(): void {
   // Related: incrementalOverlayApplication, overlaysAsDynamicContextAwareBranches, overlayAsAdmissionController
 }
+
+/**
+ * KCP (Kubernetes Control Plane) serves as Alice's federated API layer, transforming SCITT transparency events into kubectl apply YAMLs for deployment orchestration.
+ * 
+ * KCP, GUAC, and forgego all compile to WASM. The dependency graph of projects a developer is working on determines what gets federated to their environment. SCITT events feed into the control plane, GUAC provides graph-based admission control (acting as a firewall for Alice instances), and KCP applies the resulting resources. This creates a federated event-driven deployment pipeline where supply chain attestations directly drive infrastructure decisions.
+ * 
+ * @see comms/0403
+ * @see https://github.com/kcp-dev/kcp
+ * @see https://docs.kcp.io/kcp/v0.11/
+ */
+export function kcpFederatedControlPlane(): void {
+  // Related: federatedCiCdEventSpace, guacDependencyGraphAdmissionControl, scittTransparencyService
+}

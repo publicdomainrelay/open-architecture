@@ -434,3 +434,17 @@ export function ocapLayeredDosDefense(): void {
 export function enclavePreSeededVcPipeline(): void {
   // Related: enclaveAttestationIsASignalNotAFoundation, scittTransparencyService
 }
+
+/**
+ * Harden OIDC claims for reusable workflows against RepoJacking by adding `job_workflow_repository_id` and `job_workflow_repository_owner_id` claims.
+ * 
+ * The existing `job_workflow_ref` claim uses a repository name string that is susceptible to renaming attacks: an attacker deletes their account, someone else re-registers the namespace, and the same `job_workflow_ref` now points to attacker-controlled code. Numeric repository and owner IDs are immutable and cannot be RepoJacked, providing cryptographically sound identity for reusable workflow trust decisions.
+ * 
+ * Earlier understanding (from prior comms): OIDC tokens for reusable workflows provide trust attestation for CI/CD.
+ * 
+ * @see comms/0405
+ * @see https://github.com/orgs/community/discussions/68804
+ */
+export function oidcWorkflowRepoJackingPrevention(): void {
+  // Related: stableRepositoryIdentityOidc, githubActionsOidcSelfAttestation
+}

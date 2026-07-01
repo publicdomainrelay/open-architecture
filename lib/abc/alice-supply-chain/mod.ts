@@ -957,3 +957,54 @@ export function scittInputNetwork(): void {
 export function universalSoftwareProductIdentity(): void {
   // Related: stableRepositoryIdentityOidc, livingSbomVdr, supplyChainInformationNetwork
 }
+
+/**
+ * Run the entire forge (KCP, GUAC, forgego) in-browser by compiling all components to WASM, augmented with WebML for client-side ML inference.
+ * 
+ * The browser becomes a fully capable supply chain verification and build orchestration environment. Dependency graph analysis, transparency log queries, and deployment decisions execute entirely client-side with no backend server. Enables zero-trust supply chain validation from any device with a browser.
+ * 
+ * @see comms/0403
+ * @see https://github.com/dffml/dffml/tree/main/docs/tutorials/rolling_alice/0000_architecting_alice#entity-analysis-trinity
+ */
+export function browserWasmForge(): void {
+  // Related: everythingAsContainerBuild
+}
+
+/**
+ * GUAC query engine combined with evented graph execution and SCITT transparency data forms an admission control firewall for Alice instances.
+ * 
+ * Every deployment passes through GUAC-based admission before KCP applies resources. SCITT events feed the graph; GUAC queries the graph to decide allow/deny. This is not just a one-time scan — it is a continuously operating firewall where new SCITT entries (vulnerability disclosures, attestation revocations) trigger re-evaluation of running deployments.
+ * 
+ * Earlier understanding (from prior comms): GUAC serves as a dependency graph for admission control decisions.
+ * 
+ * @see comms/0403
+ */
+export function guacScittAdmissionFirewall(): void {
+  // Related: scittTransparencyService, guacDependencyGraphAdmissionControl
+}
+
+/**
+ * Cross-compile Deno TypeScript to native platform binaries (x86_64 Linux/Windows/macOS, aarch64 macOS) and distribute as self-contained composite GitHub Actions.
+ * 
+ * Replaces the Node.js runtime dependency in GitHub Actions with compiled native binaries. Each platform gets its own binary via `deno compile --target`. The composite action YAML dispatches to the correct binary based on `runner.os` and `runner.arch`. Eliminates supply chain risk from npm dependency trees in CI/CD by shipping a single static binary.
+ * 
+ * @see comms/0404
+ * @see https://docs.deno.com/runtime/manual/tools/compiler
+ */
+export function denoCompileGitHubAction(): void {
+  // Related: githubActionsOidcSelfAttestation
+}
+
+/**
+ * CISA mandates OASIS CSAF 2.0 Security Advisory format (profile 4) for ICS vulnerability advisories, removing uncertainty around machine-readable vulnerability reporting.
+ * 
+ * This government mandate establishes CSAF 2.0 as the required format for known exploited vulnerability disclosure. Companies now have clear guidance: report vulnerabilities as machine-readable CSAF Security Advisories so customers can automate mitigation responses when new vulnerabilities are reported. This aligns with the SCITT transparency ecosystem where CSAF VEX data feeds into automated admission control.
+ * 
+ * Earlier understanding (from prior comms): CSAF provides a VEX (Vulnerability Exploitability eXchange) framework for machine-readable security advisories.
+ * 
+ * @see comms/0406
+ * @see https://www.cisa.gov/news-events/news/transforming-vulnerability-management-cisa-adds-oasis-csaf-20-standard-ics-advisories
+ */
+export function cisaCsafVulnerabilityMandate(): void {
+  // Related: csafVexFramework, scittTransparencyService
+}
