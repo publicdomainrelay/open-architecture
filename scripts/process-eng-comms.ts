@@ -420,11 +420,18 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
       }
     }
 
-    // Extract JSON — try fence then bare, retry on failure
+    // Extract JSON — try fence then bare, trim trailing garbage, retry on failure
     let jsonText = "";
     const fenceMatch = allText.match(/```json\s*([\s\S]*?)```/);
     if (fenceMatch) jsonText = fenceMatch[1].trim();
     else { const bareMatch = allText.match(/\{[\s\S]*"concepts"[\s\S]*\}/); if (bareMatch) jsonText = bareMatch[0]; }
+    // Strip trailing text after the last closing brace
+    if (jsonText) {
+      const lastBrace = jsonText.lastIndexOf("}");
+      if (lastBrace > 0 && lastBrace < jsonText.length - 1) {
+        jsonText = jsonText.substring(0, lastBrace + 1);
+      }
+    }
 
     if (!jsonText && attempt < 2) { emit("warn","agent_error",{attempt,reason:"no_json_retry"}); continue; }
     if (!jsonText) throw new Error("No JSON after 2 tries");
