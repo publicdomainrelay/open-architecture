@@ -1433,6 +1433,20 @@
       "lastUpdatedComm": 303,
       "sourceIssues": [],
       "summary": "OpenVEX data distribution via OCI registries using ORAS tooling"
+    },
+    "scittInputNetwork": {
+      "functionName": "scittInputNetwork",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 319,
+      "sourceIssues": [],
+      "summary": "SCITT transparency log entries as DFFML InputNetwork dataflow inputs"
+    },
+    "universalSoftwareProductIdentity": {
+      "functionName": "universalSoftwareProductIdentity",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 319,
+      "sourceIssues": [],
+      "summary": "FIRST.org universal software product identity spanning ecosystems"
     }
   },
   "issueCache": {
@@ -1530,6 +1544,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 157,
+  "totalStubsCreated": 159,
   "totalIssuesFetched": 10
 }
