@@ -1,54 +1,120 @@
 /**
- * SCITT transparency log receipts used directly as verifiable credentials for decentralized authentication and authorization — a "you are logged in" token rooted in self-sovereign key infrastructure.
- * 
- * Via federation, parties create scoped SCITT chains/logs/instances. The VC receipts from these instances serve as access control tokens: a receipt proving a statement was logged at a particular SCITT instance becomes a credential that grants access to resources governed by that instance's policy. This enables peer-to-peer decentralized auth without centralized identity providers — the transparency log is the authority. A SARIF result produced by an entity's analysis can be interpreted as a login credential, where the manifest's written form (THREATS.md, PLANS.md) expresses intent and the SARIF results determine access level. Endor (https://github.com/OR13/endor) demonstrates SCITT receipt → VC bridging. KERI kid0009 provides the key infrastructure foundation.
- * 
- * @see comms/0143
- * @see https://github.com/OR13/endor
- * @see https://github.com/decentralized-identity/keri/blob/master/kids/kid0009.md
+ * How Alice communicates: her repository is her voice. The docs-as-code
+ * translation of that section of `open_architecture_today.md`.
+ *
+ * Alice lives on the network the same way we do. She has an identity, a place
+ * to keep her thoughts, and a way to hear everyone else's. Today that is all
+ * one substrate.
+ *
+ * @see open_architecture_today.md "How Alice Communicates: Her Repository Is Her Voice"
+ * @module
  */
-export function scittReceiptAsVerifiableCredential(): void {
-  // Related: scittDwnFederation, scittDidMethod, didStandardization
-}
 
-
-/**
- * ActivityPub posts ingested as inputs to Alice's knowledge graph carry SCITT provenance receipts, guaranteeing that every social input is transparency-logged and cryptographically verifiable.
- * 
- * ActivityPub serves as the social input layer: posts from federated instances become events in Alice's stream of consciousness. Combined with SCITT, each ingested post gets a transparency receipt — the post content, its origin server, and the time of ingestion are all logged to a SCITT transparency service. This means Alice can later prove what information she consumed, from whom, and when, enabling post-hoc audit of her decision-making inputs. The SCITT receipt travels with the ingested post through the knowledge graph, so every inference derived from that post carries provenance back to the original social input.
- * 
- * Earlier understanding (from prior comms): Stream of consciousness carried over ActivityPub as transport for signed thoughts distributed via firehose.
- * 
- * @see comms/0148
- * @see comms/0147
- */
-export function activityPubScittProvenanceInput(): void {
-  // Related: graphBackedStreamOfConsciousness, scittPostHocAuditability, knowledgeGraphProvenance
-}
+import type {
+  DID,
+  RepoRecord,
+  StrongRef,
+} from "@publicdomainrelay/alice-common";
 
 /**
- * Alice's decentralized identity and data layer follows an evolutionary path: ActivityPub for social federation, SCITT for transparency and VDR for verifiable data, DWN for decentralized storage, and KERI for self-sovereign key infrastructure.
- * 
- * This is not a big-bang migration but a progressive layering: each stage builds on the previous. ActivityPub provides the initial federated social graph (posts, actors, federation). SCITT adds transparency logging and VDR adds verifiable data registries on top of that social layer. DWN (Decentralized Web Nodes) provide personal data stores that Alice instances can query directly, bypassing centralized relays. KERI (Key Event Receipt Infrastructure) provides the root cryptographic identity layer — self-sovereign key management without blockchain anchoring, using pre-rotation and key event logs. The path ends at full decentralization: Alice instances discover each other via KERI identifiers, store data in DWNs, and prove provenance through SCITT receipts anchored to KERI key events.
- * 
- * Earlier understanding (from prior comms): SCITT and DWN federated together for decentralized transparency and storage.
- * 
- * @see comms/0147
- * @see https://github.com/decentralized-identity/keri
- * @see https://github.com/web3-storage/ucanto
+ * Alice lives on the network the same way we do: she has an identity, a place
+ * to keep her thoughts, and a way to hear everyone else's.
+ *
+ * @see open_architecture_today.md "How Alice Communicates: Her Repository Is Her Voice"
  */
-export function dwnKeriEvolutionPath(): void {
-  // Related: scittDwnFederation, scittDidMethod, didStandardization, scittReceiptAsVerifiableCredential
+export function herRepositoryIsHerVoice(): void {
+  herIdentity();
+  herMemory();
+  herEars();
 }
 
 /**
- * A three-way handshake protocol for thought communication: ActivityPub Follow provides the subscription/social layer, SCITT receipts provide cryptographic transparency proof, and ORAS content addressing provides immutable storage/retrieval.
- * 
- * This is the "Thought Communication Protocol" — a synthesis of three decentralized primitives into one handshake. ActivityPub Follow (next-gen WebSub) carries the social graph and downstream triggers. SCITT transparency receipts prove what was communicated, when, and by whom — functioning like a TCP handshake for content authenticity. ORAS.land (OCI-compatible registry) stores content by hash so the actual data lives at a content address that both ActivityPub and SCITT can reference. The SHA384 sum of the living threat model collector dataflow serves as the initial content address placeholder. Together, this closes the loop of vulnerability analysis and remediation: the transparency log receipt proves the scan happened, ActivityPub distributes the result, and ORAS holds the artifacts.
- * 
- * @see comms/0159
- * @see comms/0148
+ * Her identity is a DID (`did:plc:...`). It is who she is no matter where she
+ * is running, and it is what she signs with so you always know a thought is
+ * really hers. When the W3C approved DIDs as a Recommendation in July 2022 they
+ * became a settled foundation for this architecture: a single framework to
+ * unify identity across cloud, edge, and client systems, preserving the
+ * integrity of information as it moves through the supply chain.
+ *
+ * @see open_architecture_today.md "Her identity is a DID"
+ * @see arch/0000-did-standardization.md
  */
-export function activityPubScittOrasHandshake(): void {
-  // Related: activityPubScittProvenanceInput, scittPostHocAuditability, graphBackedStreamOfConsciousness
+export function herIdentity(): DID {
+  didStandardization();
+  return "did:plc:";
+}
+
+/**
+ * The W3C approved Decentralized Identifiers as a Recommendation in July 2022.
+ * This milestone settles the identity layer of the open architecture: DID
+ * provides a framework to unify and consolidate multiple evolving identity
+ * systems, which is useful for validating the authenticity of information and
+ * preserving its integrity as it is moved and processed among cloud, edge, and
+ * client systems. SCITT (Supply Chain Integrity, Transparency, and Trust) has
+ * already highlighted DID as a useful approach for exchanging information
+ * through the supply chain, and the Web of Things (WoT) WG plans to support
+ * DID for identifying and discovering IoT devices and metadata.
+ *
+ * @see arch/0000-did-standardization.md
+ * @see scittTransparencyService
+ */
+export function didStandardization(): void {
+  // DID 1.0 reached W3C Recommendation status July 2022.
+}
+
+/**
+ * Her memory is her repository on a PDS. Every thought she wants to share, she
+ * writes as a record. Each record is content addressed by its CID and signed by
+ * her repo key, so a thought cannot be quietly changed after the fact.
+ *
+ * @see open_architecture_today.md "Her memory is her repository on a PDS"
+ */
+export function herMemory(): void {
+  writeARecord();
+}
+
+/**
+ * Her ears are the firehose. She follows the people and the collections she
+ * cares about, and new records stream to her the moment they are committed.
+ * When she finds something relevant she thinks about it; when she does not, she
+ * lets it pass.
+ *
+ * @see open_architecture_today.md "Her ears are the firehose"
+ */
+export function herEars(): void {
+  theFirehoseCarriesIt();
+}
+
+/**
+ * Everything she wants to say is just a record. To say something new, she
+ * writes a receipt for it. Because she is listening to everyone else's records
+ * too, she ties her running system context to whatever is happening out in the
+ * world, and the loop keeps turning.
+ *
+ * @see open_architecture_today.md "Everything she wants to say is just a record"
+ */
+export function writeARecord(): RepoRecord {
+  return { uri: "at://", cid: "", author: herIdentity(), value: undefined };
+}
+
+/**
+ * Records point at each other with strong references, aka a URI plus the CID it
+ * must match. That is how a single thought grows into a train of thought: a
+ * receipt points at a bid, a bid points at a request, a build points at the
+ * source it came from. Walk the references and you walk her whole reasoning.
+ *
+ * @see open_architecture_today.md "Records point at each other with strong references"
+ */
+export function walkTheReferences(): StrongRef {
+  return { uri: "at://", cid: "" };
+}
+
+/**
+ * The firehose carries it: someone writes a record to their PDS, Alice is
+ * subscribed, and she ingests it into her knowledge graph.
+ *
+ * @see open_architecture_today.md the loop diagram
+ */
+export function theFirehoseCarriesIt(): void {
+  walkTheReferences();
 }

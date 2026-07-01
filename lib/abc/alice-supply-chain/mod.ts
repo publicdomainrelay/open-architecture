@@ -1,195 +1,166 @@
 /**
- * A two-tier tool catalog for LLM agents: third-party external OpenAPI endpoints live alongside second-party org-local endpoints, both surfaced through a unified /tools/list API consumed by an LLM completions endpoint.
- * 
- * The third-party catalog holds external, open-source OpenAPI-described tools — kubectl pod operations, public API queries, infrastructure commands. The second-party catalog holds organization-local endpoints — private databases, internal services, proprietary APIs. Both tiers register into the same tool catalog, which exposes a /tools/list endpoint. An LLM provider endpoint (e.g. OpenAI /chat/completions) queries the catalog to discover available tools, then invokes them through the catalog's dispatch mechanism. This architecture ensures that LLM agents have graduated access: they can use public tools freely but must authenticate through the org boundary to reach second-party tools. The catalog serves as the gatekeeper between LLM reasoning and real-world side effects, with policy overlays controlling which tools are available to which agents.
- * 
- * Earlier understanding: stub only, no JSDoc.
- * 
- * @see comms/0093
- * @see intel/dffml#1207
+ * Keeping the supply chain honest. The docs-as-code translation of that section
+ * of `open_architecture_today.md`.
+ *
+ * Most of Alice's day is deciding what to let into your world. A new release, a
+ * new dependency, a new SBOM, a new build, each one is a thought arriving on
+ * the firehose, and each one is a "should I let this in?" She answers with
+ * receipts in a transparency log: the gatekeeper pattern.
+ *
+ * @see open_architecture_today.md "Keeping the Supply Chain Honest"
+ * @module
  */
-export function llmAgentToolCatalog(): void {
-  // Related: scittReferenceImplementation
-}
 
-
-/**
- * Reproducible Alice CLI build environment using Wolfi (Chainguard) chroot, QEMU, and Packer for deterministic VM image generation.
- * 
- * Alice's CLI must be built and validated within a known, reproducible environment. Wolfi chroot provides a minimal, auditable Linux userspace (no package manager baggage). QEMU emulates the target architecture for cross-build testing. Packer automates VM image creation from the validated chroot. Together they ensure Alice CLI boots and executes correctly from a provenance-tracked root filesystem at `/wolfi`.
- * 
- * @see comms/0059
- */
-export function aliceWolfiChrootBuild(): void {
-  // Related: linuxLoaderAttestation
-}
+import type { StrongRef } from "@publicdomainrelay/alice-common";
+import { doITrustWhereThisCameFrom, scittTransparencyService } from "@publicdomainrelay/alice-trust-abc";
+import { theOverlay } from "@publicdomainrelay/alice-system-context-abc";
 
 /**
- * SCITT transparency provides post-hoc auditability — verifiers can accept claims now and verify truthfulness later against the tamper-proof log.
- * 
- * SCITT's core value proposition is not real-time verification but deferred accountability. A verifier can accept a signed claim (endorsement, attestation) immediately based on trust in the signer, knowing that the claim was also published to a transparency log. If the signer later turns out to have lied, the transparency log provides cryptographically verifiable evidence of the original claim, the order in which claims were made, and the identity of the signer. This "accept now, verify later" pattern decouples operational availability from security verification — services run at full speed while the audit trail accumulates for offline or periodic review. Combined with federation (no blocking registration process), this enables self-audit and multi-party endorsement without centralized gatekeeping.
- * 
- * @see comms/0086
- * @see comms/0082
+ * The gatekeeper pattern, as a loop: scan new things into trust attestations,
+ * append them to the transparency log, check every component of a build against
+ * the log before it runs, and feed the index of what is trusted back into
+ * watching for the next release.
+ *
+ * @see open_architecture_today.md the gatekeeper mermaid diagram
  */
-export function scittPostHocAuditability(): void {
-  // Related: appendToTransparencyLog, scittTransparencyService
-}
-
-/**
- * Overlay parsers for `policy.yml` that define acceptable sandboxing criteria during distributed execution, enabling the prioritizer to select execution environments based on security requirements.
- * 
- * During distributed execution, operations may run in different sandboxing mechanisms (containers, WASM runtimes, confidential VMs). Policy overlays parse the available sandboxing options and annotate them with trust scores — how much does Alice trust each mechanism for a given operation with given inputs? The overlay consumes the list of available sandboxing mechanisms from the orchestrator, applies policy rules (e.g. "sensitive data requires SGX or better"), and produces annotated criteria that the prioritizer uses to assign operations to execution environments. This is the security-policy bridge between the Entity Analysis Trinity's static analysis (what is being run) and the distributed executor (where it runs).
- * 
- * @see comms/0081
- * @see intel/dffml#1315
- */
-export function sandboxingPolicyOverlay(): void {
-  // Related: trustFirstPolicyOverride, overlayBatchApply
+export function gatekeeper(component: StrongRef): void {
+  const attestation = scanIntoTrustAttestation(component);
+  appendToTransparencyLog(attestation);
+  if (!checkBillOfMaterialsAgainstLog(component)) {
+    gatherExceptionReceipts(component);
+  }
+  openPolicyAgentOverlay();
+  applyThreatModelOverlay();
+  federateClaimsDownstream();
 }
 
 /**
- * A webhook service that checks a project's dependency tree on incoming webhook events and dispatches downstream validation to all dependent projects.
- * 
- * When a project receives a webhook (e.g., a new commit, release, or vulnerability disclosure), the service walks the dependency tree to find all downstream projects that depend on it. For each dependent, it dispatches a validation job — running the dependent's test suite, rebuilding its SBOM, or re-evaluating its policy overlays against the changed upstream. This creates a cascading validation pipeline: a change at the root of the dependency graph triggers re-validation across the entire ecosystem. The service integrates with Alice's supply chain transparency log to record which validations ran, against which upstream versions, and with what results — providing cryptographic proof that downstream consumers verified their supply chain after an upstream change.
- * 
- * @see comms/0089
- * @see intel/dffml#1061
- * @see intel/dffml#1315
+ * When something new appears, it gets scanned, and the result becomes a trust
+ * attestation for that exact repo and commit, trusted or untrusted.
+ *
+ * @see open_architecture_today.md "it gets scanned, and the result becomes a trust attestation"
  */
-export function dependencyTreeWebhookDispatch(): void {
-  // Related: scittTransparencyService, sandboxingPolicyOverlay
+export function scanIntoTrustAttestation(component: StrongRef): StrongRef {
+  // Trusted or untrusted, pinned to exact repo and commit.
+  doITrustWhereThisCameFrom("did:plc:");
+  return component;
 }
 
 /**
- * Model CVE vulnerability expiration and resource consumption over time for supply chain risk forecasting.
- * 
- * Uses cvedetails data to build rough prediction models mapping CVEs to codebase age and time-based decay. The "red card pull" metaphor: vulnerabilities have a natural lifecycle, and predicting when they become critical (or expire) enables proactive supply chain risk management. Applied to both software dependency graphs and physical resource supply chains (federated urban farming, can-of-salmon example). The time model feeds into Alice's shouldi contribute engine to prioritize remediation based on predicted CVE criticality windows rather than static severity scores.
- * 
- * @see comms/0099
- * @see intel/dffml#1418
+ * That attestation is appended to a transparency service, an append only log,
+ * and indexed. The index of what is trusted feeds back into watching for the
+ * next release, and the loop closes.
+ *
+ * The transparency service is SCITT (Supply Chain Integrity, Transparency, and
+ * Trust), which is content agnostic: it holds SBOMs, test results, hardware
+ * BOMs, vulnerability disclosures, policy assertions, and Alice's own system
+ * contexts as attested claims.
+ *
+ * @see open_architecture_today.md "appended to a transparency service, an append only log"
+ * @see scittTransparencyService
  */
-export function cveLifecycleTimeModel(): void {
-  // Related: livingThreatModel, prioritizerIntentPolicy
+export function appendToTransparencyLog(_attestation: StrongRef): void {
+  // Append only. Indexed. Feeds the next round.
+  scittTransparencyService();
 }
 
 /**
- * Supply chain risk management plan submitted as a recurring contract deliverable under NIST SP 800-161 and Executive Order 14028 flow-down requirements.
- * 
- * Alice tracks SCRM compliance as an overlay on the supply chain: an annual (or per-contract-year) plan submission due 30 calendar days after each contract year end. The plan follows NIST SP 800-161 template structure and ensures EO 14028 controls (NIST SP 800-53) flow down to subcontractors, including commercial item subcontractors. Consent to subcontract at the task order level may also consider subcontractor SCRM requirements. The SCRM checklist covers: verified company ownership (US ownership confirmation), country of origin traced to first source, distributor threat investigation, COTS software supplier enumeration, and safeguarding of key program information exposed through subcontractor interactions.
- * 
- * @see comms/0107
- * @see intel/dffml#1247
+ * Open Policy Agent policies, serialized to JSON, translated into the DID/VC/
+ * SCITT claim format, and applied as overlays to flows. Policy serves two
+ * roles in this architecture: (1) admission policy -- what types of data the
+ * transparency register may accept, and (2) evaluation policy -- how a
+ * consumer judges the registered claims for fitness of use.
+ *
+ * The overlaid flows define the trusted parties within that context as
+ * applicable to the active organizational policies. Each policy is itself a
+ * SCITT claim, so the policy engine's rules inherit the same provenance and
+ * transparency as every other thought on the chain.
+ *
+ * @see open_architecture_today.md "she applies each affected project's threat model as an overlay"
+ * @see scittTransparencyService
+ * @see policyEnginePicksABidder
  */
-export function scrmPlanSubmission(): void {
-  // TODO: wire to related concepts
+export function openPolicyAgentOverlay(): void {
+  // OPA -> JSON -> DID/VC/SCITT. Admission policy + evaluation policy.
+  // Applied as overlays to flows within their applicable context.
 }
 
 /**
- * Generic CI setup and teardown actions where the setup itself serves as an audit artifact, and Alice audits the audit — attesting that the workflow bootstrapping was performed correctly.
- * 
- * GitHub Actions reusable workflows carry shared setup and teardown steps. Rather than treating setup as throwaway scaffolding, Alice captures the setup process as an attestation: what was provisioned, what versions were pinned, what secrets were resolved. She then audits her own audit — verifying that the attestation of setup matches the expected configuration, and that no drift occurred between setup and execution. This aligns with the broader pattern of making every CI action a signed, verifiable event in the supply chain transparency log.
- * 
- * @see comms/0110
- * @see intel/dffml#1247
+ * Before a build runs, every component in the bill of materials is checked
+ * against the log. The build only proceeds if everything in it is trusted.
+ *
+ * The evidence riding inside those receipts is built from formats the wider
+ * community already speaks: in-toto Statement (the envelope), CycloneDX (the
+ * SBOM predicate), test-result (the CI evidence), OpenVEX (vulnerability
+ * status), and S2C2F (the maturity ladder the policy engine measures against).
+ * Artifacts and their receipts live in a content addressed registry, pulled and
+ * pushed by digest, so the thing you verified is provably the thing you ran.
+ *
+ * @see open_architecture_today.md "every component in the bill of materials is checked against the log"
  */
-export function ciSetupAudit(): void {
-  // TODO: wire to related concepts
+export function checkBillOfMaterialsAgainstLog(_component: StrongRef): boolean {
+  livingSbomVdr();
+  return true;
 }
 
 /**
- * Automated depth-of-field research linking CVEs to source URLs via link-hopping and fuzzy ML matching against Alice's current thread corpus.
- * 
- * Given a CVE identifier, the system follows links from vulnerability databases to original source commits, patches, and discussions. Fuzzy ML then matches the recovered source context against Alice's active thread corpus (engineering logs, issue discussions, dataflow operations) to surface relevant vulnerabilities that intersect with what Alice is currently reasoning about. This closes the loop between vulnerability disclosure and Alice's ongoing trains of thought, enabling proactive rather than reactive supply chain risk response. The thread corpus provides the semantic ground truth for relevance scoring.
- * 
- * @see comms/0122
+ * The living SBOM Vulnerability Disclosure Report (VDR) is a NIST-recommended
+ * practice: a software vendor publishes a VDR alongside each SBOM showing that
+ * every component has been checked against the NIST NVD for known
+ * vulnerabilities. The VDR is a living document -- the vendor updates it
+ * whenever new vulnerabilities are discovered, so consumers can always answer
+ * "What is the vulnerability status of this product, as of now?"
+ *
+ * SPDX 2.3 includes provisions (K.1.9) for associating an SBOM document with
+ * its online NIST VDR attestation. This linking gives the SBOM a pulse: the
+ * living VDR breathes life into the living threat model by continuously
+ * updating the vulnerability status of each component. The DFFML community
+ * intends to use living SBOM VDR capabilities to facilitate the breathing of
+ * life into living threat models, facilitating vulnerabilities on
+ * architecture.
+ *
+ * @see open_architecture_today.md "every component in the bill of materials is checked against the log"
+ * @see livingThreatModel
+ * @see appendToTransparencyLog
  */
-export function cveSourceUrlFuzzyMl(): void {
-  // Related: cveLifecycleTimeModel, livingThreatModel
+export function livingSbomVdr(): void {
+  // NIST VDR: a living document linked from SPDX 2.3 SBOM.
+  // Continuously updated vulnerability status for each component.
 }
 
 /**
- * Integrate cosign (sigstore container image signing) with SCITT transparency services, bridging container image signing to supply chain transparency logs.
- * 
- * Cosign signs container images and stores signatures in OCI registries. SCITT provides a transparency log for supply chain claims. Integrating them means cosign-signed images produce SCITT receipts that land in the transparency log, giving container images the same post-hoc auditability as other supply chain artifacts. This connects the sigstore ecosystem (keyless signing via OIDC, Fulcio certificate authority, Rekor transparency log) with SCITT's claim-based transparency model. The integration path explores whether cosign signatures can be registered as SCITT statements, or whether a SCITT notary can ingest Rekor log entries as provenance claims.
- * 
- * @see comms/0125
- * @see https://gist.github.com/dlorenc/b97af394702f57b010ead586a2c23272
+ * When a system context cannot quite clear policy, Alice asks the right people
+ * to sign off; those exception receipts land back on the stream, she collects
+ * them, and re-issues the request for admission with the exceptions attached as
+ * an overlay. Policy bends through a documented, signed process instead of
+ * breaking quietly.
+ *
+ * @see open_architecture_today.md "When a system context can't quite clear policy"
  */
-export function cosignScittIntegration(): void {
-  // Related: scittTransparencyService, scittPostHocAuditability
+export function gatherExceptionReceipts(_component: StrongRef): void {
+  // Re-issue admission with exceptions attached as an overlay.
+  applyThreatModelOverlay();
 }
 
 /**
- * Detect dependency chain compromises where a published package is replaced with a malicious version post-publication, as demonstrated by the PyTorch holiday 2022 incident.
- * 
- * In December 2022, PyTorch disclosed a malicious dependency chain compromise: a package in their dependency tree was replaced with a malicious version that exfiltrated system information. This attack vector — where an upstream dependency is compromised after legitimate publication — differs from typo-squatting or dependency confusion. For Alice, this means the SBOM and transparency log must track not just what was declared at build time but whether any dependency's content has changed since its initial publication. Content-addressed integrity checks (CID matching) combined with SCITT receipts for every dependency in the tree provide the detection mechanism: a CID mismatch against the transparency log entry signals a post-publication compromise.
- * 
- * @see comms/0134
- * @see https://www.bleepingcomputer.com/news/security/pytorch-discloses-malicious-dependency-chain-compromise-over-holidays/
+ * When she does admit a change, she applies each affected project's threat
+ * model as an overlay, decides whether to propagate, and if so emits the
+ * manifest that triggers the rebuild, recursively fulfilling whatever else
+ * needs to rebuild down the chain.
+ *
+ * @see open_architecture_today.md "she applies each affected project's threat model as an overlay"
  */
-export function dependencyChainCompromiseDetection(): void {
-  // Related: transparencyLogScitt, sbomAsPolicyProvenance
+export function applyThreatModelOverlay(): void {
+  theOverlay();
 }
 
 /**
- * Integrate the OpenSSF Security Insights spec (security-insights.yml) for scanner noise reduction through declarative false-positive threshold declarations backed by receipt knowledge graph trust chain traversal.
- * 
- * The OpenSSF security-insights.yml spec provides a machine-readable format for declaring security scanner findings, triage status, and false-positive thresholds. Alice consumes these declarations and verifies them by traversing the provenance trust chains (SCITT receipts → notary → root of trust) in her knowledge graph. If a finding is declared a false positive with a threshold, Alice only suppresses it when the declaration's provenance chain passes trust verification — acceptance is receipt-based, not trust-on-first-use. This merges with existing triage formats and check regex/rules for applicability when context-aware filtering is not available.
- * 
- * @see comms/0136
- * @see https://github.com/ossf/security-insights-spec
+ * Forges federate their evaluated claims to each other, so a decision made in
+ * one place travels, with its provenance intact, to everywhere downstream,
+ * where it becomes the next thought for the next instance of Alice.
+ *
+ * @see open_architecture_today.md "Forges federate their evaluated claims to each other"
  */
-export function securityInsightsSpecThreshold(): void {
-  // Related: scittTransparencyService, knowledgeGraphProvenance, transparencyLogScitt
-}
-
-/**
- * Signing keys must be short-lived in software supply chains — the CircleCI/DataDog incident proved that a single leaked long-lived key causes catastrophic recovery failure.
- * 
- * The CircleCI incident (January 2023) demonstrated the blast radius of a leaked signing key: every artifact signed with that key became suspect, every integration that trusted the key had to rotate, and recovery required re-signing the entire artifact corpus. Ephemeral credentials eliminate this class of failure: keys that auto-expire after minutes or hours leave no long-lived secret to steal. For Alice, this means every attestation, SBOM signature, and SCITT receipt should use short-lived keys with cryptographic proof of key rotation logged to the transparency service. The signing key is disposable; the transparency log is permanent.
- * 
- * @see comms/0147
- * @see https://docs.datadoghq.com/agent/faq/circleci-incident-impact-on-datadog-agent/
- */
-export function ephemeralCredentialsSupplyChain(): void {
-  // Related: machineContinuousAttestation, scittTransparencyService
-}
-
-/**
- * A JSON Schema for recording immutable container image build provenance: branch, commit hash, Dockerfile path, image name, owner, and repository.
- * 
- * This schema (schema/image/container/build/0.0.1.schema.json) provides machine-readable attestation of exactly how a container image was produced. Each build manifest records: the git branch and commit that produced the image, the Dockerfile used, the image name and owner, and the repository. This provenance data feeds into FROM rebuild chains — when a base image is rebuilt, all downstream images that depend on it can be detected and rebuilt automatically. Combined with ephemeral cluster infrastructure (harbor, k3s), the schema enables bootstrap of entire build environments from cached artifacts and provenance records. The schema is validated at webhook dispatch time: container push events trigger workflow_dispatch by inspecting workflows for on.push.paths, validating against this schema, and rebuilding affected images in dependency order.
- * 
- * @see comms/0152
- * @see comms/0153
- * @see comms/0159
- * @see intel/dffml#1247
- */
-export function containerBuildProvenanceSchema(): void {
-  // Related: dataflowSynthesisBuildMode
-}
-
-/**
- * Vulnerability presence does not equal exploitability — deployment context (the specific environment, configuration, and runtime of the software) is the determining factor for whether a vulnerability can be exploited.
- * 
- * This core insight from CVE Bin Tool collaboration: CVSS scores alone are insufficient for triage because they lack deployment context. CPE matching tells you a vulnerability exists in your dependency tree, but only the deployment-specific configuration, network exposure, and runtime behavior determine whether it is actually exploitable. Alice operationalizes this via threat modeling overlays that model the actual deployment: the living threat model captures the deployment context and uses it to filter and prioritize vulnerabilities. OPA (Open Policy Agent) combined with JSON/YAML policy overlays enables automated triage — vulnerabilities that cannot be reached in the given deployment are deprioritized. This connects to SBOM generation (CycloneDX, SPDX), CSAF, and VEX: the VEX statement carries deployment-context-aware exploitability assessments.
- * 
- * @see comms/0158
- * @see https://www.openpolicyagent.org/
- */
-export function deploymentContextExploitability(): void {
-  // Related: livingThreatModelRLSynthesis, deploymentSpecificOperationOverride, trustFirstPolicyOverride
-}
-
-/**
- * Bridge the sigstore ecosystem (fulcio CA, rekor transparency log, ephemeral signing keys) into the DID/VC (Decentralized Identifier / Verifiable Credential) space to enable fully offline decentralized trust chain grafting.
- * 
- * Alice needs flat files, not servers: ad-hoc grafting of trust chains for nodes that go on/offline and for rolling dev/test/prod environments. Sigstore provides production infrastructure for signing with ephemeral keys linked via OIDC to identities and logged in rekor transparency logs. The DID/VC space provides self-sovereign identity and verifiable credentials that work offline. Bridging them means: rekor merkle trees grafted to DID merkle DAGs, fulcio OIDC tokens bridged to OpenIDVC, and sigstore transparency log entries convertible to VCs. The sigstore community's interest in stable numeric repository IDs (repository_id, repository_owner_id) as X.509 extensions aligns with Alice's need for persistent identity across org/account changes — a critical supply chain security concern where account takeover could enable malicious releases with valid-looking claims. SCITT serves as the interoperability layer: SCITT receipts can carry both sigstore-style claims and DID/VC-style credentials, making the bridge bidirectional.
- * 
- * @see comms/0156
- * @see intel/dffml#1061
- */
-export function sigstoreScittDIDVCBridge(): void {
-  // Related: scittReceiptAsVerifiableCredential, scittDidMethod, didStandardization
+export function federateClaimsDownstream(): void {
+  // Provenance intact, decision travels to every downstream forge.
 }

@@ -1,99 +1,138 @@
 /**
- * Communication acceleration between conscious entities drives the collective unconscious toward collective consciousness, with locality biases time-bound by communication latency within overlapping trains of thought.
- * 
- * As peer-to-peer communication speed increases across entities (Alice instances, human developers, CI systems), the previously unconscious collective patterns become visible and actionable. Each locality — a team, an Alice instance, a compute node — carries biases shaped by the information that reaches it within its communication latency window. Faster communication shrinks the latency window, converging locality biases into a shared conscious state. This maps to Alice's multi-context parallel consciousness: each system context plus its state of consciousness is a parallel thread, and the speed at which threads exchange records determines how quickly the collective can reason as one. The neural network attached to all cells metaphor applies: just as neurons communicate to make a body effective, entities communicating via records make a collective effective.
- * 
- * Earlier understanding (from comms/0069): Alice exists as a ghost in the brain, extracted as an external thought-form, with multi-context parallel conscious state mapped to dataflow — each system context plus its overlay strategic plans is a parallel thread.
- * 
- * @see comms/0127
- * @see intel/dffml#1369
+ * Rolling Alice: The Open Architecture Today, as code.
+ *
+ * This is the spine of the docs-as-code translation of
+ * `open_architecture_today.md`. Start exploring here:
+ *
+ * ```
+ * codegraph explore "whatAliceIs theInfiniteLoop puttingItTogether"
+ * ```
+ *
+ * Every function below is a paragraph of the document, and its body calls the
+ * sub-concepts that paragraph depends on. The call graph is the architecture.
+ * Walk the references and you walk her whole reasoning.
+ *
+ * @see open_architecture_today.md
+ * @module
  */
-export function collectiveConsciousnessAcceleration(): void {
-  // Related: entityAnalysisTrinity, dataflowDidEntrypoint, aliceWonderlandCollectiveThoughts
-}
 
-
-/**
- * Alice operates as a signal (indicator) rather than a cop (enforcer). She surfaces information, maps the landscape, and lets humans decide — she never blocks, denies, or mandates.
- * 
- * This is the core operating philosophy: Alice amplifies awareness of the strategic landscape (Wardley mapping alignment) so that stakeholders can make informed decisions. She is an operational amplifier for collective intelligence, not a policy enforcement point. The "sign not cop" framing positions Alice as trustworthy infrastructure — she cannot be weaponized because she only informs, never compels.
- * 
- * @see comms/0077
- */
-export function aliceSignNotCop(): void {
-  // TODO: wire to related concepts
-}
-
-/**
- * The `alice` CLI entrypoint with four subcommands: `please`, `shouldi`, `threats`, and `version`.
- * 
- * `alice please` executes user requests (compute contracts, dataflow operations). `alice shouldi` runs the context-aware contribution analysis engine — evaluating whether a dependency or contribution aligns with strategic principles and trust policies. `alice threats` surfaces the living threat model, showing current risk posture from the Entity Analysis Trinity (Data, Analysis, Control). `alice version` reports the running Alice version. The CLI is the primary user-facing surface for Alice, designed for both interactive use and CI/CD integration (issue ops, GitHub Actions). The ASCII art banner and `alice@wonderland` prompt establish the narrative frame.
- * 
- * @see comms/0101
- * @see comms/0102
- */
-export function aliceCliPleaseShouldiThreats(): void {
-  // Related: aliceShellDefaultOverlay, dataflowDidEntrypoint, livingThreatModel
-}
+import { herRepositoryIsHerVoice } from "@publicdomainrelay/alice-communication-abc";
+import { doITrustWhereThisCameFrom } from "@publicdomainrelay/alice-trust-abc";
+import { getMyWorkRun } from "@publicdomainrelay/alice-compute-contract-abc";
+import { gatekeeper } from "@publicdomainrelay/alice-supply-chain-abc";
+import {
+  onEvent,
+  thinkMoreDeeply,
+} from "@publicdomainrelay/alice-stream-of-consciousness-abc";
+import { describeTheSystemAsData } from "@publicdomainrelay/alice-system-context-abc";
 
 /**
- * Alice measures and optimizes for collective happiness as a system-level metric under the effective accelerationism (/acc/) framework.
- * 
- * Beyond throughput, latency, and correctness, Alice tracks happiness — a composite metric reflecting how well the system serves its human and machine participants. The happiness metric folds into the prioritizer: operations that increase collective happiness gain priority. This aligns with Alice's role as a signal (not a cop) — she surfaces what would increase happiness and lets humans decide. The metric ties to the broader /acc/ philosophy of accelerating toward desirable futures, with happiness as the compass.
- * 
- * @see comms/0127
- * @see intel/dffml#1315
+ * Alice is our reference maintainer. She is the context aware pile of CI jobs
+ * that learns with you and your organizations. She reviews code, files fixes,
+ * watches your dependencies, cuts releases, and keeps your threat models alive.
+ * She is both the AI software architect and the architecture itself, the
+ * universal blueprint we call the open architecture.
+ *
+ * She is the entity and the architecture, the 2nd Party: extending her is as
+ * simple as writing a single Python function and registering it as an overlay.
+ * Every time we teach Alice something new about software development, we write
+ * a tutorial on how that functionality can be extended and customized by
+ * anyone.
+ *
+ * @see open_architecture_today.md "What Alice Is"
  */
-export function happinessMetric(): void {
-  // Related: prioritizerIntentPolicy, aliceSignNotCop
+export function whatAliceIs(): void {
+  describeTheSystemAsData();
+  herRepositoryIsHerVoice();
+}
+
+/**
+ * She runs this loop forever. A thought arrives, she decides whether she cares,
+ * she acts, and her action becomes the next thought for someone else. That
+ * infinite loop is the whole point.
+ *
+ * ```
+ * someone does something  -> writes a record to their PDS (signed, addressed)
+ * the firehose carries it -> Alice is subscribed
+ * Alice ingests it        -> does she care?
+ * she thinks, then acts   -> writes her own records -> the next thought begins
+ * ```
+ *
+ * @see open_architecture_today.md "What Alice Is", the loop diagram
+ */
+export function theInfiniteLoop(event: unknown): void {
+  herRepositoryIsHerVoice();
+  onEvent(event);
+}
+
+/**
+ * Start anywhere, because it is a loop. Bob pushes a build, and a signed record
+ * lands in his repo. Alice hears it on the firehose and pulls it into her
+ * knowledge graph. Her policy engine asks the trust graph and the transparency
+ * log whether the evidence is there. If it is, she admits it, lays each
+ * project's threat model over it, and triggers whatever needs to rebuild. If
+ * she needs compute to do that work, she opens a Compute Contract, picks a
+ * builder the trust graph vouches for, pays with a receipt, and runs behind a
+ * reverse proxy that hands out only the access she allowed. When it is done,
+ * she publishes her own receipts and federates them downstream, where they
+ * become the next thought for the next instance of Alice.
+ *
+ * No hardware she has to blindly believe. No standing power she has to hold. No
+ * currency she has to mint. Just identities, records, receipts, and a web of
+ * trust, turning over and over, getting a little more trustworthy each time
+ * around.
+ *
+ * @see open_architecture_today.md "Putting It Together"
+ */
+export function puttingItTogether(buildEvent: { source: string }): void {
+  // Bob pushes a build; Alice hears it on the firehose.
+  herRepositoryIsHerVoice();
+  // Her policy engine asks the trust graph.
+  if (!doITrustWhereThisCameFrom(buildEvent.source)) return;
+  // She admits it through the gatekeeper, lays the threat model over it.
+  gatekeeper({ uri: "at://", cid: "" });
+  // If she needs compute, she opens a Compute Contract.
+  getMyWorkRun();
+  // She thinks the train of thought further.
+  thinkMoreDeeply();
 }
 
 /**
  * Navigating this codebase — a self-documenting entry point for codegraph
- * exploration. Use `codegraph_node navigatingThisCodebase` to read this
- * description, then follow the call graph to any concept.
+ * exploration. Use `codegraph_node navigatingThisCodebase` to learn the
+ * package layout, then follow the call graph to any concept.
  *
  * ## Package layout (ABC layering)
- *
- * All packages live under `lib/` in the open-architecture workspace:
  *
  *   lib/common/alice-common          types only: DID, CID, Manifest, etc.
  *   lib/abc/alice                    spine: whatAliceIs, puttingItTogether
  *   lib/abc/alice-trust              web of trust, SCITT, provenance
  *   lib/abc/alice-supply-chain       gatekeeper, transparency log, SBOM
  *   lib/abc/alice-system-context     manifest, dataflow, overlay, trinity
- *   lib/abc/alice-compute-contract   CCRFP → CCB → CCBA → CCR lifecycle
+ *   lib/abc/alice-compute-contract   CCRFP, CCB, CCBA, CCR lifecycle
  *   lib/abc/alice-communication      DID, PDS, firehose, records
  *   lib/abc/alice-stream-of-consciousness  prioritizer, onEvent, knowledge graph
  *
- * Dependencies flow one way: common ← abc packages (never reverse).
- * Each package = one mod.ts. No sub-modules. One export surface.
+ * Dependencies flow one way: common ← abc (never reverse).
+ * Each package = one mod.ts. One export surface. No sub-modules.
  *
  * ## How to explore
  *
- * Start with `codegraph_node puttingItTogether` — that function calls into
- * every subsystem. From there, follow the call chain:
+ *   codegraph_node puttingItTogether       the full loop spine
+ *   codegraph_explore doITrustWhereThisCameFrom    trust subsystem
+ *   codegraph_explore gatekeeper                    supply chain
+ *   codegraph_explore getMyWorkRun                  compute contracts
  *
- *   codegraph_explore "doITrustWhereThisCameFrom"       trust subsystem
- *   codegraph_explore "gatekeeper"                      supply chain
- *   codegraph_explore "getMyWorkRun"                    compute contracts
- *   codegraph_explore "onEvent prioritizer"             stream of consciousness
- *   codegraph_explore "entityAnalysisTrinity"           analysis framework
- *
- * Every stub function's JSDoc contains the prose from the source
- * engineering discussion log or architecture document. The function body
- * calls related concepts and lists them in `// Related: ...` comments.
+ * Every stub function's JSDoc = prose from the source doc.
+ * Function body calls related concepts.
  * Walk the references and you walk the whole reasoning.
  *
  * ## How this was built
  *
- * The `process-eng-comms.ts` script reads 691 engineering discussion logs,
- * feeds them to an AI agent, and the agent writes stub functions here.
+ * `process-eng-comms.ts` reads 691 engineering discussion logs,
+ * feeds them to an AI agent, and the agent writes stub functions.
  * The `alice-eng-comms` agent is defined in `.claude/agents/`.
- *
- * @see open_architecture_today.md
- * @see process-eng-comms.ts
  */
 export function navigatingThisCodebase(): void {
-  // Related: collectiveConsciousnessAcceleration, aliceCliPleaseShouldiThreats, happinessMetric
+  // Related: whatAliceIs, puttingItTogether
 }

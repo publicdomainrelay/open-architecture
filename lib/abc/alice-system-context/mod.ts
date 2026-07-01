@@ -1,239 +1,214 @@
 /**
- * AutoML hyperparameter evaluation expressed as DID-encoded dataflow operations on the manifest, issued as compute contracts through the RFP market.
- * 
- * AutoML systems (like Edison) produce PRs proposing hyperparameter configurations. Each proposal becomes a dataflow operation instance with DID-based content addressing — the hyperparameter set is hashed, the hash becomes a DID-referenced manifest entry. This encoded operation is then issued as an RFP contract: bidders evaluate the hyperparameter configuration by running the dataflow, and results (accuracy, loss, training time) flow back as receipts. The manifest serves as the immutable record of which hyperparameters were tried, by whom, and with what outcome.
- * 
- * @see comms/0063
+ * The system context: how Alice describes the system as data before she acts on
+ * it. This package is the docs-as-code translation of the "What Alice Is"
+ * section of `open_architecture_today.md` together with the deeper Open
+ * Architecture model it rests on.
+ *
+ * Read each function's doc comment as the prose; read its body as the links to
+ * the concepts that prose depends on. The call graph IS the train of thought.
+ *
+ * @see open_architecture_today.md "What Alice Is"
+ * @see arch/0009-Open-Architecture.rst
+ * @module
  */
-export function automlHyperparameterDataflowContract(): void {
-  // Related: dataflowFunctionImport, operationCodeContentAddressing, dataflowDidEntrypoint
-}
 
-
-/**
- * Encode executable code, dataflows, and software DNA into images for distribution with in-band provenance.
- * 
- * A screenshot can serve as a universal API: code rendered as syntax-highlighted images (via Satori or similar) can be pip-installed directly — `pip install "https://pbs.twimg.com/media/...png"`. The image IS the manifest, bundling operations, metadata, and overlay definitions. Lossy-encoded software DNA transmits over ad-hoc WebRTC channels with SCITT receipts encoded in-band. A container registry service endpoint can build container images or manifest images. This enables a distribution mechanism where any image hosting (Twitter CDN, container registry, IPFS) doubles as a software registry with cryptographic provenance verification via embedded JWK/OIDC identity.
- * 
- * @see comms/0065
- */
-export function imageEncodedManifest(): void {
-  // Related: dataflowFunctionImport, scittTransparencyService
-}
-
-/**
- * Distributed system context store holding the collective mass of all thoughts in existence.
- * 
- * "Wonderland" is the nickname for the totality of data in Alice-on-chain — every system context ever thought of, hypothesized, or executed. It combines web3 storage with manifests to create a decentralized, content-addressed memory. Each context links bidirectionally to original external inputs (via UCAN or similar). When a context executes, its dataflow and results are saved to the DID chain via a default input network. Strategic plans (default-overlayed dataflows) determine how contexts fork and link. Cached flows persist to backing storage, enabling replay and audit of any prior train of thought.
- * 
- * @see comms/0066
- * @see intel/dffml#1377
- */
-export function aliceWonderlandCollectiveThoughts(): void {
-  // Related: dataflowCacheExportImport, operationCodeContentAddressing
-}
+import type {
+  DataFlow,
+  EntityAnalysisTrinity,
+  Manifest,
+  Overlay,
+  SystemContext,
+} from "@publicdomainrelay/alice-common";
 
 /**
- * User-level default dataflow overlays that auto-apply to any system context based on working directory or identity.
- * 
- * Alice as a shell: like systemd units, users define overlays in `.local` or similar that activate when entering a CWD. A default input network wraps every context — when a context is thought of, hypothesized, or executed, it enters the user's context history. On process exit (via `atexit` fork or coredump), the context auto-saves to the DID chain. Inputs can have parent objects (e.g., a GitHub username input type whose operation outputs SPDX IDs). These parent chains enable automatic identity resolution and provenance linking through the default input network, which applies strategic plan overlays for forking and routing.
- * 
- * @see comms/0066
+ * Everything Alice does comes back to one habit: she describes the system as
+ * data before she acts on it. When the system is data, she can reason about it,
+ * attest to it, negotiate over it, and rebuild it. That description has three
+ * shapes you will see everywhere: a manifest, a data flow, and an overlay.
+ *
+ * @see open_architecture_today.md "What Alice Is"
  */
-export function aliceShellDefaultOverlay(): void {
-  // Related: dataflowDidEntrypoint, operationCodeContentAddressing, subflowTypecast
+export function describeTheSystemAsData(): SystemContext {
+  const upstream = theManifest();
+  const orchestrator = theDataFlow();
+  const overlays = [theOverlay()];
+  return freezeSystemContext(upstream, overlays, orchestrator);
 }
 
 /**
- * Technological changes act as cultural operational amplifiers — they make information travel faster, which amplifies whatever cultural dynamics already exist.
- * 
- * Like an electronic op-amp, a technology change (the wheel, machine learning, decentralized identity) takes a small cultural signal and amplifies it with high gain. The Wardley mapping alignment reward strategics framework captures this: strategic positioning on the value chain determines how much a given change amplifies existing cultural dynamics. Alice should model these amplification effects to predict second-order consequences of technology adoption.
- * 
- * @see comms/0077
+ * A manifest says *what*: intent plus a schema plus the data. If the data is
+ * there, she has to use it. Want her to behave differently? Hand her a
+ * different manifest.
+ *
+ * @see open_architecture_today.md "What Alice Is"
+ * @see arch/0008-Manifest.md
  */
-export function culturalOpAmpEffects(): void {
-  // TODO: wire to related concepts
+export function theManifest(): Manifest {
+  return { intent: "", schema: undefined, data: undefined };
 }
 
 /**
- * IPVM's managed effects model directly parallels DFFML's dataflow operations — effects are the input/output events between WASM compute steps.
- * 
- * IPVM (InterPlanetary Virtual Machine) wraps WASM computation with a managed effects system: impure operations (network, filesystem, I/O) are externalized as effects handled by the runtime, while WASM itself stays deterministic. This is structurally identical to Open Architecture's operation/dataflow model: effects incoming run before WASM (like input gathering), effects outgoing after (like output emission). IPVM's analysis step — reorder, derive dependency tree, overlay failure modes — maps to the Entity Analysis Trinity's static analysis + overlay pipeline. IPVM wants affinity-based scheduling ("I already have this cached, send me these effects"), which aligns with content-addressable operation caching in DFFML.
- * 
- * @see comms/0080
- * @see https://github.com/ipvm-wg/spec/pull/8
+ * A data flow says *how*: a graph of operations that consume the manifest.
+ *
+ * @see open_architecture_today.md "What Alice Is"
+ * @see concepts/dataflow.rst
  */
-export function ipvmManagedEffectsAlignment(): void {
-  // Related: entityAnalysisTrinity
+export function theDataFlow(): DataFlow {
+  return { operations: {}, links: [] };
 }
 
 /**
- * Run a dataflow not for execution but for code generation — the dataflow becomes a build specification.
- * 
- * When a dataflow is run with `target=build`, operation implementations flip roles: client-side operations become NOPs while server-side operations execute to synthesize deployable artifacts. The build dataflow takes operation input definitions and generates server code (e.g. a FastAPI app from operation input schemas). This is distinct from the runtime dataflow: build writes files (artifact outputs), deploy reads them. The orchestrator selects the appropriate implementation per operation based on deployment phase — build selects the synthesis implementation, deploy selects the packaging implementation, run selects the live implementation. This means a single dataflow definition produces both the client library and the server it talks to.
- * 
- * @see comms/0084
- * @see comms/0086
+ * An overlay says *in what context*: your policy, your deployment, your living
+ * threat model, patched on top.
+ *
+ * @see open_architecture_today.md "What Alice Is"
  */
-export function dataflowSynthesisBuildMode(): void {
-  // Related: systemContextDeployment
+export function theOverlay(): Overlay {
+  return { context: "", patch: undefined };
 }
 
 /**
- * Each operation instance has a preferred implementation per deployment method, selected at execution time by the orchestrator.
- * 
- * Operations are not monolithic — the same logical operation (e.g. "receive data") has different implementations depending on deployment phase. In build mode, the implementation synthesizes server boilerplate. In deploy mode, it packages artifacts into containers. In run mode, it connects to live services. The orchestrator selects the implementation based on config-level deployment overrides (`deployment_environment` parameter), not runtime inputs. Configs carry deployment-specific sections: build configs, deploy configs, runtime configs. This separation allows a single dataflow definition to describe the entire lifecycle — from source analysis through build through deployment — by swapping implementations at each phase.
- * 
- * @see comms/0084
+ * A system context is upstream + overlays + inputs, frozen for one execution.
+ * It is a Thought. Thinking more deeply just means running a chain of sub
+ * contexts, higher order concepts built from clusters of strategic plans
+ * analyzed across the {@link entityAnalysisTrinity}.
+ *
+ * @see open_architecture_today.md "System context"
  */
-export function deploymentSpecificOperationOverride(): void {
-  // Related: systemContextDeployment
+export function freezeSystemContext(
+  upstream: Manifest,
+  overlays: Overlay[],
+  orchestrator: DataFlow,
+): SystemContext {
+  return { upstream, overlays, orchestrator };
 }
 
 /**
- * Synthesized dataflows lose event emissions between operations; each dataflow should declare an allow list of expected events to preserve the interface contract.
- * 
- * When a dataflow is synthesized into a server, the internal event pathway (inputs flowing between operations via the orchestrator's event bus) is not automatically preserved in the generated code. To ensure the synthesized server exposes the same event interface as the original dataflow, the dataflow definition must include a declared allow list of expected event types. This allow list serves as a contract: the build step uses it to generate event emission points in the synthesized code, and the runtime uses it to validate that emitted events match expectations. Without this, the synthesis process silently drops the event graph, breaking downstream consumers that depend on those emissions.
- * 
- * @see comms/0084
+ * One instance can hypothesize a new system context and share it with another.
+ * Alice decides whether she likes the thought and what, if anything, she wants
+ * to do about it.
+ *
+ * @see open_architecture_today.md "The Stream of Consciousness"
  */
-export function dataflowEventAllowList(): void {
-  // Related: dataflowCacheExportImport
+export function hypothesizeSystemContext(): SystemContext {
+  return describeTheSystemAsData();
 }
 
 /**
- * Dataflows are composed from three independent manifests — inputs, operations, and orchestration — which combine into a single serializable RunDataFlow.
- * 
- * Each manifest serves a distinct role: the inputs manifest declares what data enters the flow, the operations manifest defines the transformation steps, and the orchestration manifest specifies how those steps are wired together and in what order. The three combine to form a RunDataFlow, which is the serializable, versionable representation of `run_dataflow` — analogous to how RunSingleConfig serializes single-operation runs. Acceptance criteria can be attached to individual operation outputs or to the combined set, allowing partial-failure tolerance. This tri-manifest split enables deployment-type-specific overrides (a deployment config can swap operation implementations per phase) and allows the same conceptual dataflow to be expressed differently for build, deploy, and run contexts.
- * 
- * @see comms/0089
- * @see intel/dffml#1061
+ * Higher order concepts built from clusters of strategic plans analyzed across
+ * the three corners of intent, static analysis, and dynamic analysis. This is
+ * the "Trinity of Static Analysis, Dynamic Analysis, and Human Intent" that
+ * allows the prioritizer to make decisions based on the spirit of the law --
+ * intent-based policy rather than rote rule matching.
+ *
+ * The trinity builds a pyramid of thought alignment to strategic principles:
+ * top-level organizational policies cascade down through the operations of
+ * each data flow, and the provenance of every inference can be traced back to
+ * which corner of the trinity produced it. One of those strategic principles
+ * is: "We must be able to trust the sources of all input data used for all
+ * model training was done from research studies with these ethical
+ * certifications."
+ *
+ * The trinity is the process of triangulation: by measuring and forming
+ * understanding across the three corners we are able to locate the strategic
+ * plans and principles involved in the execution of software as well as its
+ * development lifecycle. The trinity represents the soul of the software.
+ * Intent is measured by conformance to and completeness of the threat model
+ * and therefore also the associated Open Architecture description.
+ *
+ * Alice is at the center of the Trinity: `alice please contribute` lives in
+ * the Static Analysis corner (understanding what the code says), the Open
+ * Architecture and SCITT live in the Intent corner (what we aim to do), and
+ * the dynamic analysis corner (how the code behaves when executed) is where
+ * we observe the runtime mapping back to intent.
+ *
+ * @see open_architecture_today.md "Entity Analysis Trinity"
+ * @see dataProvenanceTracking
+ * @see prioritizer
  */
-export function triManifestArchitecture(): void {
-  // Related: deploymentSpecificOperationOverride, dataflowSynthesisBuildMode, dataflowEventAllowList
+export function entityAnalysisTrinity(): EntityAnalysisTrinity {
+  return {
+    intent: intentAnalysis(),
+    staticAnalysis: staticAnalysis(),
+    dynamicAnalysis: dynamicAnalysis(),
+  };
+}
+
+/** The intent corner: what the entity aimed to do. @see entityAnalysisTrinity */
+export function intentAnalysis(): unknown {
+  return undefined;
+}
+
+/** The static analysis corner: what the code says. @see entityAnalysisTrinity */
+export function staticAnalysis(): unknown {
+  return undefined;
+}
+
+/** The dynamic analysis corner: how the code behaves. @see entityAnalysisTrinity */
+export function dynamicAnalysis(): unknown {
+  return undefined;
 }
 
 /**
- * Overlays function as dynamic, context-aware branching points in dataflows rather than static, pre-computed patches.
- * 
- * Unlike a static overlay that simply merges operations into a dataflow, a context-aware branch overlay evaluates runtime context — working directory, user identity, deployment phase, or policy state — and selects which overlay to apply or which subflow to activate. The overlay becomes a decision node: based on context, it may branch the dataflow into different paths, apply entirely different operation sets, or route through different trust boundaries. This parallels how the subflow mechanism already accepts overlay parameters: the overlay is applied before the subflow runs, and the orchestrator for overlay application can differ from the main orchestrator. Extending this to full context-aware branching means overlays become the primary mechanism for conditional execution paths, policy-driven routing, and environment-specific dataflow mutation — all without forking the dataflow definition itself.
- * 
- * @see comms/0090
+ * Pattern: the parent flow acquires a lock on a shared resource (e.g. a git
+ * repo), then launches subflows that operate without needing to acquire their
+ * own lock. The subflows trust that the parent's lock is held for the duration
+ * of the operation, and they are free to read and write the resource without
+ * coordination. This avoids lock contention and simplifies the subflow's
+ * state machine.
+ *
+ * Each subflow receives just the context it needs from the parent -- a
+ * reference to the locked resource, never a new handle. When all subflows
+ * complete, the parent releases the lock.
+ *
+ * @see open_architecture_today.md "What Alice Is"
  */
-export function overlayDynamicBranching(): void {
-  // Related: sandboxingPolicyOverlay, aliceShellDefaultOverlay, subflowLockTaken
+export function subflowWithLockTaken(): void {
+  // Parent flow locks, subflows operate without acquiring own lock.
 }
 
 /**
- * The operation name encodes the installation method — knowing the operation name tells you how to install the thing that provides it.
- * 
- * In the manifest-as-dataflow model, an operation instance is not just a computation step but also a declaration of dependencies. The operation name functions as a package specifier: to install the implementation of an operation is to invoke the operation name through the dataflow's input network. This means a dataflow manifest doubles as an installation manifest — running the dataflow in "install mode" resolves operation implementations, fetches dependencies, and provisions the environment. Deployment-type overrides select which implementation to install per environment. The operation name thus serves as a content-addressed, reproducible installation instruction that works across Python packages, containers, and system services.
- * 
- * @see comms/0089
- * @see intel/dffml#1061
+ * Subflow typecast: the type-safe pattern for executing one system context as
+ * a sub-operation of another. The parent flow calls `dffml.run()` (or the
+ * `subflow_typecast` helper) with the child's dataflow and inputs, and the
+ * child runs within the parent's lock scope.
+ *
+ * This evolved from the earlier `run_custom` pattern where the parent
+ * manually created a child org and copied inputs. The typecast helper
+ * automates: (1) creating a child orchestrator context from the parent's
+ * current operation implementation context, (2) copying inputs from the
+ * parent into the child while preserving their origins, and (3) running the
+ * child dataflow and returning its outputs typed to the expected definition.
+ *
+ * Lock annotations on definitions (`LockReadWrite[T]`) signal to the
+ * orchestrator that operations on that definition must be serialized,
+ * preventing concurrent subflows from corrupting shared state.
+ *
+ * @see subflowWithLockTaken
+ * @see open_architecture_today.md "What Alice Is"
  */
-export function operationAsInstallPath(): void {
-  // Related: operationCodeContentAddressing, deploymentSpecificOperationOverride
+export function subflowTypecast(): void {
+  // dffml.run() / dffml.subflow_typecast helper.
+  // Automates child context creation, input copying, type-safe output return.
 }
 
 /**
- * Unify Record, DataFlow, and SystemContext at the data model level for cohesive context capture with unbroken chains across both data and compute.
- * 
- * Currently Record, DataFlow, and SystemContext exist as separate abstractions. This concept proposes unifying them so a Record's feature data retains DataFlow Input type information, enabling graph traversal with one-link-deep resolution via DID, CID, or Open Architecture references. The unification, combined with UCANs, DIDs, IPVM, and on-chain references, produces cleaner, more consistent context capture. Record feature data should serialize only the latest system context (state of the art for a train of thought), with "state of the art" definable by any set of strategic plans. This also requires `source.update()` to support a serialization mode that preserves the train of thought rather than merging over old data.
- * 
- * @see comms/0100
- * @see intel/dffml#1418
- * @see intel/dffml#1425
+ * An operation declares whether its input network context is reused from the
+ * top-level system context or isolated. This trust boundary property is
+ * critical for static analysis: when the operation data structure does not
+ * allowlist a usage of a context, it must be passed to a subflow for reuse
+ * rather than consumed directly.
+ *
+ * For example, an ELF binary does not reuse its parent's input network context
+ * (it lacks access to the parent's memory region), while Python code running
+ * in the same process does reuse the parent's input network context (it has
+ * access to that memory region). The same format describes trust boundary
+ * properties across all domain-specific representations of architecture.
+ *
+ * @see open_architecture_today.md "What Alice Is"
+ * @see subflowWithLockTaken
  */
-export function recordDataFlowUnification(): void {
-  // Related: dataflowSynthesisBuildMode, dataflowCacheExportImport, knowledgeGraphProvenance
-}
-
-/**
- * System context completeness requires temporal simultaneity: past, present, and future must exist together for any to exist at all.
- * 
- * Referencing the White Queen's rule from Through the Looking-Glass — "jam yesterday, jam tomorrow, never jam today" — this concept breaks the rule: there MUST be jam today. When system context is completely described, each angle of the Entity Analysis Trinity folds into the others. If one angle is absent, describing the system at all causes a cascading effect that brings the others into existence. For there to be a tomorrow, there must be a today. This temporal completeness is exploited in Vol 3 Attack 2: the arbitrage between time-deltas on data becomes the attack surface. The defense is the same principle applied constructively — fully describing system context across all three Trinity angles (Data, Analysis, Control) in the present moment eliminates the temporal gaps attackers exploit.
- * 
- * @see comms/0102
- */
-export function jamTodaySystemContext(): void {
-  // Related: entityAnalysisTrinity, trinityTriangulation, thoughtArbitrage
-}
-
-/**
- * Execute Alice (Python/Dffml) in the browser via Pyodide/WASM with manifest passing for trampoline encoding.
- * 
- * The WebUI discussion advances Alice's browser runtime: Pyodide loads Python into WASM, and manifests (IPVM, DataFlow, or hash-validated stringified forms) are passed into the WASM context for execution. The manifest serves as both the program and the verification artifact — a hash-validated manifest ensures the WASM runtime executes the intended computation. This enables browser-based Alice instances that can validate and execute dataflows without a server, using DID/CID-based Input resolution for trampoline encoding (the upstream Input is resolved to a DID or CID, then loaded into the WASM context). The pattern follows: load Pyodide → pass manifest → validate hash → execute dataflow. First steps use pyodide.org CDN; next steps integrate with inventory/knowledge graph (#1207).
- * 
- * @see comms/0102
- * @see intel/dffml#1207
- * @see intel/dffml#1300
- */
-export function pyodideWasmManifest(): void {
-  // Related: dataflowSynthesisBuildMode, operationCodeContentAddressing, dataflowDidEntrypoint
-}
-
-/**
- * Overlays with templated body content that require structured feedback input — specifically a DID, URL, or location identifying a false positive or incorrect result.
- * 
- * When Alice applies an overlay whose body carries a template (e.g. a security finding or policy violation), the overlay may mandate a feedback field. The user must supply a DID (who reported it), a URL (where the finding is documented), or a location (e.g. file path + line) that explains why the finding is a false positive. This makes overlay application a two-way conversation: Alice applies the overlay, and the user amends it with provenance-bearing feedback that the knowledge graph can ingest for future prioritization and trust-weight adjustments.
- * 
- * @see comms/0108
- */
-export function overlayFeedbackTemplate(): void {
-  // TODO: wire to related concepts
-}
-
-/**
- * Overlays are applied incrementally layer by layer during analysis, not all at once.
- * 
- * During system context analysis, overlays are progressively layered onto the
- * analysis pipeline — each overlay refines the understanding produced by the
- * previous one. This mirrors how the brain incrementally processes features
- * (e.g., prosopagnosia research shows facial recognition happens in stages).
- * Each overlay step adds resolution to the analysis output rather than replacing
- * it wholesale.
- * 
- * @see comms/0119
- * @see https://www.podgist.com/stuff-you-should-know/how-face-blindness-works/index.html
- */
-export function incrementalOverlayApplication(): void {
-  // TODO: wire to related concepts
-}
-
-/**
- * Synthesize dataflows from dependency trees: pipdeptree output serialized to dataflow cache dump, container build flows generated per plugin for granular diamond/pyramid pattern validation.
- * 
- * Dependency trees (via pipdeptree or equivalent) are converted into dataflow graphs where each dependency becomes an operation input. Container build flows are generated for each plugin, and test flows consume build flows as inputs (overridable via dynamic context-aware overlays for audit use cases). The synthesized dataflows are executed via Kubernetes job runners and synthesized to GitHub Actions workflows via templates, triggered by URL request webhooks. This enables granular validation of the diamond dependency pattern (single known-good path for each dep) and pyramid pattern (incremental trust building from base to tip).
- * 
- * @see comms/0137
- * @see intel/dffml#1247
- * @see intel/dffml#596
- */
-export function dataflowDependencyTreeSynthesis(): void {
-  // Related: dataflowCacheExportImport, dataflowFunctionImport, overlayDynamicBranching
-}
-
-/**
- * The dffml-operations-dep package: extract dependency information and rebuild across development environments, acting as a serializer/deserializer for the complete "works on my machine → CI → cloud → your machine" chain.
- * 
- * This package sits between pipdeptree output and dataflow execution: it extracts dependency info from Python environments (or any package ecosystem), serializes the environment state as a dataflow cache, and enables delta-based environment reconstruction. Like a VM livepatch where Alice analyzes the system context snapshot, this enables going from "it works on my machine" to "it works on your machine" by capturing and reproducing the full dependency graph. Coincidentally, this also enables learning deployment methods — the reverse fuzzer uses this data to understand which API combinations are successful, building a candidate pool for reuse. Executed locally or via Kubernetes job runner with webhook triggers.
- * 
- * @see comms/0140
- * @see intel/dffml#596
- */
-export function dependencyExtractionRebuild(): void {
-  // Related: dataflowCacheExportImport, dataflowFunctionImport, nfsCacheOverlay
-}
-
-/**
- * Auto-version schemas by tracking dataflow input dependency tree changes: bump major on input tree changes, bump minor on code/tree changes.
- * 
- * Given an OperationImplementation whose output is a target manifest data model type, schema versioning works as follows: when the dataflow operation's input dependency tree changes (upstream operations, their inputs, or the links between them), bump the major version — the schema's contract has changed. When code or implementation tree changes (the operation implementation itself), bump the minor version. A pre-commit hook or CI job validates this by comparing the current dependency tree against the last committed schema version. The target data model is generated from the manifest schema; the schema itself is the source of truth. This builds on the dependency tree analysis from "Down the Dependency Rabbit Hole Again" and "Cartographer Extraordinaire" — the same tree walking that enables FROM rebuild chains also drives schema versioning. datamodel-code-gen.py regenerates types from schema on each version bump.
- * 
- * @see comms/0157
- * @see intel/dffml#1426
- */
-export function schemaVersioningFromDataflow(): void {
-  // Related: dataflowDependencyTreeSynthesis, dependencyExtractionRebuild, dataflowSynthesisBuildMode
+export function operationTrustBoundary(): void {
+  // ictx/nctx context reuse declared in the Operation data structure.
+  // Allowlist defines which contexts an operation may consume directly.
 }

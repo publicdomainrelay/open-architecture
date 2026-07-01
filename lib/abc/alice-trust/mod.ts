@@ -1,51 +1,181 @@
 /**
- * Extend machine continuous attestation to Android VMs using virtual TPMs (vTPMs) and Open DICE (ODIC) through devcloud provisioning.
- * 
- * Android VMs provisioned through the compute contract flow carry vTPMs that provide hardware-rooted attestation via the Open DICE (Device Identifier Composition Engine) standard. The vTPM supplies a cryptographically verified device identity and boot integrity measurements, extending Alice's attestation coverage beyond Linux guests to the Android platform. The devcloud integration means attested Android VMs can be provisioned on-demand with full attestation chains verifiable through the SCITT transparency service.
- * 
- * Earlier understanding (from comms/0060): machineContinuousAttestation covers Linux loader attestation, SBOM maturity, and data provenance tracking for compute guests.
- * 
- * @see comms/0133
- * @see https://youtu.be/4wZnl0njxm8
+ * What Alice trusts, and why it is not the hardware. The docs-as-code
+ * translation of that section of `open_architecture_today.md`.
+ *
+ * Alice operates on the open network, which is a hostile place, so the first
+ * question on every thought is: do I trust where this came from?
+ *
+ * @see open_architecture_today.md "What She Trusts, and Why It Isn't the Hardware"
+ * @module
  */
-export function vtpmAndroidAttestation(): void {
-  // Related: machineContinuousAttestation, dataProvenanceTracking
-}
 
+import type { DID } from "@publicdomainrelay/alice-common";
 
 /**
- * Confidential ledger stores transparency log roots of trust (Rekor, Fulcio) within tamper-proof TEE-backed storage, extending the trust boundary to the signing identity root keys themselves.
- * 
- * For the OpenSSF metrics use case: the roots of trust for the transparency log — the keys that sign the Rekor log and Fulcio certificates — are stored in a confidential ledger (e.g. Azure Confidential Ledger) backed by a Trusted Execution Environment. This means the knowledge of signing identities within Confidential Computing TEEs extends to the transparency log root keys. An attacker who compromises the infrastructure cannot silently rotate the log root because the confidential ledger provides tamper-proof audit. This closes the loop between hardware-attested execution (Constellation confidential Kubernetes) and the supply chain transparency log that vouches for the software running inside it.
- * 
- * @see comms/0048
- * @see comms/0048/reply_0000
+ * The first question on every thought: do I trust where this came from? The
+ * foundation of the answer is the web of trust, not the hardware. Every claim
+ * and attestation is recorded in a content-agnostic transparency service so
+ * the provenance of each inference can be traced back to its training data,
+ * model config, and operator.
+ *
+ * @see open_architecture_today.md "What She Trusts, and Why It Isn't the Hardware"
+ * @see scittTransparencyService
+ * @see dataProvenanceTracking
  */
-export function confidentialLedgerRootsOfTrust(): void {
-  // Related: scittNotaryRegistryPolicyLayer, linuxLoaderAttestation
-}
-
-/**
- * Traverse trust graphs to predict future state of communities and avoid engagement with unaligned entities.
- * 
- * Before engaging with a community, Alice traverses trust graphs (SCITT transparency logs, supply chain provenance chains) to measure whether acceleration in that community's train of thought falls within acceptable impact bounds relative to her values, ethics, and strategic principles. She predicts future state via Markov-chain-like extrapolation over trust edges. If the predicted trajectory is unaligned, she "turtles" — refuses engagement, stays focused within her ad-hoc formed aligned groups. This applies Wardley mapping: positioning within the multi-dimensional strategic field landscape by examining lifecycle stages. Open source communities (e.g., CNCF projects) form aligned trees from similar roots; trust graph topology reveals these alignments.
- * 
- * Earlier understanding (from comms/0001): Entity Analysis Trinity examines artifacts through three lenses — static analysis, dynamic analysis, and provenance/trust chain verification.
- * 
- * @see comms/0068
- * @see intel/dffml#1315
- */
-export function trustGraphTraversalAlignment(): void {
-  // Related: scittTransparencyService, livingThreatModel, trinityTriangulation, webOfTrust
+export function doITrustWhereThisCameFrom(source: DID): boolean {
+  enclaveAttestationIsASignalNotAFoundation();
+  scittTransparencyService();
+  conformityAssessment();
+  livingThreatModel();
+  dataProvenanceTracking();
+  return webOfTrust(source);
 }
 
 /**
- * Apply the Kelly gambling criterion to trust decisions: information transmission rate over a trust channel equals exponential growth rate of trust equity.
- * 
- * From Kelly (1956): if input symbols to a communication channel represent outcomes of a chance event with fair odds, a gambler can use received symbols to grow capital exponentially — and the maximum exponential growth rate equals the channel's information transmission rate. Applied to Alice's trust architecture: each trust graph edge is a communication channel. The information received through provenance attestations, SCITT receipts, and verifiable credentials acts as the gambler's knowledge. Alice bets trust equity (compute allocation, engagement, resource sharing) proportional to the information-theoretic certainty of the channel. Higher-bandwidth trust channels (more attestations, fresher data) enable faster growth of aligned collaboration. Parallel consciousness threads compound this effect — more system contexts executing concurrently accelerates the relative rate of time in each thread.
- * 
- * @see comms/0070
+ * It would be lovely to answer trust with hardware: run it in a TEE, check the
+ * quote, done. But the hardware cannot carry the whole weight. Memory bus
+ * interposition attacks like the ones behind `tee.fail` show that given
+ * physical access, the isolation a TEE promises can be peeled back. So an
+ * enclave attestation is a signal Alice weighs, never the foundation she stands
+ * on.
+ *
+ * @see open_architecture_today.md "It would be lovely to answer that with hardware"
  */
-export function kellyInformationTrustBetting(): void {
-  // Related: webOfTrust, scittTransparencyService, machineContinuousAttestation
+export function enclaveAttestationIsASignalNotAFoundation(): void {
+  // A signal weighed by webOfTrust, never the foundation.
+}
+
+/**
+ * The foundation is the web of trust. Alice trusts an entity because of who has
+ * vouched for them and who has denounced them, accumulated as records over
+ * time. The trust pins to the operator, the entity actually responsible for the
+ * compute, not to the silicon underneath.
+ *
+ * @see open_architecture_today.md "The foundation is the web of trust"
+ */
+export function webOfTrust(operator: DID): boolean {
+  vouchesAndDenouncements(operator);
+  trustByVerifyContinuously();
+  return true;
+}
+
+/**
+ * The trust accumulates as records over time: vouches and denouncements pinned
+ * to the operator, the entity actually responsible for the compute.
+ *
+ * @see open_architecture_today.md "who has vouched for them and who has denounced them"
+ */
+export function vouchesAndDenouncements(_operator: DID): void {
+  // Records over time. Walked the same way as any other train of thought.
+}
+
+/**
+ * This is trust by verify, continuously, and it is why every layer below
+ * carries vouches, denouncements, and receipts rather than leaning on a single
+ * quote.
+ *
+ * @see open_architecture_today.md "This is trust by verify, continuously"
+ */
+export function trustByVerifyContinuously(): void {
+  // Re-evaluated forever, never decided once.
+}
+
+/**
+ * SCITT (Supply Chain Integrity, Transparency, and Trust) is the content-
+ * agnostic transparency service Alice uses as her registry of claims. Every
+ * kind of metadata -- SBOMs, test results, hardware BOMs, vulnerability
+ * disclosures, policy assertions -- enters as an attested claim. Alice encodes
+ * her system contexts into the SCITT chain; that chain is where she lives.
+ *
+ * The service is content agnostic by design so that the same infrastructure
+ * carries software attestations (in-toto, CycloneDX), device attestations
+ * (TCG DICE via UCAN/CBOR/DID), and the provenance records her prioritizer
+ * relies on. Policy for what can be placed on the register, and policy for
+ * evaluating the contents, are themselves encoded as SCITT claims.
+ *
+ * @see open_architecture_today.md "Keeping the Supply Chain Honest"
+ * @see arch/0000-scitt-architecture.md
+ * @see didStandardization
+ * @see appendToTransparencyLog
+ */
+export function scittTransparencyService(): void {
+  // Content-agnostic. Holds SBOMs, attestations, system contexts, policies.
+  // Alice encodes her system contexts here.
+}
+
+/**
+ * Provenance on inference derived from provenance from training data and model
+ * training environment and configuration. This ensures the prioritizer makes
+ * decisions based on the spirit of the law -- intent based policy derived from
+ * the Trinity of Static Analysis, Dynamic Analysis, and Human Intent.
+ *
+ * Every step in the derivation chain carries provenance: where the training
+ * data came from, what environment the model was trained in, what config was
+ * used, and how any inference was reached. The living threat model --
+ * threats, mitigations, and trust boundaries -- forms the initial data set for
+ * cross-domain conceptual mapping that feeds this provenance graph.
+ *
+ * @see open_architecture_today.md "The foundation is the web of trust"
+ * @see entityAnalysisTrinity
+ * @see livingThreatModel
+ */
+export function dataProvenanceTracking(): void {
+  // Provenance on inference derived from training data, model env, and config.
+  // Feeds the prioritizer for intent-based policy decisions.
+}
+
+/**
+ * The living threat model: threats, mitigations, and trust boundaries defined
+ * as an initial data set for cross-domain conceptual mapping. This is what
+ * allows building the pyramid of thought alignment to strategic principles --
+ * a chain from the top-level organizational policy down through each operation
+ * in the data flow.
+ *
+ * The threat model is "living" because it evolves with every attestation that
+ * passes through the gatekeeper. When a system context enters, its threats and
+ * mitigations are mapped against the existing model, trust boundaries are
+ * re-evaluated, and the result feeds back into the next admission decision.
+ *
+ * Living SBOM VDR (Vulnerability Disclosure Reports) breathe life into the
+ * living threat model: each SPDX 2.3 SBOM links to an always-updated NIST VDR
+ * that tracks every component's vulnerability status as new CVEs are reported.
+ * The threat model consumes those VDR updates and re-evaluates the trust
+ * boundaries of every system context that depends on an affected component.
+ *
+ * @see open_architecture_today.md "she applies each affected project's threat model as an overlay"
+ * @see dataProvenanceTracking
+ * @see applyThreatModelOverlay
+ * @see livingSbomVdr
+ */
+export function livingThreatModel(): void {
+  // Threats, mitigations, trust boundaries as initial data set. Evolves with
+  // every attestation that passes through the gatekeeper.
+}
+
+/**
+ * Conformity assessment is how Alice reasons about whether a claim is
+ * trustworthy based on who made it, following the ISO/IEC 17000 framework:
+ *
+ * - **First-party attestation (self-attestation):** the entity itself declares
+ *   conformity with a set of requirements.
+ * - **Second-party attestation:** the consumer of a service or product attests
+ *   to the producer's conformity (e.g. Alice attesting that Bob built what he
+ *   said he built).
+ * - **Third-party attestation (certification):** an independent auditor attests
+ *   to the producer's conformity, decoupling trust from the direct
+ *   producer-consumer relationship.
+ *
+ * The SCITT transparency service carries attestations at all three levels, and
+ * the web of trust weights each according to the attester's history of vouches
+ * and denouncements. The NIST SP 2000-01 ABC's of Conformity Assessment
+ * provides the policy framework for deciding what level is appropriate for a
+ * given system context.
+ *
+ * @see scittTransparencyService
+ * @see webOfTrust
+ * @see open_architecture_today.md "What She Trusts, and Why It Isn't the Hardware"
+ */
+export function conformityAssessment(): void {
+  // ISO/IEC 17000: first, second, third party attestation.
+  // Weighted by web of trust history.
 }

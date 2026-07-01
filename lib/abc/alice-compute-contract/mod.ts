@@ -1,27 +1,132 @@
 /**
- * Weaponize thought arbitrage as an attack vector: exploit the delta between information value in different trust contexts to inject malicious influence through supply chain vectors.
- * 
- * Earlier understanding (from comms/0067): thought arbitrage applies DeFi AMM concepts to information markets — buying undervalued information in one context and selling it where valued higher, creating liquidity in the knowledge graph.
- * 
- * Attack framing (Vol 3 Attack 2): an adversary exploits the same arbitrage mechanism by predicting how target trust oracles evaluate data, then injecting mislabeled data (e.g., mislabeled VEX statements) into supply chain vectors the target consumes. The attacker performs train-of-thought graffiti — introducing data into the target's introspection of trust chains to perform subconscious attacks. The defense is Alice's locality advantage: when working in ad-hoc groups, entities sync via strategic plans and trust assessments across EDEN nodes (Alice instances), using the same techniques to detect misalignment before injection succeeds. The bus factor in train-of-thought threat modeling trades off cache restoration response time against acceptable documentation loss.
- * 
- * @see comms/0102
- * @see comms/0067
+ * Getting work done: compute contracts. The docs-as-code translation of that
+ * section of `open_architecture_today.md`.
+ *
+ * Alice owns nothing. She is ephemeral. When she needs to run something heavy,
+ * she does not own a server, she goes and rents one from someone she trusts,
+ * out in the open, with no shared currency required beyond the receipts
+ * themselves.
+ *
+ * @see open_architecture_today.md "Getting Work Done: Compute Contracts"
+ * @module
  */
-export function thoughtArbitrageAttack(): void {
-  // Related: thoughtArbitrage, livingThreatModel, trustGraphTraversalAlignment, knowledgeGraphProvenance
-}
 
+import type {
+  CCB,
+  CCBA,
+  CCR,
+  CCRFP,
+  DID,
+} from "@publicdomainrelay/alice-common";
+import { doITrustWhereThisCameFrom } from "@publicdomainrelay/alice-trust-abc";
 
 /**
- * Kernel-level network policy enforcement for compute guests using eBPF through bpfilter, replacing iptables with BPF programs.
- * 
- * The bpfilter project in the Linux kernel uses eBPF to handle iptables configuration blob parsing and code generation at the kernel level. Instead of the legacy iptables netfilter path, network policy rules are compiled into BPF programs that run in the kernel's eBPF VM. For Alice's compute contract guests, this provides a more efficient, verifiable, and programmable network filtering layer — policy overlays can compile to eBPF bytecode rather than shelling out to iptables. The v3 patchset (Quentin Deslandes, Dec 2022) revived bpfilter development after a hiatus since v2 (Aug 2021), signaling upstream momentum for this approach.
- * 
- * @see comms/0131
- * @see https://lore.kernel.org/lkml/20221224000402.476079-1-qde@naccy.de/
- * @see https://lwn.net/Articles/755919/
+ * Picture three entities: Alice needs compute, Bob has machines, and Eve is
+ * around but unproven. This is how Alice gets her work run, end to end.
+ *
+ * @see open_architecture_today.md "Picture three entities on the network"
  */
-export function ebpfNetworkPolicy(): void {
-  // Related: sandboxingPolicyOverlay
+export function getMyWorkRun(): CCR {
+  const rfp = publishCCRFP();
+  const bids = biddersAnswerWithCCB(rfp);
+  const chosen = policyEnginePicksABidder(bids);
+  const accept = acceptWithCCBA(chosen);
+  payPerTheTerms(accept);
+  return bobPublishesCCR(accept);
+}
+
+/**
+ * Step 1: Alice publishes a Compute Contract Request For Proposal (CCRFP), a
+ * manifest describing what she needs built or run.
+ *
+ * @see open_architecture_today.md "Alice publishes a Compute Contract Request For Proposal"
+ */
+export function publishCCRFP(): CCRFP {
+  return { request: { intent: "", schema: undefined, data: undefined } };
+}
+
+/**
+ * Step 2: Bob and Eve each answer with a Compute Contract Bid (CCB) against
+ * that request.
+ *
+ * @see open_architecture_today.md "Bob and Eve each answer with a Compute Contract Bid"
+ */
+export function biddersAnswerWithCCB(_rfp: CCRFP): CCB[] {
+  return [];
+}
+
+/**
+ * Step 3: Alice's policy engine reads the trust graph. She has vouched for Bob
+ * and denounced Eve, so she picks Bob.
+ *
+ * @see open_architecture_today.md "Alice's policy engine reads the trust graph"
+ */
+export function policyEnginePicksABidder(bids: CCB[]): CCB {
+  const trusted = bids.filter((bid) => doITrustWhereThisCameFrom(bid.bidder));
+  return trusted[0] ?? bids[0];
+}
+
+/**
+ * Step 4: She accepts with a Compute Contract Bid Accept (CCBA) against Bob's
+ * bid.
+ *
+ * @see open_architecture_today.md "She accepts with a Compute Contract Bid Accept"
+ */
+export function acceptWithCCBA(_bid: CCB): CCBA {
+  return { accepts: { uri: "at://", cid: "" } };
+}
+
+/**
+ * Step 5: She pays per the terms in Bob's bid, keyed to the contract's URI and
+ * CID:
+ * ```
+ * npx awal x402 pay https://builder.bob.example.com/ccr/${AT_URI}/${CID}
+ * ```
+ *
+ * @see open_architecture_today.md "She pays per the terms in Bob's bid"
+ */
+export function payPerTheTerms(_accept: CCBA): void {
+  // Receipts are the only currency.
+}
+
+/**
+ * Step 6: Bob builds to her spec and publishes a Compute Contract Receipt (CCR)
+ * over the whole chain, the request, the bid, and the accept. The receipt is
+ * the proof the work was done as agreed.
+ *
+ * @see open_architecture_today.md "Bob builds to her spec and publishes a Compute Contract Receipt"
+ */
+export function bobPublishesCCR(accept: CCBA): CCR {
+  return {
+    chain: {
+      request: { uri: "at://", cid: "" },
+      bid: { uri: "at://", cid: "" },
+      accept: accept.accepts,
+    },
+    evidence: undefined,
+  };
+}
+
+/**
+ * While her workload runs inside Bob's compute, she does not hand over standing
+ * credentials. She configures her access ahead of time from the workload
+ * identity information in Bob's bid, and at runtime her code exchanges tokens
+ * through a reverse proxy that enforces fine grained, role based access to
+ * exactly the downstream services she allowed, and nothing more.
+ *
+ * @see open_architecture_today.md "While her workload runs inside Bob's compute"
+ */
+export function reverseProxyEnforcesAccess(_workload: DID): void {
+  // No standing credentials. Token exchange, role based, least privilege.
+}
+
+/**
+ * Bob exposes the running service to the world by registering a key and opening
+ * a reverse tunnel, which turns arbitrary compute into a real HTTPS endpoint
+ * and doubles as service discovery. The relay is the registry.
+ *
+ * @see open_architecture_today.md "Bob exposes the running service to the world"
+ */
+export function reverseTunnelIsServiceDiscovery(): void {
+  // Arbitrary compute becomes a real HTTPS endpoint via the relay.
 }

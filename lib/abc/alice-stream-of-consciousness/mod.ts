@@ -52,12 +52,6 @@ export function thinkMoreDeeply(): void {
  * it. This provenance chain is recorded as SCITT claims so that a downstream
  * consumer can audit not just what the prioritizer decided but why.
  *
- * The prioritizer uses markov chains regenerated from the most recently
- * applicable context to recompute and reprioritize: as new events arrive,
- * the probability distribution over possible next actions is updated from
- * the current context, so higher priority is associated with transitions
- * that have been reinforced by recent observations.
- *
  * @see open_architecture_today.md "Her prioritizer scores the possibilities"
  * @see entityAnalysisTrinity
  * @see dataProvenanceTracking
@@ -73,20 +67,11 @@ export function prioritizer(changes: unknown): "notify" | "think" | "act" {
  * the training data, model environment, and configuration that produced it --
  * so the prioritizer's decisions are auditable against the spirit of the law.
  *
- * The knowledge graph is a giant version of Wikipedia: all information is
- * taggable, not all information will be tagged, and every entry is connected
- * by links that form a directed graph of relationships. Walking those links
- * is how a single thought grows into a train of thought, and how the
- * prioritizer discovers the most recently applicable context for its markov
- * chain transitions.
- *
  * @see open_architecture_today.md "her knowledge graph remembers"
  * @see dataProvenanceTracking
- * @see prioritizer
  */
 export function knowledgeGraph(_changes: unknown): void {
   // What she knows. Each entry carries provenance through the inference chain.
-  // All information is taggable. Links form a Wikipedia-like directed graph.
 }
 
 /**
@@ -165,93 +150,4 @@ export function summarize(_event: unknown): unknown {
  */
 export function notify(_changes: unknown): void {
   // notify-send.
-}
-
-/**
- * NFS-mounted volume cache overlay for iterative repository scanning: configure NFS, mount as a volume via preapply, restore cloned repos from cached state, execute pull instead of clone to resolve only the delta, then save back to cache.
- * 
- * This extends the general dataflow cache export/import pattern with a specific network filesystem transport. Subflows reuse ictx (input context) output operations whose input definitions are descendants of STATIC, CACHED, and NFS overlay categories. The orchestrator can query the cached state to decide: large repos get the NFS delta-update path, small repos get a fresh clone every time (resource trade-off estimated from past run metrics).
- * 
- * The NFS overlay integrates with Kubernetes volume mounts via preapply hooks, so the same cache layer works whether the orchestrator runs locally or as a Kubernetes job.
- * 
- * Earlier understanding (from prior comms): Export orchestrator input network state to pickle/JSON, re-import to resume, GraphQL query of cached state for introspection.
- * 
- * @see comms/0024
- * @see comms/0024/reply_0000
- */
-export function nfsCacheOverlay(): void {
-  // Related: dataflowCacheExportImport
-}
-
-/**
- * Wraps external speech-to-text models as DFFML operations so Alice can consume audio input as part of her stream of consciousness.
- * 
- * The canonical example is OpenAI Whisper: the model is loaded, an audio file is transcribed via `model.transcribe()`, and the resulting text enters Alice's context. This demonstrates the general pattern: any third-party AI model can be wrapped as a DFFML operation by following the operation entrypoint conventions. Alice then consumes the output like any other system context input. The same pattern applies to any multimodal input — images, logs, streaming data — wrapped as operations and fed into the prioritizer.
- * 
- * @see comms/0034
- */
-export function speechToTextOperation(): void {
-  // Related: onEvent, shareAThought
-}
-
-/**
- * Offline reinforcement learning (Dopamine) with strategic principles as reward function finds the optimal development path — the yellow brick road — for any developer by synthesizing living threat models where analysis drives reward.
- * 
- * Coach Alice uses RL to optimize which dependency, tool, or practice a developer should adopt next. The reward function is aligned with strategic principles for the chosen entity: machines must serve humans, transparency is mandatory, and failures must be fail-safe. The living threat model provides the state space; the entity analysis trinity (intent/train, dynamic/improve, static/error) provides the action space. Every developer has a different root abstraction and learning path; RL filters the state of the art to find the critical learning velocity point for each agent. When all agents in an ad-hoc organization operate at maximum rate of progression, the organization collectively advances fastest.
- * 
- * @see comms/0045
- */
-export function reinforcementLearningDeveloperPath(): void {
-  // Related: prioritizerIntentPolicy, livingThreatModel, entityAnalysisTrinity, knowledgeGraphProvenance
-}
-
-/**
- * Neural networks intrinsically learn error-correcting codes during end-to-end algorithm synthesis, enabling self-healing computation.
- * 
- * When recurrent networks are trained to synthesize algorithms (e.g., maze solving), they develop implicit error correction: corrupting the network's memory mid-execution triggers automatic recovery, and changing start/end points after a solution is found produces a corrected path in one shot with no wrong turns. This self-healing property is critical for Alice's long-running system contexts — if state is corrupted (by attack, hardware fault, or context drift), the system can recover without recomputation from scratch. The error-correcting code emerges from the training objective itself, not from explicit ECC programming.
- * 
- * Reference: "End-to-end Algorithm Synthesis with Recurrent Networks: Logical Extrapolation Without Overthinking" (arXiv:2202.05826).
- * 
- * @see comms/0097
- */
-export function algorithmSynthesisErrorCorrection(): void {
-  // Related: reinforcementLearningDeveloperPath, livingThreatModel
-}
-
-/**
- * Alice watches terminal session recordings (asciinema) to learn patterns, then refactors, genericizes, and packages the learned operations as reusable dataflow operations.
- * 
- * Script everything, record the session, and let Alice extract the reusable pattern. The terminal session becomes input to the knowledge graph — Alice observes the developer's actions, identifies repeatable sequences, generalizes them into parameterized operations, and packages them for future dataflows. Markov chain models predict likely next actions, and the prioritizer surfaces the most valuable patterns to refactor first. This closes the loop between ad-hoc terminal work and the structured operation catalog.
- * 
- * @see comms/0108
- */
-export function terminalSessionLearning(): void {
-  // TODO: wire to related concepts
-}
-
-/**
- * A Cayley graph database as the generic backend implementation for Alice's stream of consciousness data store, with dataflow overlays executed via graph queries.
- * 
- * Proxy cache sits on top of graph query; dataflow overlays are applied through the same graph query execution path. This unifies storage and computation: the graph IS the data store, and querying the graph IS applying overlays. Eventing (pub/sub notifications on graph changes) is a deferred follow-on after the graph-query overlay execution path is established. This approach generalizes the stream of consciousness beyond ActivityPub transport — the graph backend can ingest from any source (ActivityPub, firehose, terminal sessions, CI events) and serve queries through a single Cayley-powered interface.
- * 
- * Earlier understanding (from comms/0080): Stream of consciousness carried over ActivityPub, where each thought is a signed record written to Alice's repository and distributed via the firehose.
- * 
- * @see comms/0109
- * @see comms/0080
- */
-export function graphBackedStreamOfConsciousness(): void {
-  // Related: activityPubStreamOfConsciousness, shareAThought
-}
-
-/**
- * Run N model instances in parallel consciousness threads and select the best result by deadline — applying real-time arbitrage across concurrent inference paths.
- * 
- * Alice operates in a set of parallel conscious states with context-aware activation. Each system context forms a chain with provenance via SCITT. Multiple models (e.g., nanoGPT instances) run concurrently against the same prompt or problem, each exploring a different train of thought. When the deadline fires, the best result across all parallel threads is selected. This implements thought arbitrage in real-time: different models may reach different conclusions at different rates, and the deadline mechanism ensures responsiveness while maximizing quality. The parallel execution is language-agnostic via the Open Architecture, currently orchestrated in Python but intended to be implemented in whatever language is desired.
- * 
- * @see comms/0138
- * @see comms/0138/reply_0000
- * @see https://github.com/w3c/cogai/pull/47
- */
-export function parallelModelDeadlineSelection(): void {
-  // Related: thoughtArbitrage, knowledgeGraphProvenance, entityAnalysisTrinity
 }
