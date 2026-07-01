@@ -307,3 +307,25 @@ export function dataCentricAiTrinity(): void {
 export function dataflowAsRecordPersistence(): void {
   // Related: theDataFlow, freezeSystemContext
 }
+
+/**
+ * Data flows as parallel exploration of trains of thought, modeled as nested graphs undergoing natural selection and evolution across distinct timelines. Enables out-of-order execution at a higher level of abstraction to bring aggregate agents to equilibrium.
+ * 
+ * Each data flow is an independent train of thought exploring a problem space in parallel. Natural selection operates across these parallel explorations: flows that produce aligned results survive and propagate; flows that diverge from strategic principles are pruned. Distinct roots (timelines, trees, metric data graphs) can be joined later via DID merkle primitives, enabling the resolution of system state post haste, post state, and post date. This is the thought communication protocol: to communicate thought is to learn, and learning is the parallel exploration of nested graphs converging on strategic alignment.
+ * 
+ * @see comms/0062
+ */
+export function dataflowsParallelExploration(): void {
+  // Related: describeTheSystemAsData, theDataFlow, hypothesizeSystemContext
+}
+
+/**
+ * AutoML hyperparameter evaluation encoded as DID-identified dataflow operation manifest instances, with automated feature engineering driven by the AutoML process.
+ * 
+ * Hyperparameter sweeps from AutoML are issued as compute contracts where each evaluation point is a dataflow operation instance identified by DID. The AutoML engine then performs auto feature engineering based on the results flowing back through the manifest. This closes the loop between machine learning experimentation and the Alice compute contract system: hyperparameter tuning becomes just another dataflow to execute, with provenance tracked through the same DID/VC/SCITT infrastructure as any other operation.
+ * 
+ * @see comms/0063
+ */
+export function automlHyperparametersAsDataflow(): void {
+  // Related: describeTheSystemAsData, theDataFlow, freezeSystemContext
+}

@@ -162,3 +162,15 @@ export function notify(_changes: unknown): void {
 export function nfsRepoCacheDeltaScan(): void {
   // Related: dataflowCacheExportImport, subflowTypecast, subflowWithLockTaken
 }
+
+/**
+ * Alice as coach persona: you are what you eat. Alice examines your dependencies, traces provenance, and coaches improvement through the lens of what you consume.
+ * 
+ * The Coach Alice tutorial frames Alice as an active coach that watches your supply chain consumption — every dependency, every build artifact, every upstream change. Just as "you are what you eat" applies to human health, Alice applies it to software health: your software is only as trustworthy as what it consumes. She traces provenance through the Entity Analysis Trinity (intent, dynamic analysis, static analysis) and coaches the developer toward better dependency choices.
+ * 
+ * @see comms/0056
+ * @see intel/dffml#1334
+ */
+export function coachAlicePersona(): void {
+  // Related: onEvent, thinkMoreDeeply, softwareSupplyChainHealthMetaphor
+}

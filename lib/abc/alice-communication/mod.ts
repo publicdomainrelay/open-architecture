@@ -131,3 +131,16 @@ export function theFirehoseCarriesIt(): void {
 export function entrypointsAsSystemContextDids(): void {
   // Related: herRepositoryIsHerVoice, describeTheSystemAsData, freezeSystemContext
 }
+
+/**
+ * DID entry points refined to trigger GitHub Actions workflows via on.push.paths filtering at operation-level granularity within data flows. Workflows are advertised to the stream of consciousness and dispatched when overlays are enabled.
+ * 
+ * DID entry points serve as paths that signal which workflows should be triggered on specific events. The granularity reaches down to individual operations within data flows: a path like `did:alice:shouldi:contribute:clone_git_repo:outputs.repo` triggers a specific workflow only when that operation's output changes. Through workflow inspection, these triggers are exposed as overlays that can be advertised to the stream of consciousness. When an overlay is enabled, the corresponding workflow dispatches automatically, closing the loop from identity through event to execution.
+ * 
+ * Earlier understanding (from comms/0051): Entrypoints for dataflows and overlays are registered as DIDs in the DID method registry, where the DID key or identifier is the hash of the system context to be executed.
+ * 
+ * @see comms/0062
+ */
+export function didEntrypointWorkflowTrigger(): void {
+  // Related: entrypointsAsSystemContextDids, theFirehoseCarriesIt
+}

@@ -190,3 +190,26 @@ export function conformityAssessment(): void {
 export function machineContinuousSoul(): void {
   // Related: doITrustWhereThisCameFrom
 }
+
+/**
+ * DID merkle primitive for joining disparate roots (timelines, trees, metric data graphs) at a later time, enabling re-evaluation of inclusion, generation of new datasets, and inference across distinct trust roots.
+ * 
+ * This is a decentralized offline-capable cryptographically secured linked list primitive. It allows joining distinct timelines — different trains of thought, different data provenance chains, different trust roots — after they have diverged, without requiring them to have been synchronized at origin. This enables out-of-order execution at the aggregate level: agents explore in parallel, and their results are joined and reconciled later. The joining can trigger re-evaluation of which roots to include, generation of entirely new datasets from the merged graph, or inference across the combined provenance structure. This is the mechanism that makes the parallel exploration of data flows convergent rather than divergent.
+ * 
+ * @see comms/0062
+ */
+export function disparateRootJoining(): void {
+  // Related: walkTheReferences, doITrustWhereThisCameFrom, scittTransparencyService
+}
+
+/**
+ * Fulcio issues an ephemeral DID for each attestation, creating dynamic and swappable trust roots per BOM component. The public portion of the ephemeral DID key is exported for offline verification, enabling component-level trust mobility.
+ * 
+ * Each manifest BOM item gets its own dynamic root of trust via an ephemeral DID issued by Fulcio at attestation time. Because trust is pinned to a DID key rather than a static identifier, BOM components can be swapped by swapping the key and DID they are verified against — trust moves with the component. The DID key material can be exported and verified offline, decoupling trust verification from the live Fulcio instance. This creates a per-component trust fabric where each supply chain artifact carries its own independently verifiable attestation chain, rather than depending on a single monolithic root.
+ * 
+ * @see comms/0060
+ * @see intel/dffml#1293
+ */
+export function dynamicTrustRootsPerBom(): void {
+  // Related: scanIntoTrustAttestation, checkBillOfMaterialsAgainstLog, appendToTransparencyLog, doITrustWhereThisCameFrom
+}

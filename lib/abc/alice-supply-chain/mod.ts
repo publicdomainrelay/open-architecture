@@ -291,3 +291,14 @@ export function scittPostInstanceLabeling(): void {
 export function confidentialLedgerForTransparencyRoots(): void {
   // Related: scittTransparencyService, doITrustWhereThisCameFrom
 }
+
+/**
+ * On-demand container image builds where final layers are added statically, each layer carrying its own SBOM with provenance from sigstore. Pulls from the registry are authorized by verifiable credential, and releases receive SCITT receipts for content-addressable verifiability.
+ * 
+ * Two tiers of data storage mirror two tiers of trust: data.nahdig.com serves data with suspect provenance (best-effort, assume VM compromise), while data.chadig.com serves only data with verified provenance and hardening. Compute contracts can be issued by having the registry pull authed by verifiable credential, closing the loop between supply chain integrity and compute provisioning. The registry releases are content-addressable and verifiable with SCITT receipts, enabling revocation or key rotation when needed.
+ * 
+ * @see comms/0057
+ */
+export function containerRegistryOnDemand(): void {
+  // Related: scittTransparencyService, livingSbomVdr, scanIntoTrustAttestation, appendToTransparencyLog
+}

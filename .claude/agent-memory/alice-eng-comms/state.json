@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 55,
+  "lastProcessedComm": 63,
   "processedComms": [
     0,
     1,
@@ -56,7 +56,15 @@
     52,
     53,
     54,
-    55
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -316,7 +324,7 @@
     "entrypointsAsSystemContextDids": {
       "functionName": "entrypointsAsSystemContextDids",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 55,
+      "lastUpdatedComm": 63,
       "sourceIssues": [],
       "summary": "System context hashes as DID keys for dataflow and overlay entrypoints"
     },
@@ -326,6 +334,55 @@
       "lastUpdatedComm": 55,
       "sourceIssues": [],
       "summary": "Headless scale-to-zero GitHub Actions runner via systemd on Wolfi partition"
+    },
+    "coachAlicePersona": {
+      "functionName": "coachAlicePersona",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "Alice as coach examining your dependencies (you are what you EAT)"
+    },
+    "containerRegistryOnDemand": {
+      "functionName": "containerRegistryOnDemand",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "On-demand container builds with SBOM-per-layer provenance and VC-auth registry pulls"
+    },
+    "dataflowsParallelExploration": {
+      "functionName": "dataflowsParallelExploration",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "Data flows as parallel nested graph exploration with natural selection across timelines"
+    },
+    "automlHyperparametersAsDataflow": {
+      "functionName": "automlHyperparametersAsDataflow",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "AutoML hyperparameter evaluation as DID-encoded dataflow manifest instances"
+    },
+    "disparateRootJoining": {
+      "functionName": "disparateRootJoining",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "DID merkle primitive for joining distinct trust roots/timelines at later time"
+    },
+    "dynamicTrustRootsPerBom": {
+      "functionName": "dynamicTrustRootsPerBom",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "Ephemeral DID per attestation creates swappable trust roots per BOM component"
+    },
+    "didEntrypointWorkflowTrigger": {
+      "functionName": "didEntrypointWorkflowTrigger",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 63,
+      "sourceIssues": [],
+      "summary": "DID entry points refined with GitHub Actions workflow trigger paths at operation granularity"
     }
   },
   "issueCache": {
@@ -417,6 +474,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 38,
+  "totalStubsCreated": 45,
   "totalIssuesFetched": 9
 }
