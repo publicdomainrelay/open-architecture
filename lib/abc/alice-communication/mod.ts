@@ -300,3 +300,18 @@ export function federatedForgeComputeDeduplication(): void {
 export function webcryptoActivityPubServerAuth(): void {
   // Related: oidcSelfIssuedEdge, websubActivityPubThoughtSharing
 }
+
+/**
+ * Standardize CI/CD system interoperability using the CDEvents protocol (CDF SIG Events) over CloudEvents, mapping low-level pipeline events to high-level abstractions (Change, Build, Deployment, etc.).
+ * 
+ * Tekton can already emit CloudEvents but in a Tekton-specific format. CDEvents provides a vendor-neutral vocabulary so heterogeneous CI/CD systems — Tekton, Jenkins, Spinnaker — interoperate on a shared event bus. Tekton Tasks and Pipelines (low-level) are annotated to identify which high-level CDEvent they represent. A dedicated controller emits the standardized events, enabling DevOps engineers to collect metrics and trigger cross-system workflows without per-tool integration.
+ * 
+ * Earlier understanding (from federatedCiCdEventSpace): use ActivityPub/ActivityStreams as the single protocol for container image events and supply chain attestation events.
+ * 
+ * @see comms/0236
+ * @see https://github.com/tektoncd/community/issues/435
+ * @see https://cdevents.dev
+ */
+export function cdeventsCiCdInterop(): void {
+  // Related: federatedCiCdEventSpace, activityPubOverGrpc, federatedSseActivityPub
+}
