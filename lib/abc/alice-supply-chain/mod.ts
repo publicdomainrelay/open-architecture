@@ -392,3 +392,16 @@ export function csafVexFramework(): void {
 export function shouldiContributeDetailedFlow(): void {
   // Related: shouldiContributeOverlayPipeline, gatekeeper, entityAnalysisTrinity
 }
+
+/**
+ * Webhook-triggered service that checks a project's dependency tree on incoming webhooks and dispatches downstream validation to all dependent projects.
+ * 
+ * When a dependency publishes a change (new release, vulnerability fix, source update), the webhook service walks the dependency graph to find every project that depends on it, then triggers validation pipelines for each downstream consumer. This creates a reactive supply chain where changes propagate validation automatically — a push-based alternative to periodic scanning. The service forms the event-driven backbone of the shouldi contribute pipeline: an upstream change fires a webhook, the dispatcher determines which downstream projects are affected, and each runs its own shouldi analysis against the new dependency state.
+ * 
+ * @see comms/0089
+ * @see intel/dffml#1061
+ * @see intel/dffml#1315
+ */
+export function webhookDependencyValidationDispatch(): void {
+  // Related: shouldiContributeDetailedFlow
+}

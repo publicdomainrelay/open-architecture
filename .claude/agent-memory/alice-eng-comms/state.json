@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 87,
+  "lastProcessedComm": 95,
   "processedComms": [
     0,
     1,
@@ -88,7 +88,15 @@
     84,
     85,
     86,
-    87
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -533,6 +541,20 @@
       "lastUpdatedComm": 87,
       "sourceIssues": [],
       "summary": "Qwik resumability applied to dataflow cache: resume without re-execution"
+    },
+    "overlaysAsDynamicContextAwareBranches": {
+      "functionName": "overlaysAsDynamicContextAwareBranches",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 95,
+      "sourceIssues": [],
+      "summary": "Overlays as runtime context-aware branches, not just binary admission gates"
+    },
+    "webhookDependencyValidationDispatch": {
+      "functionName": "webhookDependencyValidationDispatch",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 95,
+      "sourceIssues": [],
+      "summary": "Webhook dispatches downstream validation when dependency tree changes"
     }
   },
   "issueCache": {
@@ -624,6 +646,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 63,
+  "totalStubsCreated": 65,
   "totalIssuesFetched": 9
 }

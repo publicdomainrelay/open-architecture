@@ -373,3 +373,14 @@ export function kellyCriterionInformationMarkets(): void {
 export function qwikResumableDataflowCache(): void {
   // Related: dataflowCacheExportImport, nfsRepoCacheDeltaScan
 }
+
+/**
+ * Overlays as dynamic, context-aware branches that reroute dataflow execution at runtime based on system context, rather than acting solely as binary admission controllers.
+ * 
+ * Where overlayAsAdmissionController returns 0 (reject) or 1 (accept) at each policy checkpoint, dynamic context-aware branches select which path through the dataflow to take. The overlay evaluates the current system context — deployment environment, threat model, available capabilities — and produces a modified dataflow, not just a boolean verdict. This means overlays can inject alternative operation implementations, skip irrelevant stages, or fork execution based on context. The overlay IS the branch logic, and the context IS the switch condition.
+ * 
+ * @see comms/0090
+ */
+export function overlaysAsDynamicContextAwareBranches(): void {
+  // TODO: wire to related concepts
+}
