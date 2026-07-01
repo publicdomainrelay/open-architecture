@@ -12,7 +12,7 @@
 import { query } from "npm:@anthropic-ai/claude-agent-sdk";
 
 const ORG_ROOT = new URL("..", import.meta.url).pathname;
-const OPEN_ARCH = `${ORG_ROOT}open-architecture`;
+const OPEN_ARCH = new URL("..", import.meta.url).pathname;
 const STATE_PATH = `${OPEN_ARCH}/.claude/agent-memory/alice-eng-comms/state.json`;
 const LOG_PATH = "/tmp/alice-run.log";
 
