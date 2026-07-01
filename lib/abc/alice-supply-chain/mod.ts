@@ -439,3 +439,14 @@ export function supplyChainRiskManagementChecklist(): void {
 export function threatModelAsAdmissionGate(): void {
   // Related: applyThreatModelOverlay, gatekeeper, gatherExceptionReceipts, openPolicyAgentOverlay
 }
+
+/**
+ * Extend supply chain risk management to ML framework dependency chains.
+ * 
+ * Machine learning frameworks (PyTorch, TensorFlow) carry deep transitive dependency trees. A single compromised dependency in the chain can exfiltrate models or inject backdoors. The risk management checklist must include ML-specific vectors: dependency chain integrity for framework packages, reproducible build verification of ML runtime wheels, and runtime monitoring for unexpected network egress from training jobs.
+ * 
+ * @see comms/0134
+ */
+export function mlDependencyChainVerification(): void {
+  // Related: living-sbom-vdr, oss-scanning-openssf-metrics
+}

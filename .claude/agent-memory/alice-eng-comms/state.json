@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 127,
+  "lastProcessedComm": 135,
   "processedComms": [
     0,
     1,
@@ -128,7 +128,15 @@
     124,
     125,
     126,
-    127
+    127,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -701,6 +709,20 @@
       "lastUpdatedComm": 127,
       "sourceIssues": [],
       "summary": "Distributed Alice instances as consciousness cells accelerating toward collective consciousness"
+    },
+    "vtpmAttestedComputeIdentity": {
+      "functionName": "vtpmAttestedComputeIdentity",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 135,
+      "sourceIssues": [],
+      "summary": "vTPM-backed OIDC attestation for compute VMs"
+    },
+    "mlDependencyChainVerification": {
+      "functionName": "mlDependencyChainVerification",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 135,
+      "sourceIssues": [],
+      "summary": "ML framework dependency chain integrity verification"
     }
   },
   "issueCache": {
@@ -792,6 +814,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 81,
+  "totalStubsCreated": 83,
   "totalIssuesFetched": 9
 }

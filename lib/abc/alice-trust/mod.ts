@@ -258,3 +258,14 @@ export function trainOfThoughtGraffiti(): void {
 export function oidcSelfIssuedEdge(): void {
   // Related: githubActionsOidcSelfAttestation
 }
+
+/**
+ * Extend OIDC self-issued identity to compute workloads with vTPM-backed hardware attestation.
+ * 
+ * Android VMs running in devcloud environments carry virtual TPMs (vTPMs) that provide a hardware root of trust. The OIDC self-issued edge identity flow is extended so the VM's vTPM endorsement key anchors the attestation, creating a cryptographically verifiable binding between the OIDC token and the specific compute instance. This closes the gap between software-only self-issued identity and hardware-backed remote attestation for compute workloads.
+ * 
+ * @see comms/0133
+ */
+export function vtpmAttestedComputeIdentity(): void {
+  // TODO: wire to related concepts
+}
