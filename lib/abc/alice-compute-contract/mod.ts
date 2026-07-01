@@ -130,3 +130,14 @@ export function reverseProxyEnforcesAccess(_workload: DID): void {
 export function reverseTunnelIsServiceDiscovery(): void {
   // Arbitrary compute becomes a real HTTPS endpoint via the relay.
 }
+
+/**
+ * Apply decentralized finance and automated market making concepts to information and trust markets.
+ * 
+ * Borrowing from DeFi AMM (Automated Market Making) models, entities can arbitrage across trust graphs: buying undervalued information in one context and selling it where it is valued higher. The RFP/market flow in Alice's compute contract system IS a thought arbitrage mechanism — requesters post compute needs, bidders price them, and the market clears at the intersection of trust-weighted supply and demand. Execution and speculation on information value create liquidity in the knowledge graph, enabling efficient allocation of compute and attention across the system.
+ * 
+ * @see comms/0067
+ */
+export function thoughtArbitrage(): void {
+  // Related: webOfTrust, knowledgeGraphProvenance
+}

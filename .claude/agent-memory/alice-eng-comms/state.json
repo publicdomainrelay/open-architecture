@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 63,
+  "lastProcessedComm": 71,
   "processedComms": [
     0,
     1,
@@ -64,7 +64,15 @@
     60,
     61,
     62,
-    63
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71
   ],
   "concepts": {
     "did-standardization": {
@@ -99,7 +107,7 @@
       "comm": 2,
       "status": "refinement",
       "package": "alice-system-context",
-      "lastUpdatedComm": 47
+      "lastUpdatedComm": 71
     },
     "subflow-lock-taken": {
       "comm": 6,
@@ -165,7 +173,8 @@
     "what-alice-is-entity-and-architecture": {
       "comm": 9,
       "status": "refinement",
-      "package": "alice"
+      "package": "alice",
+      "lastUpdatedComm": 71
     },
     "entity-2nd-party": {
       "comm": 9,
@@ -385,6 +394,55 @@
       "lastUpdatedComm": 63,
       "sourceIssues": [],
       "summary": "AutoML hyperparameters as DID-encoded dataflow contracts on manifest"
+    },
+    "imageEncodedManifest": {
+      "functionName": "imageEncodedManifest",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Images as executable manifests: pip install from rendered code screenshots with provenance"
+    },
+    "aliceWonderlandCollectiveThoughts": {
+      "functionName": "aliceWonderlandCollectiveThoughts",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Collective memory of all system contexts ever executed, stored on DID chain"
+    },
+    "aliceShellDefaultOverlay": {
+      "functionName": "aliceShellDefaultOverlay",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Per-user default dataflow overlays that activate by CWD, auto-save context on exit"
+    },
+    "trustGraphTraversalAlignment": {
+      "functionName": "trustGraphTraversalAlignment",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Predict community alignment via trust graph traversal, disengage from unaligned actors"
+    },
+    "kellyInformationTrustBetting": {
+      "functionName": "kellyInformationTrustBetting",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Kelly criterion for trust: information rate over attestation channel = trust equity growth rate"
+    },
+    "aliceMentalModelParallelConsciousness": {
+      "functionName": "aliceMentalModelParallelConsciousness",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "Alice as ghost extracted from mind, questioned, written down; parallel consciousness as dataflow"
+    },
+    "thoughtArbitrage": {
+      "functionName": "thoughtArbitrage",
+      "filePath": "lib/abc/alice-compute-contract/mod.ts",
+      "lastUpdatedComm": 71,
+      "sourceIssues": [],
+      "summary": "DeFi AMM concepts applied to information markets: arbitrage across trust graphs"
     }
   },
   "issueCache": {
@@ -476,6 +534,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 39,
+  "totalStubsCreated": 46,
   "totalIssuesFetched": 9
 }

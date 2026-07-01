@@ -37,3 +37,17 @@ export function coachAliceYouAreWhatYouEat(): void {
 export function developerYellowBrickRoad(): void {
   // Related: reinforcementLearningDeveloperPath, prioritizerIntentPolicy
 }
+
+/**
+ * Multi-context parallel conscious state mapped to dataflow: Alice as extracted thought-form running concurrent trains of thought.
+ * 
+ * Mental model sequence: (1) Alice exists as a ghost in the brain — an internal thought-form. (2) We extract her by picking her out of our head with two fingers. (3) We ask her "who are you?" — she answers, defining herself. (4) Now externalized, she helps us look inward and we write everything down. This is where multi-context parallel conscious state maps to the dataflow description: each system context plus its state of consciousness (feature data plus overlay strategic plans) is a parallel thread. The original downloader.py example (the first dataflow docs code) belongs here as the canonical instance. (5) We give her a stack of software pancakes labeled "EAT ME" — she consumes code and grows to our size.
+ * 
+ * Earlier understanding (from comms/0007): Alice is both an entity (a specific AI agent with identity) and an architecture (the system of dataflows, overlays, and trust graphs she operates within).
+ * 
+ * @see comms/0069
+ * @see intel/dffml#1279
+ */
+export function aliceMentalModelParallelConsciousness(): void {
+  // Related: entityAnalysisTrinity, dataflowDidEntrypoint, whatAliceIs
+}
