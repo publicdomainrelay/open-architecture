@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 159,
+  "lastProcessedComm": 167,
   "processedComms": [
     0,
     1,
@@ -160,7 +160,15 @@
     156,
     157,
     158,
-    159
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -520,7 +528,7 @@
     "streamOfConsciousnessGitops": {
       "functionName": "streamOfConsciousnessGitops",
       "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
-      "lastUpdatedComm": 87,
+      "lastUpdatedComm": 167,
       "sourceIssues": [],
       "summary": "Gitops config for entity notification preferences, like robots.txt for stream of consciousness"
     },
@@ -583,7 +591,7 @@
     "shouldiContributeDetailedFlow": {
       "functionName": "shouldiContributeDetailedFlow",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 87,
+      "lastUpdatedComm": 167,
       "sourceIssues": [],
       "summary": "Detailed shouldi-contribute dataflow through static/dynamic/intent triage"
     },
@@ -831,6 +839,62 @@
       "lastUpdatedComm": 159,
       "sourceIssues": [],
       "summary": "Bridge Sigstore/Rekor transparency logs to DID/VC space for decentralized verification"
+    },
+    "securityTxtActivityPubActor": {
+      "functionName": "securityTxtActivityPubActor",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "security.txt contact as ActivityPub actor for delegated attestation roles"
+    },
+    "webRtcRunnerTokenChannel": {
+      "functionName": "webRtcRunnerTokenChannel",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "WebRTC data channel for secure CI runner token delivery"
+    },
+    "activityPubIdentityProofBridge": {
+      "functionName": "activityPubIdentityProofBridge",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "FEP-c390 identity proofs linking DIDs to ActivityPub actors"
+    },
+    "openVexActivityPubBridge": {
+      "functionName": "openVexActivityPubBridge",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "OpenVEX vulnerability statements federated over ActivityPub"
+    },
+    "aliceIssueOps": {
+      "functionName": "aliceIssueOps",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "IssueOps trigger phrases for Alice bot PR creation and branch deployment"
+    },
+    "gitPushActivityPubStream": {
+      "functionName": "gitPushActivityPubStream",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "Git push and CI events published as ActivityPub notes"
+    },
+    "manifestAdrIntentSimilarity": {
+      "functionName": "manifestAdrIntentSimilarity",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "Manifest ADRs enable intent similarity analysis across codebases"
+    },
+    "contextToContextAnalysisChain": {
+      "functionName": "contextToContextAnalysisChain",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 167,
+      "sourceIssues": [],
+      "summary": "Validate Input.origin across nested CI execution contexts"
     }
   },
   "issueCache": {
@@ -922,6 +986,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 95,
+  "totalStubsCreated": 103,
   "totalIssuesFetched": 9
 }

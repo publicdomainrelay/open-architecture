@@ -155,3 +155,42 @@ export function didEntrypointWorkflowTrigger(): void {
 export function sigstoreScittDidVcBridge(): void {
   // Related: scittReferenceImplementation, oidcSelfIssuedEdge
 }
+
+/**
+ * Use security.txt contact as an ActivityPub Actor to advertise delegate actors for attestation roles, SBOM publishing, and FIPS certification.
+ * 
+ * Every organization's security.txt email contact becomes an ActivityPub actor. That actor lists via attachments other actors delegated to specific roles (SBOM publisher, FIPS certifier, VEX author). Third parties then advertise which actors are authorized to make claims about a product. SCITT receipts attach to these delegated-actor posts, creating a verifiable chain from the organization's security.txt through delegates to attestations. This bridges the DNS-based security.txt discovery mechanism with the federated ActivityPub protocol, giving organizations a bootstrapped identity they already control (their domain) as the root of their supply chain trust graph.
+ * 
+ * @see comms/0163
+ * @see https://github.com/CycloneDX/specification/pull/180
+ * @see https://dnssecuritytxt.org/
+ */
+export function securityTxtActivityPubActor(): void {
+  // Related: websubActivityPubThoughtSharing, activityPubScittInputs
+}
+
+/**
+ * Exchange CI runner tokens over a WebRTC data channel to avoid end-to-end encrypted data being cached and broken in the future.
+ * 
+ * When a GitHub webhook triggers a runner token request, the token request is sent via ActivityPub message to the SECURITY_TXT actor (or similar). The runner token itself is then delivered over a WebRTC data channel without a signaling server, using the pattern from the WebRTC-perfect-negotation approach. This avoids the risk of end-to-end encrypted tokens being cached in intermediate servers or message queues and later decrypted if encryption is broken. ActivityPub handles discovery and authorization (who is allowed to request a runner token), while WebRTC handles the secure delivery channel.
+ * 
+ * @see comms/0162
+ * @see http://blog.printf.net/articles/2013/05/17/webrtc-without-a-signaling-server/
+ * @see intel/dffml#1247
+ */
+export function webRtcRunnerTokenChannel(): void {
+  // Related: websubActivityPubThoughtSharing, oidcSelfIssuedEdge
+}
+
+/**
+ * Verifiable bi-directional link between a DID and an ActivityPub actor per FEP-c390 Identity Proofs.
+ * 
+ * An identity proof is a JSON document that establishes a verifiable connection between a DID (per W3C DID Core) and an ActivityPub actor URI. This bridges the decentralized identity world (DIDs, VCs) with the federated social protocol world (ActivityPub). For Alice, this means her DID-based identity (used for signing records, attestations, and compute contracts) can be proven to be the same entity as her ActivityPub actor (used for federation, discovery, and stream of consciousness). The `alsoKnownAs` ActivityPub property and DID `alsoKnownAs` service endpoint create the bi-directional link, with verification via DID resolution and ActivityPub actor document comparison.
+ * 
+ * @see comms/0162
+ * @see https://socialhub.activitypub.rocks/t/fep-c390-identity-proofs/2726
+ * @see https://www.w3.org/TR/did-core/
+ */
+export function activityPubIdentityProofBridge(): void {
+  // Related: websubActivityPubThoughtSharing, oidcSelfIssuedEdge
+}

@@ -482,3 +482,27 @@ export function dependencyTreeToDataflow(): void {
 export function dataflowDrivenSchemaVersioning(): void {
   // Related: operationsDependencyPackage
 }
+
+/**
+ * Manifest ADRs (README + schema pairs) enable English-language similarity comparison on intent descriptions, allowing inference from a codebase to relevant manifests and similarity analysis across projects.
+ * 
+ * Each manifest ADR documents an intent in natural language alongside a JSON Schema definition. By computing embedding similarity between a codebase's documentation/README and the manifest ADRs' intent descriptions, Alice can discover which manifests are relevant to a project without explicit configuration. This also enables similarity analysis across projects: two codebases with similar READMEs likely share similar requirements, so manifests that worked for one may apply to the other. The Manifest Transport ADR (activitypubsecuritytxt) is the first transport to be expressed this way, enabling Alice to reason about how intent maps to implementation at the architectural level.
+ * 
+ * @see comms/0165
+ * @see https://github.com/intel/dffml/blob/main/docs/arch/0008-Manifest.md
+ */
+export function manifestAdrIntentSimilarity(): void {
+  // Related: dataflowDescribeInfrastructure, dataflowAsRecordPersistence, entrypointsAsSystemContextDids
+}
+
+/**
+ * Validate data provenance across nested execution contexts by tracking Input.origin through workflow-to-workflow, workflow-to-job, job-to-job, and job-to-action boundaries.
+ * 
+ * In GitHub Actions (and similar CI systems), execution nests: a workflow contains jobs, jobs contain steps/actions, and artifacts flow between them. Each level is a context. Analysis at each boundary ensures that inputs entering a job originated from an authorized workflow, that artifacts consumed by an action were produced by an authorized job, and that the full chain is verifiable. This is the operational equivalent of supply chain provenance tracking applied inward to the CI execution itself — not just tracking where code came from, but tracking where each intermediate result came from within the execution graph.
+ * 
+ * @see comms/0166
+ * @see https://docs.github.com/en/actions/managing-workflow-runs/reviewing-deployments
+ */
+export function contextToContextAnalysisChain(): void {
+  // Related: data-provenance-tracking, operation-trust-boundary, dataflowAsFunctionInvocation
+}

@@ -537,3 +537,32 @@ export function stableRepositoryIdentityOidc(): void {
 export function everythingAsContainerBuild(): void {
   // Related: containerRegistryOnDemand, operationsDependencyPackage
 }
+
+/**
+ * Bridge OpenVEX vulnerability statements into ActivityPub for real-time, federated security vulnerability data sharing.
+ * 
+ * OpenVEX is described by its creators as "basically like ActivityStreams, but for security vulnerability data sharing" — with a little work it lifts to ActivityPub for real-time collaboration. This concept maps OpenVEX statements onto ActivityPub Create/Note objects, where each VEX statement becomes a signed post whose content address is the signature of the inbox message. The VEX document carries product identifiers as package URLs (pkg:github/owner/repo@sha), vulnerability identifiers, status (not_affected/affected/fixed), and impact statements containing webhook payload data. The bridge enables watching VEX streams, executing downstream jobs when new VEX records appear, and closing the loop from CVE detection through VEX publication to consumer notification.
+ * 
+ * @see comms/0164
+ * @see comms/0167
+ * @see https://github.com/openvex/spec
+ */
+export function openVexActivityPubBridge(): void {
+  // Related: activityPubScittInputs, livingThreatsMd, csafVexFramework
+}
+
+/**
+ * Alice responds to IssueOps trigger phrases in pull request comments (e.g. ".deploy", "alice please show me how to...", "alice please contribute...") to create diffs, pull requests, and branch deployments.
+ * 
+ * The GitHub branch-deploy action pattern gates deployment steps behind comment triggers. Alice extends this: when a 2nd party plugin maintainer comments "alice please show me how to increase support level", Alice analyzes the plugin against the contribution criteria (community health checks, code quality scans, documentation completeness) and either creates a PR with the needed changes or provides a diff. When they comment "alice please contribute...", Alice creates an automated pull request addressing the specific issue. This enables prospective 2nd party maintainers to self-serve their progression from 3rd to 2nd party support level through Alice-mediated automated contributions.
+ * 
+ * Earlier understanding (from related concepts): The shouldiContribute flow evaluates whether a project meets contribution criteria; this adds the interactive IssueOps layer on top.
+ * 
+ * @see comms/0167
+ * @see https://github.blog/2023-02-02-enabling-branch-deployments-through-issueops-with-github-actions/
+ * @see intel/dffml#1061
+ * @see intel/dffml#1239
+ */
+export function aliceIssueOps(): void {
+  // Related: shouldiContributeDetailedFlow, shouldiContributeOverlayPipeline, aliceShellAgent
+}

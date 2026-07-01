@@ -255,3 +255,18 @@ export function staticSearchableKnowledgeGraph(): void {
 export function geneticMemorySparseDistributedMemory(): void {
   // Related: trainOfThoughtGraffiti, knowledgeGraphProvenance
 }
+
+/**
+ * Every git push becomes an ActivityPub post via a dedicated vcs.push endpoint, turning every commit, check suite, workflow run, issue comment, and deployment status into a Note on the stream of consciousness.
+ * 
+ * A headless ActivityPub actor (account "push") runs behind a Caddy reverse proxy with auto Let's Encrypt HTTPS. GitHub webhooks for the full event catalog (push, check_suite, check_run, workflow_job, workflow_run, deployment_status, issues, issue_comment, pull_request, release, discussion, etc.) are forwarded to the webhook endpoint. Each event becomes an ActivityPub Create/Note with the full webhook payload as content. The endpoint at vcs.activitypub.securitytxt.<domain>/push serves the outbox. This is the real-time event backbone for the stream of consciousness — every change anywhere in the supply chain is visible as a post.
+ * 
+ * Earlier understanding (from comm 0066): Generic note that GitOps events could feed Alice's stream of consciousness.
+ * 
+ * @see comms/0160
+ * @see comms/0167
+ * @see comms/0166
+ */
+export function gitPushActivityPubStream(): void {
+  // Related: websubActivityPubThoughtSharing, containerFromRebuildChain, webhookDependencyValidationDispatch
+}
