@@ -326,3 +326,14 @@ export function knowledgeGraphInventory(): void {
 export function redisEventProcessingPipeline(): void {
   // Related: streamOfConsciousnessGitops
 }
+
+/**
+ * Lightweight transient SPARQL database for public sharing and collaboration using quadstore-comunica.
+ * 
+ * quadstore-comunica enables a "relatively transient, non-gigantic SPARQL database for public sharing/collaboration" — RDF triples loaded on-demand, queried via SPARQL, and discarded when the collaboration session ends. Unlike persistent knowledge graph stores that require ongoing infrastructure, this pattern supports ephemeral shared reasoning spaces: teams spin up a temporary quadstore, collaborate over linked data, and tear it down. In Alice's architecture, this enables lightweight multi-agent reasoning sessions where agents share structured knowledge without permanent storage commitment. Alternatives in the same space include fuseki-docker and shmarql for containerized SPARQL endpoints.
+ * 
+ * @see comms/0280
+ */
+export function transientSparqlCollaborationStore(): void {
+  // TODO: wire to related concepts
+}

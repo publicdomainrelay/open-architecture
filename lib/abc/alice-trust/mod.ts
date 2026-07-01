@@ -410,3 +410,27 @@ export function reviewerJuryDutySelection(): void {
 export function cisaSelfAttestationForm(): void {
   // Related: conformityAssessment, doITrustWhereThisCameFrom, webOfTrust
 }
+
+/**
+ * Apply Object Capability (OCAP) security model as a layered defense against Denial of Service in distributed systems.
+ * 
+ * OCAP requires explicit authority transfer — a subject can only affect an object if it holds a capability reference. This property enables layered DoS mitigation: each layer grants only the capabilities needed for its scope, and upstream layers cannot exhaust resources of downstream layers without holding the corresponding capability. The Spritly Goblis discussion frames OCAP as mandatory for any object that must be DoS-protected. In Alice's architecture, this means compute contract negotiation, relay message delivery, and transparency log writes each operate within capability boundaries that prevent resource exhaustion across trust domains.
+ * 
+ * @see comms/0280
+ */
+export function ocapLayeredDosDefense(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * Pre-seeded Verifiable Credentials verified inside a TEE enclave before forwarding to a transparency service inbox.
+ * 
+ * OpenEnclave's host_verify sample demonstrates a pattern: pre-seeded VCs are loaded into an enclave, their integrity and provenance are verified within the TEE, and only verified VCs are forwarded to the next transparency service inbox (N+1). This pipeline ensures that untrusted pre-seeding sources cannot inject fabricated credentials into the transparency log — the enclave acts as a gate that only passes VCs with valid attestation. Complements the existing understanding that enclave attestation is a signal weighed by the web of trust, not a standalone foundation.
+ * 
+ * Earlier understanding (from existing stub): enclave attestation is a signal weighed by webOfTrust, never the foundation.
+ * 
+ * @see comms/0280
+ */
+export function enclavePreSeededVcPipeline(): void {
+  // Related: enclaveAttestationIsASignalNotAFoundation, scittTransparencyService
+}
