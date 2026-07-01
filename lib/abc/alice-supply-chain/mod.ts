@@ -835,3 +835,51 @@ export function federatedPrtDependencyValidation(): void {
 export function operationAuthorityCose2Signing(): void {
   // Related: scanIntoTrustAttestation, appendToTransparencyLog, scittTransparencyService
 }
+
+/**
+ * CISA's secure software self-attestation form identifying minimum secure development requirements a software producer must meet before their software may be used by Federal agencies.
+ * 
+ * The form covers three categories of software: (1) software developed after September 14, 2022; (2) existing software modified by major version changes after that date; and (3) software with continuous changes delivered (SaaS, continuous delivery/deployment). Alice consumes this form as a signed attestation artifact at the gatekeeper, verifying the producer's conformity claims against the transparency log. The self-attestation becomes an input to the policy overlay that gates admission — software without a valid CISA attestation is blocked or flagged for exception handling.
+ * 
+ * @see comms/0257
+ * @see intel/dffml#1451
+ */
+export function cisaSelfAttestationForm(): void {
+  // Related: gatekeeper, conformityAssessment, appendToTransparencyLog
+}
+
+/**
+ * Supply chain step attestation using in-toto layouts signed with COSE2 (CBOR Object Signing and Encryption).
+ * 
+ * Each step in the supply chain — version control checkout (vcs), quality assurance (qa), and packaging — is attested via in-toto-run with COSE2 signatures, producing link files that form a verifiable chain of custody. The DFFML/OA (later CycloneDX) DAG is signed with COSE2 as the binding between the dependency graph and the step attestations. This integrates with the SCITT transparency service: each attested step becomes a SCITT statement, enabling federated verification across home and faraway forges. The basic allowlist in workflow cross-repo pinning controls which downstream repositories are triggered when an attested step completes.
+ * 
+ * @see comms/0258
+ * @see intel/dffml#1453
+ */
+export function inTotoCoseSupplyChainAttestation(): void {
+  // Related: scanIntoTrustAttestation, appendToTransparencyLog, scittTransparencyService, federateClaimsDownstream
+}
+
+/**
+ * Federated supply chain validation topology where home and faraway deployments coordinate dependency admission control through a chain of PRT flows, GUAC dependency graphs, transparency services, and ActivityPub-based async messaging.
+ * 
+ * The topology works as follows: a PEP 440 manifest change triggers the PRT (pull request target) flow in the home deployment. The PRT flow queries the local GUAC (Graph for Understanding Artifact Composition, backed by neo4j) for admission control — source TCB protection ring queries that check whether the proposed dependency change is safe. If GUAC lacks data for the query, it triggers a dependency evaluation flow ("shouldi" metrics) that feeds results to the local transparency service (SCITT). The transparency service emits data-added events via ActivityPub, which triggers GUAC ingest. Home and faraway transparency services federate evaluated claims to each other. When the home admission control allows the dependency change, it creates a pull request in the faraway deployment, triggering the faraway PRT flow to repeat the validation chain. The faraway results flow back via wait-for-message-action (ActivityPub async) and the status check API.
+ * 
+ * Earlier understanding (from comms/0215): Federated CI/CD event space using SSE and ActivityPub for event distribution across forges.
+ * 
+ * @see comms/0263
+ */
+export function federatedSupplyChainValidationTopology(): void {
+  // Related: gatekeeper, federateClaimsDownstream, scittTransparencyService, supplyChainInformationNetwork, activityPubScittRegistryHandshake, webhookDependencyValidationDispatch
+}
+
+/**
+ * GUAC (Graph for Understanding Artifact Composition) serves as the TCB protection ring admission controller for dependency changes, queried synchronously by the PRT flow or asynchronously via ActivityPub wait-for-message.
+ * 
+ * When a dependency change is proposed (manifest update triggers PRT), the admission control query checks GUAC's neo4j-backed graph for the dependency's composition, known vulnerabilities, and trust attestations. If GUAC has no data for the queried artifact, it emits a "data not in graph" event that triggers the dependency evaluation flow — running "shouldi" metrics collection against the new dependency version. The evaluation results feed into the transparency service, which emits ActivityPub events back to GUAC (triggering ingest of the newly evaluated data). This creates a self-healing loop: unknown artifacts trigger evaluation, evaluation feeds the transparency log, the log feeds GUAC, and subsequent queries resolve instantly from the enriched graph.
+ * 
+ * @see comms/0263
+ */
+export function guacDependencyGraphAdmissionControl(): void {
+  // Related: checkBillOfMaterialsAgainstLog, gatekeeper, livingSbomVdr, federateClaimsDownstream
+}

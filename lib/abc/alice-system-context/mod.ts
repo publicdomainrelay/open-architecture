@@ -532,3 +532,15 @@ export function threeManifestsDecomposition(): void {
 export function deploymentTypeOperationOverride(): void {
   // Related: runDataflowSerializable, dataflowDescribeInfrastructure
 }
+
+/**
+ * Local GitHub Actions runner using gh-act and act_runner to execute CI workflows offline before pushing, enabling pre-submit validation of the pin_downstream workflow.
+ * 
+ * By running workflows locally with environment variables (TEST_PIN_TO_COMMIT, proxy settings), developers validate downstream dependency pinning without waiting for remote CI. This is Alice's offline CI loop: the same workflow that gates admission (the PRT flow) can be tested locally, shortening the feedback cycle for supply chain validation. When combined with ActivityPub-based wait-for-message-action, the local runner can participate in federated CI orchestration by receiving trigger messages from upstream builds.
+ * 
+ * @see comms/0259
+ * @see intel/dffml#1454
+ */
+export function localCiRunnerAct(): void {
+  // Related: headlessScaleToZeroCiRunner, webhookDependencyValidationDispatch
+}
