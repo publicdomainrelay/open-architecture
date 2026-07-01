@@ -155,3 +155,41 @@ export function securityInsightsSpecThreshold(): void {
 export function ephemeralCredentialsSupplyChain(): void {
   // Related: machineContinuousAttestation, scittTransparencyService
 }
+
+/**
+ * A JSON Schema for recording immutable container image build provenance: branch, commit hash, Dockerfile path, image name, owner, and repository.
+ * 
+ * This schema (schema/image/container/build/0.0.1.schema.json) provides machine-readable attestation of exactly how a container image was produced. Each build manifest records: the git branch and commit that produced the image, the Dockerfile used, the image name and owner, and the repository. This provenance data feeds into FROM rebuild chains — when a base image is rebuilt, all downstream images that depend on it can be detected and rebuilt automatically. Combined with ephemeral cluster infrastructure (harbor, k3s), the schema enables bootstrap of entire build environments from cached artifacts and provenance records. The schema is validated at webhook dispatch time: container push events trigger workflow_dispatch by inspecting workflows for on.push.paths, validating against this schema, and rebuilding affected images in dependency order.
+ * 
+ * @see comms/0152
+ * @see comms/0153
+ * @see comms/0159
+ * @see intel/dffml#1247
+ */
+export function containerBuildProvenanceSchema(): void {
+  // Related: dataflowSynthesisBuildMode
+}
+
+/**
+ * Vulnerability presence does not equal exploitability — deployment context (the specific environment, configuration, and runtime of the software) is the determining factor for whether a vulnerability can be exploited.
+ * 
+ * This core insight from CVE Bin Tool collaboration: CVSS scores alone are insufficient for triage because they lack deployment context. CPE matching tells you a vulnerability exists in your dependency tree, but only the deployment-specific configuration, network exposure, and runtime behavior determine whether it is actually exploitable. Alice operationalizes this via threat modeling overlays that model the actual deployment: the living threat model captures the deployment context and uses it to filter and prioritize vulnerabilities. OPA (Open Policy Agent) combined with JSON/YAML policy overlays enables automated triage — vulnerabilities that cannot be reached in the given deployment are deprioritized. This connects to SBOM generation (CycloneDX, SPDX), CSAF, and VEX: the VEX statement carries deployment-context-aware exploitability assessments.
+ * 
+ * @see comms/0158
+ * @see https://www.openpolicyagent.org/
+ */
+export function deploymentContextExploitability(): void {
+  // Related: livingThreatModelRLSynthesis, deploymentSpecificOperationOverride, trustFirstPolicyOverride
+}
+
+/**
+ * Bridge the sigstore ecosystem (fulcio CA, rekor transparency log, ephemeral signing keys) into the DID/VC (Decentralized Identifier / Verifiable Credential) space to enable fully offline decentralized trust chain grafting.
+ * 
+ * Alice needs flat files, not servers: ad-hoc grafting of trust chains for nodes that go on/offline and for rolling dev/test/prod environments. Sigstore provides production infrastructure for signing with ephemeral keys linked via OIDC to identities and logged in rekor transparency logs. The DID/VC space provides self-sovereign identity and verifiable credentials that work offline. Bridging them means: rekor merkle trees grafted to DID merkle DAGs, fulcio OIDC tokens bridged to OpenIDVC, and sigstore transparency log entries convertible to VCs. The sigstore community's interest in stable numeric repository IDs (repository_id, repository_owner_id) as X.509 extensions aligns with Alice's need for persistent identity across org/account changes — a critical supply chain security concern where account takeover could enable malicious releases with valid-looking claims. SCITT serves as the interoperability layer: SCITT receipts can carry both sigstore-style claims and DID/VC-style credentials, making the bridge bidirectional.
+ * 
+ * @see comms/0156
+ * @see intel/dffml#1061
+ */
+export function sigstoreScittDIDVCBridge(): void {
+  // Related: scittReceiptAsVerifiableCredential, scittDidMethod, didStandardization
+}

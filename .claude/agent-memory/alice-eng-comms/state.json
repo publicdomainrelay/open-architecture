@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 151,
+  "lastProcessedComm": 159,
   "processedComms": [
     0,
     1,
@@ -152,7 +152,15 @@
     148,
     149,
     150,
-    151
+    151,
+    152,
+    153,
+    154,
+    155,
+    156,
+    157,
+    158,
+    159
   ],
   "concepts": {
     "did-standardization": {
@@ -839,6 +847,41 @@
       "lastUpdatedComm": 151,
       "sourceIssues": [],
       "summary": "Progressive evolution path ActivityPub → SCITT/VDR → DWN → KERI"
+    },
+    "activityPubScittOrasHandshake": {
+      "functionName": "activityPubScittOrasHandshake",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Three-way protocol handshake: ActivityPub Follow + SCITT receipts + ORAS content addressing"
+    },
+    "containerBuildProvenanceSchema": {
+      "functionName": "containerBuildProvenanceSchema",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "JSON schema for container image build provenance: branch, commit, dockerfile, owner, repo"
+    },
+    "deploymentContextExploitability": {
+      "functionName": "deploymentContextExploitability",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Deployment context — not just vulnerability presence — determines exploitability for triage"
+    },
+    "sigstoreScittDIDVCBridge": {
+      "functionName": "sigstoreScittDIDVCBridge",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Bridge sigstore/rekor/fulcio to DID/VC for offline trust chain grafting via SCITT"
+    },
+    "schemaVersioningFromDataflow": {
+      "functionName": "schemaVersioningFromDataflow",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 159,
+      "sourceIssues": [],
+      "summary": "Auto-version schemas: bump major on input tree changes, minor on code changes"
     }
   },
   "issueCache": {
@@ -930,6 +973,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 85,
+  "totalStubsCreated": 90,
   "totalIssuesFetched": 9
 }

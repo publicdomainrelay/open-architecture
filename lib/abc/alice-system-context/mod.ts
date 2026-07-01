@@ -225,3 +225,15 @@ export function dataflowDependencyTreeSynthesis(): void {
 export function dependencyExtractionRebuild(): void {
   // Related: dataflowCacheExportImport, dataflowFunctionImport, nfsCacheOverlay
 }
+
+/**
+ * Auto-version schemas by tracking dataflow input dependency tree changes: bump major on input tree changes, bump minor on code/tree changes.
+ * 
+ * Given an OperationImplementation whose output is a target manifest data model type, schema versioning works as follows: when the dataflow operation's input dependency tree changes (upstream operations, their inputs, or the links between them), bump the major version — the schema's contract has changed. When code or implementation tree changes (the operation implementation itself), bump the minor version. A pre-commit hook or CI job validates this by comparing the current dependency tree against the last committed schema version. The target data model is generated from the manifest schema; the schema itself is the source of truth. This builds on the dependency tree analysis from "Down the Dependency Rabbit Hole Again" and "Cartographer Extraordinaire" — the same tree walking that enables FROM rebuild chains also drives schema versioning. datamodel-code-gen.py regenerates types from schema on each version bump.
+ * 
+ * @see comms/0157
+ * @see intel/dffml#1426
+ */
+export function schemaVersioningFromDataflow(): void {
+  // Related: dataflowDependencyTreeSynthesis, dependencyExtractionRebuild, dataflowSynthesisBuildMode
+}

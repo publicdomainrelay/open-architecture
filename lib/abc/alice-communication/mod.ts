@@ -40,3 +40,15 @@ export function activityPubScittProvenanceInput(): void {
 export function dwnKeriEvolutionPath(): void {
   // Related: scittDwnFederation, scittDidMethod, didStandardization, scittReceiptAsVerifiableCredential
 }
+
+/**
+ * A three-way handshake protocol for thought communication: ActivityPub Follow provides the subscription/social layer, SCITT receipts provide cryptographic transparency proof, and ORAS content addressing provides immutable storage/retrieval.
+ * 
+ * This is the "Thought Communication Protocol" — a synthesis of three decentralized primitives into one handshake. ActivityPub Follow (next-gen WebSub) carries the social graph and downstream triggers. SCITT transparency receipts prove what was communicated, when, and by whom — functioning like a TCP handshake for content authenticity. ORAS.land (OCI-compatible registry) stores content by hash so the actual data lives at a content address that both ActivityPub and SCITT can reference. The SHA384 sum of the living threat model collector dataflow serves as the initial content address placeholder. Together, this closes the loop of vulnerability analysis and remediation: the transparency log receipt proves the scan happened, ActivityPub distributes the result, and ORAS holds the artifacts.
+ * 
+ * @see comms/0159
+ * @see comms/0148
+ */
+export function activityPubScittOrasHandshake(): void {
+  // Related: activityPubScittProvenanceInput, scittPostHocAuditability, graphBackedStreamOfConsciousness
+}
