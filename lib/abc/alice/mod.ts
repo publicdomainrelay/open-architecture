@@ -317,3 +317,14 @@ export function openArchitectureForAgi(): void {
 export function crdtRepositoryStorage(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Event-driven AGI-based development loop where Alice operates as a continuously running event system (`agi.py`).
+ * 
+ * Developers can live-view Alice's work and intervene at any point in the loop. The policy engine is reused with stack frames captured for checkpoint/restore to track the train of thought. SCITT-protected JSON-LD combined with an ORAS trampoline resource loader provides tamper-evident persistence of the development state. This is the runtime model for Alice as an autonomous development agent.
+ * 
+ * @see comms/0670
+ */
+export function agiEventDrivenDevLoop(): void {
+  // Related: streamOfConsciousnessGitops, aliceShellAgent, trainOfThoughtHardening
+}

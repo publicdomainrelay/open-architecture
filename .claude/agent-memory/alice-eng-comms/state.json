@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 663,
+  "lastProcessedComm": 671,
   "processedComms": [
     0,
     1,
@@ -664,7 +664,15 @@
     660,
     661,
     662,
-    663
+    663,
+    664,
+    665,
+    666,
+    667,
+    668,
+    669,
+    670,
+    671
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1479,7 +1487,7 @@
     "trainOfThoughtHardening": {
       "functionName": "trainOfThoughtHardening",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 191,
+      "lastUpdatedComm": 671,
       "sourceIssues": [],
       "summary": "Security hardening of train of thought for tamper-evident audit trail"
     },
@@ -2371,6 +2379,48 @@
       "lastUpdatedComm": 663,
       "sourceIssues": [],
       "summary": "ActivityPub federation as the technical substrate for entity telepathy across forges"
+    },
+    "scittGitCommitGate": {
+      "functionName": "scittGitCommitGate",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 671,
+      "sourceIssues": [],
+      "summary": "Git commit gated by SCITT receipt for CI run of release candidate"
+    },
+    "llmCveToVexPipeline": {
+      "functionName": "llmCveToVexPipeline",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 671,
+      "sourceIssues": [],
+      "summary": "LLM reasons whether install failure is CVE or VEX not-affected"
+    },
+    "federatedForkSynchronization": {
+      "functionName": "federatedForkSynchronization",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 671,
+      "sourceIssues": [],
+      "summary": "ActivityPub-mediated fork sync with clean→PR, dirty→CVE routing"
+    },
+    "fuseOrasLayerFs": {
+      "functionName": "fuseOrasLayerFs",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 671,
+      "sourceIssues": [],
+      "summary": "FUSE filesystem overlay exposing ORAS artifact layers as local paths"
+    },
+    "agiEventDrivenDevLoop": {
+      "functionName": "agiEventDrivenDevLoop",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 671,
+      "sourceIssues": [],
+      "summary": "Event-driven AGI loop with live intervention and checkpointed train of thought"
+    },
+    "trainOfThoughtCheckpointRestore": {
+      "functionName": "trainOfThoughtCheckpointRestore",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 671,
+      "sourceIssues": [],
+      "summary": "SCITT-protected JSON-LD checkpoint/restore for train of thought via ORAS"
     }
   },
   "issueCache": {
@@ -2468,6 +2518,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 243,
+  "totalStubsCreated": 249,
   "totalIssuesFetched": 10
 }

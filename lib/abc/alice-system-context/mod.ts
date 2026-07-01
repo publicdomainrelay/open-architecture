@@ -621,3 +621,15 @@ export function cloudDevEnvironmentProvisioning(): void {
 export function workflowToOpenApiRouteGeneration(): void {
   // Related: dataflowAsFunctionInvocation, dataflowDescribeInfrastructure
 }
+
+/**
+ * FUSE filesystem that mounts ORAS container and artifact layers directly as a filesystem overlay.
+ * 
+ * Provides transparent local-path access to OCI/ORAS artifacts by mounting layers via FUSE (Filesystem in Userspace). Referenced as part of the `forge-install.sh` development environment setup. Enables tools to read container layers as if they were local directories without extracting archives.
+ * 
+ * @see comms/0669
+ * @see comms/0670
+ */
+export function fuseOrasLayerFs(): void {
+  // TODO: wire to related concepts
+}

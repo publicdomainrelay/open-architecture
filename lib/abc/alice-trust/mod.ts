@@ -595,3 +595,16 @@ export function workloadIdentityFromGraphOfThoughts(): void {
 export function federatedThoughtDeduplication(): void {
   // Related: trainOfThoughtGraffiti, knowledgeGraphInventory, chainsOfContext
 }
+
+/**
+ * Checkpoints train of thought via SCITT-protected JSON-LD with an ORAS trampoline resource loader for replay and restore.
+ * 
+ * Captures stack frames as checkpoints, reusing the policy engine infrastructure. The checkpoint is stored as SCITT-signed JSON-LD, with ORAS serving as the content-addressable transport layer for the checkpoint artifacts. Enables deterministic replay of Alice's reasoning chain and recovery from interrupted development sessions.
+ * 
+ * Earlier understanding (from comms/0575): Train of thought hardened via SCITT receipts and transparency logs, ensuring the integrity of Alice's reasoning chain.
+ * 
+ * @see comms/0670
+ */
+export function trainOfThoughtCheckpointRestore(): void {
+  // Related: trainOfThoughtGraffiti, trainOfThoughtHardening, scittNotaryAssertionRegistry
+}

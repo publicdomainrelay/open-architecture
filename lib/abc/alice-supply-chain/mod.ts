@@ -1625,3 +1625,37 @@ export function guacDirectusAdmissionFirewall(): void {
 export function scittForgejoCveIssueMapping(): void {
   // Related: scittFederationGitRepos, cveToSourceMapping, scittNotarizingProxyInCiCd
 }
+
+/**
+ * Git commit gated by SCITT receipt for CI validation of the release candidate.
+ * 
+ * Before a commit is accepted, a SCITT receipt must exist for the CI run of `r-c/` (release candidate of commit). Uses DAG caching to determine commit ability — cannot commit unless CI has passed. The `--expect-failures` flag serves as an escape hatch. This integrates SCITT transparency into the developer workflow at the git level, making every commit verifiably CI-validated.
+ * 
+ * @see comms/0666
+ */
+export function scittGitCommitGate(): void {
+  // Related: scittNotarizingProxyInCiCd, policyEngineWorkflowDispatch
+}
+
+/**
+ * LLM-driven pipeline that transitions from ad-hoc CVE tracking to VEX not-affected declarations.
+ * 
+ * An LLM detects the OS and package manager of the target system, then reasons whether an install failure constitutes a real CVE or warrants a VEX "not affected" determination. Applied per-branch within the train-of-thought. This bridges the gap between raw vulnerability scanning (cve-bin-tool) and machine-readable VEX output by using LLM reasoning to classify findings.
+ * 
+ * @see comms/0667
+ * @see intel/dffml#1614
+ */
+export function llmCveToVexPipeline(): void {
+  // Related: cveBinToolVexFixStrategy, vulnerabilityDescriptionOntologyAnalysisLoop, csafVexFramework
+}
+
+/**
+ * Federation of forges via ActivityPub that triggers fork workflows on synchronize, routing clean and dirty rebases differently.
+ * 
+ * When a fork synchronizes with upstream: clean rebase results are staged via PR-to-PR gating; dirty rebase results are routed into the ad-hoc CVE loop for triage. The synchronization itself is treated as an ad-hoc CVE event. Webhook-based GitHub attestations federate to SCITT for transparency. This extends "fork is all you need" — fork + exec via ActivityPub becomes the primitive for federated CI/CD.
+ * 
+ * @see comms/0671
+ */
+export function federatedForkSynchronization(): void {
+  // Related: federatedSupplyChainValidationTopology, forgejoFederatedCicd, gitRefPollingActivityPubBridge
+}
