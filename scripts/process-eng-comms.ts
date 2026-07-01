@@ -594,6 +594,12 @@ async function applyConcepts(
     }
 
     for (const concept of concepts) {
+      // Dedup: skip if function already exists in this file
+      if (existingContent.includes(`export function ${concept.name}(`)) {
+        metrics.stubsUpdated++; // count as refinement even if duplicate
+        continue;
+      }
+
       const stubSource = buildStubFunction(concept);
       const refinement = concept.isRefinement && concept.refinesConcept;
 
