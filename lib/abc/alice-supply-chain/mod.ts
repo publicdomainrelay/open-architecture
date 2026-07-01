@@ -416,3 +416,26 @@ export function webhookDependencyValidationDispatch(): void {
 export function scittDwnFederation(): void {
   // Related: scittTransparencyService, appendToTransparencyLog, doITrustWhereThisCameFrom
 }
+
+/**
+ * A 35-item SCRM questionnaire across acquisition, design/development, logistics, and policy/procedures that Alice applies as an overlay during gatekeeper admission.
+ * 
+ * The checklist originates from the US State Department Evolve IDIQ RFP (NIST SP 800-161 template, Executive Order 14028 flow-down requirements). It asks: have you identified key suppliers? Do you verify country of origin to the first source? Are only US citizens on your design network? Are compilers controlled? Every question maps to a policy gate Alice evaluates when a new component arrives at the forge. The checklist becomes a structured overlay — not a static document but a living policy instrument that the gatekeeper executes against each incoming artifact. Answers feed the supply chain information network, with "no" answers triggering exception receipts and federation to downstream forges.
+ * 
+ * @see comms/0107
+ */
+export function supplyChainRiskManagementChecklist(): void {
+  // Related: supplyChainInformationNetwork, gatekeeper, gatherExceptionReceipts, federateClaimsDownstream
+}
+
+/**
+ * The threat model is the foundational admission requirement — the cornerstone of security that gates every component before it enters Alice's forge. No software passes without threat model coverage.
+ * 
+ * The OWASP principle applies: without a threat model, how does one know what to protect and from whom? Alice applies this as a hard gate in the CI/CD pipeline. The gatekeeper does not merely apply a threat model overlay alongside other overlays — it checks that a threat model EXISTS as a precondition for admission. If no threat model is present for the incoming component, the gatekeeper blocks admission and gathers exception receipts. This inverts the pattern: the threat model overlay is not one overlay among many; it is THE overlay that determines whether the other overlays even run. Most applications lack threat models — Alice's job is to make that visible and actionable.
+ * 
+ * @see comms/0109
+ * @see https://owasp.org/www-community/Threat_Modeling_Process
+ */
+export function threatModelAsAdmissionGate(): void {
+  // Related: applyThreatModelOverlay, gatekeeper, gatherExceptionReceipts, openPolicyAgentOverlay
+}

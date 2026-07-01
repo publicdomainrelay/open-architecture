@@ -217,3 +217,29 @@ export function websubActivityPubThoughtSharing(): void {
 export function knowledgeGraphGraphQLLd(): void {
   // Related: knowledgeGraph
 }
+
+/**
+ * The stream-of-consciousness data store backend is a graph query engine (Cayley-style) whose results drive dataflow overlays, with a proxy cache sitting in front.
+ * 
+ * Graph queries become the generic execution substrate: Alice expresses overlays as graph traversals, passes them through a graph query engine, and the query results feed back into the dataflow as new inputs. A proxy cache sits in front of the graph store, caching query results and overlay outputs. This architecture folds back on itself — the overlay dataflow is itself queryable as a graph, so the store and the execution engine are the same thing seen from different angles. The eventing layer (WebSub, ActivityPub) is layered on top after this foundation is in place.
+ * 
+ * @see comms/0109
+ * @see https://github.com/cayleygraph/cayley
+ */
+export function graphQueryDrivenOverlayStore(): void {
+  // Related: knowledgeGraph, dataflowCacheExportImport, onEvent, prioritizer
+}
+
+/**
+ * Natural language queries are mapped to knowledge graph queries (RDF, GUN, DID), refined through Lyra in-browser fulltext search and context-aware Markov chains, and dumped as statically deployable single-file HTML pages with no server requirement.
+ * 
+ * The askalice.today pattern: a user asks a question, Alice guesses which knowledge graph backend to query (RDF triples, GUN graph, DID-linked data), executes the query, and refines results through Lyra — an in-browser fulltext search engine that runs entirely client-side. Context-aware Markov chains from the prioritizer re-rank results based on what the user has asked before. The final output is a single static HTML file with all the data embedded — searchable, shareable, deployable anywhere (GitHub Pages, IPFS, USB stick). This is the zero-infrastructure deployment path for Alice's knowledge: no server, no database, no API. OpenSSF metrics or CVE data become browsable static pages anyone can open.
+ * 
+ * Earlier understanding (from comms/0081): Alice's knowledge graph shared via JSON-LD static files and queried via GraphQL-LD (Comunica) and Linked Data Fragments (TPF).
+ * 
+ * @see comms/0111
+ * @see https://docs.lyrasearch.io/usage/create-a-new-lyra-instance
+ */
+export function staticSearchableKnowledgeGraph(): void {
+  // Related: knowledgeGraph, knowledgeGraphGraphQLLd, prioritizer, prioritizerMarkovChains
+}

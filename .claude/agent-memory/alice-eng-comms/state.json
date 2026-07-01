@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 103,
+  "lastProcessedComm": 111,
   "processedComms": [
     0,
     1,
@@ -104,7 +104,15 @@
     100,
     101,
     102,
-    103
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -457,7 +465,7 @@
     "supplyChainInformationNetwork": {
       "functionName": "supplyChainInformationNetwork",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 71,
+      "lastUpdatedComm": 111,
       "sourceIssues": [],
       "summary": "SCITT as decentralized supply chain information network with petnames-based replication across trust boundaries"
     },
@@ -541,7 +549,7 @@
     "knowledgeGraphGraphQLLd": {
       "functionName": "knowledgeGraphGraphQLLd",
       "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
-      "lastUpdatedComm": 87,
+      "lastUpdatedComm": 111,
       "sourceIssues": [],
       "summary": "JSON-LD knowledge graph queryable via GraphQL-LD and Linked Data Fragments"
     },
@@ -593,6 +601,41 @@
       "lastUpdatedComm": 103,
       "sourceIssues": [],
       "summary": "SCITT instances federate via DWN relay for cross-node discovery and signed claim routing"
+    },
+    "supplyChainRiskManagementChecklist": {
+      "functionName": "supplyChainRiskManagementChecklist",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "35-item SCRM questionnaire as Alice gatekeeper policy overlay from State Dept Evolve RFP"
+    },
+    "threatModelAsAdmissionGate": {
+      "functionName": "threatModelAsAdmissionGate",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "Threat model as hard admission gate — no software enters Alice's forge without one"
+    },
+    "shellContextCapture": {
+      "functionName": "shellContextCapture",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "Alice captures shell state aligned to system context for reproducible execution"
+    },
+    "graphQueryDrivenOverlayStore": {
+      "functionName": "graphQueryDrivenOverlayStore",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "Graph queries execute dataflow overlays as stream-of-consciousness backend with proxy cache"
+    },
+    "staticSearchableKnowledgeGraph": {
+      "functionName": "staticSearchableKnowledgeGraph",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "NL→KG→Lyra fulltext→Markov refinement→static HTML, zero-server knowledge deployment"
     }
   },
   "issueCache": {
@@ -684,6 +727,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 69,
+  "totalStubsCreated": 74,
   "totalIssuesFetched": 9
 }

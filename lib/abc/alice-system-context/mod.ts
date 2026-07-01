@@ -396,3 +396,14 @@ export function overlaysAsDynamicContextAwareBranches(): void {
 export function recordDataflowUnification(): void {
   // Related: dataflowAsRecordPersistence, freezeSystemContext, theDataFlow
 }
+
+/**
+ * Alice packages the current shell state (environment variables, running processes, installed packages, directory contents) aligned with the top-level system context so the execution environment is reproducible.
+ * 
+ * When Alice is told "complete X on ephemeral VMs," she captures the shell context — what is installed, what is running, what env vars are set — and freezes it as a system context overlay. This overlay travels with the compute contract: the bidder receives the captured context alongside the RFP and provisions a guest whose cloud-init user_data reproduces that exact environment. The shell context is the bridge between "it worked on my laptop" and "Alice can reproduce it anywhere." The capture is not just a snapshot — it is aligned to the system context's intent, so Alice knows which parts of the shell state are relevant to the task.
+ * 
+ * @see comms/0109
+ */
+export function shellContextCapture(): void {
+  // Related: freezeSystemContext, theOverlay, describeTheSystemAsData
+}
