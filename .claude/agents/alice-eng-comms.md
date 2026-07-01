@@ -34,19 +34,30 @@ references they contain, and extend the docs-code-stubs-graph in
    - Commit hashes, PR discussion review anchors (`discussion_rNNN`), and
      issuecomment anchors (`#issuecomment-NNNN`) are noise — skip them.
 
-4. **Fetch issues/PRs** (only uncached). For each unique issue:
+4. **Fetch issues/PRs** (cache-first). The cache directory is
+   `open-architecture/.cache/`. Cache file naming:
+   - Issue: `.cache/intel-dffml-issue-<N>.json`
+   - PR: `.cache/intel-dffml-pr-<N>.json`
+
+   **Check cache first**: if the cache file exists, Read it directly — no `gh`
+   call needed. The cached JSON contains the full `gh issue view` / `gh pr view`
+   output (title, body, all comments, labels, author, createdAt).
+
+   **Only fetch if not in cache and not in state.issueCache**:
    ```bash
-   gh issue view <N> --repo intel/dffml --json title,body,comments,labels,author,createdAt
+   gh issue view <N> --repo intel/dffml --json title,body,comments,labels,author,createdAt > open-architecture/.cache/intel-dffml-issue-<N>.json
    ```
    For PRs:
    ```bash
-   gh pr view <N> --repo intel/dffml --json title,body,comments,labels,author,createdAt
+   gh pr view <N> --repo intel/dffml --json title,body,comments,labels,author,createdAt > open-architecture/.cache/intel-dffml-pr-<N>.json
    ```
    Before fetching, check rate limits:
    ```bash
    gh api rate_limit --jq '.resources.core.remaining'
    ```
-   If < 100 remaining, skip fetching for this batch.
+   If < 100 remaining, skip fetching for this batch (but still read from
+   `.cache/` if available). Always save fetched output to `.cache/` so
+   subsequent runs hit the disk cache.
 
 5. **Identify concepts**. Look for:
    - Markdown headings (`#`, `##`, `###`) — concept names
@@ -107,7 +118,7 @@ references they contain, and extend the docs-code-stubs-graph in
      "lastProcessedComm": <current>,
      "processedComms": [..., <current>],
      "concepts": { "<name>": { "functionName": "...", "filePath": "...", "lastUpdatedComm": <current>, "sourceIssues": [...], "summary": "..." } },
-     "issueCache": { "<owner/repo#N>": { "fetchedAt": "<ISO>", "title": "...", "commentCount": 0 } },
+     "issueCache": { "<owner/repo#N>": { "fetchedAt": "<ISO>", "title": "...", "commentCount": 0, "cacheFile": ".cache/intel-dffml-issue-<N>.json" } },
      "lastBatchSize": <count>,
      "totalStubsCreated": <count>,
      "totalIssuesFetched": <count>
@@ -145,8 +156,10 @@ When creating a new ABC package `lib/abc/<name>/`:
 
 - **Already processed**: if `state.processedComms` includes a comm index, skip
   it (no duplicate work).
-- **Issue cache hit**: if `state.issueCache[issueRef]` exists, skip the `gh`
-  call.
+- **Issue cache hit**: if `state.issueCache[issueRef]` exists AND the cache file
+  at the recorded path exists on disk, Read the cache file — skip the `gh` call.
+  Only reach for `gh` if the cache file is missing or the entry is not in
+  state.issueCache.
 - **Empty comm**: if index.md and all reply files are blank or only contain
   headings with no content, mark as processed and move on.
 - **Rate limit**: if `gh api rate_limit --jq '.resources.core.remaining'` < 100,
