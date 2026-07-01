@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 31,
+  "lastProcessedComm": 39,
   "processedComms": [
     0,
     1,
@@ -32,7 +32,15 @@
     28,
     29,
     30,
-    31
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39
   ],
   "concepts": {
     "did-standardization": {
@@ -58,7 +66,8 @@
     "open-policy-agent-overlay": {
       "comm": 2,
       "status": "new",
-      "package": "alice-supply-chain"
+      "package": "alice-supply-chain",
+      "lastUpdatedComm": 39
     },
     "entity-analysis-trinity": {
       "comm": 2,
@@ -202,6 +211,48 @@
       "lastUpdatedComm": 31,
       "sourceIssues": [],
       "summary": "Import plain Python functions as dataflow operations via path-based trampoline"
+    },
+    "osDecentralice": {
+      "functionName": "osDecentralice",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "Reproducible OS image for Alice: Wolfi userspace + Fedora kernel + SSI service"
+    },
+    "speechToTextOperation": {
+      "functionName": "speechToTextOperation",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "Wrap external speech-to-text models (Whisper) as DFFML operations for Alice input"
+    },
+    "policyAssistedLifecycleManagement": {
+      "functionName": "policyAssistedLifecycleManagement",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "OPA policy governs patching, retesting, and re-releasing across the full software lifecycle"
+    },
+    "sbomAsPolicyProvenance": {
+      "functionName": "sbomAsPolicyProvenance",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "SBOM feeds into policy evaluation: datasets, docs, org contacts as policy inputs"
+    },
+    "timeBasedSecurityModel": {
+      "functionName": "timeBasedSecurityModel",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "Security must account for time: continuous compliance, not one-time audit"
+    },
+    "credentialManifestAlignment": {
+      "functionName": "credentialManifestAlignment",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 39,
+      "sourceIssues": [],
+      "summary": "DFFML Manifest aligns with W3C Credential Manifest spec for compute-identity interop"
     }
   },
   "issueCache": {
@@ -272,9 +323,27 @@
         16
       ],
       "cacheFile": ".cache/intel-dffml-issue-1412.json"
+    },
+    "intel/dffml#245": {
+      "fetchedAt": "2026-06-29T21:41:10.211Z",
+      "title": "df: System local resource management",
+      "commentCount": 2,
+      "cacheFile": "/Users/johnandersen777/src/publicdomainrelay/open-architecture/.cache/intel-dffml-issue-245.json"
+    },
+    "intel/dffml#1061": {
+      "fetchedAt": "2026-06-29T21:41:10.211Z",
+      "title": "docs: arch: 2nd and 3rd party plugins",
+      "commentCount": 8,
+      "cacheFile": "/Users/johnandersen777/src/publicdomainrelay/open-architecture/.cache/intel-dffml-issue-1061.json"
+    },
+    "intel/dffml#1207": {
+      "fetchedAt": "2026-06-29T21:41:10.211Z",
+      "title": "docs: arch: Inventory",
+      "commentCount": 3,
+      "cacheFile": "/Users/johnandersen777/src/publicdomainrelay/open-architecture/.cache/intel-dffml-issue-1207.json"
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 19,
-  "totalIssuesFetched": 6
+  "totalStubsCreated": 25,
+  "totalIssuesFetched": 9
 }

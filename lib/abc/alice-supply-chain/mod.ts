@@ -258,3 +258,39 @@ export function operationCodeContentAddressing(): void {
 export function trustFirstPolicyOverride(): void {
   // Related: gatekeeper, openPolicyAgentOverlay, gatherExceptionReceipts
 }
+
+/**
+ * Policy evaluation applied to the full software lifecycle: patching vulnerabilities, retesting downstream consumers, and re-releasing verified artifacts.
+ * 
+ * Extends the OPA-based policy overlay beyond deployment-time gating into ongoing lifecycle governance. When a vulnerability is discovered, policy rules check: were patches applied? Were downstream projects retested against the patched version? Was a new release cut and attested? This closes the loop between SBOM generation, vulnerability detection, and remediation — policy is the enforcement mechanism that ensures the lifecycle stays compliant over time, not just at a single audit point.
+ * 
+ * Earlier understanding (from prior comms): OPA overlay evaluates deployment policy at admission time.
+ * 
+ * @see comms/0032
+ * @see intel/dffml#245
+ */
+export function policyAssistedLifecycleManagement(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * SBOMs stored as provenance inputs to policy engines, where the SBOM for policy includes datasets, documentation references, and organizational contacts — not just dependency lists.
+ * 
+ * When an SBOM is submitted to a policy engine (OPA, Kyverno, or Alice's own policy overlay), the policy can evaluate not only what dependencies exist but also what data, docs, and contacts are associated with each component. This enables richer policy decisions: "does this component have a documented security contact?", "has the training dataset for this model been audited?", "is there a VEX statement covering this vulnerability?". The SBOM becomes the evidence record that policy rules consume, and the policy result is itself provenance — proving that a lifecycle check was performed.
+ * 
+ * @see comms/0032
+ */
+export function sbomAsPolicyProvenance(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * Security model that accounts for the passage of time: ongoing maintenance, continuous re-certification, and lifecycle decay, beyond the traditional defense-in-depth onion model.
+ * 
+ * The onion security model (defense in depth) assumes static layers. In reality, vulnerabilities emerge over time, dependencies bit-rot, and certifications expire. This concept uses LEED certification as an analogy: buildings must be continuously maintained and periodically re-certified, not just certified once. Similarly, software security requires ongoing SBOM updates, vulnerability scanning, downstream retesting, and policy re-evaluation. Time is the critical differentiator — a system that was secure yesterday may not be secure today without continuous maintenance.
+ * 
+ * @see comms/0032
+ */
+export function timeBasedSecurityModel(): void {
+  // TODO: wire to related concepts
+}

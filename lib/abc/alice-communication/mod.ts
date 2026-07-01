@@ -118,3 +118,15 @@ export function walkTheReferences(): StrongRef {
 export function theFirehoseCarriesIt(): void {
   walkTheReferences();
 }
+
+/**
+ * DFFML Manifest structure aligns with the W3C Credential Manifest specification, enabling interoperability between Alice's compute contract manifests and decentralized identity credential issuance protocols.
+ * 
+ * The W3C Credential Manifest describes what inputs a Subject must provide to an Issuer for credential issuance. DFFML's Manifest (defined in ADR 0008) serves the same structural role: intent + schema + data. The Credential Manifest's `SpecVersion` property maps directly to DFFML's `$schema` property — both declare what version of the manifest format applies. This alignment means Alice's compute contract manifests can be treated as credential manifests and vice versa, bridging the distributed compute and decentralized identity domains under one document format.
+ * 
+ * @see comms/0039
+ * @see intel/dffml#1207
+ */
+export function credentialManifestAlignment(): void {
+  // TODO: wire to related concepts
+}

@@ -182,3 +182,14 @@ export function notify(_changes: unknown): void {
 export function nfsCacheOverlay(): void {
   // Related: dataflowCacheExportImport
 }
+
+/**
+ * Wraps external speech-to-text models as DFFML operations so Alice can consume audio input as part of her stream of consciousness.
+ * 
+ * The canonical example is OpenAI Whisper: the model is loaded, an audio file is transcribed via `model.transcribe()`, and the resulting text enters Alice's context. This demonstrates the general pattern: any third-party AI model can be wrapped as a DFFML operation by following the operation entrypoint conventions. Alice then consumes the output like any other system context input. The same pattern applies to any multimodal input — images, logs, streaming data — wrapped as operations and fed into the prioritizer.
+ * 
+ * @see comms/0034
+ */
+export function speechToTextOperation(): void {
+  // Related: onEvent, shareAThought
+}

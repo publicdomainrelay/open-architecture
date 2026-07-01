@@ -104,3 +104,15 @@ export function puttingItTogether(buildEvent: { source: string }): void {
   // She thinks the train of thought further.
   thinkMoreDeeply();
 }
+
+/**
+ * Alice's deployment operating system substrate, built as a reproducible Dockerfile combining Wolfi userspace with a Fedora kernel, compiled SSI service binary, and systemd init.
+ * 
+ * OS DecentrAlice is the base layer from which Alice deploys into arbitrary contexts — VM, bare metal, or container. The Dockerfile produces a bootable image: Wolfi provides the userspace (APK packages, Python, curl), Fedora provides the kernel + systemd + dracut for UEFI boot, and the SSI (Self-Sovereign Identity) service from TBD is compiled from source and installed as a systemd unit. The image is verified under QEMU with Arch Linux live media for disk partitioning and bootloader installation. This gives Alice a known, reproducible base that can be provisioned via the compute contract flow.
+ * 
+ * @see comms/0035
+ * @see comms/0037
+ */
+export function osDecentralice(): void {
+  // TODO: wire to related concepts
+}
