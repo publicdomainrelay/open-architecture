@@ -303,3 +303,27 @@ export function trinityOntologicalMapping(): void {
 export function dataflowFunctionImport(): void {
   // Related: subflowTypecast, theDataFlow
 }
+
+/**
+ * Operation implementations can request retries from within their own run() method via a context manager, decoupling retry policy from static operation configuration.
+ * 
+ * The raiseretry context manager allows an operation to raise RetryOperationException with a specific retry count, giving the operation itself control over when and how many times it should be re-executed. This differs from the existing static operation.retry field by allowing runtime decisions based on the nature of the failure (e.g., transient network errors get more retries than validation errors). The orchestrator's run method checks for RetryOperationException and respects the operation-defined retry count rather than only the statically configured one.
+ * 
+ * @see comms/0041
+ */
+export function operationRetryContextManager(): void {
+  // Related: operationTrustBoundary, subflowLockTaken
+}
+
+/**
+ * The Entity Analysis Trinity (Intent/Train, Dynamic/Improve data, Static/Error analysis) maps directly to Andrew Ng's data-centric AI paradigm where AI equals code plus systematically engineered data.
+ * 
+ * Data-centric AI is the discipline of systematically engineering the data used to build an AI system — this is exactly what Alice does. The trinity phases align: Intent/Train establishes correlations between threat model intent and collected data (telemetry, static analysis, policy, failures); Dynamic analysis improves data by applying overlays over time and observing different behaviors; Static/Error analysis examines existing errors to guide next steps. Datasheets for Datasets provide the documentation pattern for provenance tracking — every dataset carries a datasheet documenting motivation, composition, collection process, and recommended uses, just as SBOMs document software components.
+ * 
+ * Earlier understanding (from comms/0000): the Entity Analysis Trinity is a three-phase iterative process for understanding and improving any system through data, analysis, and control feedback loops.
+ * 
+ * @see comms/0042
+ */
+export function entityAnalysisTrinityDataCentricAI(): void {
+  // Related: entityAnalysisTrinity, dataProvenanceTracking
+}

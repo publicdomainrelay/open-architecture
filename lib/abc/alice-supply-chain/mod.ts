@@ -294,3 +294,43 @@ export function sbomAsPolicyProvenance(): void {
 export function timeBasedSecurityModel(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * SCITT and supply chain security architectures must define a cryptographic roll-forward strategy aligned with NIST post-quantum guidance, addressing timeline skew where different algorithms degrade at different rates.
+ * 
+ * As quantum computing advances, the security of supply chain attestations degrades. A roll-forward strategy ensures that SCITT remains effective even as attacks on specific cryptographic algorithms succeed. The threat model must account for time-of-check vs time-of-use (TOCTOU) vulnerabilities where an artifact was signed with a now-broken algorithm. Alignment with NIST PQC selected algorithms (CRYSTALS-Kyber, CRYSTALS-Dilithium, FALCON, SPHINCS+) ensures the architecture survives cryptographic transitions. The COSE_Key and COSE_Sign/CounterSign integration points are critical for PQC signature representation.
+ * 
+ * @see comms/0041
+ * @see comms/0044
+ */
+export function postQuantumCryptoRollForward(): void {
+  // Related: scittTransparencyService, transparencyLogScitt
+}
+
+/**
+ * SCITT architecture formalized with distinct notary and registry roles: notaries insert attestations into registries; consumers query by SHA-256 content hash; a policy layer evaluates rich claims to determine trustworthiness; registries issue independently verifiable cryptographic receipts.
+ * 
+ * The registry stores assertions (attestations about artifacts), not the artifacts themselves. Content-addressable by SHA-256 hash. Two permission models: public read/private write (notary-gated insertion, open query) and private read/private write (UCAN/DID auth-gated). The policy layer applies rules to claims — richer claims enable richer policy. Receipts are countersignatures that carry proof of registration; they are independently verifiable without querying the registry, making them suitable for offline verification. TOCTOU concerns arise when proving a read occurred at a specific time. Post-quantum considerations affect hash algorithm selection (SHA-256 minimum, avoid MD5 for integrity).
+ * 
+ * Earlier understanding (from comms/0025): SCITT provides a transparency service for supply chain artifacts with basic notarization.
+ * 
+ * @see comms/0041
+ * @see comms/0044
+ */
+export function scittNotaryRegistryPolicyLayer(): void {
+  // Related: scittTransparencyService, transparencyLogScitt, openPolicyAgentOverlay
+}
+
+/**
+ * Living threat models are synthesized and continuously re-evaluated via reinforcement learning where the reward function is driven by strategic principle alignment and analytical findings from the Entity Analysis Trinity.
+ * 
+ * Rather than static threat modeling documents, the threat model evolves through OfflineRL/Dopamine training where rewards reflect alignment with strategic principles. The analysis phase of the Entity Analysis Trinity drives the reward signal: detected policy violations, newly discovered vulnerabilities, and changes in the dependency graph all update the threat model's state. This synthesis connects directly to the OpenSSF Metrics use case and SCITT infrastructure — as new attestations enter the transparency log, the threat model re-evaluates trust. The model is a living document in the same way that intel/dffml#1406 is a living engineering discussion: continuously updated as new information arrives.
+ * 
+ * Earlier understanding (from comms/0044): living threat models are better than dead threat models because they adapt as the software and threat landscape change.
+ * 
+ * @see comms/0045
+ * @see intel/dffml#1406
+ */
+export function livingThreatModelRLSynthesis(): void {
+  // Related: livingThreatModel, entityAnalysisTrinity, scittTransparencyService
+}

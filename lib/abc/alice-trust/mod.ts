@@ -179,3 +179,14 @@ export function conformityAssessment(): void {
   // ISO/IEC 17000: first, second, third party attestation.
   // Weighted by web of trust history.
 }
+
+/**
+ * Every machine entity must continuously stream attestation, provenance, SBOM, and runtime integrity proofs — its soul — to remain trusted; silence is treated as compromise.
+ * 
+ * Machines exist to serve humans, and must prove compliance from every tick to tock. A machine that stops providing attestation/provenance/SBOM/Nutrition Label/DNA is flagged as non-compliant and potentially malicious. This is the fundamental gatekeeper principle: no attestation stream means no trust. The attestation includes what the machine is running, what data it accesses, and its current operational state. This goes beyond boot-time attestation (linuxLoaderAttestation) to continuous runtime verification. The proliferation of device attestations creates a transparency network where any non-compliant entity is immediately visible to humans.
+ * 
+ * @see comms/0045
+ */
+export function machineContinuousAttestation(): void {
+  // Related: linuxLoaderAttestation, sbomEverywhereMaturity, dataProvenanceTracking
+}
