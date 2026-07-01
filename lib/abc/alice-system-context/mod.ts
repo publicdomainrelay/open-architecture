@@ -100,3 +100,38 @@ export function deploymentSpecificOperationOverride(): void {
 export function dataflowEventAllowList(): void {
   // Related: dataflowCacheExportImport
 }
+
+/**
+ * Dataflows are composed from three independent manifests — inputs, operations, and orchestration — which combine into a single serializable RunDataFlow.
+ * 
+ * Each manifest serves a distinct role: the inputs manifest declares what data enters the flow, the operations manifest defines the transformation steps, and the orchestration manifest specifies how those steps are wired together and in what order. The three combine to form a RunDataFlow, which is the serializable, versionable representation of `run_dataflow` — analogous to how RunSingleConfig serializes single-operation runs. Acceptance criteria can be attached to individual operation outputs or to the combined set, allowing partial-failure tolerance. This tri-manifest split enables deployment-type-specific overrides (a deployment config can swap operation implementations per phase) and allows the same conceptual dataflow to be expressed differently for build, deploy, and run contexts.
+ * 
+ * @see comms/0089
+ * @see intel/dffml#1061
+ */
+export function triManifestArchitecture(): void {
+  // Related: deploymentSpecificOperationOverride, dataflowSynthesisBuildMode, dataflowEventAllowList
+}
+
+/**
+ * Overlays function as dynamic, context-aware branching points in dataflows rather than static, pre-computed patches.
+ * 
+ * Unlike a static overlay that simply merges operations into a dataflow, a context-aware branch overlay evaluates runtime context — working directory, user identity, deployment phase, or policy state — and selects which overlay to apply or which subflow to activate. The overlay becomes a decision node: based on context, it may branch the dataflow into different paths, apply entirely different operation sets, or route through different trust boundaries. This parallels how the subflow mechanism already accepts overlay parameters: the overlay is applied before the subflow runs, and the orchestrator for overlay application can differ from the main orchestrator. Extending this to full context-aware branching means overlays become the primary mechanism for conditional execution paths, policy-driven routing, and environment-specific dataflow mutation — all without forking the dataflow definition itself.
+ * 
+ * @see comms/0090
+ */
+export function overlayDynamicBranching(): void {
+  // Related: sandboxingPolicyOverlay, aliceShellDefaultOverlay, subflowLockTaken
+}
+
+/**
+ * The operation name encodes the installation method — knowing the operation name tells you how to install the thing that provides it.
+ * 
+ * In the manifest-as-dataflow model, an operation instance is not just a computation step but also a declaration of dependencies. The operation name functions as a package specifier: to install the implementation of an operation is to invoke the operation name through the dataflow's input network. This means a dataflow manifest doubles as an installation manifest — running the dataflow in "install mode" resolves operation implementations, fetches dependencies, and provisions the environment. Deployment-type overrides select which implementation to install per environment. The operation name thus serves as a content-addressed, reproducible installation instruction that works across Python packages, containers, and system services.
+ * 
+ * @see comms/0089
+ * @see intel/dffml#1061
+ */
+export function operationAsInstallPath(): void {
+  // Related: operationCodeContentAddressing, deploymentSpecificOperationOverride
+}
