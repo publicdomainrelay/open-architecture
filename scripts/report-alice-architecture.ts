@@ -118,12 +118,11 @@ async function main() {
   const systemPrompt = prompts[MODE] ?? prompts["caveman-full"];
 
   let prompt = `${systemPrompt}\n\nData:\n${JSON.stringify(data, null, 2)}`;
-  let maxTurns = 3;
-  let tools: string[] = [];
+  const tools = ["codegraph_explore", "codegraph_node"];
+  let maxTurns = 8;
 
   if (focusQuery) {
-    tools = ["codegraph_explore", "codegraph_node"];
-    maxTurns = 12;
+    maxTurns = 15;
     prompt = `${systemPrompt}
 
 IMPORTANT: focus on this area of the architecture: "${focusQuery}"
