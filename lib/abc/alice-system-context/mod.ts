@@ -183,3 +183,20 @@ export function pyodideWasmManifest(): void {
 export function overlayFeedbackTemplate(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Overlays are applied incrementally layer by layer during analysis, not all at once.
+ * 
+ * During system context analysis, overlays are progressively layered onto the
+ * analysis pipeline — each overlay refines the understanding produced by the
+ * previous one. This mirrors how the brain incrementally processes features
+ * (e.g., prosopagnosia research shows facial recognition happens in stages).
+ * Each overlay step adds resolution to the analysis output rather than replacing
+ * it wholesale.
+ * 
+ * @see comms/0119
+ * @see https://www.podgist.com/stuff-you-should-know/how-face-blindness-works/index.html
+ */
+export function incrementalOverlayApplication(): void {
+  // TODO: wire to related concepts
+}

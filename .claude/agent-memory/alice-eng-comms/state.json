@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 111,
+  "lastProcessedComm": 119,
   "processedComms": [
     0,
     1,
@@ -112,7 +112,15 @@
     108,
     109,
     110,
-    111
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119
   ],
   "concepts": {
     "did-standardization": {
@@ -673,6 +681,13 @@
       "lastUpdatedComm": 111,
       "sourceIssues": [],
       "summary": "Templated overlay content with mandatory false-positive feedback input"
+    },
+    "incrementalOverlayApplication": {
+      "functionName": "incrementalOverlayApplication",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 119,
+      "sourceIssues": [],
+      "summary": "Overlays applied incrementally during analysis, layer by layer like facial recognition"
     }
   },
   "issueCache": {
@@ -764,6 +779,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 72,
+  "totalStubsCreated": 73,
   "totalIssuesFetched": 9
 }
