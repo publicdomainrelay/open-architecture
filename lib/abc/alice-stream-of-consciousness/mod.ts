@@ -337,3 +337,15 @@ export function redisEventProcessingPipeline(): void {
 export function transientSparqlCollaborationStore(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Programmatically extract GitHub issue and discussion threads via GraphQL API, convert to structured markdown, and ingest into Alice's knowledge graph.
+ * 
+ * Uses the GitHub GraphQL API (advanced pagination, nested comment threading) to dump entire discussion threads into markdown files. The `dump_discussion.py` script walks issue/PR comment trees with full reply nesting and timestamps, producing files suitable for static knowledge graph indexing. Feeds the knowledge graph inventory and stream of consciousness engineering logs — every discussion becomes a queryable, timeline-searchable entity in Alice's corpus.
+ * 
+ * @see comms/0503
+ * @see intel/dffml#1483
+ */
+export function discussionThreadAutoDumping(): void {
+  // Related: staticSearchableKnowledgeGraph, knowledgeGraphInventory, streamOfConsciousnessGitops, herstoryDocumentationSynthesis
+}

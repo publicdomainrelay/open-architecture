@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 495,
+  "lastProcessedComm": 503,
   "processedComms": [
     0,
     1,
@@ -496,7 +496,15 @@
     492,
     493,
     494,
-    495
+    495,
+    496,
+    497,
+    498,
+    499,
+    500,
+    501,
+    502,
+    503
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1902,6 +1910,13 @@
       "lastUpdatedComm": 487,
       "sourceIssues": [],
       "summary": "VDO-structured vuln descriptions as input to decentralized Data Analysis Control loop"
+    },
+    "discussionThreadAutoDumping": {
+      "functionName": "discussionThreadAutoDumping",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 503,
+      "sourceIssues": [],
+      "summary": "Extract GitHub discussion threads via GraphQL API for knowledge graph ingestion"
     }
   },
   "issueCache": {
@@ -1999,6 +2014,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 200,
+  "totalStubsCreated": 201,
   "totalIssuesFetched": 10
 }
