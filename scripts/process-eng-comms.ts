@@ -402,8 +402,30 @@ Rules:
 - Write jsdoc in the style of the existing stubs: one clear sentence, then
   detail, then @see references (cite comm dir, issue refs).`;
 
+/** Extract text content from one SDK stream event. */
+function extractEventText(event: Record<string, unknown>): string {
+  // stream_event: delta text in event.delta.text
+  const se = event.event as Record<string, unknown> | undefined;
+  if (se?.delta && typeof (se.delta as { text?: string }).text === "string") {
+    return (se.delta as { text: string }).text;
+  }
+  // assistant: content blocks in message.content[]
+  const msg = event.message as { content?: unknown } | undefined;
+  if (msg?.content) {
+    if (Array.isArray(msg.content)) {
+      return (msg.content as Array<{ text?: string; type?: string }>)
+        .filter((b) => b.type === "text")
+        .map((b) => b.text ?? "")
+        .join("");
+    }
+    return String(msg.content);
+  }
+  return "";
+}
+
 async function aiInference(input: AgentInput): Promise<AgentOutput> {
-  const prompt = JSON.stringify(input, null, 2);
+  const prompt =
+    `${INFERENCE_SYSTEM_PROMPT}\n\nInput:\n${JSON.stringify(input, null, 2)}\n\nReturn ONLY the JSON.`;
 
   emit("info", "phase2_start", {
     promptChars: prompt.length,
@@ -413,46 +435,80 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
   });
 
   const startTime = Date.now();
+  let allText = "";
+  let turnCount = 0;
+  let lastStreamTime = Date.now();
 
   try {
-    const result = await query({
-      prompt: `${INFERENCE_SYSTEM_PROMPT}\n\nInput:\n${prompt}\n\nReturn ONLY the JSON.`,
+    const session = await query({
+      prompt,
       options: {
-        maxTurns: 10,
-        allowedTools: [], // NO tools — inference only
+        maxTurns: 50,
         permissionMode: "bypassPermissions",
         cwd: ORG_ROOT,
-        systemPrompt: INFERENCE_SYSTEM_PROMPT,
+        includePartialMessages: true,
+        // allowedTools NOT set — agent definition's tools control access
       },
     });
 
-    const elapsedMs = Date.now() - startTime;
+    // Consume the async iterator. session IS the iterator.
+    for await (
+      const event of session as unknown as AsyncIterable<Record<string, unknown>>
+    ) {
+      const type = event.type as string;
 
-    // Extract JSON from result. The result may be an object or async iterable.
-    let text = "";
-    if (result && typeof result === "object") {
-      if (Symbol.asyncIterator in result) {
-        for await (const msg of result as AsyncIterable<Record<string, unknown>>) {
-          const m = msg as { type?: string; message?: { content?: unknown }; content?: unknown };
-          if (m.type === "result" || m.type === "assistant") {
-            text += String((m.message?.content ?? m.content ?? ""));
-          }
+      // Extract any text content from this event
+      const txt = extractEventText(event);
+      if (txt) allText += txt;
+
+      // Stream progress at info level (Option A)
+      if (type === "stream_event") {
+        turnCount++;
+        const now = Date.now();
+        if (txt || now - lastStreamTime > 5000) {
+          emit("info", "phase2_stream", {
+            elapsedS: ((now - startTime) / 1000).toFixed(1),
+            chars: allText.length,
+            preview: txt ? txt.substring(0, 200) : "(no text)",
+          });
+          lastStreamTime = now;
         }
-      } else {
-        text = JSON.stringify(result);
+      } else if (type === "assistant") {
+        emit("info", "phase2_stream", {
+          elapsedS: ((Date.now() - startTime) / 1000).toFixed(1),
+          chars: allText.length,
+          preview: txt ? txt.substring(0, 200).replace(/\n/g, " ") : "(thinking)",
+        });
+      } else if (type === "result") {
+        const r = event as Record<string, unknown>;
+        turnCount = (r.num_turns as number) ?? turnCount;
+        emit("info", "phase2_stream", {
+          elapsedS: ((Date.now() - startTime) / 1000).toFixed(1),
+          chars: allText.length,
+          turns: turnCount,
+          cost: r.total_cost_usd,
+          stopReason: r.stop_reason,
+        });
       }
     }
 
-    // Try to extract JSON from the response
-    const jsonMatch = text.match(/\{[\s\S]*"concepts"[\s\S]*\}/);
+    const elapsedMs = Date.now() - startTime;
+
+    // Extract JSON from accumulated text
+    const jsonMatch = allText.match(/\{[\s\S]*"concepts"[\s\S]*\}/);
     if (!jsonMatch) {
-      throw new Error(`No JSON found in agent response. Raw: ${text.substring(0, 500)}`);
+      throw new Error(
+        `No JSON found in agent response. ` +
+          `Text length: ${allText.length}. Preview: ${allText.substring(0, 500)}`,
+      );
     }
 
     const output: AgentOutput = JSON.parse(jsonMatch[0]);
     emit("info", "phase2_done", {
       elapsedMs,
       elapsedS: (elapsedMs / 1000).toFixed(1),
+      turns: turnCount,
+      responseChars: allText.length,
       conceptsFound: output.concepts.length,
       newCount: output.concepts.filter((c) => !c.isRefinement).length,
       refinementCount: output.concepts.filter((c) => c.isRefinement).length,
@@ -465,6 +521,8 @@ async function aiInference(input: AgentInput): Promise<AgentOutput> {
       elapsedMs,
       elapsedS: (elapsedMs / 1000).toFixed(1),
       error: (err as Error).message,
+      charsReceived: allText.length,
+      textPreview: allText.substring(0, 300),
     });
     throw err;
   }
