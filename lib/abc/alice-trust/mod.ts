@@ -487,3 +487,29 @@ export function teeToTeeAttestationChain(): void {
 export function keriAcdcAsScittBackend(): void {
   // Related: keriDuplicityDetection, scittTransparencyService, doITrustWhereThisCameFrom, recursiveTrustComposition
 }
+
+/**
+ * KERI duplicity detection combined with SCITT encrypted statements and registration policy evaluation enables trustless trade without revealing asset contents.
+ * 
+ * Parties Eve and Alice trust Faythe as intermediary. Both hold assets in Bob's storage. Eve requests a receipt from Bob's Transparency Service stating she has at least 1 Apple. Alice evaluates the registration policy used by the TS to confirm Bob checked Eve's inventory. The receipt proves ownership; the policy evaluation proves the check happened; KERI duplicity detection prevents double-spending. Neither party sees the other's actual assets — only cryptographically verified claims about them. Resource locking across distributed TS instances remains an open problem.
+ * 
+ * Earlier understanding (from prior comms): KERI duplicity detection as a general mechanism for detecting contradictory claims in a key-event receipt infrastructure.
+ * 
+ * @see comms/0449
+ */
+export function keriDuplicityScittTrade(): void {
+  // Related: keriDuplicityDetection, scittReceiptAsVcAuth, scittPolicyEmbeddedReceipt
+}
+
+/**
+ * SCITT duplicity detection must account for legitimate device remanufacturing: FPGAs and VMs can change their identity by design, so "once a tomato, always a tomato" does not hold for reconfigurable hardware.
+ * 
+ * A TS might flag contradictory attestations as duplicitous — e.g., an Attestation Provider asserting a device is a grape after previously asserting it was a tomato. But devices can be remanufactured to become different device types. FPGAs and VMs make this easy. Therefore both Ts in SCITT are "little t": the first T depends on selective disclosure policies, the second T is limited because identity is not permanently fixed. Duplicity detection must distinguish malicious contradiction from legitimate reconfiguration.
+ * 
+ * Earlier understanding (from prior comms): KERI duplicity detection as mechanism for detecting contradictory claims.
+ * 
+ * @see comms/0450
+ */
+export function scittDuplicityRemanufacturing(): void {
+  // Related: keriDuplicityDetection
+}

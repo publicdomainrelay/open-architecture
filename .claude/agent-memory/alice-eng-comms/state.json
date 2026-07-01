@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 447,
+  "lastProcessedComm": 455,
   "processedComms": [
     0,
     1,
@@ -448,7 +448,15 @@
     444,
     445,
     446,
-    447
+    447,
+    448,
+    449,
+    450,
+    451,
+    452,
+    453,
+    454,
+    455
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -633,7 +641,7 @@
     "scittNotaryAssertionRegistry": {
       "functionName": "scittNotaryAssertionRegistry",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 255,
+      "lastUpdatedComm": 455,
       "sourceIssues": [],
       "summary": "SCITT stores attestation assertions from notary, not the signed artifacts"
     },
@@ -1270,7 +1278,7 @@
     "keriDuplicityDetection": {
       "functionName": "keriDuplicityDetection",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 447,
+      "lastUpdatedComm": 455,
       "sourceIssues": [],
       "summary": "KERI duplicity-evident key state — watcher network detects forking, not just tampering"
     },
@@ -1700,6 +1708,76 @@
       "lastUpdatedComm": 447,
       "sourceIssues": [],
       "summary": "KERI ACDC as SCITT backend; duplicity detection cryptographically guarantees log consistency."
+    },
+    "sshKeyAsScittIdentity": {
+      "functionName": "sshKeyAsScittIdentity",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "SSH key (TPM-bound via PKCS#11) as SCITT signing identity, no OAuth/Fulcio needed"
+    },
+    "encryptedScittStatement": {
+      "functionName": "encryptedScittStatement",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "COSE Enc0Message for SCITT: policy engine evaluates encrypted payload without disclosure"
+    },
+    "scittPolicyEmbeddedReceipt": {
+      "functionName": "scittPolicyEmbeddedReceipt",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "Labeled property graph policy definition embedded in SCITT receipt for blind verification"
+    },
+    "scittWitnessedSignature": {
+      "functionName": "scittWitnessedSignature",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "SCITT TS witnesses the signature artifact, not the signing operation — notary metaphor misleading"
+    },
+    "nvdPollingToScittEventBridge": {
+      "functionName": "nvdPollingToScittEventBridge",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "NIST NVD polling → SCITT statements → ActivityPub federation for real-time CVE events"
+    },
+    "s2c2fScittConformance": {
+      "functionName": "s2c2fScittConformance",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "S2C2F requirements mapped to SCITT attestation statements for automated compliance evidence"
+    },
+    "scittRootRotation": {
+      "functionName": "scittRootRotation",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "SCITT TS root rotation preserving context and trust across merkle tree swaps"
+    },
+    "metaschemaScittTooling": {
+      "functionName": "metaschemaScittTooling",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "NIST metaschema for code/schema generation and format conversion across federated SCITT logs"
+    },
+    "keriDuplicityScittTrade": {
+      "functionName": "keriDuplicityScittTrade",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "KERI duplicity detection + SCITT encrypted receipts enable trustless trade without data disclosure"
+    },
+    "scittDuplicityRemanufacturing": {
+      "functionName": "scittDuplicityRemanufacturing",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 455,
+      "sourceIssues": [],
+      "summary": "Duplicity detection must allow for device remanufacturing — FPGAs/VMs change identity legitimately"
     }
   },
   "issueCache": {
@@ -1797,6 +1875,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 178,
+  "totalStubsCreated": 188,
   "totalIssuesFetched": 10
 }

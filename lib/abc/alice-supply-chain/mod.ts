@@ -1115,3 +1115,93 @@ export function scittServiceParameterDeclaration(): void {
 export function rdfLabeledPropertyGraphPolicy(): void {
   // Related: graphQueryDrivenOverlayStore, knowledgeGraph, scittInsertionPolicyAsComputeContract, openPolicyAgentOverlay
 }
+
+/**
+ * Use a developer's existing SSH key (optionally TPM-bound via PKCS#11) as a SCITT signing identity, bypassing OAuth/Fulcio flows.
+ * 
+ * GitHub exports SSH keys as Authentication Keys at the user's `.keys` endpoint. These can be converted to PKCS#8 PEM and fed to the SCITT client as the signing key. Combined with federated forges (WASM environment) and an attested Transparency Service, the SSH ECDSA-384 key produces SCITT receipts without any external OIDC issuer. The CWT issuer is the keys endpoint itself. tpm2-pkcs11 binds the key to a TPM owned by the developer, adding hardware root of trust. This removes the Fulcio dependency from the signing path — the SSH key already proves identity to GitHub, so re-proving via OIDC is redundant.
+ * 
+ * @see comms/0448
+ */
+export function sshKeyAsScittIdentity(): void {
+  // Related: scittNotaryAssertionRegistry
+}
+
+/**
+ * Use COSE Enc0Message instead of COSESign1 for SCITT statements, enabling the policy engine to evaluate payload validity without revealing contents.
+ * 
+ * The notary signs with its own key and encrypts the payload to the destination log's asymmetric key. Alternatively, symmetric keys with TIGRESS and OAuth Dynamic Client Registration allow the policy engine to access the symmetric key needed to verify payload contents. An OIDC token embedded in the payload authorizes access to a content-addressable resource that was uploaded before the statement was handed to the notary. Combined with KERI duplicity detection, this enables trustless trade: parties can prove asset ownership via receipts without revealing what the assets are.
+ * 
+ * @see comms/0449
+ */
+export function encryptedScittStatement(): void {
+  // Related: scittInsertionPolicyAsComputeContract
+}
+
+/**
+ * Embed a labeled property graph policy definition within the SCITT receipt itself, allowing clients to verify that data conformed to policy without knowing what the data is.
+ * 
+ * The policy definition travels with the receipt. A verifier evaluates the registration policy that was used by the Transparency Service prior to receipt generation — confirming that a check was done (e.g., "Eve has at least 1 Apple in storage") without seeing the underlying data. The receipt proves conformance; the policy proves what conformance means. This is blind policy verification: the verifier trusts the policy engine's output without accessing the payload or the data referenced from it.
+ * 
+ * @see comms/0449
+ */
+export function scittPolicyEmbeddedReceipt(): void {
+  // Related: scittReceiptAsVcAuth, scittInsertionPolicyAsComputeContract
+}
+
+/**
+ * Fundamental architectural distinction: a SCITT Transparency Service witnesses the signature artifact (the signed bytes), NOT the signing operation (the act of signing).
+ * 
+ * The TS can truthfully say "I witnessed this signature" — the signed artifact was logged, signer identity was checked, signer authorization may have been checked, and the artifact was logged with some range of transparency. But the TS cannot say "I witnessed this signing operation" — it did not observe the signer apply their key to the document. A physical-world notary watches the signer sign; SCITT only sees the already-signed document. The "notary" metaphor is therefore misleading and should not exist in SCITT architecture. The TS is closer to a document registry than a notary.
+ * 
+ * Earlier understanding (from prior comms): SCITT notary as an assertion registry.
+ * 
+ * @see comms/0450
+ */
+export function scittWitnessedSignature(): void {
+  // Related: scittNotaryAssertionRegistry
+}
+
+/**
+ * Convert NIST NVD vulnerability polling into SCITT statements and federate them as ActivityPub events, turning periodic database polling into a real-time federated event stream.
+ * 
+ * Uses cve-bin-tool's cvedb module to poll NIST NVD, wraps each CVE update as a SCITT statement with a transparency receipt, and publishes the statement via ActivityPub (Mastodon push API). Federated SCITT instances subscribe to each other's NVD statement feeds, creating a decentralized vulnerability event mesh. This bridges the gap between centralized vulnerability databases (poll-based) and decentralized supply chain security (event-driven).
+ * 
+ * @see comms/0450
+ */
+export function nvdPollingToScittEventBridge(): void {
+  // Related: cveToSourceMapping, activityPubScittInputs
+}
+
+/**
+ * Map S2C2F (Secure Supply Chain Consumption Framework) requirements to SCITT attestation statements for automated compliance evidence.
+ * 
+ * Each S2C2F requirement category (ING for ingestion, SCA for scanning, INV for inventory, UPD for updates, AUD for auditing, ENF for enforcement, REB for rebuilding, FIX for fixing) maps to a SCITT-notarized attestation of conformance. A YAML mapping format drives webhook event data to SCITT statement creation. The presence of data in respective SCITT feeds/subjects determines the overall compliance result. Teams output "attestations of conformance" to S2C2F requirements stored in SCITT, creating auditable, cryptographically verifiable compliance evidence for the entire OSS consumption lifecycle.
+ * 
+ * @see comms/0451
+ */
+export function s2c2fScittConformance(): void {
+  // Related: scittNotaryAssertionRegistry
+}
+
+/**
+ * SCITT transparency service root rotation or merkle tree swap that preserves historical context and root of trust across the TS lifecycle.
+ * 
+ * When a Transparency Service rotates its signing key or replaces its merkle tree, the accumulated transparency context and trust anchors must survive the transition. The rotation must be provable: a new root must chain back to the old root so verifiers can follow the trust continuity. Combined with a policy engine and federation, the labeled property graph built from receipts persists across rotations. This ensures long-lived supply chain transparency even as individual TS instances evolve or are replaced.
+ * 
+ * @see comms/0452
+ */
+export function scittRootRotation(): void {
+  // Related: scittNotaryAssertionRegistry
+}
+
+/**
+ * Apply NIST metaschema abstract information modeling to SCITT statements, SBOM, and VEX for schema generation, code generation, and format conversion.
+ * 
+ * Metaschema defines key objects, their relationships, abstract objects, and constraints/rules against data point combinations. These feed schema generators (XML Schema, JSON Schema, YAML) and programming-language code generators (Java and TypeScript first targets). Applied to SCITT: metaschema models of SBOM and VEX statements enable format conversion (any format → common abstract format → any format), constraint validation via XPATH-based profiling, and traversal across federated SCITT logs. Uses OSCAL modeling techniques (7-8 security document models) with allowed-value constraints. CBOR support on roadmap. Goal: metaschema-ize supply chain data so federated SCITT logs become uniformly queryable and validatable.
+ * 
+ * @see comms/0454
+ */
+export function metaschemaScittTooling(): void {
+  // Related: scittToipTrustRegistry
+}
