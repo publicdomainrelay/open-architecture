@@ -424,3 +424,16 @@ export function forgejoFederatedCicd(): void {
 export function federationIsTelepathy(): void {
   // Related: entityTelepathy, federatedThoughtDeduplication, federatedSseActivityPub
 }
+
+/**
+ * Deliver ActivityPub federation over CBOR/COSE/COAP for minimal payload size, targeting decentralized Kubernetes and constrained environments.
+ * 
+ * Building on ROLI and CBOR instead of JSON-LD, this transport avoids the complexity SPICE-oriented systems encounter with JSON-LD for RDF in Verifiable Credentials. CBOR Object Signing and Encryption (COSE) provides native signing, and the Constrained Application Protocol (COAP) enables federation over UDP for low-power devices. Namespace-to-actor URNs on a single IP support decentralized k8s service discovery without DNS. The result is a delta-friendly, smallest-possible-payload ActivityPub transport suitable for high-frequency supply chain events.
+ * 
+ * @see comms/0677
+ * @see https://datatracker.ietf.org/doc/rfc8322/
+ * @see https://transparency.dev/summit
+ */
+export function coseActivityPubTransport(): void {
+  // Related: activityPubOverGrpc, federatedSseActivityPub
+}

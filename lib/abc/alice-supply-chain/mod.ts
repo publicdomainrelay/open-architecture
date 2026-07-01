@@ -1659,3 +1659,16 @@ export function llmCveToVexPipeline(): void {
 export function federatedForkSynchronization(): void {
   // Related: federatedSupplyChainValidationTopology, forgejoFederatedCicd, gitRefPollingActivityPubBridge
 }
+
+/**
+ * A Rust implementation of the SCITT policy engine, exposed to Python as an async library via PyO3 bindings and maturin build tooling.
+ * 
+ * The policy engine runs natively in Rust for performance and safety, while PyO3-generated bindings expose it as an async Python package. maturin handles the Rust-to-Python build pipeline, producing a wheel that downstream Python tooling (SCITT API emulator, CLI clients) can import directly. Workflow structs define the policy engine request/response objects that pass between Python callers and the Rust engine.
+ * 
+ * @see comms/0674
+ * @see https://www.maturin.rs/
+ * @see https://github.com/pdxjohnny/scitt-api-emulator/pull/7
+ */
+export function pyo3RustPolicyEngine(): void {
+  // Related: policyEngineWorkflowDispatch
+}

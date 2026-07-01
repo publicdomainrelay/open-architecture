@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 671,
+  "lastProcessedComm": 679,
   "processedComms": [
     0,
     1,
@@ -672,7 +672,15 @@
     668,
     669,
     670,
-    671
+    671,
+    672,
+    673,
+    674,
+    675,
+    676,
+    677,
+    678,
+    679
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2421,6 +2429,27 @@
       "lastUpdatedComm": 671,
       "sourceIssues": [],
       "summary": "SCITT-protected JSON-LD checkpoint/restore for train of thought via ORAS"
+    },
+    "pyo3RustPolicyEngine": {
+      "functionName": "pyo3RustPolicyEngine",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 679,
+      "sourceIssues": [],
+      "summary": "Rust SCITT policy engine with PyO3/maturin async Python bindings"
+    },
+    "compilerErrorFeedbackLoop": {
+      "functionName": "compilerErrorFeedbackLoop",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 679,
+      "sourceIssues": [],
+      "summary": "rustc --error-format json as structured feedback for AI code generation loop"
+    },
+    "coseActivityPubTransport": {
+      "functionName": "coseActivityPubTransport",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 679,
+      "sourceIssues": [],
+      "summary": "CBOR/COSE/COAP ActivityPub federation with minimal payload for decentralized k8s"
     }
   },
   "issueCache": {
@@ -2518,6 +2547,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 249,
+  "totalStubsCreated": 252,
   "totalIssuesFetched": 10
 }

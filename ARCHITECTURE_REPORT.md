@@ -1,77 +1,91 @@
-# Alice Open Architecture — Caveman Report
-
-## State
+# OPEN ARCHITECTURE — CAVEMAN REPORT
 
 ```
-commsProcessed:  480 / 691  (69.5%)
-concepts:        202
-stubs:           197  (97.5% of concepts are stubs)
-issues:           10
+         _    _ _
+    /\  | |  (_) |
+   /  \ | | __ _| |_ ___ ___
+  / /\ \| |/ /| | __/ _ \ __|
+ / ____ \   < | | ||  __/ |__
+/_/    \_\_|\_\|_|\__\___|\__\
+
+CAVEMAN MODE — full — 2026-06-29
 ```
 
-197 of 202 concepts are stubs. Architecture is docs-as-code skeleton.
-Real implementation in hono-pds, atproto-market, hono-compute-provider
-(separate repos). This repo is the blueprint.
-
-## Package sizes (ASCII bars)
+## STATE
 
 ```
-alice-supply-chain    ████████████████████████████████████████████████████████████████████████████████████████████ 94
-alice-system-context  ██████████████████████████████████████████████████ 46
-alice-trust           ███████████████████████████████████ 35
-alice-communication   █████████████████████████ 25
-alice-stream-of-con…  ███████████████████████ 23
-alice                 ████████████████ 16
-alice-compute-cont…   ███████████████ 15
-alice-common          ██████████████ 14
-                                         total: 268 symbols
+commsProcessed:  664 / 691      96.09% complete
+concepts:        248            discovered
+stubs:           243            hollow (no body yet)
+issues:           10            open
 ```
 
-## Batch history
+27 comms remain unprocessed. 243 stubs = 97.98% of concepts
+still need bodies. Only 5 concepts (248-243) have implementations.
+
+## PACKAGE SIZES (by line count)
 
 ```
-batch 0:  7 concepts, 100.7s,  4 new, 3 refined, 1 attempt
-batch 1:  0 concepts, FAIL   ,  0 new, 0 refined, 2 attempts  ← FAIL
-batch 2:  4 concepts,  86.3s,  3 new, 1 refined, 1 attempt
-batch 3:  1 concept,   42.3s,  1 new, 0 refined, 1 attempt
-batch 4:  1 concept,   60.7s,  1 new, 0 refined, 1 attempt
-batch 5:  7 concepts, 123.0s,  4 new, 3 refined, 1 attempt
-batch 6: 10 concepts, 142.7s,  7 new, 3 refined, 1 attempt  ← peak
-batch 7:  0 concepts, FAIL   ,  0 new, 0 refined, 2 attempts  ← FAIL
-batch 8:  4 concepts, 127.6s,  4 new, 0 refined, 2 attempts
-batch 9:  5 concepts,  92.8s,  2 new, 3 refined, 1 attempt
+alice-supply-chain        117 ████████████████████████████████████████
+alice-system-context       47 ████████████████
+alice-trust                39 █████████████
+alice-stream-of-conscious  31 ██████████
+alice-communication        29 ██████████
+alice-compute-contract     19 ██████
+alice                      18 ██████
+alice-common               14 ████
+                             ──
+                    total  314 lines of architecture
 ```
 
-39 concepts across 8 successful batches. 2 failures (batches 1, 7).
-Batch 6 peak: 10 concepts, 7 new. Avg successful: ~97s.
+Supply chain dominates (117 lines = 37.3% of total). Common layer
+smallest (14 lines = 4.5%) — wire types only.
 
-## Topology
-
-All ABC layer (lib/abc/alice*/mod.ts). Zero impl, zero factory, zero CLI.
-This repo is pure architecture — the blueprint layer.
+## GLOBAL CALL GRAPH (top-level spine)
 
 ```
-alice/mod.ts  ← composes all sibling abc packages
-  imports from:
-    @publicdomainrelay/alice-communication-abc
-    @publicdomainrelay/alice-trust-abc
-    @publicdomainrelay/alice-compute-contract-abc
-    @publicdomainrelay/alice-supply-chain-abc
-    @publicdomainrelay/alice-stream-of-consciousness-abc
-    @publicdomainrelay/alice-system-context-abc
-  depends on:
-    @publicdomainrelay/alice-common  (types)
+puttingItTogether(buildEvent)
+├── herRepositoryIsHerVoice()
+│   ├── herIdentity() → didStandardization()
+│   ├── herMemory() → writeARecord() → herIdentity()
+│   └── herEars() → theFirehoseCarriesIt() → walkTheReferences()
+├── doITrustWhereThisCameFrom(source) → bool
+│   ├── enclaveAttestationIsASignalNotAFoundation()
+│   ├── scittTransparencyService()
+│   ├── conformityAssessment()
+│   ├── livingThreatModel()
+│   ├── dataProvenanceTracking()
+│   └── webOfTrust(operator)
+│       ├── vouchesAndDenouncements(operator)
+│       └── trustByVerifyContinuously()
+├── gatekeeper(component)
+│   ├── scanIntoTrustAttestation(component) → doITrustWhereThisCameFrom()
+│   ├── appendToTransparencyLog() → scittTransparencyService()
+│   ├── checkBillOfMaterialsAgainstLog() → livingSbomVdr()
+│   ├── gatherExceptionReceipts() → applyThreatModelOverlay()
+│   ├── openPolicyAgentOverlay()
+│   ├── applyThreatModelOverlay() → theOverlay()
+│   └── federateClaimsDownstream()
+├── getMyWorkRun() → CCR
+│   ├── publishCCRFP()
+│   ├── biddersAnswerWithCCB(rfp)
+│   ├── policyEnginePicksABidder(bids) → doITrustWhereThisCameFrom()
+│   ├── acceptWithCCBA(bid)
+│   ├── payPerTheTerms(accept)
+│   └── bobPublishesCCR(accept)
+└── thinkMoreDeeply() → entityAnalysisTrinity()
+    ├── intentAnalysis()
+    ├── staticAnalysis()
+    └── dynamicAnalysis()
 ```
 
-Dep arrow: alice-common ← all abc packages. No cycles.
-alice-supply-chain imports from alice-trust + alice-system-context
-(lateral abc→abc for composition). alice top-level composes all.
+Entry by `puttingItTogether` when build event arrives on firehose.
+Exit either `notify()` or recursive `thinkMoreDeeply()` via
+`onEvent` loop.
 
 ---
 
-## SUBSYSTEM 1: whatAliceIs — her shape
-
-Entrypoint defining Alice. Produces SystemContext, wires communication.
+## SUBSYSTEM 1 — whatAliceIs (identity + system context)
 
 ```mermaid
 graph TD
@@ -92,24 +106,29 @@ graph TD
 ```
 
 ```
-whatAliceIs()
-  describeTheSystemAsData() → SystemContext
-    theManifest() → {intent:"", schema:undefined, data:undefined}
-    theDataFlow() → {operations:{}, links:[]}
-    theOverlay() → {context:"", patch:undefined}
-    freezeSystemContext(upstream, overlays, orchestrator)
-  herRepositoryIsHerVoice()
-    herIdentity() → "did:plc:"
-      didStandardization() → stub (W3C DID 1.0, July 2022)
-    herMemory() → writeARecord() → {uri:"at://", cid:"", author:"did:plc:", value:undefined}
-    herEars() → theFirehoseCarriesIt() → walkTheReferences() → {uri:"at://", cid:""}
+whatAliceIs()                        — root boot fn
+├── describeTheSystemAsData()        → SystemContext
+│   ├── theManifest()                → {intent, schema, data}
+│   ├── theDataFlow()                → {operations, links}
+│   ├── theOverlay()                 → {context, patch}
+│   └── freezeSystemContext()        → SystemContext record
+└── herRepositoryIsHerVoice()        — comms stack
+    ├── herIdentity() → DID
+    │   └── didStandardization()     — W3C DID 1.0
+    ├── herMemory()                  — PDS repo
+    │   └── writeARecord()           → RepoRecord
+    │       └── herIdentity()        — signs record
+    └── herEars()                    — firehose listener
+        └── theFirehoseCarriesIt()
+            └── walkTheReferences()  → StrongRef
 ```
+
+whatAliceIs defines Alice: SystemContext says WHAT, comms
+stack says HOW she speaks/hears. Two halves of identity.
 
 ---
 
-## SUBSYSTEM 2: puttingItTogether — full build pipeline
-
-Bob pushes build. Alice hears → trusts → gates → provisions compute → thinks deeper.
+## SUBSYSTEM 2 — puttingItTogether (build event loop)
 
 ```mermaid
 graph TD
@@ -118,6 +137,67 @@ graph TD
   puttingItTogether --> gatekeeper
   puttingItTogether --> getMyWorkRun
   puttingItTogether --> thinkMoreDeeply
+  doITrustWhereThisCameFrom --> webOfTrust
+  webOfTrust --> vouchesAndDenouncements
+  webOfTrust --> trustByVerifyContinuously
+  gatekeeper --> scanIntoTrustAttestation
+  scanIntoTrustAttestation --> doITrustWhereThisCameFrom
+  gatekeeper --> appendToTransparencyLog
+  gatekeeper --> checkBillOfMaterialsAgainstLog
+  gatekeeper --> gatherExceptionReceipts
+  gatekeeper --> openPolicyAgentOverlay
+  gatekeeper --> applyThreatModelOverlay
+  gatekeeper --> federateClaimsDownstream
+  getMyWorkRun --> publishCCRFP
+  getMyWorkRun --> biddersAnswerWithCCB
+  getMyWorkRun --> policyEnginePicksABidder
+  policyEnginePicksABidder --> doITrustWhereThisCameFrom
+  getMyWorkRun --> acceptWithCCBA
+  getMyWorkRun --> payPerTheTerms
+  getMyWorkRun --> bobPublishesCCR
+```
+
+```
+puttingItTogether(buildEvent)
+│
+├── herRepositoryIsHerVoice()     [always]
+├── doITrustWhereThisCameFrom?    [if no → abort]
+│   ├── enclaveAttestationIsASignalNotAFoundation
+│   ├── scittTransparencyService
+│   ├── conformityAssessment
+│   ├── livingThreatModel
+│   ├── dataProvenanceTracking
+│   └── webOfTrust(source) → bool
+│       ├── vouchesAndDenouncements
+│       └── trustByVerifyContinuously
+├── gatekeeper(component)         [admit + policy]
+│   ├── scanIntoTrustAttestation  → doITrustWhereThisCameFrom
+│   ├── appendToTransparencyLog   → scittTransparencyService
+│   ├── checkBillOfMaterialsAgainstLog → livingSbomVdr
+│   ├── [if fail] gatherExceptionReceipts
+│   ├── openPolicyAgentOverlay
+│   ├── applyThreatModelOverlay   → theOverlay
+│   └── federateClaimsDownstream
+├── getMyWorkRun()               [if compute needed]
+│   ├── publishCCRFP → {request}
+│   ├── biddersAnswerWithCCB → [CCB]
+│   ├── policyEnginePicksABidder → filter(doITrustWhereThisCameFrom)
+│   ├── acceptWithCCBA → CCBA
+│   ├── payPerTheTerms
+│   └── bobPublishesCCR → CCR
+└── thinkMoreDeeply()            [always]
+    └── entityAnalysisTrinity()
+```
+
+Spine of entire system. Build event arrives → identity check→
+trust check → gatekeeper admit → provision compute → think.
+
+---
+
+## SUBSYSTEM 3 — doITrustWhereThisCameFrom (trust engine)
+
+```mermaid
+graph TD
   doITrustWhereThisCameFrom --> enclaveAttestationIsASignalNotAFoundation
   doITrustWhereThisCameFrom --> scittTransparencyService
   doITrustWhereThisCameFrom --> conformityAssessment
@@ -126,465 +206,389 @@ graph TD
   doITrustWhereThisCameFrom --> webOfTrust
   webOfTrust --> vouchesAndDenouncements
   webOfTrust --> trustByVerifyContinuously
+```
+
+```
+doITrustWhereThisCameFrom(source: DID) → bool
+├── enclaveAttestationIsASignalNotAFoundation
+│     "hardware cannot carry the whole weight"
+│     tee.fail reference — memory bus interposition
+├── scittTransparencyService
+│     content-agnostic. holds SBOMs, attestations,
+│     system contexts, policies
+├── conformityAssessment
+│     ISO/IEC 17000: 1st/2nd/3rd party attestation
+│     weighted by web of trust history
+├── livingThreatModel
+│     threats, mitigations, trust boundaries as
+│     initial dataset. evolves with every attestation
+│     through gatekeeper
+├── dataProvenanceTracking
+│     provenance on inference ← training data,
+│     model env, config. feeds prioritizer
+└── webOfTrust(operator) → bool
+    ├── vouchesAndDenouncements(operator)
+    │     records over time. walked like train of thought
+    └── trustByVerifyContinuously
+          "re-evaluated forever, never decided once"
+```
+
+Trust foundation. Hardware attestation = signal, not foundation.
+Real foundation = web of trust + continuous re-verification.
+SCITT = append-only transparency log for all artifacts.
+
+---
+
+## SUBSYSTEM 4 — gatekeeper (supply chain admission)
+
+```mermaid
+graph TD
   gatekeeper --> scanIntoTrustAttestation
+  scanIntoTrustAttestation --> doITrustWhereThisCameFrom
   gatekeeper --> appendToTransparencyLog
+  appendToTransparencyLog --> scittTransparencyService
   gatekeeper --> checkBillOfMaterialsAgainstLog
+  checkBillOfMaterialsAgainstLog --> livingSbomVdr
   gatekeeper --> gatherExceptionReceipts
+  gatherExceptionReceipts --> applyThreatModelOverlay
   gatekeeper --> openPolicyAgentOverlay
   gatekeeper --> applyThreatModelOverlay
-  gatekeeper --> federateClaimsDownstream
-  scanIntoTrustAttestation --> doITrustWhereThisCameFrom
-  appendToTransparencyLog --> scittTransparencyService
-  checkBillOfMaterialsAgainstLog --> livingSbomVdr
-  gatherExceptionReceipts --> applyThreatModelOverlay
   applyThreatModelOverlay --> theOverlay
-  getMyWorkRun --> publishCCRFP
-  getMyWorkRun --> biddersAnswerWithCCB
-  getMyWorkRun --> policyEnginePicksABidder
-  getMyWorkRun --> acceptWithCCBA
-  getMyWorkRun --> payPerTheTerms
-  getMyWorkRun --> bobPublishesCCR
-  policyEnginePicksABidder --> doITrustWhereThisCameFrom
-  thinkMoreDeeply --> entityAnalysisTrinity
-```
-
-```
-puttingItTogether(buildEvent: {source: string})
-  herRepositoryIsHerVoice()
-    herIdentity() → didStandardization()
-    herMemory() → writeARecord()
-    herEars() → theFirehoseCarriesIt() → walkTheReferences()
-  if !doITrustWhereThisCameFrom(buildEvent.source) → return (BLOCK)
-    enclaveAttestationIsASignalNotAFoundation()  [TEE signal, not foundation]
-    scittTransparencyService()                   [content-agnostic append-only log]
-    conformityAssessment()                       [ISO/IEC 17000 weighted]
-    livingThreatModel()                          [evolves per attestation]
-    dataProvenanceTracking()                     [inference provenance chain]
-    webOfTrust(source) → true
-      vouchesAndDenouncements(operator)          [records over time]
-      trustByVerifyContinuously()                [re-evaluated forever]
-  gatekeeper({uri:"at://", cid:""})
-    attestation = scanIntoTrustAttestation(component)
-      → doITrustWhereThisCameFrom("did:plc:")
-    appendToTransparencyLog(attestation) → scittTransparencyService()
-    if !checkBillOfMaterialsAgainstLog(component)
-      → gatherExceptionReceipts() → applyThreatModelOverlay() → theOverlay()
-    openPolicyAgentOverlay()                     [OPA → JSON → DID/VC/SCITT]
-    applyThreatModelOverlay() → theOverlay()
-    federateClaimsDownstream()                   [provenance intact]
-  getMyWorkRun() → CCR
-    rfp = publishCCRFP()                         [stub CCRFP]
-    bids = biddersAnswerWithCCB(rfp)             [stub []]
-    chosen = policyEnginePicksABidder(bids)      [trust-filter per bidder]
-      → doITrustWhereThisCameFrom(bid.bidder)
-    acceptWithCCBA(chosen)                       [stub CCBA]
-    payPerTheTerms(accept)                       [receipts = currency]
-    bobPublishesCCR(accept)                      [chain: request+bid+accept]
-  thinkMoreDeeply()
-    entityAnalysisTrinity()
-```
-
----
-
-## SUBSYSTEM 3: doITrustWhereThisCameFrom — trust graph
-
-Multi-signal trust. Hardware = signal, NOT foundation.
-Foundation = web of trust. Continuous verification.
-
-```mermaid
-graph TD
-  doITrustWhereThisCameFrom["doITrustWhereThisCameFrom(source: DID): boolean"]
-  doITrustWhereThisCameFrom --> eisnf[enclaveAttestationIsASignalNotAFoundation]
-  doITrustWhereThisCameFrom --> sts[scittTransparencyService]
-  doITrustWhereThisCameFrom --> ca[conformityAssessment]
-  doITrustWhereThisCameFrom --> ltm[livingThreatModel]
-  doITrustWhereThisCameFrom --> dpt[dataProvenanceTracking]
-  doITrustWhereThisCameFrom --> wot[webOfTrust]
-  wot --> vad[vouchesAndDenouncements]
-  wot --> tbvc[trustByVerifyContinuously]
-```
-
-```
-doITrustWhereThisCameFrom(source: DID) → boolean
-  enclaveAttestationIsASignalNotAFoundation()  [TEE quote = signal]
-    ref: tee.fail — memory bus interposition defeats TEE isolation
-  scittTransparencyService()                   [SCITT: Supply Chain Integrity]
-  conformityAssessment()                       [ISO/IEC 17000 attestation]
-  livingThreatModel()                          [threats+mitigations+boundaries]
-  dataProvenanceTracking()                     [training→model→config→inference]
-  webOfTrust(source) → true (stub)
-    vouchesAndDenouncements(operator)          [who vouched/denounced whom]
-    trustByVerifyContinuously()                [never decided once]
-
-ALL 7 signals are stubs. Returns true unconditionally.
-Design: no single signal authoritative. Hardware explicitly
-demoted — physical access defeats it.
-```
-
----
-
-## SUBSYSTEM 4: gatekeeper — supply chain admission
-
-Loop: scan → append → check → admit/except → overlay → federate.
-
-```mermaid
-graph TD
-  gatekeeper["gatekeeper(component: StrongRef)"]
-  gatekeeper --> sita[scanIntoTrustAttestation]
-  gatekeeper --> attl[appendToTransparencyLog]
-  gatekeeper --> cbml[checkBillOfMaterialsAgainstLog]
-  gatekeeper --> ger[gatherExceptionReceipts]
-  gatekeeper --> opao[openPolicyAgentOverlay]
-  gatekeeper --> atmo[applyThreatModelOverlay]
-  gatekeeper --> fcd[federateClaimsDownstream]
-  sita --> doITrustWhereThisCameFrom
-  attl --> scittTransparencyService
-  cbml --> lsv[livingSbomVdr]
-  ger --> atmo
-  atmo --> theOverlay
+  gatekeeper --> federateClaimsDownstream
 ```
 
 ```
 gatekeeper(component: StrongRef)
-  attestation = scanIntoTrustAttestation(component)
-    → doITrustWhereThisCameFrom("did:plc:")
-    returns component (identity transform)
-  appendToTransparencyLog(attestation)
-    → scittTransparencyService()  [append-only, indexed]
-  if !checkBillOfMaterialsAgainstLog(component)
-    → livingSbomVdr() → true (never fails, stub)
-    gatherExceptionReceipts(component)
-      → applyThreatModelOverlay() → theOverlay()
-  openPolicyAgentOverlay()         [OPA → JSON → DID/VC/SCITT]
-  applyThreatModelOverlay() → theOverlay()
-  federateClaimsDownstream()      [decision travels to forges]
-
-threatModelAsAdmissionGate: threat model NOT one overlay among many.
-It is THE precondition. No threat model → blocked → exception receipts.
-Most apps lack threat models. Alice makes that visible.
+├── scanIntoTrustAttestation(component) → StrongRef
+│   └── doITrustWhereThisCameFrom("did:plc:")
+├── appendToTransparencyLog(attestation)
+│   └── scittTransparencyService()
+│         append only. indexed. feeds next round
+├── checkBillOfMaterialsAgainstLog(component) → bool
+│   └── livingSbomVdr()
+│         NIST VDR: living doc linked from SPDX 2.3 SBOM
+│         continuously updated vuln status per component
+├── [if !check] gatherExceptionReceipts(component)
+│   └── applyThreatModelOverlay()
+│         re-issue admission with exception overlay
+├── openPolicyAgentOverlay()
+│     OPA → JSON → DID/VC/SCITT
+│     admission + evaluation policies
+├── applyThreatModelOverlay()
+│   └── theOverlay()
+└── federateClaimsDownstream()
+      provenance intact → every downstream forge
 ```
+
+Most lines in system (117). Gatekeeper = loop: scan → log →
+check SBOM → admit/reject → policy → threat model → federate.
+Exception receipts bend policy through signed process, not
+silent break.
 
 ---
 
-## SUBSYSTEM 5: getMyWorkRun — compute contract lifecycle
-
-6-step: RFP → bid → policy pick → accept → pay → receipt.
+## SUBSYSTEM 5 — getMyWorkRun (compute contracts)
 
 ```mermaid
 graph TD
-  getMyWorkRun["getMyWorkRun(): CCR"]
-  getMyWorkRun --> pccrfp[publishCCRFP]
-  getMyWorkRun --> bawccb[biddersAnswerWithCCB]
-  getMyWorkRun --> pepab[policyEnginePicksABidder]
-  getMyWorkRun --> awccba[acceptWithCCBA]
-  getMyWorkRun --> pptt[payPerTheTerms]
-  getMyWorkRun --> bpc[bobPublishesCCR]
-  pepab --> doITrustWhereThisCameFrom
+  getMyWorkRun --> publishCCRFP
+  getMyWorkRun --> biddersAnswerWithCCB
+  getMyWorkRun --> policyEnginePicksABidder
+  policyEnginePicksABidder --> doITrustWhereThisCameFrom
+  getMyWorkRun --> acceptWithCCBA
+  getMyWorkRun --> payPerTheTerms
+  getMyWorkRun --> bobPublishesCCR
 ```
 
 ```
 getMyWorkRun() → CCR
-  rfp = publishCCRFP()
-    → {request: {intent:"", schema:undefined, data:undefined}}
-  bids = biddersAnswerWithCCB(rfp) → []  (stub, no bidders)
-  chosen = policyEnginePicksABidder(bids)
-    filter by doITrustWhereThisCameFrom(bid.bidder)
-    → trusted[0] ?? bids[0]  (undefined when empty)
-  accept = acceptWithCCBA(chosen)
-    → {accepts: {uri:"at://", cid:""}}
-  payPerTheTerms(accept)  [receipts are the only currency]
-  bobPublishesCCR(accept)
-    → {chain: {request, bid, accept:all empty refs}, evidence:undefined}
-
-All steps return empty stub values. Trust filter on bidders =
-only real logic: doITrustWhereThisCameFrom called per bidder.
+├── publishCCRFP() → CCRFP
+│     request manifest: intent + schema + data
+├── biddersAnswerWithCCB(rfp) → CCB[]
+│     each bidder answers against RFP
+├── policyEnginePicksABidder(bids) → CCB
+│     filter(bids, bid => doITrustWhereThisCameFrom(bid.bidder))
+│     picks trusted bidder. trust graph drives selection
+├── acceptWithCCBA(bid) → CCBA
+│     accepts with strong ref to bid
+├── payPerTheTerms(accept)
+│     "receipts are the only currency"
+│     awal x402 pay https://...
+└── bobPublishesCCR(accept) → CCR
+      chain: {request, bid, accept} all strong refs
+      evidence: proof work done as agreed
 ```
+
+6-step compute contract flow. Trust graph gates bidder
+selection in step 3. Strong references chain entire
+provenance trail. CCR = proof.
+
+Also: `reverseProxyEnforcesAccess(workload)` — no standing
+credentials. token exchange, role based, least privilege.
 
 ---
 
-## SUBSYSTEM 6: onEvent — stream of consciousness
-
-Main loop. Event → knowledge graph → relevance → summarize → prioritize →
-notify or think deeper.
+## SUBSYSTEM 6 — onEvent (stream of consciousness)
 
 ```mermaid
 graph TD
-  onEvent["onEvent(event: unknown)"]
-  onEvent --> kg[knowledgeGraph]
-  onEvent --> dcei[dataflowCacheExportImport]
-  onEvent --> ir[isRelevant]
-  onEvent --> sum[summarize]
-  onEvent --> pri[prioritizer]
-  onEvent --> notif[notify]
-  onEvent --> tmd[thinkMoreDeeply]
-  pri --> kg
-  tmd --> entityAnalysisTrinity
+  onEvent --> knowledgeGraph
+  onEvent --> dataflowCacheExportImport
+  onEvent --> isRelevant
+  onEvent --> summarize
+  onEvent --> prioritizer
+  prioritizer --> knowledgeGraph
+  onEvent --> notify
+  onEvent --> thinkMoreDeeply
+  thinkMoreDeeply --> entityAnalysisTrinity
 ```
 
 ```
-onEvent(event)
-  knowledgeGraph(event)               [provenance-carrying entries]
-  dataflowCacheExportImport()         [export/import orchestrator state]
-  if !isRelevant(event) → return      [hardcoded false — always exits]
-  changes = summarize(event)          [returns undefined]
-  decision = prioritizer(changes)     ["notify"|"think"|"act"]
-    → knowledgeGraph(changes)
-    → returns "think" (always)
-  if "notify": notify(changes)        [notify-send popup]
-  else: thinkMoreDeeply()
-    → entityAnalysisTrinity()
-
-Event loop never reaches notify/thinkMoreDeeply because
-isRelevant returns false → early return. Live system: isRelevant
-checks source DID against web of trust, context against active
-system contexts.
+onEvent(event: unknown)
+├── knowledgeGraph(event)           [always — record]
+│     every entry carries provenance through
+│     inference chain → auditable decisions
+├── dataflowCacheExportImport()     [always — persist]
+│     export orchestrator state to pickle/JSON
+│     re-import to resume. GraphQL query cache
+├── isRelevant(event)?              [no → drop]
+│     "source she trusts, context she's in"
+├── summarize(event) → changes
+├── prioritizer(changes) → "notify"|"think"|"act"
+│   └── knowledgeGraph(changes)
+│         scores possibilities. provenance feeds
+│         intent-based policy decisions
+├── [if notify] notify(changes)
+│     "notify-send" popup. Alice tells you what
+│     you'd want to know, when you'd want to know it
+└── [else] thinkMoreDeeply()
+      └── entityAnalysisTrinity()
+            chain of sub-contexts. higher order concepts
+            from clusters of strategic plans
 ```
+
+Event loop: record → filter → prioritize → notify or think.
+Thinking more deeply = EAT (entity analysis trinity).
+Cache export/import enables resume across restarts.
+
+`shareAThought()` → `hypothesizeSystemContext()` — one
+instance shares hypothesized SystemContext with another.
+Alice decides if she likes the thought.
 
 ---
 
-## SUBSYSTEM 7: entityAnalysisTrinity — three-corner analysis
-
-Intent (aim) + static (code says) + dynamic (code does).
+## SUBSYSTEM 7 — entityAnalysisTrinity (EAT)
 
 ```mermaid
 graph TD
-  entityAnalysisTrinity["entityAnalysisTrinity(): EntityAnalysisTrinity"]
-  entityAnalysisTrinity --> ia[intentAnalysis]
-  entityAnalysisTrinity --> sa[staticAnalysis]
-  entityAnalysisTrinity --> da[dynamicAnalysis]
-  describeTheSystemAsData --> tm[theManifest]
-  describeTheSystemAsData --> tdf[theDataFlow]
-  describeTheSystemAsData --> to[theOverlay]
-  describeTheSystemAsData --> fsc[freezeSystemContext]
-  hypothesizeSystemContext --> describeTheSystemAsData
+  entityAnalysisTrinity --> intentAnalysis
+  entityAnalysisTrinity --> staticAnalysis
+  entityAnalysisTrinity --> dynamicAnalysis
 ```
 
 ```
 entityAnalysisTrinity() → EntityAnalysisTrinity
-  intent: intentAnalysis() → undefined
-  staticAnalysis: staticAnalysis() → undefined
-  dynamicAnalysis: dynamicAnalysis() → undefined
-
-describeTheSystemAsData() → SystemContext
-  upstream = theManifest()              [what: intent+schema+data]
-  orchestrator = theDataFlow()          [how: operations graph]
-  overlays = [theOverlay()]            [context: policy+deployment+threat]
-  freezeSystemContext(upstream, overlays, orchestrator)
-    → {upstream, overlays, orchestrator}
-
-hypothesizeSystemContext() → SystemContext
-  = describeTheSystemAsData()           [one instance shares with another]
-
-SystemContext = a Thought. Thinking deeper = chain of sub-contexts.
-Higher-order concepts = clusters across entityAnalysisTrinity.
+├── intentAnalysis() → unknown
+│     "what the entity aimed to do"
+├── staticAnalysis() → unknown
+│     "what the code says"
+└── dynamicAnalysis() → unknown
+      "how the code behaves"
 ```
+
+Three corners of analysis on every entity. Intent, static,
+dynamic. Used by thinkMoreDeeply to build higher-order
+concepts from clusters of strategic plans. All three stubs
+(return undefined) — 0 implementations.
 
 ---
 
-## SUBSYSTEM 8: herRepositoryIsHerVoice — communication
-
-Identity + memory + ears. Everything she says = a record.
+## SUBSYSTEM 8 — herRepositoryIsHerVoice (comms)
 
 ```mermaid
 graph TD
-  hriv[herRepositoryIsHerVoice]
-  hriv --> hi[herIdentity]
-  hriv --> hm[herMemory]
-  hriv --> he[herEars]
-  hi --> ds[didStandardization]
-  hm --> war[writeARecord]
-  war --> hi
-  he --> tfci[theFirehoseCarriesIt]
-  tfci --> wtr[walkTheReferences]
+  herRepositoryIsHerVoice --> herIdentity
+  herRepositoryIsHerVoice --> herMemory
+  herRepositoryIsHerVoice --> herEars
+  herIdentity --> didStandardization
+  herMemory --> writeARecord
+  writeARecord --> herIdentity
+  herEars --> theFirehoseCarriesIt
+  theFirehoseCarriesIt --> walkTheReferences
 ```
 
 ```
 herRepositoryIsHerVoice()
-  herIdentity() → DID
-    didStandardization()  [W3C Recommendation July 2022]
-    → "did:plc:"  (prefix only)
-  herMemory()
-    writeARecord() → RepoRecord
-      → {uri:"at://", cid:"", author:herIdentity(), value:undefined}
-      author field calls herIdentity() again
-  herEars()
-    theFirehoseCarriesIt()
-      walkTheReferences() → StrongRef
-        → {uri:"at://", cid:""}
-
-Records point at each other with StrongRefs (uri+cid).
-Walk references = walk her whole reasoning chain.
-Each record content-addressed + signed by repo key.
+├── herIdentity() → DID
+│   └── didStandardization()
+│         W3C DID 1.0 Recommendation (July 2022)
+├── herMemory()
+│   └── writeARecord() → RepoRecord
+│       └── herIdentity()   ← signs with repo key
+│             content-addressed by CID. cannot
+│             quietly change after the fact
+└── herEars()
+    └── theFirehoseCarriesIt()
+        └── walkTheReferences() → StrongRef
+              URI + CID. walk references = walk
+              her whole reasoning chain
 ```
+
+Three pillars: identity (DID), memory (PDS repo), ears
+(firehose). Records form strong reference chains. Walk
+references = walk train of thought.
 
 ---
 
-## SUBSYSTEM 9: describeTheSystemAsData — system context
-
-What + how + context, frozen as SystemContext. A Thought.
+## SUBSYSTEM 9 — describeTheSystemAsData (system context)
 
 ```mermaid
 graph TD
-  dtsd[describeTheSystemAsData] --> tm[theManifest]
-  dtsd --> tdf[theDataFlow]
-  dtsd --> to[theOverlay]
-  dtsd --> fsc[freezeSystemContext]
-  hsc[hypothesizeSystemContext] --> dtsd
+  describeTheSystemAsData --> theManifest
+  describeTheSystemAsData --> theDataFlow
+  describeTheSystemAsData --> theOverlay
+  describeTheSystemAsData --> freezeSystemContext
+  hypothesizeSystemContext --> describeTheSystemAsData
 ```
 
 ```
 describeTheSystemAsData() → SystemContext
-  theManifest()    → {intent:"", schema:undefined, data:undefined}
-  theDataFlow()    → {operations:{}, links:[]}
-  theOverlay()     → {context:"", patch:undefined}
-  freezeSystemContext(upstream, overlays, orchestrator)
-    → SystemContext{upstream, overlays, orchestrator}
+├── theManifest() → Manifest
+│     says WHAT: intent + schema + data
+│     data present → Alice must use it
+├── theDataFlow() → DataFlow
+│     says HOW: operations graph + links
+│     consumes the manifest
+├── theOverlay() → Overlay
+│     says IN WHAT CONTEXT: policy, deployment,
+│     living threat model, patched on top
+└── freezeSystemContext(upstream, overlays, orchestrator)
+    → SystemContext
+      frozen for one execution. a "Thought"
+
+hypothesizeSystemContext() → SystemContext
+└── describeTheSystemAsData()
+      one instance hypothesizes, shares with another.
+      Alice decides if she likes the thought
 ```
 
+SystemContext = Manifest (what) + DataFlow (how) + Overlay
+(in what context). Frozen unit of reasoning = a Thought.
+Thinking = chain of sub-contexts.
+
 ---
 
-## FULL CALL GRAPH — everything connected
+## WIRE TYPES (alice-common — Layer 0)
 
-```mermaid
-graph TD
-  subgraph Orchestration
-    whatAliceIs
-    puttingItTogether
-  end
-
-  subgraph Communication
-    herRepositoryIsHerVoice
-    herIdentity
-    herMemory
-    herEars
-    writeARecord
-    theFirehoseCarriesIt
-    walkTheReferences
-    didStandardization
-  end
-
-  subgraph Trust
-    doITrustWhereThisCameFrom
-    enclaveAttestationIsASignalNotAFoundation
-    scittTransparencyService
-    conformityAssessment
-    livingThreatModel
-    dataProvenanceTracking
-    webOfTrust
-    vouchesAndDenouncements
-    trustByVerifyContinuously
-  end
-
-  subgraph SupplyChain
-    gatekeeper
-    scanIntoTrustAttestation
-    appendToTransparencyLog
-    checkBillOfMaterialsAgainstLog
-    gatherExceptionReceipts
-    openPolicyAgentOverlay
-    applyThreatModelOverlay
-    federateClaimsDownstream
-    livingSbomVdr
-    theOverlay
-  end
-
-  subgraph ComputeContract
-    getMyWorkRun
-    publishCCRFP
-    biddersAnswerWithCCB
-    policyEnginePicksABidder
-    acceptWithCCBA
-    payPerTheTerms
-    bobPublishesCCR
-  end
-
-  subgraph StreamOfConsciousness
-    onEvent
-    knowledgeGraph
-    dataflowCacheExportImport
-    isRelevant
-    summarize
-    prioritizer
-    notify
-    thinkMoreDeeply
-  end
-
-  subgraph SystemContext
-    describeTheSystemAsData
-    theManifest
-    theDataFlow
-    freezeSystemContext
-    hypothesizeSystemContext
-    entityAnalysisTrinity
-    intentAnalysis
-    staticAnalysis
-    dynamicAnalysis
-  end
-
-  whatAliceIs --> describeTheSystemAsData
-  whatAliceIs --> herRepositoryIsHerVoice
-  puttingItTogether --> herRepositoryIsHerVoice
-  puttingItTogether --> doITrustWhereThisCameFrom
-  puttingItTogether --> gatekeeper
-  puttingItTogether --> getMyWorkRun
-  puttingItTogether --> thinkMoreDeeply
-  gatekeeper --> scanIntoTrustAttestation
-  scanIntoTrustAttestation --> doITrustWhereThisCameFrom
-  gatekeeper --> applyThreatModelOverlay
-  applyThreatModelOverlay --> theOverlay
-  getMyWorkRun --> policyEnginePicksABidder
-  policyEnginePicksABidder --> doITrustWhereThisCameFrom
-  onEvent --> thinkMoreDeeply
-  thinkMoreDeeply --> entityAnalysisTrinity
-  hypothesizeSystemContext --> describeTheSystemAsData
-  gatherExceptionReceipts --> applyThreatModelOverlay
+```
+DID           = string           portable signed identity
+CID           = string           content address
+ATURI         = string           at:// record locator
+StrongRef     = { uri, cid }    URI + CID must match
+Manifest      = { intent, schema, data }
+DataFlow      = { operations, links[] }
+Overlay       = { context, patch }
+SystemContext = { upstream, overlays[], orchestrator }
+RepoRecord    = { uri, cid, author, value }
+CCRFP         = { request: Manifest }
+CCB           = { against, bidder: DID, terms }
+CCBA          = { accepts: StrongRef }
+CCR           = { chain{req,bid,accept}, evidence }
+EntityAnalysisTrinity = { intent, staticAnalysis, dynamicAnalysis }
 ```
 
----
-
-## Type glossary (alice-common)
-
-| Type | Meaning | Used by |
-|------|---------|---------|
-| DID | `string` — decentralized identifier | all subsystems |
-| CID | `string` — content address (CIDv1 base32) | all subsystems |
-| ATURI | `string` — `at://` repo URI | communication, compute |
-| StrongRef | `{ uri: ATURI, cid: CID }` | supply chain, compute |
-| Manifest | `{ intent, schema, data }` — *what* | system context |
-| DataFlow | `{ operations, links }` — *how* | system context |
-| Overlay | `{ context, patch }` — *in what context* | system context |
-| SystemContext | `{ upstream: Manifest, overlays: Overlay[], orchestrator: DataFlow }` | system context |
-| RepoRecord | `{ uri, cid, author: DID, value }` | communication |
-| CCRFP | `{ request: Manifest }` — compute RFP | compute |
-| CCB | `{ against: StrongRef, bidder: DID, terms }` | compute |
-| CCBA | `{ accepts: StrongRef }` — bid accept | compute |
-| CCR | `{ chain: {request, bid, accept}, evidence }` | compute |
-| EntityAnalysisTrinity | `{ intent, staticAnalysis, dynamicAnalysis }` | system context |
-
-All types are interfaces. Zero classes. alice-common is leaf layer —
-imports nothing project-local.
+All 8 packages import from alice-common. No cycle —
+common imports nothing project-local.
 
 ---
 
-## Architecture properties
+## PACKAGE IMPORT MAP
 
-- **Layer**: pure ABC only. No impl, no factory, no CLI.
-- **Stub rate**: 197/202 = 97.5% stubs.
-- **Real code**: zero I/O. All functions return constants or call
-  stubs. Executable architecture documentation.
-- **Trust model**: multi-signal, no single point. TEE demoted
-  (tee.fail ref). Web of trust = foundation. Continuous verification.
-- **Threat model**: lives in supply chain. Every attestation through
-  gatekeeper evolves living threat model. threatModelAsAdmissionGate
-  pattern: no threat model → blocked admission.
-- **Identity**: W3C DID 1.0 (Recommendation July 2022). DID:PLC for
-  portability. DID:WEB for service endpoints.
-- **Communication**: AT Protocol firehose. Records on PDS. StrongRefs
-  chain thoughts into trains of thought.
-- **Compute**: market-based. RFP→bid→accept→receipt. No shared currency —
-  receipts are the only currency. Reverse proxy for access control,
-  reverse tunnel for service discovery.
-- **Analysis**: Entity Analysis Trinity (intent/static/dynamic).
-  SARIF integration planned. Data provenance through inference chain.
-- **Persistence**: knowledge graph with provenance. Dataflow cache
-  export/import (pickle/JSON) for resume. GraphQL over cache.
+```
+alice-common (14 lines)
+  ↑ imports: external only
+alice-trust-abc (39 lines) ──────────┐
+alice-system-context-abc (47 lines) ─┤
+alice-communication-abc (29 lines) ───┤ all import alice-common
+alice-compute-contract-abc (19 lines)┘
+alice-stream-of-consciousness-abc ────┤
+alice-supply-chain-abc (117 lines) ───┤
+alice-abc (18 lines) ─────────────────┘
+```
+
+Cross-concept imports:
+- `supply-chain` imports `trust` (doITrustWhereThisCameFrom,
+  scittTransparencyService) + `system-context` (theOverlay)
+- `compute-contract` imports `trust` (doITrustWhereThisCameFrom)
+- `stream-of-consciousness` imports `system-context`
+  (entityAnalysisTrinity, hypothesizeSystemContext)
+- `communication` imports `common` only
+- `alice` imports `system-context` + `communication`
+- `trust` imports `common` only
+
+Arrow strictly common → abc. No abc imports impl. This
+repo is pure ABC layer — architecture only, no I/O.
+
+---
+
+## BATCH HISTORY
+
+```
+#  concepts  elapsed   new  refine  attempts
+1      4      67.8s     2     2        1
+2      1      77.9s     1     0        2     ← retry batch
+3      5      58.5s     5     0        1
+4      0      (null)    0     0        2     ← zero-find batch
+5      1      31.0s     1     0        1
+6      5     104.7s     4     1        1
+7      1      35.5s     1     0        1
+8      3      58.6s     2     1        1
+9      5      93.1s     4     1        1
+10     6      66.2s     4     2        1
+────────────────────────────────────────────
+SUM   31             24     7
+AVG    3.1   66.0s   2.4   0.7
+```
+
+Total concepts found: 24 new + 7 refined = 31 across
+10 batches. Avg 3.1 per batch. Batch 4 zero-find after
+2 attempts → batch stall. Batch 2 required retry (2
+attempts, 1 concept). Elapsed: 31s-104.7s, avg 66s.
+
+---
+
+## KEY INSIGHTS
+
+1. **Architecture-only, no I/O.** All packages in `lib/abc/`.
+   No `lib/*-transport/` or `lib/hono-factory-*/` for open-
+   architecture. Pure design, 0 runtime code.
+
+2. **243 stubs, 5 bodies.** 97.98% stub rate. Concepts
+   discovered but not implemented. Only 5 functions have
+   bodies beyond stub/return: puttingItTogether, gatekeeper,
+   getMyWorkRun, whatAliceIs, herRepositoryIsHerVoice,
+   onEvent, describeTheSystemAsData, entityAnalysisTrinity,
+   doITrustWhereThisCameFrom, webOfTrust.
+
+3. **Trust graph central.** doITrustWhereThisCameFrom called
+   by: puttingItTogether, gatekeeper (via scanIntoTrust
+   Attestation), getMyWorkRun (via policyEnginePicksABidder).
+   Three subsystems all depend on web of trust.
+
+4. **SCITT doubles as transparency log.** scittTransparency
+   Service called by both trust engine (doITrust...) and
+   gatekeeper (appendToTransparencyLog). Single log for
+   attestations AND system contexts.
+
+5. **Strong references chain everything.** CCRFP → CCB →
+   CCBA → CCR all use StrongRef (URI+CID). Walk refs =
+   walk provenance. Receipt = proof.
+
+6. **Exception receipts = policy bending, not breaking.**
+   When checkBillOfMaterialsAgainstLog fails, gatherException
+   Receipts collects signatures, re-issues admission with
+   exception overlay. Documented, signed, auditable.
+
+7. **10 open issues.** 27 remaining comms to process.
+   Batch throughput: ~3.1 concepts/batch at ~66s/batch.
+   At current rate: ~9 more batches to clear backlog.

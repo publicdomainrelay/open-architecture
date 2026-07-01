@@ -452,3 +452,15 @@ export function leastPrivilegeLtmRepresentation(): void {
 export function opeaLlmProxyAbstraction(): void {
   // Related: llmProxyTransparencyService, modularAiSynthesizer, batchLlmCompletion
 }
+
+/**
+ * Feed structured compiler diagnostics back into the AI agent development loop as machine-parseable feedback, enabling iterative code generation driven by real build errors.
+ * 
+ * Using rustc's `--error-format json` flag, compiler errors become structured JSON payloads that the agent consumes directly — no regex parsing of text output. Each diagnostic carries span information (file, line, column), error codes, and suggestion hints. The agent iterates: generate code, compile, ingest errors, repair, repeat. This closes the loop between code generation and verification without human intermediation.
+ * 
+ * @see comms/0674
+ * @see https://rustc-dev-guide.rust-lang.org/diagnostics.html#json-diagnostic-output
+ */
+export function compilerErrorFeedbackLoop(): void {
+  // Related: agiEventDrivenDevLoop, structuredAgentResponse
+}
