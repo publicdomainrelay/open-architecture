@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 647,
+  "lastProcessedComm": 655,
   "processedComms": [
     0,
     1,
@@ -648,7 +648,15 @@
     644,
     645,
     646,
-    647
+    647,
+    648,
+    649,
+    650,
+    651,
+    652,
+    653,
+    654,
+    655
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2285,6 +2293,34 @@
       "lastUpdatedComm": 647,
       "sourceIssues": [],
       "summary": "UNIX domain sockets as zero-trust-aligned local IPC with OS-enforced access control"
+    },
+    "scittContainerRegistryMirror": {
+      "functionName": "scittContainerRegistryMirror",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 655,
+      "sourceIssues": [],
+      "summary": "SCITT-driven container registry mirroring via tiered Manifest of Manifests"
+    },
+    "c2paScittMultiLinkedStatements": {
+      "functionName": "c2paScittMultiLinkedStatements",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 655,
+      "sourceIssues": [],
+      "summary": "C2PA CBOR references + SCITT multi-linked statements for schema-data binding"
+    },
+    "forgejoFederatedCicd": {
+      "functionName": "forgejoFederatedCicd",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 655,
+      "sourceIssues": [],
+      "summary": "Forgejo peer-to-peer CI/CD federation via forge event distribution"
+    },
+    "opeaLlmProxyAbstraction": {
+      "functionName": "opeaLlmProxyAbstraction",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 655,
+      "sourceIssues": [],
+      "summary": "OPEA GenAIComps behind litellm proxy for standardized LLM access in Alice"
     }
   },
   "issueCache": {
@@ -2382,6 +2418,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 233,
+  "totalStubsCreated": 237,
   "totalIssuesFetched": 10
 }

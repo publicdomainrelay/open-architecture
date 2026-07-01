@@ -1534,3 +1534,27 @@ export function agentPipelinePolicyEngineBridge(): void {
 export function federatedStatementJobDistribution(): void {
   // Related: policyEngineWorkflowDispatch, scittFederationDiscovery, policyEngineLangGraphKnativeSynthesis
 }
+
+/**
+ * Container registry mirroring driven by SCITT transparency log manifests using a tiered Manifest of Manifests (MoM) approach.
+ * 
+ * The SCITT log serves as the authoritative source of truth for which container images should exist in registries. A tiered MoM structure nests manifests: top-level manifests reference platform-specific or component-specific sub-manifests, each signed and logged in SCITT. This enables automated mirroring pipelines that read from SCITT and push to registries, ensuring registry contents are verifiable against the transparency log.
+ * 
+ * @see comms/0654
+ */
+export function scittContainerRegistryMirror(): void {
+  // Related: containerRegistryOnDemand, containerBuildManifestDispatch, scittTransparencyService
+}
+
+/**
+ * Integration of C2PA (Coalition for Content Provenance and Authenticity) with SCITT multi-linked statements for standardized schema and data linking in attestation chains.
+ * 
+ * C2PA uses CBOR encoding and supports references as URIs or URNs. While URI/URN references break some validation in pure C2PA, combining them with SCITT's multi-linked statement model creates a standards-based path for linking schema definitions to data payloads across attestation boundaries. Each SCITT statement can carry C2PA-style references that point to external schema documents or related data, with the SCITT receipt providing verifiable binding.
+ * 
+ * @see comms/0655
+ * @see https://c2pa.org
+ * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture
+ */
+export function c2paScittMultiLinkedStatements(): void {
+  // Related: scittFederationDiscovery, scittReceiptAsVcAuth
+}

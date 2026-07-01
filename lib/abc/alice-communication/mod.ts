@@ -398,3 +398,16 @@ export function entityTelepathy(): void {
 export function gitRefPollingActivityPubBridge(): void {
   // Related: gitPushActivityPubStream, containerFromRebuildChain, scittNotaryAssertionRegistry
 }
+
+/**
+ * Peer-to-peer CI/CD federation across Forgejo instances using ActivityPub-based forge event distribution.
+ * 
+ * Forgejo implements federation for forge events (stars, pull requests, issues) enabling peer-to-peer workflows where CI/CD runs on both host machines and shared pools. Each developer's laptop running a forgejo instance federates events to an always-online server, with reverse proxy fallback for offline peers. The first implementation landed as a 500+ commit merge supporting federated stars. Combined with OIDC-based identity (Forgejo as OIDC provider for headless CMS like Directus), this creates a fully self-hosted, federated development infrastructure where "works on my machine" extends to "works in CI because we have a runner on our machine."
+ * 
+ * @see comms/0649
+ * @see comms/0650
+ * @see https://codeberg.org/forgejo/forgejo/issues/59
+ */
+export function forgejoFederatedCicd(): void {
+  // Related: federatedCiCdEventSpace, didMediatedEventExchange, gitPushActivityPubStream
+}
