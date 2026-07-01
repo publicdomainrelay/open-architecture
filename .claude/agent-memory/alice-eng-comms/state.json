@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 431,
+  "lastProcessedComm": 439,
   "processedComms": [
     0,
     1,
@@ -432,7 +432,15 @@
     428,
     429,
     430,
-    431
+    431,
+    432,
+    433,
+    434,
+    435,
+    436,
+    437,
+    438,
+    439
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1628,6 +1636,13 @@
       "lastUpdatedComm": 431,
       "sourceIssues": [],
       "summary": "Supply chain actors voluntarily commit to transparency by signing statements into SCITT services via commercial products"
+    },
+    "spacetimeDbActivityPubFederation": {
+      "functionName": "spacetimeDbActivityPubFederation",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 439,
+      "sourceIssues": [],
+      "summary": "SpacetimeDB reducer/subscription model as ActivityPub federation pub/sub transport"
     }
   },
   "issueCache": {
@@ -1725,6 +1740,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 170,
+  "totalStubsCreated": 171,
   "totalIssuesFetched": 10
 }

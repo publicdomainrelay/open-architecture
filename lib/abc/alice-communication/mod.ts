@@ -352,3 +352,16 @@ export function xmppActivityPubBridge(): void {
 export function didMediatedEventExchange(): void {
   // Related: onEvent, knowledgeGraph, prioritizer, isRelevant, summarize, notify, thinkMoreDeeply
 }
+
+/**
+ * Use SpacetimeDB's reducer model and real-time subscription system as the pub/sub transport for ActivityPub federation in Alice's supply chain transparency network.
+ * 
+ * SpacetimeDB compiles Rust stored procedures (reducers) to WASM and runs them inside a relational database with identity-connected lifecycle callbacks (`identity_connected`, `identity_disconnected`). Its Python async client provides `subscribe` and `register_on_subscription_applied` APIs that map directly to the BovinePubSub pattern: ActivityPub actors subscribe to SpacetimeDB queries, reducers handle inbound ActivityPub activities as stored procedures, and connect/disconnect callbacks manage federation topology membership. SpacetimeDB's JWT identity system supports OIDC interop, enabling DID-based authentication of ActivityPub actors. This is an alternative transport to the bovine Python ActivityPub server explored in scittBovineFederation, offering stronger consistency guarantees (reducers run transactionally inside the database) and a simpler operational model (single binary, no separate message broker).
+ * 
+ * @see comms/0432
+ * @see https://spacetimedb.com/docs/server%20module%20languages/rust/index
+ * @see https://spacetimedb.com/docs/client%20sdk%20languages/python/sdk%20reference
+ */
+export function spacetimeDbActivityPubFederation(): void {
+  // Related: scittBovineFederation, activityPubScittRegistryHandshake, federatedSseActivityPub
+}
