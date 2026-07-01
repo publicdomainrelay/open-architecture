@@ -96,3 +96,26 @@ export function scrmPlanSubmission(): void {
 export function ciSetupAudit(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Automated depth-of-field research linking CVEs to source URLs via link-hopping and fuzzy ML matching against Alice's current thread corpus.
+ * 
+ * Given a CVE identifier, the system follows links from vulnerability databases to original source commits, patches, and discussions. Fuzzy ML then matches the recovered source context against Alice's active thread corpus (engineering logs, issue discussions, dataflow operations) to surface relevant vulnerabilities that intersect with what Alice is currently reasoning about. This closes the loop between vulnerability disclosure and Alice's ongoing trains of thought, enabling proactive rather than reactive supply chain risk response. The thread corpus provides the semantic ground truth for relevance scoring.
+ * 
+ * @see comms/0122
+ */
+export function cveSourceUrlFuzzyMl(): void {
+  // Related: cveLifecycleTimeModel, livingThreatModel
+}
+
+/**
+ * Integrate cosign (sigstore container image signing) with SCITT transparency services, bridging container image signing to supply chain transparency logs.
+ * 
+ * Cosign signs container images and stores signatures in OCI registries. SCITT provides a transparency log for supply chain claims. Integrating them means cosign-signed images produce SCITT receipts that land in the transparency log, giving container images the same post-hoc auditability as other supply chain artifacts. This connects the sigstore ecosystem (keyless signing via OIDC, Fulcio certificate authority, Rekor transparency log) with SCITT's claim-based transparency model. The integration path explores whether cosign signatures can be registered as SCITT statements, or whether a SCITT notary can ingest Rekor log entries as provenance claims.
+ * 
+ * @see comms/0125
+ * @see https://gist.github.com/dlorenc/b97af394702f57b010ead586a2c23272
+ */
+export function cosignScittIntegration(): void {
+  // Related: scittTransparencyService, scittPostHocAuditability
+}

@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 119,
+  "lastProcessedComm": 127,
   "processedComms": [
     0,
     1,
@@ -120,7 +120,15 @@
     116,
     117,
     118,
-    119
+    119,
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127
   ],
   "concepts": {
     "did-standardization": {
@@ -482,7 +490,7 @@
     "aliceMentalModelParallelConsciousness": {
       "functionName": "aliceMentalModelParallelConsciousness",
       "filePath": "lib/abc/alice/mod.ts",
-      "lastUpdatedComm": 71,
+      "lastUpdatedComm": 127,
       "sourceIssues": [],
       "summary": "Alice as ghost extracted from mind, questioned, written down; parallel consciousness as dataflow"
     },
@@ -688,6 +696,34 @@
       "lastUpdatedComm": 119,
       "sourceIssues": [],
       "summary": "Overlays applied incrementally during analysis, layer by layer like facial recognition"
+    },
+    "cveSourceUrlFuzzyMl": {
+      "functionName": "cveSourceUrlFuzzyMl",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 127,
+      "sourceIssues": [],
+      "summary": "Automated CVE-to-source mapping via link-hopping and fuzzy ML on thread corpus"
+    },
+    "cosignScittIntegration": {
+      "functionName": "cosignScittIntegration",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 127,
+      "sourceIssues": [],
+      "summary": "Cosign container signing integrated with SCITT transparency logs"
+    },
+    "collectiveConsciousnessAcceleration": {
+      "functionName": "collectiveConsciousnessAcceleration",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 127,
+      "sourceIssues": [],
+      "summary": "Communication speed drives collective unconscious to collective consciousness"
+    },
+    "happinessMetric": {
+      "functionName": "happinessMetric",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 127,
+      "sourceIssues": [],
+      "summary": "/acc/ happiness metric as system-level optimization target"
     }
   },
   "issueCache": {
@@ -779,6 +815,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 73,
+  "totalStubsCreated": 76,
   "totalIssuesFetched": 9
 }
