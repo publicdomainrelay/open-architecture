@@ -1461,3 +1461,14 @@ export function policyEngineLangGraphKnativeSynthesis(): void {
 export function oscalThreatModelWorkflowSelection(): void {
   // Related: s2c2fScittConformance, scittNotaryAssertionRegistry, threatModelAsAdmissionGate, policyAsContentAddressedArtifact
 }
+
+/**
+ * LLM proxy intercepts AI agent tool definitions, enriches them from tool catalogs, and validates responses through a SCITT-style transparency service before returning to the agent.
+ * 
+ * The proxy sits between an AI agent (e.g. langchain.ChatOpenAI) and the LLM provider endpoint. When the agent sends a /chat/completions request, the proxy intercepts tool definitions, calls /tools/list on the tool catalog (which aggregates 2nd-party org-local and 3rd-party external tools), and adds those tools to the request before forwarding to the LLM provider. When the provider responds with tool calls, the proxy submits each tool call as a statement to the transparency service (POST /entries) where a policy engine decides admissibility per registration policy. The proxy retrieves receipts (GET /receipts/:urn) and validates them before returning the proxied response to the agent. This creates a runtime attestation-gated execution loop: every AI-initiated tool invocation is transparently logged and policy-checked, with SCITT receipts providing cryptographic proof of what was called, by whom, and whether it was allowed.
+ * 
+ * @see comms/0592
+ */
+export function llmProxyTransparencyService(): void {
+  // Related: toolCatalogPartyClassification, pluginPartyCatalog
+}

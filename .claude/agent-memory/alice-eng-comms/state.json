@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 591,
+  "lastProcessedComm": 599,
   "processedComms": [
     0,
     1,
@@ -592,7 +592,15 @@
     588,
     589,
     590,
-    591
+    591,
+    592,
+    593,
+    594,
+    595,
+    596,
+    597,
+    598,
+    599
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2117,6 +2125,13 @@
       "lastUpdatedComm": 591,
       "sourceIssues": [],
       "summary": "OSCAL + threat models + S2C2F → automated GitHub Actions workflow selection"
+    },
+    "llmProxyTransparencyService": {
+      "functionName": "llmProxyTransparencyService",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 599,
+      "sourceIssues": [],
+      "summary": "LLM proxy validates AI tool calls through transparency service with receipts"
     }
   },
   "issueCache": {
@@ -2214,6 +2229,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 217,
+  "totalStubsCreated": 218,
   "totalIssuesFetched": 10
 }
