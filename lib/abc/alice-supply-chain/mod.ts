@@ -72,3 +72,27 @@ export function dependencyTreeWebhookDispatch(): void {
 export function cveLifecycleTimeModel(): void {
   // Related: livingThreatModel, prioritizerIntentPolicy
 }
+
+/**
+ * Supply chain risk management plan submitted as a recurring contract deliverable under NIST SP 800-161 and Executive Order 14028 flow-down requirements.
+ * 
+ * Alice tracks SCRM compliance as an overlay on the supply chain: an annual (or per-contract-year) plan submission due 30 calendar days after each contract year end. The plan follows NIST SP 800-161 template structure and ensures EO 14028 controls (NIST SP 800-53) flow down to subcontractors, including commercial item subcontractors. Consent to subcontract at the task order level may also consider subcontractor SCRM requirements. The SCRM checklist covers: verified company ownership (US ownership confirmation), country of origin traced to first source, distributor threat investigation, COTS software supplier enumeration, and safeguarding of key program information exposed through subcontractor interactions.
+ * 
+ * @see comms/0107
+ * @see intel/dffml#1247
+ */
+export function scrmPlanSubmission(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * Generic CI setup and teardown actions where the setup itself serves as an audit artifact, and Alice audits the audit — attesting that the workflow bootstrapping was performed correctly.
+ * 
+ * GitHub Actions reusable workflows carry shared setup and teardown steps. Rather than treating setup as throwaway scaffolding, Alice captures the setup process as an attestation: what was provisioned, what versions were pinned, what secrets were resolved. She then audits her own audit — verifying that the attestation of setup matches the expected configuration, and that no drift occurred between setup and execution. This aligns with the broader pattern of making every CI action a signed, verifiable event in the supply chain transparency log.
+ * 
+ * @see comms/0110
+ * @see intel/dffml#1247
+ */
+export function ciSetupAudit(): void {
+  // TODO: wire to related concepts
+}

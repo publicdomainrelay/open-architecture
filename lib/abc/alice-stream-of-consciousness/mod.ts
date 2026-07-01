@@ -217,3 +217,28 @@ export function reinforcementLearningDeveloperPath(): void {
 export function algorithmSynthesisErrorCorrection(): void {
   // Related: reinforcementLearningDeveloperPath, livingThreatModel
 }
+
+/**
+ * Alice watches terminal session recordings (asciinema) to learn patterns, then refactors, genericizes, and packages the learned operations as reusable dataflow operations.
+ * 
+ * Script everything, record the session, and let Alice extract the reusable pattern. The terminal session becomes input to the knowledge graph — Alice observes the developer's actions, identifies repeatable sequences, generalizes them into parameterized operations, and packages them for future dataflows. Markov chain models predict likely next actions, and the prioritizer surfaces the most valuable patterns to refactor first. This closes the loop between ad-hoc terminal work and the structured operation catalog.
+ * 
+ * @see comms/0108
+ */
+export function terminalSessionLearning(): void {
+  // TODO: wire to related concepts
+}
+
+/**
+ * A Cayley graph database as the generic backend implementation for Alice's stream of consciousness data store, with dataflow overlays executed via graph queries.
+ * 
+ * Proxy cache sits on top of graph query; dataflow overlays are applied through the same graph query execution path. This unifies storage and computation: the graph IS the data store, and querying the graph IS applying overlays. Eventing (pub/sub notifications on graph changes) is a deferred follow-on after the graph-query overlay execution path is established. This approach generalizes the stream of consciousness beyond ActivityPub transport — the graph backend can ingest from any source (ActivityPub, firehose, terminal sessions, CI events) and serve queries through a single Cayley-powered interface.
+ * 
+ * Earlier understanding (from comms/0080): Stream of consciousness carried over ActivityPub, where each thought is a signed record written to Alice's repository and distributed via the firehose.
+ * 
+ * @see comms/0109
+ * @see comms/0080
+ */
+export function graphBackedStreamOfConsciousness(): void {
+  // Related: activityPubStreamOfConsciousness, shareAThought
+}

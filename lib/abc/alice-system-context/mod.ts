@@ -172,3 +172,14 @@ export function jamTodaySystemContext(): void {
 export function pyodideWasmManifest(): void {
   // Related: dataflowSynthesisBuildMode, operationCodeContentAddressing, dataflowDidEntrypoint
 }
+
+/**
+ * Overlays with templated body content that require structured feedback input — specifically a DID, URL, or location identifying a false positive or incorrect result.
+ * 
+ * When Alice applies an overlay whose body carries a template (e.g. a security finding or policy violation), the overlay may mandate a feedback field. The user must supply a DID (who reported it), a URL (where the finding is documented), or a location (e.g. file path + line) that explains why the finding is a false positive. This makes overlay application a two-way conversation: Alice applies the overlay, and the user amends it with provenance-bearing feedback that the knowledge graph can ingest for future prioritization and trust-weight adjustments.
+ * 
+ * @see comms/0108
+ */
+export function overlayFeedbackTemplate(): void {
+  // TODO: wire to related concepts
+}

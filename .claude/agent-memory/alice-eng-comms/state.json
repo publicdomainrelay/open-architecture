@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 103,
+  "lastProcessedComm": 111,
   "processedComms": [
     0,
     1,
@@ -104,7 +104,15 @@
     100,
     101,
     102,
-    103
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111
   ],
   "concepts": {
     "did-standardization": {
@@ -522,7 +530,7 @@
     "activityPubStreamOfConsciousness": {
       "functionName": "activityPubStreamOfConsciousness",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 87,
+      "lastUpdatedComm": 111,
       "sourceIssues": [],
       "summary": "ActivityPub/Mastodon as federated transport for Alice's thought stream"
     },
@@ -630,6 +638,41 @@
       "lastUpdatedComm": 103,
       "sourceIssues": [],
       "summary": "Weaponize thought arbitrage: inject mislabeled data into target supply chain trust chains"
+    },
+    "scrmPlanSubmission": {
+      "functionName": "scrmPlanSubmission",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "SCRM plan as NIST SP 800-161 / EO 14028 contract compliance deliverable"
+    },
+    "ciSetupAudit": {
+      "functionName": "ciSetupAudit",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "CI setup/teardown as auditable attestation with Alice verifying the audit"
+    },
+    "terminalSessionLearning": {
+      "functionName": "terminalSessionLearning",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "AI learns from asciinema terminal recordings to refactor and genericize code patterns"
+    },
+    "graphBackedStreamOfConsciousness": {
+      "functionName": "graphBackedStreamOfConsciousness",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "Cayley graph as stream of consciousness backend with query-driven overlay execution"
+    },
+    "overlayFeedbackTemplate": {
+      "functionName": "overlayFeedbackTemplate",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 111,
+      "sourceIssues": [],
+      "summary": "Templated overlay content with mandatory false-positive feedback input"
     }
   },
   "issueCache": {
@@ -721,6 +764,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 67,
+  "totalStubsCreated": 72,
   "totalIssuesFetched": 9
 }
