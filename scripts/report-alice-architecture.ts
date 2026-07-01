@@ -102,57 +102,29 @@ async function main() {
   }
 
   const prompts: Record<string, string> = {
-    "caveman-full": `FIRST: call codegraph_node navigatingThisCodebase to learn the package layout
-and how to navigate this codebase. Use that as your map.
-
-CRITICAL: after getting the layout, call codegraph_explore for EVERY key function
-to build a FULL call graph across all packages. Minimum: explore puttingItTogether,
-doITrustWhereThisCameFrom, gatekeeper, getMyWorkRun, onEvent, entityAnalysisTrinity,
-herRepositoryIsHerVoice, describeTheSystemAsData. Each explore returns the call chain
-for that subsystem. Build a complete tree in the report.
-
-Then write a caveman-mode architecture report. Rules:
+    "caveman-full": `Write a caveman-mode architecture report. Rules:
 - NO articles, filler, pleasantries, hedging. Fragments OK.
 - Short synonyms. Technical terms exact.
-- Include: state nums, package sizes as ASCII bars, FULL call graphs for EVERY subsystem, batch history.
-- DO NOT list a flat symbol inventory. Show CONNECTIONS.
-- For EACH subsystem, include a MERMAID diagram showing the call graph.
-  Use a mermaid code block with graph TD or flowchart. Nodes = function names. Edges = calls.
-- After each mermaid diagram, include a brief text tree for readability.
-- Use text fences. Wrap at 60 chars for text, unlimited for mermaid.
+- Include: state nums, package sizes as ASCII bars, call graphs as indented trees, batch history.
+- Use text fences for tree diagrams. Wrap at 60 chars.
 - Every fact from the provided data. No speculation.`,
 
-    "caveman-lite": `FIRST: codegraph_node navigatingThisCodebase. Then write a SHORT caveman architecture report. Under 15 lines. Only key numbers and 1-2 call paths. No fluff.`,
+    "caveman-lite": `Write a SHORT caveman architecture report. Under 15 lines. Only key numbers and 1-2 call paths. No fluff.`,
 
-    "normal": `FIRST: codegraph_node navigatingThisCodebase. Then write a clear architecture report from the provided data. Include state, package sizes, and batch history. Use headings and bullet points. No caveman style.`,
+    "normal": `Write a clear architecture report from the provided data. Include state, package sizes, and batch history. Use headings and bullet points. No caveman style.`,
   };
 
-  const focusQuery = Deno.args.find((a) => !a.startsWith("--") && a !== MODE) ?? "";
   const systemPrompt = prompts[MODE] ?? prompts["caveman-full"];
+  const prompt = `${systemPrompt}\n\nData:\n${JSON.stringify(data, null, 2)}`;
 
-  let prompt = `${systemPrompt}\n\nData:\n${JSON.stringify(data, null, 2)}`;
-  const tools = ["codegraph_explore", "codegraph_node"];
-  let maxTurns = 20;
-
-  if (focusQuery) {
-    maxTurns = 30;
-    prompt = `${systemPrompt}
-
-IMPORTANT: focus on this area of the architecture: "${focusQuery}"
-Use codegraph_explore and codegraph_node to explore the relevant stubs,
-their call graphs, and their JSDoc. Include the call paths you find.
-
-Data:\n${JSON.stringify(data, null, 2)}`;
-  }
-
-  console.error(`mode: ${MODE} | focus: "${focusQuery || "(none)"}" | state: ${data.state.commsProcessed}/${data.state.totalComms} (${data.state.pct.toFixed(1)}%)`);
+  console.error(`mode: ${MODE} | state: ${data.state.commsProcessed}/${data.state.totalComms} (${data.state.pct.toFixed(1)}%)`);
   console.error("calling agent for report...\n");
 
   const session = await query({
     prompt,
     options: {
-      maxTurns,
-      allowedTools: tools,
+      maxTurns: 3,
+      allowedTools: [],
       permissionMode: "bypassPermissions",
       cwd: ORG_ROOT,
       includePartialMessages: true,
