@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 687,
+  "lastProcessedComm": 690,
   "processedComms": [
     0,
     1,
@@ -688,7 +688,10 @@
     684,
     685,
     686,
-    687
+    687,
+    688,
+    689,
+    690
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2596,7 +2599,7 @@
       "cacheFile": "/Users/johnandersen777/src/publicdomainrelay/open-architecture/.cache/intel-dffml-issue-1392.json"
     }
   },
-  "lastBatchSize": 8,
+  "lastBatchSize": 3,
   "totalStubsCreated": 258,
   "totalIssuesFetched": 10
 }
