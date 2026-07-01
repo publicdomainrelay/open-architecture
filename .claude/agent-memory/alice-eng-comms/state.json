@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 71,
+  "lastProcessedComm": 79,
   "processedComms": [
     0,
     1,
@@ -72,7 +72,15 @@
     68,
     69,
     70,
-    71
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
   ],
   "concepts": {
     "did-standardization": {
@@ -443,6 +451,20 @@
       "lastUpdatedComm": 71,
       "sourceIssues": [],
       "summary": "DeFi AMM concepts applied to information markets: arbitrage across trust graphs"
+    },
+    "aliceSignNotCop": {
+      "functionName": "aliceSignNotCop",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 79,
+      "sourceIssues": [],
+      "summary": "Alice operates as a signal/indicator, not an enforcer — she informs but never compels"
+    },
+    "culturalOpAmpEffects": {
+      "functionName": "culturalOpAmpEffects",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 79,
+      "sourceIssues": [],
+      "summary": "Technological change as cultural operational amplifier, modeled via Wardley mapping alignment"
     }
   },
   "issueCache": {
@@ -534,6 +556,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 46,
+  "totalStubsCreated": 48,
   "totalIssuesFetched": 9
 }

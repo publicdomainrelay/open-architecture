@@ -43,3 +43,14 @@ export function aliceWonderlandCollectiveThoughts(): void {
 export function aliceShellDefaultOverlay(): void {
   // Related: dataflowDidEntrypoint, operationCodeContentAddressing, subflowTypecast
 }
+
+/**
+ * Technological changes act as cultural operational amplifiers — they make information travel faster, which amplifies whatever cultural dynamics already exist.
+ * 
+ * Like an electronic op-amp, a technology change (the wheel, machine learning, decentralized identity) takes a small cultural signal and amplifies it with high gain. The Wardley mapping alignment reward strategics framework captures this: strategic positioning on the value chain determines how much a given change amplifies existing cultural dynamics. Alice should model these amplification effects to predict second-order consequences of technology adoption.
+ * 
+ * @see comms/0077
+ */
+export function culturalOpAmpEffects(): void {
+  // TODO: wire to related concepts
+}

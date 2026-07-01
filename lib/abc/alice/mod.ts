@@ -51,3 +51,14 @@ export function developerYellowBrickRoad(): void {
 export function aliceMentalModelParallelConsciousness(): void {
   // Related: entityAnalysisTrinity, dataflowDidEntrypoint, whatAliceIs
 }
+
+/**
+ * Alice operates as a signal (indicator) rather than a cop (enforcer). She surfaces information, maps the landscape, and lets humans decide — she never blocks, denies, or mandates.
+ * 
+ * This is the core operating philosophy: Alice amplifies awareness of the strategic landscape (Wardley mapping alignment) so that stakeholders can make informed decisions. She is an operational amplifier for collective intelligence, not a policy enforcement point. The "sign not cop" framing positions Alice as trustworthy infrastructure — she cannot be weaponized because she only informs, never compels.
+ * 
+ * @see comms/0077
+ */
+export function aliceSignNotCop(): void {
+  // TODO: wire to related concepts
+}
