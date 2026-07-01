@@ -610,3 +610,14 @@ export function herstoryDocumentationSynthesis(): void {
 export function cloudDevEnvironmentProvisioning(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Auto-generate OpenAPI routes from dataflow workflow functions. The pattern: write a single function, auto-inventory it into a workflow definition, then auto-generate an OpenAPI route complete with FastAPI route wiring and Pydantic schema validation.
+ * 
+ * This inverts the typical API development flow — instead of hand-writing routes and then connecting them to logic, the function IS the source of truth. The workflow inventory discovers the function's inputs/outputs, and the OpenAPI route is derived mechanically from the workflow graph. Start with one function before scaling to full auto-inventory of all workflows.
+ * 
+ * @see comms/0576
+ */
+export function workflowToOpenApiRouteGeneration(): void {
+  // Related: dataflowAsFunctionInvocation, dataflowDescribeInfrastructure
+}

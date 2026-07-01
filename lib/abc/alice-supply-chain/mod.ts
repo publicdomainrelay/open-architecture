@@ -1421,3 +1421,16 @@ export function scittFederationGitRepos(): void {
 export function policyEngineWorkflowDispatch(): void {
   // Related: scittInsertionPolicyAsComputeContract, scittNotaryAssertionRegistry, federatedCiCdEventSpace
 }
+
+/**
+ * SCITT registration policy is no longer carried as a CBOR field in the signed statement. Instead, policy selection becomes an explicit negotiation step: the submitting party and the transparency service agree on which policy URNs to include in the payload before insertion.
+ * 
+ * This shifts the trust model — policy is not embedded in the artifact but negotiated at submission time, allowing the transparency service to enforce which policies it will witness against without baking policy into the signed statement structure.
+ * 
+ * Earlier understanding (from comms/0443): SCITT insertion policy functions as a compute contract, where the gatekeeper evaluates policy at insertion time against the transparency log.
+ * 
+ * @see comms/0576
+ */
+export function scittPolicyUrnNegotiation(): void {
+  // Related: registrationPolicyAsReceipt, scittPolicyEmbeddedReceipt, policyEngineWorkflowDispatch
+}

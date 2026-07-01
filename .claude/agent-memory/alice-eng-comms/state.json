@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 575,
+  "lastProcessedComm": 583,
   "processedComms": [
     0,
     1,
@@ -576,7 +576,15 @@
     572,
     573,
     574,
-    575
+    575,
+    576,
+    577,
+    578,
+    579,
+    580,
+    581,
+    582,
+    583
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -1321,7 +1329,7 @@
     "scittInsertionPolicyAsComputeContract": {
       "functionName": "scittInsertionPolicyAsComputeContract",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 447,
+      "lastUpdatedComm": 583,
       "sourceIssues": [],
       "summary": "SCITT insertion policy as sandboxed policy-as-code compute contract"
     },
@@ -2059,6 +2067,20 @@
       "lastUpdatedComm": 575,
       "sourceIssues": [],
       "summary": "Policy engine dispatches GitHub Actions workflows for subjects"
+    },
+    "scittPolicyUrnNegotiation": {
+      "functionName": "scittPolicyUrnNegotiation",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 583,
+      "sourceIssues": [],
+      "summary": "SCITT policy moves from CBOR field to negotiated URN inclusion in payload"
+    },
+    "workflowToOpenApiRouteGeneration": {
+      "functionName": "workflowToOpenApiRouteGeneration",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 583,
+      "sourceIssues": [],
+      "summary": "Auto-generate OpenAPI routes from workflow functions via auto-inventory"
     }
   },
   "issueCache": {
@@ -2156,6 +2178,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 211,
+  "totalStubsCreated": 213,
   "totalIssuesFetched": 10
 }
