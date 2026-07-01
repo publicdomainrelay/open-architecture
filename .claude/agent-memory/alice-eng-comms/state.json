@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 183,
+  "lastProcessedComm": 191,
   "processedComms": [
     0,
     1,
@@ -184,7 +184,15 @@
     180,
     181,
     182,
-    183
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -334,7 +342,7 @@
     "runDataflowSerializable": {
       "functionName": "runDataflowSerializable",
       "filePath": "lib/abc/alice-system-context/mod.ts",
-      "lastUpdatedComm": 39,
+      "lastUpdatedComm": 191,
       "sourceIssues": [],
       "summary": "Serializable dataflow run: three manifests (inputs, operations, orchestration)"
     },
@@ -348,7 +356,7 @@
     "pluginPartyCatalog": {
       "functionName": "pluginPartyCatalog",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 39,
+      "lastUpdatedComm": 191,
       "sourceIssues": [],
       "summary": "2nd/3rd party plugin catalog: org-local and external tools for LLM agents"
     },
@@ -656,7 +664,7 @@
     "trainOfThoughtGraffiti": {
       "functionName": "trainOfThoughtGraffiti",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 103,
+      "lastUpdatedComm": 191,
       "sourceIssues": [],
       "summary": "adversary injects mislabeled data into target trust chains via system context frame deltas"
     },
@@ -960,6 +968,48 @@
       "lastUpdatedComm": 183,
       "sourceIssues": [],
       "summary": "KERI identity controller as DICE layering root of trust for attested compute"
+    },
+    "knowledgeGraphInventory": {
+      "functionName": "knowledgeGraphInventory",
+      "filePath": "lib/abc/alice-stream-of-consciousness/mod.ts",
+      "lastUpdatedComm": 191,
+      "sourceIssues": [],
+      "summary": "Knowledge graph as authoritative inventory of all known entities"
+    },
+    "toolCatalogPartyClassification": {
+      "functionName": "toolCatalogPartyClassification",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 191,
+      "sourceIssues": [],
+      "summary": "Tool catalog classified by 2nd-party org-local vs 3rd-party external tools"
+    },
+    "cellularSixthSense": {
+      "functionName": "cellularSixthSense",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 191,
+      "sourceIssues": [],
+      "summary": "System's innate continuous sensing of environmental changes, inspired by cellular biology"
+    },
+    "threeManifestsDecomposition": {
+      "functionName": "threeManifestsDecomposition",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 191,
+      "sourceIssues": [],
+      "summary": "RunDataFlow decomposed into inputs, operations, orchestration manifests"
+    },
+    "deploymentTypeOperationOverride": {
+      "functionName": "deploymentTypeOperationOverride",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 191,
+      "sourceIssues": [],
+      "summary": "Deployment types override operation instances with env-specific implementations"
+    },
+    "trainOfThoughtHardening": {
+      "functionName": "trainOfThoughtHardening",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 191,
+      "sourceIssues": [],
+      "summary": "Security hardening of train of thought for tamper-evident audit trail"
     }
   },
   "issueCache": {
@@ -1051,6 +1101,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 110,
+  "totalStubsCreated": 116,
   "totalIssuesFetched": 9
 }

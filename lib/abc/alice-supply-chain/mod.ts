@@ -627,3 +627,28 @@ export function scittDwnBootstrapAndJsonLd(): void {
 export function trustPolicyPropagationByLifecycle(): void {
   // Related: gatekeeper, doITrustWhereThisCameFrom, federateClaimsDownstream, policyBenefitOfDoubt, scanIntoTrustAttestation
 }
+
+/**
+ * Tool catalog entries classified by party: 2nd-party (org-local OpenAPI endpoints, internal databases) vs 3rd-party (external open-source tools, public APIs).
+ * 
+ * The tool catalog surfaces available capabilities to AI agents through a /tools/list endpoint. 2nd-party tools connect to organization-internal systems (databases, internal services). 3rd-party tools wrap external systems (kubectl, public APIs). Both feed the same catalog so agents reason uniformly about available capabilities regardless of party.
+ * 
+ * Earlier understanding (from pluginPartyCatalog): Plugin catalog with party-based categorization.
+ * 
+ * @see comms/0187
+ * @see intel/dffml#1207
+ */
+export function toolCatalogPartyClassification(): void {
+  // Related: pluginPartyCatalog
+}
+
+/**
+ * Biological inspiration: all living cells possess molecular machinery for a 'sixth sense' — the innate ability to detect environmental changes without dedicated sensory organs. Applied to software supply chain: the system continuously senses changes across its environment (new vulnerabilities, dependency updates, policy shifts) as an intrinsic property, not an external check.
+ * 
+ * This sensing is not a periodic scan but a continuous awareness — the system feels changes the way cells detect infrared or magnetic fields through molecular mechanisms. It connects to train of thought hardening: the sensing substrate must itself be tamper-evident.
+ * 
+ * @see comms/0190
+ */
+export function cellularSixthSense(): void {
+  // Related: softwareSupplyChainHealthMetaphor, trainOfThoughtHardening
+}

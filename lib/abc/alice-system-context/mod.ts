@@ -506,3 +506,29 @@ export function manifestAdrIntentSimilarity(): void {
 export function contextToContextAnalysisChain(): void {
   // Related: data-provenance-tracking, operation-trust-boundary, dataflowAsFunctionInvocation
 }
+
+/**
+ * A RunDataFlow decomposes into three separate manifests: inputs manifest, operations manifest, and orchestration manifest.
+ * 
+ * Each manifest concerns one dimension of a dataflow. Inputs define what enters the system. Operations define the transformation graph. Orchestration defines execution order and acceptance criteria — which outputs must succeed and which may fail. The three combine into a serializable RunDataFlow. Acceptance criteria can apply per-operation or across the full set.
+ * 
+ * Earlier understanding (from runDataflowSerializable): Combined serializable version of run_dataflow.
+ * 
+ * @see comms/0188
+ * @see intel/dffml#1061
+ */
+export function threeManifestsDecomposition(): void {
+  // Related: runDataflowSerializable
+}
+
+/**
+ * Different deployment types override operation instances with deployment-specific implementations and express preferences for which implementation networks to use.
+ * 
+ * A deployment type (local, cloud, CI, edge) can substitute one operation name for another at specific points in the dataflow. It can also specify which implementation network should be preferred for resolving a given operation — routing the same logical operation to different concrete implementations per deployment environment.
+ * 
+ * @see comms/0188
+ * @see intel/dffml#1061
+ */
+export function deploymentTypeOperationOverride(): void {
+  // Related: runDataflowSerializable, dataflowDescribeInfrastructure
+}

@@ -293,3 +293,15 @@ export function contextSwitchingKnowledgeGraph(): void {
 export function rateOfEpiphany(): void {
   // Related: happinessAccelerationMetric, knowledgeGraph, collectiveConsciousnessAcceleration
 }
+
+/**
+ * The knowledge graph serves as an authoritative inventory of all known entities, tracking what exists across the software supply chain.
+ * 
+ * Every entry in the knowledge graph carries provenance through the inference chain. The inventory framing positions the knowledge graph as the single source of truth for entity existence — linking to traceability standards (W3C CCG Traceability Interop) and enabling tool catalogs that classify capabilities by party (2nd-party org-local APIs, 3rd-party external OpenAPI endpoints).
+ * 
+ * @see comms/0187
+ * @see intel/dffml#1207
+ */
+export function knowledgeGraphInventory(): void {
+  // Related: knowledgeGraph, dataProvenanceTracking
+}

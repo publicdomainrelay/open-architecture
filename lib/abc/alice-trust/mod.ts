@@ -297,3 +297,16 @@ export function scittReceiptAsVcAuth(): void {
 export function keriControllerAsDiceRootOfTrust(): void {
   // Related: doITrustWhereThisCameFrom, vtpmAttestedComputeIdentity, scittTransparencyService, webOfTrust
 }
+
+/**
+ * Security hardening of the train of thought — making the stream of reasoning tamper-evident and cryptographically verifiable.
+ * 
+ * The train of thought captures every inference step, decision, and context switch. Hardening ensures these records cannot be altered after the fact without detection, turning the graffiti into an audit trail. Inspired by the realization that biological systems have innate sensing mechanisms that cannot be subverted without detection — analogous to making the cognitive stream tamper-proof at the substrate level.
+ * 
+ * Earlier understanding (from trainOfThoughtGraffiti): Train of thought captured as graffiti — unstructured, stream-of-consciousness logging.
+ * 
+ * @see comms/0190
+ */
+export function trainOfThoughtHardening(): void {
+  // Related: trainOfThoughtGraffiti, operationTrustBoundary
+}
