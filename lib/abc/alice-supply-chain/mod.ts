@@ -1434,3 +1434,30 @@ export function policyEngineWorkflowDispatch(): void {
 export function scittPolicyUrnNegotiation(): void {
   // Related: registrationPolicyAsReceipt, scittPolicyEmbeddedReceipt, policyEngineWorkflowDispatch
 }
+
+/**
+ * Synthesize GitHub Actions workflows through langgraph-like flows to Knative on KCP.
+ * 
+ * The policy engine within the Open Architecture does not simply dispatch workflows — it synthesizes them through a transformation pipeline. GitHub Actions workflow definitions are ingested, converted into langgraph-like flow representations (directed graphs of operations with branching policy decisions), and then synthesized into Knative serving configurations deployed on KCP (Kubernetes Control Plane). The synthesis uses sandboxed runtimes including v8 (JavaScript) and rustpython (Python) to safely execute policy evaluation steps. This pipeline enables the architecture to take human-authored CI/CD workflows and automatically derive secure, isolated, policy-governed execution environments on federated infrastructure. The synthesis respects threat model constraints from OSCAL data and S2C2F analyses at each transformation stage.
+ * 
+ * Earlier understanding (from comm 0559): Policy engine triggers GitHub Actions workflows when transparent statements are submitted to SCITT, serving as the CI/CD orchestrator within the forge.
+ * 
+ * @see comms/0589
+ * @see comms/0590
+ */
+export function policyEngineLangGraphKnativeSynthesis(): void {
+  // Related: policyEngineWorkflowDispatch, workflowToOpenApiRouteGeneration, scittInsertionPolicyAsComputeContract, federatedCiCdEventSpace
+}
+
+/**
+ * Select GitHub Actions to deploy based on OSCAL security data and threat model analysis.
+ * 
+ * Within the Open Architecture's policy engine, the decision of which GitHub Actions workflows to implement and deploy is driven by machine-readable compliance data. OSCAL (Open Security Controls Assessment Language) provides the structured security control framework. Threat models mapped against the system's attack surface produce prioritized risk assessments. S2C2F (Supply Chain to Cloud native Foundation) analyses evaluate dependency trustworthiness. These three inputs — OSCAL controls, threat model risks, and S2C2F dependency assessments — are combined to produce a ranked selection of GitHub Actions workflows that address the highest-priority security gaps. The selection process is automated and auditable, with each decision traceable to specific OSCAL control requirements and threat model findings.
+ * 
+ * @see comms/0589
+ * @see comms/0590
+ * @see intel/dffml#1552
+ */
+export function oscalThreatModelWorkflowSelection(): void {
+  // Related: s2c2fScittConformance, scittNotaryAssertionRegistry, threatModelAsAdmissionGate, policyAsContentAddressedArtifact
+}

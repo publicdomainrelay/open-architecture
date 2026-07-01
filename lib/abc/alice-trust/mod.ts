@@ -569,3 +569,17 @@ export function enclaveAttestationTcbFederation(): void {
 export function scittWorkloadIdentityOidc(): void {
   // Related: scittReceiptAsVcAuth, oidcSelfIssuedEdge, githubActionsOidcSelfAttestation
 }
+
+/**
+ * Derive operational workload identities from the graph of thoughts within AGI systems.
+ * 
+ * Within the Open Architecture, workload identities are not statically assigned but derived dynamically from the architecture's graph of thoughts. This graph captures the AGI's internal reasoning structure — chains of context, decision vectors, and subflow relationships. By aligning operational identities with appropriate decision vectors from this graph, the system ensures precision and accountability in task execution. Each workload identity maps to a specific thought path, so the identity carries the provenance of why a particular action was taken and under what reasoning context. This prevents identity spoofing and ensures auditability of AGI decision-making at the operational level.
+ * 
+ * Earlier understanding (from comm 0577): SCITT workload identity bound to OIDC tokens, where the OIDC issuer is the SCITT transparency service and the token carries a SCITT receipt as proof of attested identity.
+ * 
+ * @see comms/0589
+ * @see comms/0590
+ */
+export function workloadIdentityFromGraphOfThoughts(): void {
+  // Related: scittWorkloadIdentityOidc, machineContinuousSoul, chainsOfContext, oidcSelfIssuedEdge
+}

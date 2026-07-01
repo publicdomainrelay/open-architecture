@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 583,
+  "lastProcessedComm": 591,
   "processedComms": [
     0,
     1,
@@ -584,7 +584,15 @@
     580,
     581,
     582,
-    583
+    583,
+    584,
+    585,
+    586,
+    587,
+    588,
+    589,
+    590,
+    591
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -2050,7 +2058,7 @@
     "scittWorkloadIdentityOidc": {
       "functionName": "scittWorkloadIdentityOidc",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 575,
+      "lastUpdatedComm": 591,
       "sourceIssues": [],
       "summary": "OIDC workload identity tokens issued from SCITT receipts"
     },
@@ -2064,7 +2072,7 @@
     "policyEngineWorkflowDispatch": {
       "functionName": "policyEngineWorkflowDispatch",
       "filePath": "lib/abc/alice-supply-chain/mod.ts",
-      "lastUpdatedComm": 575,
+      "lastUpdatedComm": 591,
       "sourceIssues": [],
       "summary": "Policy engine dispatches GitHub Actions workflows for subjects"
     },
@@ -2081,6 +2089,34 @@
       "lastUpdatedComm": 583,
       "sourceIssues": [],
       "summary": "Auto-generate OpenAPI routes from workflow functions via auto-inventory"
+    },
+    "openArchitectureForAgi": {
+      "functionName": "openArchitectureForAgi",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 591,
+      "sourceIssues": [],
+      "summary": "Meta-architecture tying SCITT, federation, policy engine, workload identity into AGI safety framework"
+    },
+    "workloadIdentityFromGraphOfThoughts": {
+      "functionName": "workloadIdentityFromGraphOfThoughts",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 591,
+      "sourceIssues": [],
+      "summary": "Derive workload identities dynamically from AGI graph of thoughts reasoning structure"
+    },
+    "policyEngineLangGraphKnativeSynthesis": {
+      "functionName": "policyEngineLangGraphKnativeSynthesis",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 591,
+      "sourceIssues": [],
+      "summary": "GitHub Actions → langgraph flows → Knative on KCP synthesis pipeline with sandboxed runtimes"
+    },
+    "oscalThreatModelWorkflowSelection": {
+      "functionName": "oscalThreatModelWorkflowSelection",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 591,
+      "sourceIssues": [],
+      "summary": "OSCAL + threat models + S2C2F → automated GitHub Actions workflow selection"
     }
   },
   "issueCache": {
@@ -2178,6 +2214,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 213,
+  "totalStubsCreated": 217,
   "totalIssuesFetched": 10
 }
