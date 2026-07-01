@@ -346,3 +346,14 @@ export function livingThreatModelRLSynthesis(): void {
 export function llmAgentToolCatalog(): void {
   // Related: scittReferenceImplementation, gatekeeper
 }
+
+/**
+ * Reproducible Alice CLI build environment using Wolfi (Chainguard) chroot, QEMU, and Packer for deterministic VM image generation.
+ * 
+ * Alice's CLI must be built and validated within a known, reproducible environment. Wolfi chroot provides a minimal, auditable Linux userspace (no package manager baggage). QEMU emulates the target architecture for cross-build testing. Packer automates VM image creation from the validated chroot. Together they ensure Alice CLI boots and executes correctly from a provenance-tracked root filesystem at `/wolfi`.
+ * 
+ * @see comms/0059
+ */
+export function aliceWolfiChrootBuild(): void {
+  // Related: linuxLoaderAttestation
+}

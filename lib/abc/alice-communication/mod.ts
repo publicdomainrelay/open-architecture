@@ -130,3 +130,14 @@ export function theFirehoseCarriesIt(): void {
 export function credentialManifestAlignment(): void {
   // TODO: wire to related concepts
 }
+
+/**
+ * Analysis of KERI (Key Event Receipt Infrastructure) interoperability ergonomics with the web5 ecosystem and broader decentralized identity landscape.
+ * 
+ * KERI provides a DID method based on self-certifying key event logs without relying on a distributed ledger. This concept examines how KERI's key management model (key pre-rotation, witnessed key events, duplicity detection) composes with web5's DWN (Decentralized Web Node), DID resolution, and verifiable credential flows. The analysis covers ergonomic fit: whether KERI's event-sourced identity model feels natural alongside web5's record-based data model.
+ * 
+ * @see comms/0062
+ */
+export function keriWeb5Interoperability(): void {
+  // Related: didStandardization
+}

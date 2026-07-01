@@ -14,3 +14,26 @@ export function osDecentralice(): void {
   // TODO: wire to related concepts
 }
 
+
+/**
+ * Alice's coaching ability and understanding derive from the data she consumes — her "diet" of ingested records shapes her identity and what she can teach.
+ * 
+ * Alice learns by consuming data through her ears (firehose/subscription) and eyes (PDS records). The "you are what you EAT" principle means Alice's knowledge graph, threat model, and strategic principles are all products of the data she has ingested. Coach Alice mentors by reflecting back what she has learned from her diet of consumed records, issue trackers, and engineering logs.
+ * 
+ * @see comms/0056
+ * @see intel/dffml#1334
+ */
+export function coachAliceYouAreWhatYouEat(): void {
+  // Related: herIdentity, herRepositoryIsHerVoice, herEars, herMemory
+}
+
+/**
+ * Guided developer onboarding path to reach critical velocity — the point where a contributor becomes self-sustaining and productive within Alice's architecture.
+ * 
+ * The yellow brick road is a structured journey through Alice's concepts, tools, and workflows. It links engineering logs, issue trackers, and knowledge graph entries into a progressive learning path. Each step unlocks the next: understand the entity analysis trinity → run a dataflow → submit an RFP → bid on a contract → provision a guest. Search across engineering logs surfaces prior journeys; the prioritizer surfaces the next most impactful step for each developer's current context.
+ * 
+ * @see comms/0063
+ */
+export function developerYellowBrickRoad(): void {
+  // Related: reinforcementLearningDeveloperPath, prioritizerIntentPolicy
+}
