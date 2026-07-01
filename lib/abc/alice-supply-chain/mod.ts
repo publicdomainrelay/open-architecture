@@ -463,3 +463,16 @@ export function mlDependencyChainVerification(): void {
 export function operationsDependencyPackage(): void {
   // Related: freezeSystemContext, nfsRepoCacheDeltaScan
 }
+
+/**
+ * ActivityPub posts serve as SCITT attestation inputs, making federated social interactions feed the transparency log.
+ * 
+ * Every ActivityPub post about a software artifact, dependency, vulnerability, or build result becomes a signed SCITT assertion. Rather than treating social communication and supply chain attestation as separate systems, the fediverse itself becomes the attestation pipeline — when a developer posts about a dependency issue, that post carries provenance into the SCITT transparency log with the same cryptographic guarantees as any other attestation.
+ * 
+ * This bridges decentralized social communication (ActivityPub, DWN) with supply chain transparency (SCITT, KERI). Posts from diverse fediverse sources aggregate into a verifiable stream of attestations, enabling trust decisions based on the collective distributed social signal about software artifacts.
+ * 
+ * @see comms/0148
+ */
+export function activityPubScittInputs(): void {
+  // Related: scittReferenceImplementation, websubActivityPubThoughtSharing
+}

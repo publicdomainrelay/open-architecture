@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 143,
+  "lastProcessedComm": 151,
   "processedComms": [
     0,
     1,
@@ -144,7 +144,15 @@
     140,
     141,
     142,
-    143
+    143,
+    144,
+    145,
+    146,
+    147,
+    148,
+    149,
+    150,
+    151
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -759,6 +767,13 @@
       "lastUpdatedComm": 143,
       "sourceIssues": [],
       "summary": "Dependency extraction and environment portability package for cross-dev reproducibility"
+    },
+    "activityPubScittInputs": {
+      "functionName": "activityPubScittInputs",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 151,
+      "sourceIssues": [],
+      "summary": "ActivityPub posts as SCITT attestation inputs — fediverse feeds transparency log"
     }
   },
   "issueCache": {
@@ -850,6 +865,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 87,
+  "totalStubsCreated": 88,
   "totalIssuesFetched": 9
 }
