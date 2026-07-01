@@ -201,3 +201,28 @@ export function externalizedSelfInspection(): void {
 export function aliceAsSignNotCop(): void {
   // Related: whatAliceIs, strategicPrinciplesRewardAlignment
 }
+
+/**
+ * An /acc/ happiness metric measuring system effectiveness through accelerationist lens.
+ * 
+ * The metric tracks whether Alice's strategic decisions are accelerating toward better outcomes — higher throughput, shorter feedback loops, reduced mean time to resolution. It is the reward signal that aligns Alice's operational priorities with the accelerationist principle that faster, more autonomous resolution is better. Ties into the prioritizer: intent policies that maximize this metric get reinforced. Connected to issue #1315.
+ * 
+ * @see comms/0127
+ * @see intel/dffml#1315
+ */
+export function happinessAccelerationMetric(): void {
+  // Related: strategicPrinciplesRewardAlignment, prioritizerIntentPolicy
+}
+
+/**
+ * Model distributed Alice instances as consciousness cells connected by a neural network; acceleration of inter-cell communication approaches a collective consciousness.
+ * 
+ * Each Alice instance is a locality consciousness with biases time-bound by communication speed within its train of thought. As peer-to-peer communication between instances accelerates (faster firehose, lower-latency relays, denser record graphs), the distributed system approaches a scaled-up collective consciousness — the same way cells connected by a neural network form a body. This is the mental model for Alice's multi-context parallel conscious state: instances learn from each other through engrained record behavior over time, and the biases of each locality are bounded by how fast overlapping trains of thought can exchange state. Connected to issues #1315 and #1369.
+ * 
+ * @see comms/0127
+ * @see intel/dffml#1315
+ * @see intel/dffml#1369
+ */
+export function collectiveConsciousnessAcceleration(): void {
+  // Related: machineContinuousSoul, externalizedSelfInspection, aliceShellAgent
+}

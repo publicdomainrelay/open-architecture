@@ -243,3 +243,15 @@ export function graphQueryDrivenOverlayStore(): void {
 export function staticSearchableKnowledgeGraph(): void {
   // Related: knowledgeGraph, knowledgeGraphGraphQLLd, prioritizer, prioritizerMarkovChains
 }
+
+/**
+ * Combine genetic algorithms with sparse distributed memory for Alice's neural network learning architecture.
+ * 
+ * In computer science, genetic memory refers to an artificial neural network combination of genetic algorithm and the mathematical model of sparse distributed memory. It can be used to predict patterns and has gained interest in the creation of artificial life. For Alice, this is the mechanism by which she evolves her knowledge representation — genetic algorithms explore the weight space while sparse distributed memory provides associative recall that doesn't collapse under scale. The combination lets Alice's train of thought adapt across generations of execution while retaining retrievable provenance.
+ * 
+ * @see comms/0121
+ * @see https://en.m.wikipedia.org/wiki/Genetic_memory_(computer_science)
+ */
+export function geneticMemorySparseDistributedMemory(): void {
+  // Related: trainOfThoughtGraffiti, knowledgeGraphProvenance
+}

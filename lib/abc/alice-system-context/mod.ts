@@ -433,3 +433,16 @@ export function dataflowPetriNetModel(): void {
 export function incrementalOverlayApplication(): void {
   // Related: overlaysAsDynamicContextAwareBranches, dataflowConceptualUpleveling
 }
+
+/**
+ * Map the Entity Analysis Trinity corners onto system context dimensions as pairwise axes: intent↔upstream and static↔overlay.
+ * 
+ * The trinity corners (intent, static analysis, dynamic analysis) form axes when paired with system context components: intent evaluates against upstream manifests, static analysis evaluates against overlay patches. This axes framing turns the three corners from isolated analysis dimensions into a coordinate system for triangulating entity trustworthiness. Each axis is a comparison between what the entity claims (intent) or contains (static) and the external reference (upstream source, contextual overlay).
+ * 
+ * Earlier understanding (from trinity-triangulation): clusters of strategic plans analyzed across intent, static, and dynamic corners.
+ * 
+ * @see comms/0122
+ */
+export function entityAnalysisTrinityAxes(): void {
+  // Related: entityAnalysisTrinity, intentAnalysis, staticAnalysis, dynamicAnalysis
+}

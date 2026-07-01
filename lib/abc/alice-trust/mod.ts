@@ -246,3 +246,15 @@ export function chainsOfContext(): void {
 export function trainOfThoughtGraffiti(): void {
   // Related: operationTrustBoundary, subflowLockTaken, livingThreatsMd
 }
+
+/**
+ * Use OpenID Connect Self-Issued v2 at the CI/CD edge for workload identity without centralized IDP.
+ * 
+ * OpenID Connect Self-Issued v2.1.0 specifies authentication at the edge — for Alice's architecture, the edge is CI/CD. A self-issued OIDC token carries claims signed by the workload's own key, verifiable without an upstream identity provider. This is complementary to GitHub Actions OIDC self-attestation: GHA OIDC attests to the CI environment identity; Self-Issued OIDC attests to the workload identity that the CI pipeline produces. Together they form a chain from CI runner to built artifact.
+ * 
+ * @see comms/0124
+ * @see https://openid.net/specs/openid-connect-self-issued-v2-1_0.html
+ */
+export function oidcSelfIssuedEdge(): void {
+  // Related: githubActionsOidcSelfAttestation
+}
