@@ -190,3 +190,15 @@ export function conformityAssessment(): void {
 export function machineContinuousAttestation(): void {
   // Related: linuxLoaderAttestation, sbomEverywhereMaturity, dataProvenanceTracking
 }
+
+/**
+ * Confidential ledger stores transparency log roots of trust (Rekor, Fulcio) within tamper-proof TEE-backed storage, extending the trust boundary to the signing identity root keys themselves.
+ * 
+ * For the OpenSSF metrics use case: the roots of trust for the transparency log — the keys that sign the Rekor log and Fulcio certificates — are stored in a confidential ledger (e.g. Azure Confidential Ledger) backed by a Trusted Execution Environment. This means the knowledge of signing identities within Confidential Computing TEEs extends to the transparency log root keys. An attacker who compromises the infrastructure cannot silently rotate the log root because the confidential ledger provides tamper-proof audit. This closes the loop between hardware-attested execution (Constellation confidential Kubernetes) and the supply chain transparency log that vouches for the software running inside it.
+ * 
+ * @see comms/0048
+ * @see comms/0048/reply_0000
+ */
+export function confidentialLedgerRootsOfTrust(): void {
+  // Related: scittNotaryRegistryPolicyLayer, linuxLoaderAttestation
+}

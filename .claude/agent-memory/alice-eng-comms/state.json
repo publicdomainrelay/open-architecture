@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 47,
+  "lastProcessedComm": 55,
   "processedComms": [
     0,
     1,
@@ -48,7 +48,15 @@
     44,
     45,
     46,
-    47
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55
   ],
   "concepts": {
     "did-standardization": {
@@ -226,9 +234,9 @@
     "osDecentralice": {
       "functionName": "osDecentralice",
       "filePath": "lib/abc/alice/mod.ts",
-      "lastUpdatedComm": 39,
+      "lastUpdatedComm": 55,
       "sourceIssues": [],
-      "summary": "Reproducible OS image for Alice: Wolfi userspace + Fedora kernel + SSI service"
+      "summary": "Multi-cloud packer image with Wolfi+Fedora, SSI, GitHub Actions runner, ephemeral reap"
     },
     "speechToTextOperation": {
       "functionName": "speechToTextOperation",
@@ -313,6 +321,27 @@
       "lastUpdatedComm": 47,
       "sourceIssues": [],
       "summary": "Continuous runtime attestation stream required for machine trust; silence is compromise"
+    },
+    "llmAgentToolCatalog": {
+      "functionName": "llmAgentToolCatalog",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "Policy-governed tool catalog for LLM agents organized by 2nd/3rd party trust"
+    },
+    "dataflowDidEntrypoint": {
+      "functionName": "dataflowDidEntrypoint",
+      "filePath": "lib/abc/alice-system-context/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "DID-addressed system contexts with content-hash keys for dataflow entrypoints"
+    },
+    "confidentialLedgerRootsOfTrust": {
+      "functionName": "confidentialLedgerRootsOfTrust",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 55,
+      "sourceIssues": [],
+      "summary": "TEE-backed confidential ledger stores Rekor/Fulcio transparency log root keys"
     }
   },
   "issueCache": {
@@ -404,6 +433,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 32,
+  "totalStubsCreated": 35,
   "totalIssuesFetched": 9
 }

@@ -327,3 +327,15 @@ export function operationRetryContextManager(): void {
 export function entityAnalysisTrinityDataCentricAI(): void {
   // Related: entityAnalysisTrinity, dataProvenanceTracking
 }
+
+/**
+ * System contexts and dataflows identified by DID where the key is a content hash of the system context to be executed, with negotiation in cached state snapshots embedded into the context.
+ * 
+ * Entrypoints become DIDs for dataflows and overlays: the DID method resolves a hash of the system context (static or dataflow seed) to a content-addressed execution plan. GraphQL and Cypher (JSON-to-graph) provide visualization and editing surfaces for credential manifest definition and verification. Overlays selected to load from networks are addressed by DID, making the active lines of communication — even ephemeral ones — verifiable and auditable. This extends operation-level content addressing to the whole system context, enabling Alice to negotiate which overlay to apply based on cached state.
+ * 
+ * @see comms/0051
+ * @see comms/0051/reply_0000
+ */
+export function dataflowDidEntrypoint(): void {
+  // Related: operationCodeContentAddressing, dataflowFunctionImport
+}

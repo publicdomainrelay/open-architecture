@@ -334,3 +334,15 @@ export function scittNotaryRegistryPolicyLayer(): void {
 export function livingThreatModelRLSynthesis(): void {
   // Related: livingThreatModel, entityAnalysisTrinity, scittTransparencyService
 }
+
+/**
+ * LLM agents discover and call tools through a policy-governed catalog organized by party trust levels within SCITT governance.
+ * 
+ * A `/tools/list` endpoint exposes OpenAPI-wrapped operations grouped by trust boundary: 3rd Party Catalog holds external open-source endpoints (kubectl, public APIs), 2nd Party Catalog holds org-local endpoints (internal databases, private services). The LLM provider endpoint (e.g. OpenAI chat/completions) queries the catalog to bind available functions, so every tool an agent invokes is registered, auditable, and governed by SCITT policy. The catalog lives in the SCITT API emulator's policy engine, making tool access a transparency-log event.
+ * 
+ * @see comms/0049
+ * @see intel/dffml#1207
+ */
+export function llmAgentToolCatalog(): void {
+  // Related: scittReferenceImplementation, gatekeeper
+}
