@@ -1,5 +1,5 @@
 {
-  "lastProcessedComm": 215,
+  "lastProcessedComm": 223,
   "processedComms": [
     0,
     1,
@@ -216,7 +216,15 @@
     212,
     213,
     214,
-    215
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223
   ],
   "concepts": {
     "data-provenance-tracking": {
@@ -989,7 +997,7 @@
     "keriControllerAsDiceRootOfTrust": {
       "functionName": "keriControllerAsDiceRootOfTrust",
       "filePath": "lib/abc/alice-trust/mod.ts",
-      "lastUpdatedComm": 183,
+      "lastUpdatedComm": 223,
       "sourceIssues": [],
       "summary": "KERI identity controller as DICE layering root of trust for attested compute"
     },
@@ -1059,7 +1067,7 @@
     "federatedCiCdEventSpace": {
       "functionName": "federatedCiCdEventSpace",
       "filePath": "lib/abc/alice-communication/mod.ts",
-      "lastUpdatedComm": 199,
+      "lastUpdatedComm": 223,
       "sourceIssues": [],
       "summary": "ForgeFed ActivityPub CI/CD federation: forge events + runner telemetry + OpenTelemetry → unified event space"
     },
@@ -1111,6 +1119,48 @@
       "lastUpdatedComm": 215,
       "sourceIssues": [],
       "summary": "Replace websocket with SSE aligned to Fediverse Enhancement Proposal for event transport"
+    },
+    "merkleTreePurlDependencyDedup": {
+      "functionName": "merkleTreePurlDependencyDedup",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 223,
+      "sourceIssues": [],
+      "summary": "Merkle tree hash of PURL descendants as dependency graph fingerprint"
+    },
+    "owaspCreRequirementsSideOfVex": {
+      "functionName": "owaspCreRequirementsSideOfVex",
+      "filePath": "lib/abc/alice-supply-chain/mod.ts",
+      "lastUpdatedComm": 223,
+      "sourceIssues": [],
+      "summary": "OWASP CRE as requirements-side mirror of VEX for unified policy language"
+    },
+    "activityPubOverGrpc": {
+      "functionName": "activityPubOverGrpc",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 223,
+      "sourceIssues": [],
+      "summary": "ActivityPub over gRPC as schema-first federated event transport"
+    },
+    "federatedForgeComputeDeduplication": {
+      "functionName": "federatedForgeComputeDeduplication",
+      "filePath": "lib/abc/alice-communication/mod.ts",
+      "lastUpdatedComm": 223,
+      "sourceIssues": [],
+      "summary": "Deduplicate security analysis computation across federated forges with policy-as-code"
+    },
+    "freeWillBoundaryStrategicAgent": {
+      "functionName": "freeWillBoundaryStrategicAgent",
+      "filePath": "lib/abc/alice/mod.ts",
+      "lastUpdatedComm": 223,
+      "sourceIssues": [],
+      "summary": "Alice must not infringe free will of others; predict dataflow effects before execution"
+    },
+    "keriSignedReleaseArtifactStream": {
+      "functionName": "keriSignedReleaseArtifactStream",
+      "filePath": "lib/abc/alice-trust/mod.ts",
+      "lastUpdatedComm": 223,
+      "sourceIssues": [],
+      "summary": "KERI-signed release artifacts published to ActivityPub security.txt streams"
     }
   },
   "issueCache": {
@@ -1208,6 +1258,6 @@
     }
   },
   "lastBatchSize": 8,
-  "totalStubsCreated": 127,
+  "totalStubsCreated": 133,
   "totalIssuesFetched": 10
 }

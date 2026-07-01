@@ -250,3 +250,31 @@ export function containerRegistryFederationAlignment(): void {
 export function federatedSseActivityPub(): void {
   // Related: activityPubScittInputs, activityPubScittRegistryHandshake
 }
+
+/**
+ * ActivityPub (and future TransparencyInterop) delivered over gRPC as a high-performance, schema-first transport for federated event distribution.
+ * 
+ * The ActivityPub inbox endpoint resolved via WebFinger is extended with a protobuf service definition, enabling strongly typed, streaming, bidirectional federation between forges, transparency services, and policy engines. OpenAPI-to-protobuf generation tools (openapi2proto, protoc-gen-jsonschema) bridge REST and gRPC ecosystems. The gRPC transport carries the same ActivityStreams semantic model with lower overhead and native streaming, suited for high-frequency events like CI/CD pipeline status, SBOM generation, and vulnerability disclosure.
+ * 
+ * @see comms/0222
+ * @see https://github.com/NYTimes/openapi2proto
+ * @see https://github.com/OpenAPITools/openapi-generator
+ */
+export function activityPubOverGrpc(): void {
+  // Related: federatedCiCdEventSpace, federatedSseActivityPub
+}
+
+/**
+ * Deduplicate computation across federated forges (Forgejo, Codeberg, Gitea) for security posture analysis such as OpenSSF Scorecard, with policy-as-code enabling forge org/repo admins to set secure-by-default policies and repo owners to overlay modifications.
+ * 
+ * A federated catalog of Free Software actions (Forgejo Actions) serves as the compute substrate. When multiple forges host the same dependency, the federation deduplicates redundant analysis — running Scorecard once and sharing the result across federated instances. Event-based triggers re-analyze on upstream changes. Policy as code allows org admins to define secure-by-default analysis policies, while repo owners or pull request authors can submit overlay modifications. These downstream context-local policy changes are themselves evaluated by the policy engine for auto-approval/denial.
+ * 
+ * Earlier understanding (from federatedCiCdEventSpace): Federated CI/CD event space using ActivityPub, ForgeFederation, and ValueFlows for cross-forge coordination.
+ * 
+ * @see comms/0223
+ * @see https://codeberg.org/forgejo/discussions/issues/16
+ * @see https://github.com/ietf-scitt/use-cases/blob/main/openssf_metrics.md
+ */
+export function federatedForgeComputeDeduplication(): void {
+  // Related: federatedCiCdEventSpace, containerRegistryFederationAlignment, verifiableScorecardStaticAnalysis
+}

@@ -725,3 +725,29 @@ export function cveToSourceMapping(): void {
 export function policyUniformityIdeationToProduction(): void {
   // Related: overlayAsAdmissionController, trinityTriangulation, ipvmHermeticDeploymentBridge
 }
+
+/**
+ * Hash descendants of a package in SBOM parsing to produce a merkle tree qualifier on PURLs that differentiates package instances with identical coordinates but different dependency graphs.
+ * 
+ * GUAC's approach leverages serialization of dependency predicates in lexical order, hashing the result as a qualifier on the PURL. This prevents false deduplication when two packages share coordinates but differ in their transitive dependency sets. The hash acts as a content-addressed fingerprint of the full dependency DAG below a node, enabling precise vulnerability reachability analysis and rebuild chain determination.
+ * 
+ * @see comms/0220
+ * @see https://github.com/guacsec/guac/issues/594
+ * @see https://github.com/CycloneDX/cyclonedx-maven-plugin/pull/306
+ */
+export function merkleTreePurlDependencyDedup(): void {
+  // Related: dependencyTreeToDataflow, livingSbomVdr
+}
+
+/**
+ * OWASP Common Requirement Enumeration (CRE) as the requirements-side mirror of VEX: security requirements are just more interesting versions of regular requirements.
+ * 
+ * Where VEX declares exploitability status for known vulnerabilities, CRE enumerates the security requirements that, when unmet, constitute vulnerabilities. This symmetry enables a unified policy language: the same overlay mechanism that applies VEX statements can apply CRE requirements as admission gates. Requirements become machine-readable assertions checked during CI/CD, not just human-readable documents. The piggyback pattern — security piggybacks on regular requirements, Alice piggybacks on social network infrastructure — recurs.
+ * 
+ * @see comms/0216
+ * @see https://github.com/OWASP/common-requirement-enumeration
+ * @see https://cwe.mitre.org/data/definitions/1053.html
+ */
+export function owaspCreRequirementsSideOfVex(): void {
+  // Related: openVexActivityPubBridge, csafVexFramework
+}

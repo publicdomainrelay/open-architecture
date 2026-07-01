@@ -324,3 +324,17 @@ export function trainOfThoughtHardening(): void {
 export function keriDuplicityDetection(): void {
   // Related: webOfTrust, doITrustWhereThisCameFrom, enclaveAttestationIsASignalNotAFoundation, trustByVerifyContinuously
 }
+
+/**
+ * KERI-backed keys sign release artifacts published as ActivityPub activities on security.txt/md streams, enabling decentralized artifact signing where downstream consumers verify provenance by watching those streams.
+ * 
+ * Each release produces a `releaseartifact.json` signed with KERI controller keys and published to the project's ActivityPub outbox. Consumers — other repos, CI/CD pipelines, or federated forges — follow (ActivityPub Follow) the project's security.txt actor and receive signed artifact notifications. The KERI duplicity detection ensures that any attempt to publish conflicting artifacts for the same release is detectable. This decentralizes the release signing model beyond centralized registries.
+ * 
+ * Earlier understanding (from keriControllerAsDiceRootOfTrust): KERI controller as DICE root of trust, anchoring the chain of trust for attested compute identities.
+ * 
+ * @see comms/0222
+ * @see https://github.com/TBD54566975/ssi-sdk-mobile/pull/18
+ */
+export function keriSignedReleaseArtifactStream(): void {
+  // Related: keriControllerAsDiceRootOfTrust, securityTxtActivityPubActor, keriDuplicityDetection
+}
