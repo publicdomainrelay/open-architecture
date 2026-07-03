@@ -1,6 +1,6 @@
 # Open Architecture — Implementation Status Report
 
-Generated 2026-07-01 from polyrepo codegraph analysis.
+Generated 2026-07-03 from 10-agent polyrepo codegraph fan-out.
 Regenerate: ask Claude to invoke the `status-report` agent.
 
 ## What This Is
@@ -89,6 +89,35 @@ Package layout:
 
 Dep direction: `common ← abc` (never reverse). One `mod.ts` per package.
 
+## Poly-Repo Layout
+
+| Repo | Type | Purpose |
+|------|------|---------|
+| `atproto-market/` | submodule | Market engine: RFP, bid, accept, requester, bidder, policies, attestation |
+| `hono-compute-provider/` | submodule | Compute provisioning: local containers, DigitalOcean droplets, OIDC/RBAC |
+| `did-key-relay/` | submodule | XRPC relay: WebSocket tunnel, subscriber, dispatcher |
+| `deno-macos-runner-desktop/` | submodule | macOS desktop tray app: bidder UI, OAuth, device keys |
+| `hono-pds/` | submodule | AT Protocol Personal Data Server (PDS) |
+| `atproto-relay/` | submodule | AT Protocol relay: firehose aggregation, collection indexing |
+| `deno-worker-sandbox/` | submodule | Isolated Deno worker sandbox: permission policies, persistent workers |
+| `open-architecture/` | submodule | Docs-as-code architecture blueprint (this report) |
+| `typescript-helpers/` | submodule | Cross-repo shared utilities (event bus, config, logger, serve, firehose watchers) |
+| `codebase-rag-proxy/` | direct (untracked) | Codebase RAG proxy: retrieval ABC + skalex impl, LLM proxy ABC + anthropic impl |
+| `atproto-reverse-proxy/` | direct | Go service: fedproxy-client, RBAC OIDC token exchange, SSH relay |
+| `.reference/` | direct (docs) | Reference implementations (rbac, compute-contract POC) — not production |
+| `docs/` | direct | Documentation |
+| `scripts/` | direct | Build/test scripts (test-all, commit-and-push-all, status-report) |
+
+9 submodules, 5 direct directories. 142 total `deno.json` package directories.
+
+External repos (NOT submodules, NOT cloned locally):
+
+| Repo | Language | Purpose |
+|------|----------|---------|
+| `scitt-community/scitt-api-emulator` | Python | SCITT transparency service, policy engine, tree algs |
+| `dffml` | Python | SystemContext/DataFlow/Overlay, ShouldI scanners, BOM generation |
+| `sshai` | Python + TypeScript | AGI agent, workflow evaluator, MCP tool plugin system |
+
 ---
 
 ## Implementation Coverage
@@ -138,40 +167,40 @@ Dep direction: `common ← abc` (never reverse). One `mod.ts` per package.
 | Sandbox / isolated execution | `Sandbox` ABC — Deno worker + persistent worker + permission policies | deno-worker-sandbox |
 | Bidder discovery | `discoverBiddersFromRelay` + `autoDiscoverRelayUrls` | atproto-market |
 
-**System Context / DataFlow / Overlay** — fully built (Python/DFFML):
+**System Context / DataFlow / Overlay** — fully built (Python/DFFML, external repo):
 
 | Stub | Implementation | Repo |
 |------|---------------|------|
-| `describeTheSystemAsData()` | `SystemContext` class + `SystemContextConfig` | dffml |
-| `theManifest()` | `DataFlow` class (operations+seed+configs+definitions+flow) | dffml |
-| `theDataFlow()` | `InputFlow`, `Forward`, `Stage`, `Operation` via Entrypoint | dffml |
-| `theOverlay()` | `Overlay` class (extends DataFlow+Entrypoint, `apply` method) | dffml |
-| `freezeSystemContext()` | `config_as_defaults_for_subclass`, `deployment()` frozen execution | dffml |
-| `subflowWithLockTaken()` | `BaseLockNetwork` + `MemoryLockNetwork` + lock acquisition | dffml |
-| `subflowTypecast()` | `subflow()` + `run_custom()` typed sub-context execution | dffml |
-| `dataflowCacheExportImport()` | `DataFlow.export()` / `._fromdict()` full serialization | dffml |
+| `describeTheSystemAsData()` | `SystemContext` class + `SystemContextConfig` | dffml (EXTERNAL — not a submodule, not cloned locally; installed via PyPI) |
+| `theManifest()` | `DataFlow` class (operations+seed+configs+definitions+flow) | dffml (EXTERNAL) |
+| `theDataFlow()` | `InputFlow`, `Forward`, `Stage`, `Operation` via Entrypoint | dffml (EXTERNAL) |
+| `theOverlay()` | `Overlay` class (extends DataFlow+Entrypoint, `apply` method) | dffml (EXTERNAL) |
+| `freezeSystemContext()` | `config_as_defaults_for_subclass`, `deployment()` frozen execution | dffml (EXTERNAL) |
+| `subflowWithLockTaken()` | `BaseLockNetwork` + `MemoryLockNetwork` + lock acquisition | dffml (EXTERNAL) |
+| `subflowTypecast()` | `subflow()` + `run_custom()` typed sub-context execution | dffml (EXTERNAL) |
+| `dataflowCacheExportImport()` | `DataFlow.export()` / `._fromdict()` full serialization | dffml (EXTERNAL) |
 
-**SCITT Transparency Service** — fully built (Python):
-
-| Stub | Implementation | Repo |
-|------|---------------|------|
-| `scittTransparencyService()` | `SCITTServiceEmulator` — COSE Sign1 claim submission, receipt generation (CCF/RKVST tree algs), policy-based admission, DID-based identity, OIDC auth | scitt-api-emulator |
-| Statement creation | `create_statement.py` — COSE Sign1 with CWT claims, DID:JWK issuer, registration policy headers, URN generation | scitt-api-emulator |
-| Statement verification | `verify_statement.py` — COSE Sign1 verification with pluggable key loaders (did:jwk, did:web, OIDC issuer, SSH authorized_keys) | scitt-api-emulator |
-| SCITT API server | `server.py` — Flask-based: entry submission, receipt retrieval, operation tracking, service parameters | scitt-api-emulator |
-| Tree algorithms | `tree_algs.py` — Registry dispatching to CCF + RKVST backends | scitt-api-emulator |
-| OIDC integration | `oidc.py` — OIDC auth middleware, token-based admission for SCITT endpoints | scitt-api-emulator |
-| SCITT client | `client.py` — Submits claims, fetches receipts | scitt-api-emulator |
-| DID helpers | `did_helpers.py` — `did:web` URL conversion, `did:jwk` support | scitt-api-emulator |
-
-**Policy Engine / OPA-style Admission Control** — fully built:
+**SCITT Transparency Service** — fully built (Python, external repo):
 
 | Stub | Implementation | Repo |
 |------|---------------|------|
-| `openPolicyAgentOverlay()` | 2893-line GitHub Actions workflow evaluation engine: downloads workflow steps, evaluates JavaScript expressions, builds step outputs/env/inputs, maintains operation state | scitt-api-emulator |
-| TypeScript workflow evaluator | `workflow.ts` — Deno-based GH Actions workflow engine with sandboxed JS eval, composite action support | sshai |
-| Action execution | `action_worker.ts` — Bundled `actions/checkout`, `dorny/paths-filter` execution | sshai |
-| `scittNotarizingProxyInCiCd()` | `.github/workflows/notarize.yml` — Reusable workflow: OIDC token fetch, claim creation, SCITT submission with `repository_id`/`repository_owner_id` claim pinning | scitt-api-emulator |
+| `scittTransparencyService()` | `SCITTServiceEmulator` — COSE Sign1 claim submission, receipt generation (CCF/RKVST tree algs), policy-based admission, DID-based identity, OIDC auth | scitt-api-emulator (EXTERNAL — `scitt-community/scitt-api-emulator`, not a submodule, not cloned locally) |
+| Statement creation | `create_statement.py` — COSE Sign1 with CWT claims, DID:JWK issuer, registration policy headers, URN generation | scitt-api-emulator (EXTERNAL) |
+| Statement verification | `verify_statement.py` — COSE Sign1 verification with pluggable key loaders (did:jwk, did:web, OIDC issuer, SSH authorized_keys) | scitt-api-emulator (EXTERNAL) |
+| SCITT API server | `server.py` — Flask-based: entry submission, receipt retrieval, operation tracking, service parameters | scitt-api-emulator (EXTERNAL) |
+| Tree algorithms | `tree_algs.py` — Registry dispatching to CCF + RKVST backends | scitt-api-emulator (EXTERNAL) |
+| OIDC integration | `oidc.py` — OIDC auth middleware, token-based admission for SCITT endpoints | scitt-api-emulator (EXTERNAL) |
+| SCITT client | `client.py` — Submits claims, fetches receipts | scitt-api-emulator (EXTERNAL) |
+| DID helpers | `did_helpers.py` — `did:web` URL conversion, `did:jwk` support | scitt-api-emulator (EXTERNAL) |
+
+**Policy Engine / OPA-style Admission Control** — fully built (external repos):
+
+| Stub | Implementation | Repo |
+|------|---------------|------|
+| `openPolicyAgentOverlay()` | 2893-line GitHub Actions workflow evaluation engine: downloads workflow steps, evaluates JavaScript expressions, builds step outputs/env/inputs, maintains operation state | scitt-api-emulator (EXTERNAL — `scitt-community/scitt-api-emulator`, not a submodule) |
+| TypeScript workflow evaluator | `workflow.ts` — Deno-based GH Actions workflow engine with sandboxed JS eval, composite action support | sshai (EXTERNAL — not a submodule, not cloned locally) |
+| Action execution | `action_worker.ts` — Bundled `actions/checkout`, `dorny/paths-filter` execution | sshai (EXTERNAL — not a submodule, not cloned locally) |
+| `scittNotarizingProxyInCiCd()` | SCITT CI/CD notarization via OIDC token fetch, claim creation, SCITT submission with `repository_id`/`repository_owner_id` claim pinning | scitt-api-emulator (EXTERNAL). NOTE: `.github/workflows/notarize.yml` previously referenced does not exist in any polyrepo repo. The SCITT policy engine exists within the external scitt-api-emulator repo only |
 
 **SCITT Federation** — direction changed: ActivityPub superseded by atproto:
 
@@ -186,7 +215,7 @@ it via their firehose watchers" — the transport is already COMPLETE
 | Stub | Implementation | Status |
 |------|---------------|--------|
 | `federateClaimsDownstream()` | Target: SCITT receipts as atproto records on PDS, federated via firehose (`FirehoseWatcher` + `createRecord` both COMPLETE) | Transport built; SCITT-receipt lexicon + emitter glue not yet written |
-| Federation signals | `signals.py` — Blinker signal framework for federation event hooks | scitt-api-emulator (branch) — hook framework reusable for atproto emitter |
+| Federation signals | `signals.py` — Blinker signal framework for federation event hooks | scitt-api-emulator (EXTERNAL, branch) — hook framework reusable for atproto emitter |
 | ~~ActivityPub plugin~~ | `federation_activitypub_bovine.py` (486 lines, unmerged branch) — wraps CBOR receipt in ActivityPub Create+Note | **LEGACY** — superseded by atproto direction; do not merge |
 
 **Record Attestation / Badge.blue** — fully built:
@@ -195,21 +224,21 @@ it via their firehose watchers" — the transport is already COMPLETE
 |------|---------------|------|
 | `verifyRecordSignatures()` | `Attestation` class, `createInlineAttestation`, `createRemoteAttestation`, `appendInlineAttestation`, CID computation (DAG-CBOR + SHA-256 + CIDv1), ECDSA signing (P-256, K-256), inline and remote proof verification | atproto-market |
 | `scittNotaryAssertionRegistry()` | `network.attested.*` lexicon: `proof.json` (remote attestation), `signature.json` (inline), `verify.json` (verification XRPC) | atproto-market |
-| `atpScittIntegration()` | `verifyRecordAttestations()` middleware for PDS server, `network.attested.verify` XRPC endpoint | atproto-market |
+| `atpScittIntegration()` | `verifyRecordSignatures()` in market server handlers (`createVerifyHandler`), `network.attested.verify` XRPC endpoint. Attestation verification at market server layer, not PDS middleware | atproto-market |
 
-**Supply Chain Scanning / ShouldI** — fully built (Python):
-
-| Stub | Implementation | Repo |
-|------|---------------|------|
-| `scanIntoTrustAttestation()` | `ShouldI` CLI with `install` + `use` commands: multi-language vulnerability scanning | dffml |
-| Dependency scanning | `bandit` (Python), `safety` (Python vulns), `npm_audit` (JS), `cargo_audit` (Rust), `dependency_check` (Java/OWASP), `golangci-lint` (Go) | dffml |
-| BOM generation | `mkbom` with PyPI backend, YAML-backed DependencyDB, Python package introspection | dffml |
-
-**SSHAI / AGI Agent** — fully built:
+**Supply Chain Scanning / ShouldI** — fully built (Python, external repo):
 
 | Stub | Implementation | Repo |
 |------|---------------|------|
-| `secureSoftwareFactory()` | `agi.py` (5426 lines) — GitHub webhook ingestion, workflow dispatch, SCITT URN-based CVE triggers, MCP tool plugin system, tmux/socket PTY attachment for agent shell access | sshai |
+| `scanIntoTrustAttestation()` | `ShouldI` CLI with `install` + `use` commands: multi-language vulnerability scanning | dffml (EXTERNAL — not a submodule; shouldi installed via PyPI v0.1.0.post0) |
+| Dependency scanning | `bandit` (Python), `safety` (Python vulns), `npm_audit` (JS), `cargo_audit` (Rust), `dependency_check` (Java/OWASP), `golangci-lint` (Go) | dffml (EXTERNAL) |
+| BOM generation | `mkbom` with PyPI backend, YAML-backed DependencyDB, Python package introspection | dffml (EXTERNAL) |
+
+**SSHAI / AGI Agent** — external repo, fully built:
+
+| Stub | Implementation | Repo |
+|------|---------------|------|
+| `secureSoftwareFactory()` | `agi.py` (5426 lines) — GitHub webhook ingestion, workflow dispatch, SCITT URN-based CVE triggers, MCP tool plugin system, tmux/socket PTY attachment for agent shell access | sshai (EXTERNAL — not a submodule, not cloned locally) |
 
 **Cross-cutting infrastructure** — fully built:
 
@@ -226,16 +255,16 @@ it via their firehose watchers" — the transport is already COMPLETE
 | Stub | Implementation | Repo |
 |------|---------------|------|
 | `oidcSelfIssuedEdge()` | `OidcIssuer` ABC — `createOidcIssuer` (JWK management, token issue/prove, RSA signing), integrated into local + DigitalOcean compute providers | hono-compute-provider |
-| OIDC RBAC | Token exchange middleware, provisioning enricher, SSH key RBAC registration. 5 integration tests (container, VM, SSH, callback) | hono-compute-provider |
+| OIDC RBAC | Token exchange middleware, provisioning enricher, SSH key RBAC registration. 6 integration tests (container, VM, SSH, SSH relay, callback) | hono-compute-provider |
 
 ### PARTIAL (infrastructure exists, integration incomplete)
 
 | Stub | What exists | What's missing |
 |------|------------|----------------|
-| `doITrustWhereThisCameFrom()` | `verifyRecordSignatures` (attestation verification), `verifyInlineAttestation`, `verifyRemoteProof`, `verifyBadgeBlueKeysRecord`, `verifyAppAttestChain` | Trust evaluation policy engine — signatures verified but no web-of-trust lookup before decision |
+| `doITrustWhereThisCameFrom()` | `verifyRecordSignatures` (attestation verification), `verifyInlineAttestation`, `verifyRemoteProof` | Trust evaluation policy engine — signatures verified but no web-of-trust lookup before decision. `verifyBadgeBlueKeysRecord` and `verifyAppAttestChain` referenced in prior STATUS_REPORT but do not exist in production code |
 | `webOfTrust()` | `AttestationKeypair` ABC, `createBadgeBlueSigner`, `loadOrGenerateKeypair`, `KeysForDid` type. Vouch NSID `sh.tangled.graph.vouch` defined | No vouch/denounce record graph traversal. No accumulated trust scoring |
 | `vouchesAndDenouncements()` | Vouch-based bidder discovery: fetches `sh.tangled.graph.vouch` records, filters out "denounce" kind | No vouch writing, no vouch graph ranking, no denounce NSID defined |
-| `enclaveAttestationIsASignalNotAFoundation()` | Apple App Attest (`dc_attest_key`), software fallback (Web Crypto X.509), `AppAttestService` ABC | Attestation data not fed into trust decision. Hardware signal collected but not weighed |
+| `enclaveAttestationIsASignalNotAFoundation()` | `DeviceKeyService` ABC (software-only ECDSA P-256 via Web Crypto), `loadOrCreateMarketKeypair` (desktop secp256k1 key in KeychainStore). No hardware attestation anywhere — Apple App Attest explicitly removed from desktop runner. No `AppAttestService` ABC exists (the ABC is `DeviceKeyService`) | Attestation data not fed into trust decision. Hardware signal not collected — project intentionally chose cross-platform software keys over platform attestation |
 | `gatekeeper()` | `shouldi` dependency scanners (bandit, safety, npm_audit, cargo_audit, OWASP dep-check, golangci-lint), SBOM generation (`mkbom`), SPDX SBOM file. SCITT policy engine evaluates admission workflows | No integrated admission pipeline that chains scanner output — SCITT admission. Scanners exist standalone |
 | `checkBillOfMaterialsAgainstLog()` | BOM structure with DependencyDB, UUID-based dedup, PyPI/YAML backends. CycloneDX 1.5 SBOM for DFFML | SBOM generation command logs: "does not generate an SBOM yet." No log check integration |
 | `prioritizer()` | `score()` stub in dffml | Returns hardcoded `"think"`. No scoring. No `notify|think|act` decision matrix |
@@ -282,32 +311,100 @@ it via their firehose watchers" — the transport is already COMPLETE
 
 ---
 
+## Known Architectural Gaps (production code issues, not docs-as-code stubs)
+
+These are discrepancies found in production code during the 2026-07-03 fan-out:
+
+### Fulfillment Policy — evaluate() dead code
+
+`FulfillmentPolicy.evaluate()` is declared in the ABC, implemented in all three
+policy packages (`createOnlyMePolicy`, `createDirectNetworkPolicy`,
+`createWorkflowGhaPolicy`), but **never called** in any bidder-side RFP dispatch
+path. The bidder uses a simple pre-filter (`issuerDid` string compare +
+`vouchedDids` set check) instead of evaluating the actual `FulfillmentPolicy`
+record on the RFP. The `evaluate()` implementations exist but are dead code.
+
+### resolveOperatorDid — declared, never implemented
+
+The `PolicyEvalCtx.resolveOperatorDid` callback is declared in the interface
+but has **no concrete implementation anywhere**. Both `only_me` and
+`direct_network` `evaluate()` functions call it, but no caller ever provides
+this callback. The did:key → operator DID bridge via `bidderAssociation` is
+non-functional at runtime.
+
+### createPolicyPayload() returns fake strongRefs
+
+All three `FulfillmentPolicy.createPolicyPayload()` implementations return
+`{uri: "at://...", cid: "" as never}`. The requester-side code discards this
+return value and creates the policy record separately. The method's contract
+(returning a proper content-addressed strongRef) is not fulfilled.
+
+### bidderAssociation records written but never read
+
+Desktop apps create `bidderAssociation` records post-OAuth (bridging did:key
+→ operator DID), but **no code path reads them**. `resolveOperatorDid` (which
+was supposed to read them) is unimplemented. Data is written, never consumed.
+
+### getVouchedDids — likely broken
+
+`createDirectNetworkPolicy` wraps `ctx.resolve()` (a strongRef resolver for
+single records) as if it were `listRecords` (a collection lister). Resolving
+a collection URI returns one record, not a list. Vouch graph traversal for
+`direct_network` policy evaluation is likely non-functional.
+
+### External repos not cloned as submodules
+
+These repos are referenced by STATUS_REPORT as fully built but are not
+submodules and not cloned locally:
+
+| Repo | Language | Status |
+|------|----------|--------|
+| `scitt-api-emulator` | Python | `scitt-community/scitt-api-emulator` — external community org |
+| `dffml` | Python | Available via PyPI (`shouldi` package), not cloned |
+| `sshai` | Python + TypeScript | Not a submodule, not cloned. `agi.py` not found locally |
+
+### Deno worker sandbox — duplicate attestation signing
+
+`deno-worker-sandbox/lib/compute-deno-atproto/signing.ts` contains a third
+independent implementation of inline attestation CID computation and ECDSA
+signing, duplicating logic from `atproto-market/lib/atproto-attestation-port/`.
+
 ## Summary
 
 ```
 Communication:              ████████████████████ 100%
 Compute Contract:           ████████████████████ 100%
-Fulfillment Policy:         ████████████████████ 100%  (only_me, direct_network; workflow_gha stub)
-System Context:             ████████████████████ 100%  (DFFML Python)
-SCITT Transparency:         ████████████████████ 100%  (scitt-api-emulator)
-Policy Engine (OPA-style):  ████████████████████ 100%  (scitt-api-emulator + sshai)
-Infrastructure:             ████████████████████ 100%  (config, log, event bus)
+Fulfillment Policy:         ███████████████░░░░░  80%  (lexicons+plumbing exist; evaluate() dead code, resolveOperatorDid missing, createPolicyPayload fake strongRefs)
+System Context:             ████████████████████ 100%  (DFFML Python — external repo, not a submodule)
+SCITT Transparency:         ████████████████████ 100%  (scitt-api-emulator — external repo, not a submodule)
+Policy Engine (OPA-style):  ████████████████████ 100%  (scitt-api-emulator + sshai — both external repos)
+Infrastructure:             ████████████████████ 100%  (config, log, event bus, serve)
 Record Attestation:         ████████████████████ 100%  (badge.blue, atproto-market)
-OIDC Workload Identity:     ████████████████████ 100%  (hono-compute-provider)
-Supply Chain Scanning:      ████████████████████ 100%  (shouldi multi-language)
-Federation (via atproto):   ████████████░░░░░░░░  60%  (transport COMPLETE; SCITT-receipt lexicon + emitter glue missing; ActivityPub plugin LEGACY, will not merge)
-Trust (crypto):             ████████████░░░░░░░░  60%  (signatures + attestation exist, web-of-trust doesn't)
+OIDC Workload Identity:     ████████████████████ 100%  (hono-compute-provider, 6 integration tests)
+Supply Chain Scanning:      ████████████████████ 100%  (shouldi multi-language — dffml external repo)
+Federation (via atproto):   ████████████░░░░░░░░  60%  (transport COMPLETE; SCITT-receipt lexicon + emitter glue missing; ActivityPub plugin LEGACY)
+Trust (crypto):             ████████████░░░░░░░░  60%  (signatures + attestation exist; web-of-trust doesn't; no App Attest — project chose cross-platform software keys)
 Supply Chain (pipeline):    ██████░░░░░░░░░░░░░░  30%  (scanners exist, gatekeeper orchestrator doesn't)
-Stream of Consciousness:    ████░░░░░░░░░░░░░░░░  20%  (onEvent hooks exist, prioritizer/knowledge graph don't)
+Stream of Consciousness:    ████░░░░░░░░░░░░░░░░  20%  (onEvent hooks + firehose watchers exist; prioritizer/knowledge graph/notify all stubs)
 Trust (policy/model):       ██░░░░░░░░░░░░░░░░░░  10%  (KERI, living threat model, conformity — all stub)
 ```
 
-**What's built:** The transport layer, compute contract lifecycle, SCITT
-transparency service, policy engine, record attestation, and dependency
-scanners are all production-quality. Records flow from PDS — firehose — watcher
-— bidder — contract — provision — tunnel — SSH. SCITT claims flow through
-COSE Sign1 — registration policy — transparency log — receipt verification.
-Supply chain scanning covers Python, JS, Rust, Go, and Java.
+**What's built:** The transport layer, compute contract lifecycle, policy lexicons
++ plumbing, record attestation, OIDC workload identity, and cross-cutting
+infrastructure are all production-quality in the TypeScript polyrepo. Records
+flow from PDS — firehose — watcher — bidder — contract — provision — tunnel —
+SSH. Python subsystems (SCITT transparency, supply chain scanning, SystemContext,
+policy engine, AGI agent) are fully built but live in **external repos**
+(`scitt-community/scitt-api-emulator`, `dffml`, `sshai`) — not submodules, not
+cloned locally.
+
+**Known issues in production code** (see Known Architectural Gaps above):
+Fulfillment policy `evaluate()` is dead code — never called in bidder dispatch.
+`resolveOperatorDid` is declared but never implemented — the did:key → operator
+DID bridge doesn't work. `createPolicyPayload()` returns fake strongRefs with
+empty CIDs. `bidderAssociation` records are written but never read.
+`getVouchedDids` wraps a single-record resolver as a collection lister — likely
+broken.
 
 **What's missing:** Alice's *reasoning* — the trust evaluation engine that
 weighs vouches and denouncements, the prioritizer that decides
