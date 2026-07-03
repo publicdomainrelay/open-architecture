@@ -164,6 +164,10 @@ export function sigstoreScittDidVcBridge(): void {
  * @see comms/0163
  * @see https://github.com/CycloneDX/specification/pull/180
  * @see https://dnssecuritytxt.org/
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function securityTxtActivityPubActor(): void {
   // Related: websubActivityPubThoughtSharing, activityPubScittInputs
@@ -177,6 +181,10 @@ export function securityTxtActivityPubActor(): void {
  * @see comms/0162
  * @see http://blog.printf.net/articles/2013/05/17/webrtc-without-a-signaling-server/
  * @see intel/dffml#1247
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function webRtcRunnerTokenChannel(): void {
   // Related: websubActivityPubThoughtSharing, oidcSelfIssuedEdge
@@ -190,6 +198,10 @@ export function webRtcRunnerTokenChannel(): void {
  * @see comms/0162
  * @see https://socialhub.activitypub.rocks/t/fep-c390-identity-proofs/2726
  * @see https://www.w3.org/TR/did-core/
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function activityPubIdentityProofBridge(): void {
   // Related: websubActivityPubThoughtSharing, oidcSelfIssuedEdge
@@ -208,6 +220,10 @@ export function activityPubIdentityProofBridge(): void {
  * @see intel/dffml#19133
  * @see https://forgefed.org/
  * @see https://codeberg.org/forgejo-contrib/discussions/issues/12
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federatedCiCdEventSpace(): void {
   // Related: securityTxtActivityPubActor, gitPushActivityPubStream, websubActivityPubThoughtSharing
@@ -225,6 +241,10 @@ export function federatedCiCdEventSpace(): void {
  * @see https://github.com/opencontainers/distribution-spec/blob/main/spec.md#endpoints
  * @see https://github.com/project-zot/zot
  * @see https://github.com/ietf-scitt/use-cases/issues/14
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function containerRegistryFederationAlignment(): void {
   // Related: containerRegistryOnDemand, scittTransparencyService, everythingAsContainerBuild, activityPubScittRegistryHandshake
@@ -246,6 +266,10 @@ export function containerRegistryFederationAlignment(): void {
  * to the broader Fediverse ecosystem.
  * 
  * @see comms/0215
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federatedSseActivityPub(): void {
   // Related: activityPubScittInputs, activityPubScittRegistryHandshake
@@ -259,6 +283,10 @@ export function federatedSseActivityPub(): void {
  * @see comms/0222
  * @see https://github.com/NYTimes/openapi2proto
  * @see https://github.com/OpenAPITools/openapi-generator
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function activityPubOverGrpc(): void {
   // Related: federatedCiCdEventSpace, federatedSseActivityPub
@@ -274,6 +302,10 @@ export function activityPubOverGrpc(): void {
  * @see comms/0223
  * @see https://codeberg.org/forgejo/discussions/issues/16
  * @see https://github.com/ietf-scitt/use-cases/blob/main/openssf_metrics.md
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federatedForgeComputeDeduplication(): void {
   // Related: federatedCiCdEventSpace, containerRegistryFederationAlignment, verifiableScorecardStaticAnalysis
@@ -296,6 +328,10 @@ export function federatedForgeComputeDeduplication(): void {
  * @see comms/0229
  * @see oidcSelfIssuedEdge
  * @see websubActivityPubThoughtSharing
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function webcryptoActivityPubServerAuth(): void {
   // Related: oidcSelfIssuedEdge, websubActivityPubThoughtSharing
@@ -311,6 +347,10 @@ export function webcryptoActivityPubServerAuth(): void {
  * @see comms/0236
  * @see https://github.com/tektoncd/community/issues/435
  * @see https://cdevents.dev
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function cdeventsCiCdInterop(): void {
   // Related: federatedCiCdEventSpace, activityPubOverGrpc, federatedSseActivityPub
@@ -325,6 +365,10 @@ export function cdeventsCiCdInterop(): void {
  * @see https://activemq.apache.org/
  * @see https://developers.cloudflare.com/pub-sub/examples/connect-python/
  * @see https://docs.celeryq.dev/en/stable/reference/celery.app.amqp.html
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function activityPubMessageQueueBridge(): void {
   // Related: activityPubOverGrpc, webRtcRunnerTokenChannel, federatedSseActivityPub, federatedCiCdEventSpace
@@ -337,6 +381,10 @@ export function activityPubMessageQueueBridge(): void {
  * 
  * @see comms/0264
  * @see https://mastodon.social/@Goffi/110348831017599581
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function xmppActivityPubBridge(): void {
   // Related: activityPubOverGrpc, activityPubMessageQueueBridge, federatedSseActivityPub
@@ -361,6 +409,10 @@ export function didMediatedEventExchange(): void {
  * @see comms/0432
  * @see https://spacetimedb.com/docs/server%20module%20languages/rust/index
  * @see https://spacetimedb.com/docs/client%20sdk%20languages/python/sdk%20reference
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function spacetimeDbActivityPubFederation(): void {
   // Related: scittBovineFederation, activityPubScittRegistryHandshake, federatedSseActivityPub
@@ -394,6 +446,10 @@ export function entityTelepathy(): void {
  * Earlier understanding (from comms/0160,0166,0167): Every git push becomes an ActivityPub post via a dedicated vcs.push webhook endpoint, turning commits and CI events into Notes on the stream of consciousness.
  * 
  * @see comms/0631
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function gitRefPollingActivityPubBridge(): void {
   // Related: gitPushActivityPubStream, containerFromRebuildChain, scittNotaryAssertionRegistry
@@ -407,6 +463,10 @@ export function gitRefPollingActivityPubBridge(): void {
  * @see comms/0649
  * @see comms/0650
  * @see https://codeberg.org/forgejo/forgejo/issues/59
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function forgejoFederatedCicd(): void {
   // Related: federatedCiCdEventSpace, didMediatedEventExchange, gitPushActivityPubStream
@@ -420,6 +480,10 @@ export function forgejoFederatedCicd(): void {
  * Earlier understanding: entityTelepathy as a concept for entities communicating state and intent.
  * 
  * @see comms/0660
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federationIsTelepathy(): void {
   // Related: entityTelepathy, federatedThoughtDeduplication, federatedSseActivityPub
@@ -433,6 +497,10 @@ export function federationIsTelepathy(): void {
  * @see comms/0677
  * @see https://datatracker.ietf.org/doc/rfc8322/
  * @see https://transparency.dev/summit
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function coseActivityPubTransport(): void {
   // Related: activityPubOverGrpc, federatedSseActivityPub

@@ -248,6 +248,10 @@ export function collectiveConsciousnessAcceleration(): void {
  * 
  * @see comms/0213
  * @see comms/0214
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function hypothesisExecutionLoop(): void {
   // Related: strategicPrinciplesRewardAlignment, coachAlicePersona, streamOfConsciousnessGitops
@@ -300,6 +304,10 @@ export function selfWritingArchitecture(): void {
  * @see comms/0590
  * @see intel/dffml#1552
  * @see intel/dffml#1553
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function openArchitectureForAgi(): void {
   // Related: scittReferenceImplementation, scittFederationDiscovery, policyEngineWorkflowDispatch, scittWorkloadIdentityOidc, dataCentricAiTrinity, s2c2fScittConformance

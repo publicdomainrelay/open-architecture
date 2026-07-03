@@ -472,6 +472,10 @@ export function operationsDependencyPackage(): void {
  * This bridges decentralized social communication (ActivityPub, DWN) with supply chain transparency (SCITT, KERI). Posts from diverse fediverse sources aggregate into a verifiable stream of attestations, enabling trust decisions based on the collective distributed social signal about software artifacts.
  * 
  * @see comms/0148
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function activityPubScittInputs(): void {
   // Related: scittReferenceImplementation, websubActivityPubThoughtSharing
@@ -498,6 +502,10 @@ export function containerFromRebuildChain(): void {
  * Earlier understanding (from comms/0148): ActivityPub posts serve as SCITT attestation inputs, making federated social interactions feed the transparency log.
  * 
  * @see comms/0159
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function activityPubScittRegistryHandshake(): void {
   // Related: activityPubScittInputs, containerRegistryOnDemand, scittReferenceImplementation, websubActivityPubThoughtSharing
@@ -546,6 +554,10 @@ export function everythingAsContainerBuild(): void {
  * @see comms/0164
  * @see comms/0167
  * @see https://github.com/openvex/spec
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function openVexActivityPubBridge(): void {
   // Related: activityPubScittInputs, livingThreatsMd, csafVexFramework
@@ -608,6 +620,10 @@ export function containerBuildManifestDispatch(): void {
  * @see comms/0182
  * @see https://identity.foundation/keri/did_methods/
  * @see https://github.com/TBD54566975/dwn-sdk-js
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function scittDwnBootstrapAndJsonLd(): void {
   // Related: scittDwnFederation, scittTransparencyService, appendToTransparencyLog, doITrustWhereThisCameFrom, federateClaimsDownstream, herIdentity, scittReceiptAsVcAuth
@@ -679,6 +695,10 @@ export function deploymentContextOverlay(): void {
  * @see comms/0199
  * @see intel/dffml#1315
  * @see comms/0194
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function livingThreatModelContinuousDelivery(): void {
   // Related: livingThreatsMd, streamOfConsciousnessGitops, securityTxtActivityPubActor, websubActivityPubThoughtSharing, livingThreatModel
@@ -816,6 +836,10 @@ export function scittNotarizingProxyInCiCd(): void {
  * For downstream validation, a home instance's PRT creates a pull request in a faraway instance's manifest when a dependency change passes admission control. The faraway instance runs its own PRT → GUAC → evaluation → transparency service loop, then federates evaluated claims back to the home transparency service via ActivityPub. This creates a reactive, federated supply chain where dependency changes propagate validation across organizational boundaries, with each instance maintaining its own GUAC-backed knowledge graph and transparency log.
  * 
  * @see comms/0263
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federatedPrtDependencyValidation(): void {
   // Related: webhookDependencyValidationDispatch, shouldiContributeDetailedFlow, scittTransparencyService, federatedCiCdEventSpace, activityPubMessageQueueBridge, doITrustWhereThisCameFrom
@@ -868,6 +892,10 @@ export function inTotoCoseSupplyChainAttestation(): void {
  * Earlier understanding (from comms/0215): Federated CI/CD event space using SSE and ActivityPub for event distribution across forges.
  * 
  * @see comms/0263
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federatedSupplyChainValidationTopology(): void {
   // Related: gatekeeper, federateClaimsDownstream, scittTransparencyService, supplyChainInformationNetwork, activityPubScittRegistryHandshake, webhookDependencyValidationDispatch
@@ -879,6 +907,10 @@ export function federatedSupplyChainValidationTopology(): void {
  * When a dependency change is proposed (manifest update triggers PRT), the admission control query checks GUAC's neo4j-backed graph for the dependency's composition, known vulnerabilities, and trust attestations. If GUAC has no data for the queried artifact, it emits a "data not in graph" event that triggers the dependency evaluation flow — running "shouldi" metrics collection against the new dependency version. The evaluation results feed into the transparency service, which emits ActivityPub events back to GUAC (triggering ingest of the newly evaluated data). This creates a self-healing loop: unknown artifacts trigger evaluation, evaluation feeds the transparency log, the log feeds GUAC, and subsequent queries resolve instantly from the enriched graph.
  * 
  * @see comms/0263
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function guacDependencyGraphAdmissionControl(): void {
   // Related: checkBillOfMaterialsAgainstLog, gatekeeper, livingSbomVdr, federateClaimsDownstream
@@ -928,6 +960,10 @@ export function binaryTransparentRelease(): void {
  * @see https://github.com/openvex/spec/issues/9
  * @see https://oras.land/
  * @see https://mailarchive.ietf.org/arch/msg/scitt/8ai-bxr959fzJvwQroINyzV2_oY/
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function openVexOciDistribution(): void {
   // Related: openVexActivityPubBridge, containerRegistryOnDemand, scittReferenceImplementation
@@ -1018,6 +1054,10 @@ export function cisaCsafVulnerabilityMandate(): void {
  * 
  * @see comms/0421
  * @see https://github.com/scitt-community/scitt-api-emulator/pull/37
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function scittBovineFederation(): void {
   // Related: activityPubScittRegistryHandshake, activityPubScittInputs
@@ -1032,6 +1072,10 @@ export function scittBovineFederation(): void {
  * 
  * @see comms/0423
  * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/issues/79
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function scittEntryIdContentAddressing(): void {
   // TODO: wire to related concepts
@@ -1168,6 +1212,10 @@ export function scittWitnessedSignature(): void {
  * Uses cve-bin-tool's cvedb module to poll NIST NVD, wraps each CVE update as a SCITT statement with a transparency receipt, and publishes the statement via ActivityPub (Mastodon push API). Federated SCITT instances subscribe to each other's NVD statement feeds, creating a decentralized vulnerability event mesh. This bridges the gap between centralized vulnerability databases (poll-based) and decentralized supply chain security (event-driven).
  * 
  * @see comms/0450
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function nvdPollingToScittEventBridge(): void {
   // Related: cveToSourceMapping, activityPubScittInputs
@@ -1338,6 +1386,10 @@ export function vulnerabilityDescriptionOntologyAnalysisLoop(): void {
  * @see comms/0559
  * @see https://github.com/ietf-wg-scitt/draft-ietf-scitt-architecture/pull/145
  * @see https://ietf-wg-scitt.github.io/draft-ietf-scitt-scrapi/draft-ietf-scitt-scrapi.html#name-transparency-configuration
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function scittFederationDiscovery(): void {
   // Related: scittBovineFederation, scittDwnFederation, scittServiceParameterDeclaration
@@ -1568,6 +1620,10 @@ export function c2paScittMultiLinkedStatements(): void {
  * 
  * @see comms/0659
  * @see https://forgefed.org/
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function upstreamFirstDevelopment(): void {
   // Related: federatedCiCdEventSpace, gitPushActivityPubStream, federatedForgeComputeDeduplication
@@ -1594,6 +1650,10 @@ export function cveBinToolFixStrategyUrn(): void {
  * Integrates with existing VEX infrastructure (CSAF framework, OpenVEX ActivityPub bridge) to bring exploitability context into automated fix decisions.
  * 
  * @see comms/0660
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function cveBinToolVexFixStrategy(): void {
   // Related: csafVexFramework, openVexActivityPubBridge, vulnerabilityDescriptionOntologyAnalysisLoop
@@ -1655,6 +1715,10 @@ export function llmCveToVexPipeline(): void {
  * When a fork synchronizes with upstream: clean rebase results are staged via PR-to-PR gating; dirty rebase results are routed into the ad-hoc CVE loop for triage. The synchronization itself is treated as an ad-hoc CVE event. Webhook-based GitHub attestations federate to SCITT for transparency. This extends "fork is all you need" — fork + exec via ActivityPub becomes the primitive for federated CI/CD.
  * 
  * @see comms/0671
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function federatedForkSynchronization(): void {
   // Related: federatedSupplyChainValidationTopology, forgejoFederatedCicd, gitRefPollingActivityPubBridge

@@ -17,6 +17,7 @@ import type {
   CCR,
   CCRFP,
   DID,
+  StrongRef,
 } from "@publicdomainrelay/alice-common";
 import { doITrustWhereThisCameFrom } from "@publicdomainrelay/alice-trust-abc";
 
@@ -205,6 +206,10 @@ export function ipvmHermeticDeploymentBridge(): void {
  * @see https://github.com/ChristopherHX/github-act-runner
  * @see https://github.com/nektos/gh-act
  * @see https://gitea.com/gitea/act_runner
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function activityPubCiResultCommunication(): void {
   // Related: headlessScaleToZeroCiRunner, federatedCiCdEventSpace, activityPubMessageQueueBridge, getMyWorkRun

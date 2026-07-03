@@ -320,6 +320,10 @@ export function trainOfThoughtHardening(): void {
  * 
  * @see comms/0192
  * @see https://github.com/decentralized-identity/keri/blob/master/kids/kid0001Comment.md
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function keriDuplicityDetection(): void {
   // Related: webOfTrust, doITrustWhereThisCameFrom, enclaveAttestationIsASignalNotAFoundation, trustByVerifyContinuously
@@ -334,6 +338,10 @@ export function keriDuplicityDetection(): void {
  * 
  * @see comms/0222
  * @see https://github.com/TBD54566975/ssi-sdk-mobile/pull/18
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function keriSignedReleaseArtifactStream(): void {
   // Related: keriControllerAsDiceRootOfTrust, securityTxtActivityPubActor, keriDuplicityDetection

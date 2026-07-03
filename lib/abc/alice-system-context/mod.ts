@@ -490,6 +490,10 @@ export function dataflowDrivenSchemaVersioning(): void {
  * 
  * @see comms/0165
  * @see https://github.com/intel/dffml/blob/main/docs/arch/0008-Manifest.md
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function manifestAdrIntentSimilarity(): void {
   // Related: dataflowDescribeInfrastructure, dataflowAsRecordPersistence, entrypointsAsSystemContextDids
@@ -540,6 +544,10 @@ export function deploymentTypeOperationOverride(): void {
  * 
  * @see comms/0259
  * @see intel/dffml#1454
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function localCiRunnerAct(): void {
   // Related: headlessScaleToZeroCiRunner, webhookDependencyValidationDispatch

@@ -196,6 +196,10 @@ export function streamOfConsciousnessGitops(): void {
  * @see comms/0081
  * @see comms/0082
  * @see comms/0087
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function websubActivityPubThoughtSharing(): void {
   // Related: shareAThought, onEvent, notify
@@ -225,6 +229,10 @@ export function knowledgeGraphGraphQLLd(): void {
  * 
  * @see comms/0109
  * @see https://github.com/cayleygraph/cayley
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function graphQueryDrivenOverlayStore(): void {
   // Related: knowledgeGraph, dataflowCacheExportImport, onEvent, prioritizer
@@ -266,6 +274,10 @@ export function geneticMemorySparseDistributedMemory(): void {
  * @see comms/0160
  * @see comms/0167
  * @see comms/0166
+  *
+ * Direction change (2026-07): ActivityPub superseded by AT Protocol.
+ * Read ActivityPub references in this concept as atproto records +
+ * firehose (PDS lexicons, subscribeRepos/Jetstream) going forward.
  */
 export function gitPushActivityPubStream(): void {
   // Related: websubActivityPubThoughtSharing, containerFromRebuildChain, webhookDependencyValidationDispatch
