@@ -122,10 +122,17 @@ export interface RepoRecord {
  * Compute Contract Request For Proposal: a manifest describing what Alice needs
  * built or run.
  *
+ * An optional `policy` strongRef points to a pluggable fulfillment policy
+ * record (e.g. policies.only_me, policies.direct_network) declaring admission
+ * criteria. When set, the policy carries downstream through subcontracting
+ * chains — every sub-RFP copies the same policy strongRef so the root
+ * requester's values govern the entire fulfillment chain.
+ *
  * @see open_architecture_today.md "Getting Work Done: Compute Contracts"
  */
 export interface CCRFP {
   request: Manifest;
+  policy?: StrongRef;
 }
 
 /**

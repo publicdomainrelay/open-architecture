@@ -113,13 +113,25 @@ Dep direction: `common ← abc` (never reverse). One `mod.ts` per package.
 | Stub | Implementation | Repo |
 |------|---------------|------|
 | `getMyWorkRun()` | `runComputeContract()` — 6-step lifecycle orchestrator | atproto-market |
-| `publishCCRFP()` | `compute.vm` record + signed `market.rfp` | atproto-market |
-| `biddersAnswerWithCCB()` | `createVmBidderCallbacks` / `createWorkerBidderCallbacks` | atproto-market |
-| `policyEnginePicksABidder()` | Lowest-cost winner selection (trust filter stub) | atproto-market |
+| `publishCCRFP()` | `compute.vm` record + signed `market.rfp` with optional `policy` strongRef to pluggable fulfillment policy (policies.only_me / policies.direct_network / policies.workflow_gha) | atproto-market |
+| `biddersAnswerWithCCB()` | `createVmBidderCallbacks` / `createWorkerBidderCallbacks`. OnRfp callback evaluates RFP policy before bidding. | atproto-market |
+| `policyEnginePicksABidder()` | Lowest-cost winner selection + fulfillment policy evaluation (trust graph for direct_network, operator DID match for only_me, GHA workflow for policy_based) | atproto-market |
 | `acceptWithCCBA()` | Signed `market.accept` — `submitAccept` | atproto-market |
 | `payPerTheTerms()` | X402 settlement: `mintReceiptForAccepts` + `settleX402Payment` + free settlement | atproto-market |
 | `bobPublishesCCR()` | `market.receipt` + signature verification chain | atproto-market |
 | `reverseProxyEnforcesAccess()` | fedproxy-client (Go) + RBAC OIDC token exchange + SSH relay | atproto-reverse-proxy, hono-compute-provider |
+
+**Fulfillment Policy subsystem** — pluggable, following settlement pattern:
+
+| Stub | Implementation | Repo |
+|------|---------------|------|
+| `policyAsContentAddressedArtifact()` | `market.rfp.policy` strongRef → `market.policies.*` records. Content-addressed, signed, carries downstream through subcontracting chains. | atproto-market |
+| `only_me` policy | `createOnlyMePolicy()` — resolves bidder's operator DID via `bidderAssociation`, checks `operatorDid === rootRequesterDid`. | atproto-market |
+| `direct_network` policy | `createDirectNetworkPolicy()` — traverses `sh.tangled.graph.vouch` from root requester, checks operator DID in vouch set. Pre-loaded vouchedDids for fast firehose watcher filtering. | atproto-market |
+| `workflow_gha` policy | `createWorkflowGhaPolicy()` — stub for running GHA workflows via policy-engine (policy-based scope). | atproto-market |
+| `bidderAssociation` | Reverse pointer from bidder's repo → operator's `badgeBlueKeys` record. Bridges did:key → operator DID for graph traversal. Created post-OAuth in desktop apps. | atproto-market |
+| Desktop scope UI | Tray UI "Only Me" / "Direct Network" / "Policy-based" → `ProviderState.acceptScope` → `createMarketBidder({acceptScope})` → firehose filter + push-path filter. Bidder restarts on scope change. | deno-macos-runner-desktop |
+| CLI scope flag | `request-vm-ssh --policy-mode=only_me|direct_network|policy_based` or `POLICY_MODE` env var → `runComputeContract({policyMode})` → policy record minted + attached to RFP. | atproto-market |
 | Compute provisioning | `compute-provider-local` (container) + `compute-provider-digitalocean` (droplet) | hono-compute-provider |
 | `buildDefaultUserData` | `cloud-init-common`: `buildDefaultUserData` + `patchDefaultUserData` + `buildTunnelUserData` | atproto-market |
 | SSH tunnel / WebSocket | `did-key-relay` tunnel + subscriber + `createSshSessionProvider` | did-key-relay, atproto-market |
@@ -275,6 +287,7 @@ it via their firehose watchers" — the transport is already COMPLETE
 ```
 Communication:              ████████████████████ 100%
 Compute Contract:           ████████████████████ 100%
+Fulfillment Policy:         ████████████████████ 100%  (only_me, direct_network; workflow_gha stub)
 System Context:             ████████████████████ 100%  (DFFML Python)
 SCITT Transparency:         ████████████████████ 100%  (scitt-api-emulator)
 Policy Engine (OPA-style):  ████████████████████ 100%  (scitt-api-emulator + sshai)

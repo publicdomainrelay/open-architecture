@@ -39,10 +39,16 @@ export function getMyWorkRun(): CCR {
  * Step 1: Alice publishes a Compute Contract Request For Proposal (CCRFP), a
  * manifest describing what she needs built or run.
  *
+ * An optional `policy` strongRef points to a pluggable fulfillment policy
+ * record (e.g. policies.only_me, policies.direct_network, policies.workflow_gha).
+ * When set, the policy carries downstream — any sub-RFP in the subcontracting
+ * chain copies the same policy strongRef, ensuring the root requester's
+ * admission criteria govern the entire fulfillment chain.
+ *
  * @see open_architecture_today.md "Alice publishes a Compute Contract Request For Proposal"
  */
-export function publishCCRFP(): CCRFP {
-  return { request: { intent: "", schema: undefined, data: undefined } };
+export function publishCCRFP(_policy?: StrongRef): CCRFP {
+  return { request: { intent: "", schema: undefined, data: undefined }, policy: _policy };
 }
 
 /**
@@ -56,8 +62,12 @@ export function biddersAnswerWithCCB(_rfp: CCRFP): CCB[] {
 }
 
 /**
- * Step 3: Alice's policy engine reads the trust graph. She has vouched for Bob
- * and denounced Eve, so she picks Bob.
+ * Step 3: Alice's policy engine evaluates bids against the RFP's fulfillment
+ * policy. The policy (carried on the RFP as a strongRef to a pluggable policy
+ * record — policies.only_me, policies.direct_network, or policies.workflow_gha)
+ * declares admission criteria. For direct_network, the policy engine reads the
+ * trust graph (vouches and denouncements). She has vouched for Bob and denounced
+ * Eve, so she picks Bob.
  *
  * @see open_architecture_today.md "Alice's policy engine reads the trust graph"
  */
