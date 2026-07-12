@@ -1,6 +1,6 @@
 # Compute Contract Flow — Complete Architecture Map
 
-Generated 2026-07-07. Maps every layer from spec (lexicons) through ABC interfaces, transport implementations, Hono factories, CLI entrypoints, and the e2e integration test.
+Generated 2026-07-12. Maps every layer from spec (lexicons) through ABC interfaces, transport implementations, Hono factories, CLI entrypoints, e2e integration test, guest tunnel-subscriber transport, onNetwork event flow, and ephemeral JSR registry.
 
 ---
 
@@ -1452,3 +1452,81 @@ cd compute-spa && bash scripts/deploy.sh              # Browser SPA → compute.
 cd did-key-associator && bash scripts/deploy.sh       # QR associator → qr.fedfork.com
 cd deno-macos-runner-desktop && bash scripts/deploy.sh # Tray UI → tray.fedfork.com
 ```
+
+---
+
+## Guest Tunnel Transport (did-key-ingress-proxy)
+
+Replaces the legacy fedproxy-client + Go atprp-ssh-relay stack. Guest VMs run
+the tunnel-subscriber (Deno CLI) which connects outbound to the dispatcher at
+`xrpc.fedproxy.com`, registers a subdomain derived from its secp256k1 keypair,
+and bridges dispatcher tunnel bytes directly to sshd on `127.0.0.1:22`.
+
+### Files
+
+| File | Role |
+|------|------|
+| `did-key-ingress-proxy/hono-did-key-ingress-proxy-tunnel-subscriber/mod.ts` | Guest-side tunnel agent CLI |
+| `did-key-ingress-proxy/lib/did-key-ingress-proxy-subscriber-xrpc/mod.ts` | `createSubscriber`, `startTunnel`, `tunnelOverRelay` |
+| `did-key-ingress-proxy/lib/hono-factory-did-key-ingress-proxy-xrpc/mod.ts` | Dispatcher: nonce, subscribe WS, subdomain routing |
+| `atproto-market/lib/common/cloud-init-common/mod.ts` | `buildTunnelUserData`: cloud-init for tunnel-subscriber |
+| `hono-compute-provider/lib/compute-provider-local/mod.ts` | Ephemeral JSR mount on provider serve |
+| `hono-compute-provider/lib/oidc-issuer-hono/mod.ts` | `ProvisioningData.create`: onNetwork + JSR injection |
+| `atproto-market/lib/market-bidder/mod.ts` | `/v1/on-network` endpoint, `acceptToContract` map |
+| `atproto-market/lib/market-bidder-compute/mod.ts` | acceptToContract population at receipt creation |
+| `atproto-market/lib/requester-xrpc/mod.ts` | Firehose onNetwork discovery, dispatcher tunnel SSH |
+
+### Flow
+
+```
+Guest boots (cloud-init)
+  → tunnel-subscriber.service starts
+    → deno run jsr:@publicdomainrelay/hono-did-key-ingress-proxy-tunnel-subscriber
+    → derives secp256k1 keypair from SSH host key
+    → nonce challenge/response with dispatcher
+    → WebSocket connect → #registered { subdomain, ingressRef }
+    → writes FQDN to /run/guest-fqdn
+    → bridges WebSocket ↔ Deno.connect(127.0.0.1:22)
+  → provisioning-token.service → OIDC token obtained
+  → guest-onnetwork.service → POST /v1/on-network { acceptUri, acceptCid, address: fqdn }
+
+Requester SSH:
+  ssh -o ProxyCommand='websocat --binary wss://<subdomain>.xrpc.fedproxy.com/...tunnel' root@<fqdn>
+    → dispatcher routes by subdomain → tunnel subscriber → sshd
+```
+
+### SSH ProxyCommand
+
+```
+websocat --binary wss://did-key-<slug>.xrpc.fedproxy.com/xrpc/com.fedproxy.temp.xrpc.tunnel
+```
+
+## onNetwork Event Flow
+
+### Guest POST → Provider → Bidder PDS → Firehose → Requester
+
+1. Guest cloud-init `guest-onnetwork.service` (oneshot) waits for
+   `/run/guest-fqdn` written by tunnel subscriber
+2. Reads `accept.json` for `acceptUri`/`acceptCid`
+3. Reads OIDC workload token from `/root/secrets/digitalocean.com/serviceaccount/token`
+4. POSTs to provider serve `/v1/on-network` with `{ acceptUri, acceptCid, address, createdAt }`
+5. Provider validates OIDC token (Bearer auth, exp check)
+6. Provider creates `compute.events.vm.onNetwork` record on bidder PDS via `atproto.createRecord`
+7. Provider wraps in `market.event` with receipt strongRef (from `acceptToContract` map)
+8. Firehose distributes to Bluesky relay → requester's firehose watcher
+9. Requester extracts FQDN from address field → resolves `vmFqdnReady` promise
+10. Requester SSHes through dispatcher tunnel
+
+### acceptToContract Map
+
+Keyed by `acceptUri#acceptCid`, maps to `{ receiptKey, receiptUri, receiptCid, submitEventUrl }`.
+Populated at receipt creation in `market-bidder-compute::onAccept`. Created in `hono-bidder`
+and shared between bidder and provider serves.
+
+## Ephemeral JSR Registry
+
+Each compute provider mounts a hono-jsr package registry on its relay subdomain
+(at provider `serve.onConnected`). Serves workspace packages from the org root
+directory. Guest's tunnel subscriber pulls dependencies at boot via
+`JSR_URL=https://<provider-subdomain>.<host>/` (injected into cloud-init by
+`ProvisioningData.create`).
