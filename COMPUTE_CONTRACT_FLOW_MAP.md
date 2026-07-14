@@ -356,15 +356,15 @@ Guest boots → cloud-init runs provisioning-token.service
 
 ### `hono-factory-market-atproto` (`atproto-market/lib/hono-factory-market-atproto/`)
 
-Wires the 4 XRPC endpoints + did:web + service auth verification.
+Wires the 4 XRPC endpoints + did:web + service auth verification. All handlers run with `bindKeys` always-on: the signing `did:key` must appear in the issuer/author DID document's `verificationMethod[]`.
 
 **Routes:**
 - `POST /xrpc/com.publicdomainrelay.temp.market.submitRfp` — createSubmitRfpHandler
 - `POST /xrpc/com.publicdomainrelay.temp.market.submitBid` — createSubmitBidHandler
 - `POST /xrpc/com.publicdomainrelay.temp.market.submitAccept` — createSubmitAcceptHandler
 - `POST /xrpc/com.publicdomainrelay.temp.market.submitEvent` — createSubmitEventHandler
-- `GET /xrpc/com.publicdomainrelay.network.attested.verify` — createVerifyHandler
-- `GET /.well-known/did.json` — did:web document
+- `GET /xrpc/com.publicdomainrelay.network.attested.verify` — createVerifyHandler (always binds keys)
+- `GET /.well-known/did.json` — did:web document (includes verificationMethod with atproto + attestation keys)
 
 ### `hono-factory-market-settlement-free` / `hono-factory-market-settlement-x402`
 
@@ -709,7 +709,10 @@ verifyRecordSignatures({ record, repositoryDid, keysForDid })
     → createAttestationCid(record, entry, repositoryDid)
     → verifyBytes(computed.bytes, sigBytes, pubKey)
   → first passing entry wins
-  → optional keysForDid binding (did:web/did:plc key lookup)
+  → keysForDid binding ALWAYS ON (did:web/did:plc key lookup)
+    → resolves entry.issuer ?? repositoryDid DID document
+    → checks entry.key (did:key) ∈ verificationMethod[].publicKeyMultibase
+    → every producer must publish attestation key in its DID doc
 ```
 
 **Attestation CID formula:** DAG-CBOR + SHA-256 of `{ record (sans signatures), entry metadata (sans cid+sig), repository }` → CIDv1.
@@ -815,15 +818,15 @@ WS.onmessage(#subscriptionData) → decode base64 → writeAll(tcpConn)
 **Canonical bidder construction:**
 ```
 Secp256k1Keypair.create()
+  → privateKeyHex derived
+  → loadOrGenerateKeypair(privateKeyHex) → attestationKp (pre-computed before genesis)
   → createLocalPDSAgent({keypair, serve, logger, plcDirectoryUrl, dispatcherHost})
-    → loadOrGenerateKeypair → attestationKp
-    → createGenesisOp → plc.submitOp(did, op) → did:plc registered
-    → createRepoFactory({signer, storage}) → {app, api}
+    → createGenesisOp({verificationMethods: {atproto, attestation}}) → plc.submitOp → did:plc
+    → createRepoFactory({signer, storage, publicKeyDid, attestationKeyDid}) → {app, api}
     → createXrpcRelay({signer, keypair}) → relay
     → serve.addRelay(relay)
-  → createBadgeBlueSigner({privateKeyHex})
   → createPlcDirectoryClient({plcDirectoryUrl})
-  → createATProto({badgeBlueSigner, plcClient, agent: pdsAgent})
+  → createATProto({badgeBlueSigner: attestationKp, plcClient, agent: pdsAgent})
     → ATProto { did, signer, attestationKp, idResolver, createRecord,
                  createSignedRepoRecord, callService, resolve, ... }
   → createXrpcRelay({signer: atproto.signer, keypair}) → bidderRelay
@@ -845,7 +848,7 @@ Secp256k1Keypair.create()
 
 **Service auth:** `signServiceAuth(signer, {aud, lxm})` → ES256K JWT (iss=signer.did, aud=target DID, exp, jti). `verifyServiceAuth` does payload-claims-only check (not crypto — trusts relay-layer verification).
 
-**`did:web` document:** Derived from `Host` header. Service entries from `opts.didWebServices` array. Served at `/.well-known/did.json`.
+**`did:web` document:** Derived from `Host` header. Service entries from `opts.didWebServices` array. `verificationMethod[]` includes `#atproto` (signing key) plus `#attestation` (attestation key) when `publicKeyDid`/`attestationKeyDid` options are set on `RepoFactoryOptions`. Served at `/.well-known/did.json`.
 
 ### Compute Contract Gateway (separate API surface)
 
